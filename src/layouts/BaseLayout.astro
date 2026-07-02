@@ -1,0 +1,67 @@
+---
+import '@/styles/global.css';
+import type { PageMeta } from '@/utils/seo';
+
+interface Props {
+  meta: PageMeta;
+  schemas?: object[];
+}
+
+const { meta, schemas = [] } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <link rel="canonical" href={meta.canonical} />
+    {meta.noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:url" content={meta.canonical} />
+    <meta property="og:type" content={meta.ogType || 'website'} />
+    <meta property="og:site_name" content="Panun Kaergar" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:image" content={meta.ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={meta.ogImage} />
+    <meta name="twitter:title" content={meta.title} />
+    <meta name="twitter:description" content={meta.description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {
+      import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}`}></script>
+          <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', gaId);
+          </script>
+        </>
+      )
+    }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    {
+      schemas.map((schema) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
+  </head>
+  <body class="min-h-screen bg-white font-sans text-slate-800 antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-white">
+      Skip to content
+    </a>
+    <slot />
+  </body>
+</html>

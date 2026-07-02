@@ -1,0 +1,24 @@
+name: dry-clean-laundry
+shortName: Dry Clean & Laundry
+icon: 👔
+description: Book dry cleaning and laundry pickup in Srinagar — suits, sarees, everyday clothes, and household linen. Call, WhatsApp, or book online.
+seoTitle: Dry Clean & Laundry in Srinagar
+seoDescription: Book dry cleaning and laundry in Srinagar. Suit, saree, everyday wash & iron with pickup options. Verified service providers.
+serviceList:
+  - Dry cleaning for suits and formal wear
+  - Saree and delicate fabric care
+  - Wash and iron (regular laundry)
+  - Curtain and linen cleaning
+  - Pickup and delivery (where available)
+  - Stain treatment
+faqs:
+  - question: Do you offer pickup and delivery for laundry?
+    answer: Many providers offer pickup and delivery in Srinagar. Confirm your area when you book by phone, WhatsApp, form, or app.
+  - question: Can I dry clean sarees and woolens?
+    answer: Yes. Mention the fabric type when booking so the right provider handles your items.
+  - question: How do I book dry clean or laundry in Srinagar?
+    answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app.
+  - question: How much does dry clean or laundry cost in Srinagar?
+    answer: Pricing depends on garment type and quantity. Pickup services may have a minimum order. Estimates appear in the app, or our team quotes when you book by phone, WhatsApp, or form.
+published: true
+sortOrder: 7

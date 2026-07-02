@@ -1,0 +1,33 @@
+name: srinagar
+displayName: Srinagar
+region: Jammu & Kashmir, India
+description: >-
+  Book carpenters, plumbers, electricians, masons, cleaners, pest control, laundry, painters,
+  appliance repair, gardening, salon, and interior decor in Srinagar. Panun Kaergar covers
+  major neighborhoods — call, WhatsApp, use our website, or the app to book.
+seoTitle: Home Services in Srinagar | Panun Kaergar
+seoDescription: >-
+  Book home services in Srinagar — carpentry, plumbing, masonry, electrician, cleaning, pest control,
+  laundry, painting, appliances, gardening, salon & interior decor. Call or book online.
+neighborhoods:
+  - Lal Chowk
+  - Rajbagh
+  - Hyderpora
+  - Bemina
+  - Hazratbal
+  - Nowgam
+  - Rainawari
+  - Soura
+  - Khanyar
+  - Batamaloo
+faqs:
+  - question: Do you cover all of Srinagar?
+    answer: >-
+      We serve most areas in Srinagar. When you book, tell us your neighborhood — by phone,
+      WhatsApp, the website form, or the app — and we confirm if a provider is available.
+  - question: Can I get a same-day visit in Srinagar?
+    answer: >-
+      Yes, if a provider is free in your area. Book early in the day for the best chance of
+      a same-day slot.
+published: true
+sortOrder: 1

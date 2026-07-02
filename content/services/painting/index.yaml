@@ -1,0 +1,22 @@
+name: painting
+shortName: Painting
+icon: 🎨
+description: Book a painter in Srinagar for interior and exterior home painting. Call, WhatsApp, or book online.
+seoTitle: Home Painting Services in Srinagar
+seoDescription: Book home painting in Srinagar. Interior, exterior & touch-up painting by verified local painters.
+serviceList:
+  - Interior wall painting
+  - Exterior painting
+  - Touch-up and patch work
+  - Consultation and estimation
+  - Ceiling and trim painting
+  - Pre-paint surface preparation
+faqs:
+  - question: How do I get a painting estimate in Srinagar?
+    answer: Book a visit through our website, phone, WhatsApp, or app. The provider can assess the area and share a quote for the job.
+  - question: Do painters bring their own materials?
+    answer: Most painting jobs include labour; materials may be discussed during the estimate. Confirm details when you book.
+  - question: How much does home painting cost in Srinagar?
+    answer: Pricing depends on room size, surface condition, and paint quality. You receive an estimate after assessment in the app or when you book by phone, WhatsApp, or form.
+published: true
+sortOrder: 8

@@ -1,0 +1,85 @@
+---
+import Icon from '@/components/Icon.astro';
+import { iconNameFromEmoji } from '@/utils/icons';
+
+interface AreaLink {
+  slug: string;
+  displayName: string;
+}
+
+interface Props {
+  slug: string;
+  shortName: string;
+  description: string;
+  icon?: string;
+  areaSlug?: string;
+  areaName?: string;
+  href?: string;
+  areas?: AreaLink[];
+  as?: 'a' | 'article';
+  class?: string;
+}
+
+const {
+  slug,
+  shortName,
+  description,
+  icon,
+  areaSlug,
+  areaName,
+  href,
+  areas = [],
+  as = 'a',
+  class: className = '',
+} = Astro.props;
+
+const link = href ?? (areaSlug ? `/services/${slug}/${areaSlug}` : `/services/${slug}`);
+const iconName = iconNameFromEmoji(icon);
+const Tag = as;
+---
+
+<Tag
+  href={as === 'a' ? link : undefined}
+  class:list={[
+    'card card-hover group animate-fade-up flex flex-col p-6',
+    as === 'a' && 'block',
+    className,
+  ]}
+>
+  <span class="icon-badge">
+    <Icon name={iconName} size={22} class="text-brand-600" />
+  </span>
+  {
+    as === 'article' ? (
+      <h2 class="mt-4 text-xl font-bold">
+        <a href={link} class="text-slate-900 hover:text-brand-700">
+          {shortName}
+        </a>
+      </h2>
+    ) : (
+      <h3 class="mt-4 text-xl font-bold text-slate-900 group-hover:text-brand-700">{shortName}</h3>
+    )
+  }
+  <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{description}</p>
+  {
+    areas.length > 0 ? (
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {areas.map((area) => (
+          <li>
+            <a
+              href={`/services/${slug}/${area.slug}`}
+              class="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700 transition hover:bg-brand-100"
+            >
+              {area.displayName}
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : areaName ? (
+      <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+        Book in {areaName}
+        <Icon name="chevron-right" size={16} class="transition group-hover:translate-x-0.5" />
+      </span>
+    ) : null
+  }
+</Tag>

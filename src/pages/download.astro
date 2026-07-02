@@ -1,0 +1,27 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import AppDownload from '@/components/AppDownload.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings } from '@/utils/reader';
+
+const site = await getSiteSettings();
+
+const meta = buildMeta({
+  title: 'Download Panun Kaergar App | Book Home Services in Srinagar',
+  description:
+    'Download the free Panun Kaergar app for Android or iOS. Book plumbers, electricians, and AC repair in Srinagar. Or book without the app on our website.',
+  path: '/download',
+});
+---
+
+<PageLayout meta={meta}>
+  <section class="section-pad mx-auto max-w-6xl pb-0 text-center">
+    <h1 class="animate-fade-up text-4xl font-extrabold text-slate-900">Download the Panun Kaergar app</h1>
+    <p class="mx-auto mt-4 max-w-2xl animate-fade-up text-lg text-slate-600 stagger-1">
+      Get the free app to book, track, and pay for home services in Srinagar.
+      Prefer not to install? <a href="/book" class="font-medium text-brand-700 hover:underline">Book on our website</a>.
+    </p>
+  </section>
+
+  <AppDownload playStoreUrl={site.userPlayStoreUrl} appStoreUrl={site.userAppStoreUrl} bookingUrl="/book" />
+</PageLayout>

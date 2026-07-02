@@ -1,0 +1,91 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import Icon from '@/components/Icon.astro';
+import { iconNameFromEmoji } from '@/utils/icons';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings, getAreas, getArea, getServices } from '@/utils/reader';
+import { breadcrumbSchema, faqSchema } from '@/utils/schema';
+
+export async function getStaticPaths() {
+  const areas = await getAreas();
+  return areas.map((area) => ({ params: { slug: area.slug } }));
+}
+
+const { slug } = Astro.params;
+const area = await getArea(slug!);
+if (!area) return Astro.redirect('/404');
+
+const site = await getSiteSettings();
+const services = await getServices();
+
+const meta = buildMeta({
+  title: area.seoTitle || `Home Services in ${area.displayName}`,
+  description: area.seoDescription || area.description,
+  path: `/areas/${area.slug}`,
+});
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Areas', path: '/areas' },
+    { name: area.displayName, path: `/areas/${area.slug}` },
+  ]),
+  faqSchema(area.faqs || []),
+].filter(Boolean);
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <section class="section-pad mx-auto max-w-4xl">
+    <h1 class="animate-fade-up text-4xl font-extrabold text-slate-900">Home services in {area.displayName}</h1>
+    <p class="mt-4 animate-fade-up text-lg text-slate-600 stagger-1">{area.description}</p>
+
+    {
+      area.neighborhoods && area.neighborhoods.length > 0 && (
+        <div class="mt-10 animate-fade-up stagger-2">
+          <h2 class="text-xl font-bold text-slate-900">Areas we cover</h2>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {area.neighborhoods.map((n) => (
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-4 py-2 text-sm text-slate-700">
+                <Icon name="map-pin" size={14} class="text-brand-500" />
+                {n}
+              </span>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    {
+      area.bodyHtml && (
+        <div class="prose prose-slate mt-10 max-w-none animate-fade-up" set:html={area.bodyHtml} />
+      )
+    }
+
+    <div class="mt-12 animate-fade-up">
+      <h2 class="text-xl font-bold text-slate-900">Services in {area.displayName}</h2>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+        {
+          services.map((service) => (
+            <li>
+              <a
+                href={`/services/${service.slug}/${area.slug}`}
+                class="card card-hover flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-800"
+              >
+                <span class="icon-badge h-9 w-9">
+                  <Icon name={iconNameFromEmoji(service.icon)} size={18} class="text-brand-600" />
+                </span>
+                {service.shortName}
+                <Icon name="chevron-right" size={16} class="ml-auto text-brand-400" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <FaqSection title="FAQ" items={area.faqs || []} />
+  <BookingOptions site={site} variant="compact" />
+</PageLayout>

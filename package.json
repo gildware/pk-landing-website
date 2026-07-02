@@ -1,0 +1,32 @@
+{
+  "name": "panun-marketing",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "cms": "KEYSTATIC_CMS=1 astro dev",
+    "build": "astro build",
+    "build:cms": "KEYSTATIC_CMS=1 astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/markdoc": "^0.11.5",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/tailwind": "^5.1.5",
+    "@astrojs/vercel": "^7.8.2",
+    "@keystatic/astro": "^5.1.0",
+    "@keystatic/core": "^0.5.49",
+    "@markdoc/markdoc": "^0.4.0",
+    "astro": "^4.16.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "playwright": "^1.49.0",
+    "typescript": "^5.7.3"
+  }
+}

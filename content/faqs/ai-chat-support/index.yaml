@@ -1,0 +1,9 @@
+question: ai-chat-support
+questionText: Is there chat support?
+answer: >-
+  Yes. The Panun Kaergar app has AI chat to help you book, check your booking, and get quick
+  answers. On the website, call +91 8899 181 555, WhatsApp us, or fill the booking form and
+  our team will help you.
+category: App
+sortOrder: 10
+published: true

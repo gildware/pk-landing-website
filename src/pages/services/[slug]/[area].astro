@@ -1,0 +1,132 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import RelatedServices from '@/components/RelatedServices.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import Icon from '@/components/Icon.astro';
+import { iconNameFromEmoji } from '@/utils/icons';
+import { buildMeta } from '@/utils/seo';
+import {
+  getSiteSettings,
+  getServices,
+  getAreas,
+  getService,
+  getArea,
+  getServiceAreaPages,
+} from '@/utils/reader';
+import { serviceAreaPageSchema, breadcrumbSchema, faqSchema } from '@/utils/schema';
+
+export async function getStaticPaths() {
+  const services = await getServices();
+  const areas = await getAreas();
+  return services.flatMap((service) =>
+    areas.map((area) => ({
+      params: { slug: service.slug, area: area.slug },
+    }))
+  );
+}
+
+const { slug, area: areaSlug } = Astro.params;
+const service = await getService(slug!);
+const area = await getArea(areaSlug!);
+if (!service || !area) return Astro.redirect('/404');
+
+const site = await getSiteSettings();
+const allServices = await getServices();
+const customPages = await getServiceAreaPages();
+const custom = customPages.find(
+  (p) => p.serviceSlug === service.slug && p.areaSlug === area.slug
+);
+
+const pageTitle =
+  custom?.seoTitle || `${service.shortName} in ${area.displayName} | Panun Kaergar`;
+const pageDescription =
+  custom?.seoDescription ||
+  `Book ${service.shortName.toLowerCase()} in ${area.displayName}. Verified local providers, easy scheduling. Call, WhatsApp, or book online with Panun Kaergar.`;
+const intro =
+  custom?.intro ||
+  `Need ${service.shortName.toLowerCase()} in ${area.displayName}? Panun Kaergar sends verified providers to homes across ${area.displayName}. Book by phone, WhatsApp, our website, or the app.`;
+const faqs =
+  custom?.faqs && custom.faqs.length > 0
+    ? custom.faqs
+    : [
+        {
+          question: `How do I book ${service.shortName.toLowerCase()} in ${area.displayName}?`,
+          answer: `Call us, WhatsApp us, fill the booking form at panunkaergar.com/book, or use the Panun Kaergar app. Share your address in ${area.displayName} and preferred time.`,
+        },
+        {
+          question: `Does Panun Kaergar cover all of ${area.displayName}?`,
+          answer: `We cover most neighborhoods in ${area.displayName}. Tell us your address when you book — by phone, WhatsApp, the website, or the app — and we confirm availability.`,
+        },
+      ];
+
+const path = `/services/${service.slug}/${area.slug}`;
+const meta = buildMeta({ title: pageTitle, description: pageDescription, path });
+
+const schemas = [
+  serviceAreaPageSchema(service, area, site, meta.canonical),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: service.shortName, path: `/services/${service.slug}` },
+    { name: `${area.displayName}`, path },
+  ]),
+  faqSchema(faqs),
+].filter(Boolean);
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <Breadcrumbs
+    items={[
+      { name: 'Home', path: '/' },
+      { name: 'Services', path: '/services' },
+      { name: service.shortName, path: `/services/${service.slug}` },
+      { name: area.displayName },
+    ]}
+  />
+
+  <article class="mx-auto max-w-4xl px-4 py-10 sm:px-6">
+    <div class="flex items-start gap-4 animate-fade-up">
+      <span class="icon-badge shrink-0">
+        <Icon name={iconNameFromEmoji(service.icon)} size={24} class="text-brand-600" />
+      </span>
+      <div>
+        <h1 class="text-4xl font-extrabold text-slate-900">{service.shortName} in {area.displayName}</h1>
+        <p class="mt-4 text-lg leading-relaxed text-slate-600">{intro}</p>
+      </div>
+    </div>
+
+    {
+      service.serviceList && service.serviceList.length > 0 && (
+        <section class="mt-10 animate-fade-up stagger-1">
+          <h2 class="text-2xl font-bold text-slate-900">Services included</h2>
+          <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+            {service.serviceList.map((item) => (
+              <li class="flex items-start gap-2 rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-700">
+                <Icon name="check" size={18} class="mt-0.5 shrink-0 text-brand-600" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      custom?.bodyHtml && (
+        <div class="prose prose-slate mt-10 max-w-none animate-fade-up" set:html={custom.bodyHtml} />
+      )
+    }
+
+    {
+      !custom?.bodyHtml && service.bodyHtml && (
+        <div class="prose prose-slate mt-10 max-w-none animate-fade-up" set:html={service.bodyHtml} />
+      )
+    }
+  </article>
+
+  <BookingOptions site={site} variant="compact" />
+  <RelatedServices services={allServices} areaSlug={area.slug} excludeSlug={service.slug} />
+  <FaqSection title={`${service.shortName} in ${area.displayName} — FAQ`} items={faqs} />
+</PageLayout>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  primaryHref: string;
+  primaryLabel?: string;
+}
+
+const { title, description, primaryHref, primaryLabel = 'Book now' } = Astro.props;
+---
+
+<section class="section-pad animate-fade-up bg-brand-900 text-white">
+  <div class="mx-auto max-w-4xl text-center">
+    <h2 class="text-3xl font-bold">{title}</h2>
+    {description && <p class="mt-4 text-lg text-blue-100">{description}</p>}
+    <a
+      href={primaryHref}
+      class="btn-primary mt-8 bg-white text-brand-600 hover:bg-brand-50"
+    >
+      {primaryLabel}
+    </a>
+  </div>
+</section>

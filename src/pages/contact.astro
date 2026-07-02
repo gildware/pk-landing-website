@@ -1,0 +1,98 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import BookServiceForm from '@/components/BookServiceForm.astro';
+import Icon from '@/components/Icon.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings, getServices } from '@/utils/reader';
+
+const site = await getSiteSettings();
+const services = await getServices();
+const mapUrl = (site as { mapEmbedUrl?: string }).mapEmbedUrl;
+
+const meta = buildMeta({
+  title: 'Contact Panun Kaergar | Home Services in Srinagar',
+  description: `Call ${site.phone}, WhatsApp, or email Panun Kaergar to book plumbing, electrical, AC repair, and other home services in Srinagar.`,
+  path: '/contact',
+});
+---
+
+<PageLayout meta={meta}>
+  <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: 'Contact' }]} />
+
+  <section class="section-pad mx-auto max-w-6xl pb-8">
+    <h1 class="animate-fade-up text-4xl font-extrabold text-slate-900">Contact Panun Kaergar</h1>
+    <p class="mt-4 max-w-2xl animate-fade-up text-lg text-slate-600 stagger-1">
+      Questions about a booking? Call, WhatsApp, or email us — or send a booking request using the form below.
+    </p>
+  </section>
+
+  <div class="mx-auto grid max-w-6xl gap-12 px-4 pb-16 sm:px-6 lg:grid-cols-2">
+    <dl class="card animate-fade-up space-y-5 p-8 h-fit">
+      <div class="flex gap-4">
+        <span class="icon-badge shrink-0"><Icon name="phone" size={20} /></span>
+        <div>
+          <dt class="text-sm font-semibold text-slate-500">Phone</dt>
+          <dd class="mt-1">
+            <a href={`tel:${site.phone}`} class="text-xl font-semibold text-brand-700 hover:underline">{site.phone}</a>
+          </dd>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <span class="icon-badge shrink-0 bg-emerald-50 text-whatsapp-dark"><Icon name="whatsapp" size={20} /></span>
+        <div>
+          <dt class="text-sm font-semibold text-slate-500">WhatsApp</dt>
+          <dd class="mt-1">
+            <a
+              href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xl font-semibold text-whatsapp-dark hover:underline"
+            >Message on WhatsApp</a>
+          </dd>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <span class="icon-badge shrink-0"><Icon name="mail" size={20} /></span>
+        <div>
+          <dt class="text-sm font-semibold text-slate-500">Email</dt>
+          <dd class="mt-1">
+            <a href={`mailto:${site.email}`} class="text-lg font-medium text-brand-700 hover:underline">{site.email}</a>
+          </dd>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <span class="icon-badge shrink-0"><Icon name="map-pin" size={20} /></span>
+        <div>
+          <dt class="text-sm font-semibold text-slate-500">Address</dt>
+          <dd class="mt-1 text-slate-800">{site.address}</dd>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <span class="icon-badge shrink-0"><Icon name="clock" size={20} /></span>
+        <div>
+          <dt class="text-sm font-semibold text-slate-500">Hours</dt>
+          <dd class="mt-1 text-slate-800">{(site as { businessHours?: string }).businessHours ?? 'Mon–Sun: 8:00 AM – 9:00 PM'}</dd>
+        </div>
+      </div>
+    </dl>
+
+    {
+      mapUrl && (
+        <div class="card animate-fade-up stagger-1 overflow-hidden">
+          <iframe
+            src={mapUrl}
+            width="100%"
+            height="360"
+            style="border:0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Panun Kaergar location map"
+          ></iframe>
+        </div>
+      )
+    }
+  </div>
+
+  <BookServiceForm site={site} services={services} formId="contact-book-form" heading="Send a booking request" />
+</PageLayout>

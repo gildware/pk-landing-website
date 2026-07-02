@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import StickyMobileCta from '@/components/StickyMobileCta.astro';
+import type { PageMeta } from '@/utils/seo';
+import { getSiteSettings } from '@/utils/reader';
+
+interface Props {
+  meta: PageMeta;
+  schemas?: object[];
+  hideStickyCta?: boolean;
+}
+
+const { meta, schemas = [], hideStickyCta = false } = Astro.props;
+const site = await getSiteSettings();
+---
+
+<BaseLayout meta={meta} schemas={schemas}>
+  <Header site={site} />
+  <main id="main-content">
+    <slot />
+  </main>
+  <Footer site={site} />
+  <WhatsAppFloat whatsapp={site.whatsapp} />
+  {!hideStickyCta && <StickyMobileCta site={site} />}
+</BaseLayout>

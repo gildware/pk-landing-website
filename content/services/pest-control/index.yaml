@@ -1,0 +1,24 @@
+name: pest-control
+shortName: Pest Control
+icon: 🐛
+description: Book pest control in Srinagar for cockroaches, rodents, termites, and general fumigation. Safe treatments for homes and offices.
+seoTitle: Pest Control Services in Srinagar
+seoDescription: Book pest control in Srinagar. Cockroach, rodent, termite & general fumigation for homes and offices. Call, WhatsApp, or book online.
+serviceList:
+  - Cockroach and ant treatment
+  - Rodent control
+  - Termite inspection and treatment
+  - Bed bug treatment
+  - General home fumigation
+  - Office and commercial pest control
+faqs:
+  - question: Is pest control safe for homes with children and pets?
+    answer: Providers use approved treatments and can advise on safety steps before and after the visit. Mention any concerns when you book.
+  - question: How often should I book pest control?
+    answer: Many homes in Srinagar book quarterly or before seasonal changes. One-time treatments are also available for active infestations.
+  - question: How do I book pest control in Srinagar?
+    answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app.
+  - question: How much does pest control cost in Srinagar?
+    answer: Pricing depends on property size and pest type. You see estimates in the app before confirming, or our team shares guidance when you book by phone, WhatsApp, or form.
+published: true
+sortOrder: 6

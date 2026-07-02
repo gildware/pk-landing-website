@@ -1,0 +1,118 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import Icon from '@/components/Icon.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings, getServices, getAreas, siteUrl } from '@/utils/reader';
+import { breadcrumbSchema, itemListSchema } from '@/utils/schema';
+
+const site = await getSiteSettings();
+const services = await getServices();
+const areas = await getAreas();
+const primaryArea = areas[0];
+
+const serviceGroups = [
+  {
+    title: 'Home repair & construction',
+    slugs: ['carpentry', 'plumbing', 'masonry', 'electrician', 'painting', 'interior-decor'],
+  },
+  {
+    title: 'Cleaning & care',
+    slugs: ['professional-cleaning', 'pest-control', 'dry-clean-laundry', 'gardening'],
+  },
+  {
+    title: 'Appliances & lifestyle',
+    slugs: ['home-appliances', 'mens-salon', 'womens-salon'],
+  },
+];
+
+const meta = buildMeta({
+  title: 'All Home Services in Srinagar — 13 Categories',
+  description:
+    'Book carpentry, plumbing, masonry, electrician, cleaning, pest control, laundry, painting, appliances, gardening, salon & interior decor in Srinagar. Call, WhatsApp, or book online.',
+  path: '/services',
+});
+
+const listItems = services.flatMap((service) =>
+  areas.map((area) => ({
+    name: `${service.shortName} in ${area.displayName}`,
+    url: siteUrl(`/services/${service.slug}/${area.slug}`),
+    description: service.description,
+  }))
+);
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+  ]),
+  itemListSchema(listItems, 'Home services in Srinagar'),
+];
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <section class="section-pad mx-auto max-w-6xl">
+    <h1 class="animate-fade-up text-4xl font-extrabold text-slate-900">
+      Home services in {primaryArea?.displayName ?? 'Srinagar'}
+    </h1>
+    <p class="mt-4 max-w-3xl animate-fade-up text-lg text-slate-600 stagger-1">
+      Panun Kaergar offers <strong>13 service categories</strong> across Srinagar — from carpentry and
+      plumbing to salon at home and interior decor. Every category has verified local providers.
+      Book by phone, WhatsApp, our website, or the free app.
+    </p>
+
+    {
+      serviceGroups.map((group) => {
+        const groupServices = services.filter((s) => group.slugs.includes(s.slug));
+        if (groupServices.length === 0) return null;
+        return (
+          <div class="mt-14 animate-fade-up">
+            <h2 class="text-2xl font-bold text-slate-900">{group.title}</h2>
+            <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {groupServices.map((service, i) => (
+                <ServiceCard
+                  as="article"
+                  slug={service.slug}
+                  shortName={service.shortName}
+                  description={service.description}
+                  icon={service.icon}
+                  areaSlug={primaryArea?.slug}
+                  areaName={primaryArea?.displayName}
+                  areas={areas.map((a) => ({ slug: a.slug, displayName: a.displayName }))}
+                  class={`stagger-${Math.min(i + 1, 4)}`}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+
+    <div class="mt-14 rounded-2xl border border-brand-100 bg-brand-50/50 p-8 animate-fade-up">
+      <h2 class="text-xl font-bold text-slate-900">Book any service in Srinagar</h2>
+      <p class="mt-2 text-slate-600">
+        Every service above is available in Srinagar neighborhoods including Lal Chowk, Rajbagh,
+        Hyderpora, Bemina, and Hazratbal.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-3">
+        <a
+          href="/book"
+          class="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700"
+        >
+          <Icon name="form" size={16} />
+          Book online
+        </a>
+        <a
+          href={`tel:${site.phone}`}
+          class="inline-flex items-center gap-2 rounded-xl border border-brand-200 bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 transition hover:bg-brand-50"
+        >
+          <Icon name="phone" size={16} />
+          {site.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <BookingOptions site={site} variant="compact" />
+</PageLayout>

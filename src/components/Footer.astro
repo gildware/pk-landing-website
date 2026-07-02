@@ -1,0 +1,127 @@
+---
+import Icon from '@/components/Icon.astro';
+
+interface SiteFooter {
+  businessName: string;
+  phone: string;
+  email: string;
+  whatsapp: string;
+  bookingUrl: string;
+  footerTagline?: string;
+  poweredByName?: string;
+  facebookUrl?: string;
+  instagramUrl?: string;
+}
+
+interface Props {
+  site: SiteFooter;
+}
+
+const { site } = Astro.props;
+const year = new Date().getFullYear();
+const footer = site as SiteFooter;
+---
+
+<footer class="border-t border-slate-200 bg-slate-50">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <a href="/" aria-label={site.businessName}>
+        <img
+          src="/logo.png"
+          alt={site.businessName}
+          width="240"
+          height="59"
+          class="h-9 w-auto max-w-[10.5rem] object-contain sm:h-10 sm:max-w-[11.5rem] lg:h-11 lg:max-w-[12.5rem]"
+        />
+      </a>
+      <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600">
+        {footer.footerTagline ??
+          "Kashmir's trusted platform to book verified home service providers — carpentry, plumbing, electrician, cleaning, salon, appliances, and more."}
+      </p>
+      <div class="mt-5 flex flex-col gap-2 text-sm text-slate-600">
+        <a href={`tel:${site.phone}`} class="inline-flex items-center gap-2 transition hover:text-brand-700">
+          <Icon name="phone" size={16} class="text-brand-600" />
+          {site.phone}
+        </a>
+        <a
+          href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`}
+          class="inline-flex items-center gap-2 transition hover:text-whatsapp-dark"
+        >
+          <Icon name="whatsapp" size={16} class="text-whatsapp" />
+          WhatsApp
+        </a>
+        <a href={`mailto:${site.email}`} class="inline-flex items-center gap-2 transition hover:text-brand-700">
+          <Icon name="mail" size={16} class="text-brand-600" />
+          {site.email}
+        </a>
+      </div>
+      {
+        (footer.facebookUrl || footer.instagramUrl) && (
+          <div class="mt-4 flex gap-3">
+            {footer.facebookUrl && (
+              <a
+                href={footer.facebookUrl}
+                class="icon-badge h-9 w-9 transition hover:bg-brand-100"
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label="Facebook"
+              >
+                <Icon name="facebook" size={18} />
+              </a>
+            )}
+            {footer.instagramUrl && (
+              <a
+                href={footer.instagramUrl}
+                class="icon-badge h-9 w-9 transition hover:bg-brand-100"
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label="Instagram"
+              >
+                <Icon name="instagram" size={18} />
+              </a>
+            )}
+          </div>
+        )
+      }
+    </div>
+
+    <div>
+      <p class="font-semibold text-slate-900">Explore</p>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600">
+        <li><a href="/book" class="transition hover:text-brand-700">Book a service</a></li>
+        <li><a href="/services" class="transition hover:text-brand-700">All services</a></li>
+        <li><a href="/areas" class="transition hover:text-brand-700">Service areas</a></li>
+        <li><a href="/blog" class="transition hover:text-brand-700">Blog</a></li>
+        <li><a href="/download" class="transition hover:text-brand-700">Download app</a></li>
+        <li><a href="/become-a-provider" class="transition hover:text-brand-700">Become a provider</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="font-semibold text-slate-900">Company</p>
+      <ul class="mt-3 space-y-2 text-sm text-slate-600">
+        <li><a href="/about" class="transition hover:text-brand-700">About</a></li>
+        <li><a href="/contact" class="transition hover:text-brand-700">Contact</a></li>
+        <li><a href="/faq" class="transition hover:text-brand-700">FAQ</a></li>
+        <li><a href="/privacy" class="transition hover:text-brand-700">Privacy</a></li>
+        <li><a href="/terms" class="transition hover:text-brand-700">Terms</a></li>
+        <li><a href="/refund" class="transition hover:text-brand-700">Refund policy</a></li>
+        <li><a href="/cancellation" class="transition hover:text-brand-700">Cancellation policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    © {year} {site.businessName}. All rights reserved.
+    {
+      footer.poweredByName && (
+        <>
+          <span class="mx-2">·</span>
+          Proudly powered by {footer.poweredByName}
+        </>
+      )
+    }
+    <span class="mx-2">·</span>
+    <a href="/llms.txt" class="transition hover:text-brand-700">llms.txt</a>
+  </div>
+</footer>

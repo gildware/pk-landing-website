@@ -1,0 +1,22 @@
+name: womens-salon
+shortName: Women's Salon
+icon: 💇
+description: Book women's salon services at home in Srinagar — hair, facials, manicure, party makeup, and beauty care.
+seoTitle: Women's Salon at Home in Srinagar
+seoDescription: Book women's beauty at home in Srinagar. Hair, facials, manicure, threading, waxing & party makeup. Verified beauticians.
+serviceList:
+  - Hair styling and cuts
+  - Facials and skincare
+  - Manicure and pedicure
+  - Threading and waxing
+  - Party and bridal prep
+  - Mehndi and special occasion styling
+faqs:
+  - question: Can I book a beautician at home in Srinagar?
+    answer: Yes. Book through our website form, WhatsApp, phone, or the Panun Kaergar app.
+  - question: Do beauticians follow hygiene protocols?
+    answer: Providers on our platform are expected to follow hygiene best practices. Mention any special requirements when you book.
+  - question: How much does women's salon at home cost in Srinagar?
+    answer: Pricing depends on services (hair, facial, manicure, party makeup). Rates appear in the app before you confirm, or our team shares guidance when you book by phone, WhatsApp, or form.
+published: true
+sortOrder: 12

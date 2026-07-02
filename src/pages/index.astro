@@ -1,0 +1,184 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Hero from '@/components/Hero.astro';
+import Testimonials from '@/components/Testimonials.astro';
+import AppDownload from '@/components/AppDownload.astro';
+import FeatureGrid from '@/components/FeatureGrid.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import Icon from '@/components/Icon.astro';
+import TrustSignals from '@/components/TrustSignals.astro';
+import { buildMeta } from '@/utils/seo';
+import {
+  getSiteSettings,
+  getHomepage,
+  getHomepageHtml,
+  getServices,
+  getAreas,
+  getFaqs,
+  getTestimonials,
+  getPrimaryArea,
+} from '@/utils/reader';
+import {
+  organizationSchema,
+  localBusinessSchema,
+  faqSchema,
+  websiteSchema,
+  mobileApplicationsSchema,
+  reviewSchemas,
+} from '@/utils/schema';
+
+const site = await getSiteSettings();
+const homepage = await getHomepage();
+const homepageHtml = await getHomepageHtml();
+const services = await getServices();
+const areas = await getAreas();
+const faqs = await getFaqs();
+const testimonials = await getTestimonials();
+const primaryArea = getPrimaryArea(areas);
+
+const areaOptions = [
+  ...(primaryArea.neighborhoods?.map((n) => `${primaryArea.displayName} — ${n}`) ?? []),
+  `Other in ${primaryArea.displayName}`,
+];
+
+const meta = buildMeta({
+  title: `${site.businessName} | Carpentry, Plumbing, Electrician & More in Srinagar`,
+  description: site.description,
+  path: '/',
+});
+
+const testimonialSchemaItems = testimonials.map((t) => ({
+  customerName: t.customerName,
+  quote: t.quote,
+  rating: t.rating,
+  location: t.location,
+}));
+
+const schemas = [
+  organizationSchema(site),
+  websiteSchema(site),
+  localBusinessSchema(site, areas, services, testimonialSchemaItems),
+  ...mobileApplicationsSchema({ ...site, providerPlayStoreUrl: site.providerPlayStoreUrl }),
+  ...reviewSchemas(testimonialSchemaItems, site),
+  faqSchema(faqs.slice(0, 6).map((f) => ({ question: f.questionText, answer: f.answer }))),
+].filter(Boolean);
+---
+
+<PageLayout meta={meta} schemas={schemas} hideStickyCta>
+  <Hero
+    title={site.heroTitle}
+    subtitle={site.heroSubtitle}
+    badge={(site as { heroBadge?: string }).heroBadge}
+    primaryHref="/book"
+    primaryLabel={site.heroCtaBook}
+    secondaryHref="/become-a-provider"
+    secondaryLabel={site.heroCtaProvider}
+    areaName={primaryArea.displayName}
+    site={site}
+    services={services}
+    areaOptions={areaOptions}
+  />
+
+  <TrustSignals phone={site.phone} hours={(site as { businessHours?: string }).businessHours} />
+
+  <section class="section-pad mx-auto max-w-6xl">
+    <div class="flex animate-fade-up items-end justify-between gap-4">
+      <div>
+        <h2 class="text-3xl font-bold text-slate-900">Popular home services</h2>
+        <p class="mt-2 text-slate-600">13 categories — carpentry, plumbing, cleaning, salon & more in {primaryArea.displayName}</p>
+      </div>
+      <a href="/services" class="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:underline">
+        View all
+        <Icon name="chevron-right" size={16} />
+      </a>
+    </div>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        services.slice(0, 6).map((service, i) => (
+          <ServiceCard
+            slug={service.slug}
+            shortName={service.shortName}
+            description={service.description}
+            icon={service.icon}
+            areaSlug={primaryArea.slug}
+            areaName={primaryArea.displayName}
+            class={`stagger-${Math.min(i + 1, 4)}`}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  {homepage?.platformFeatures && homepage.platformFeatures.length > 0 && (
+    <FeatureGrid title="Why use Panun Kaergar?" items={homepage.platformFeatures} />
+  )}
+
+  {
+    homepage && (
+      <section class="section-pad bg-slate-50">
+        <div class="mx-auto max-w-6xl">
+          <h2 class="animate-fade-up text-3xl font-bold text-slate-900">{homepage.howItWorksTitle}</h2>
+          <div class="mt-10 grid gap-6 md:grid-cols-3">
+            {homepage.howItWorksSteps?.map((step, i) => (
+              <div class:list={['card card-hover p-6 animate-fade-up', `stagger-${Math.min(i + 1, 4)}`]}>
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
+                  {i + 1}
+                </span>
+                <h3 class="mt-4 text-lg font-bold text-slate-900">{step.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
+              </div>
+            ))}
+          </div>
+          <p class="mt-8 text-center">
+            <a href="/how-it-works" class="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:underline">
+              Learn more about how it works
+              <Icon name="chevron-right" size={16} />
+            </a>
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  <Testimonials items={testimonials} />
+
+  {
+    homepage?.whyChooseItems && homepage.whyChooseItems.length > 0 && (
+      <section class="section-pad mx-auto max-w-6xl">
+        <h2 class="animate-fade-up text-3xl font-bold text-slate-900">{homepage.whyChooseTitle}</h2>
+        <div class="mt-10 grid gap-6 sm:grid-cols-2">
+          {homepage.whyChooseItems.map((item, i) => (
+            <div class:list={['card card-hover p-6 animate-fade-up', `stagger-${Math.min(i + 1, 4)}`]}>
+              <span class="icon-badge">
+                <Icon name={['clock', 'shield-check', 'cpu', 'star-badge'][i] ?? 'check'} size={20} />
+              </span>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {homepageHtml && <section class="mx-auto max-w-3xl px-4 pb-16 sm:px-6 prose prose-slate" set:html={homepageHtml} />}
+
+  <AppDownload playStoreUrl={site.userPlayStoreUrl} appStoreUrl={site.userAppStoreUrl} bookingUrl="/book" />
+
+  <section class="section-pad border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="animate-fade-up text-3xl font-bold text-slate-900">Where we serve</h2>
+      <div class="mt-8 flex flex-wrap gap-3">
+        {areas.map((area) => (
+          <a
+            href={`/areas/${area.slug}`}
+            class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-5 py-2 text-sm font-medium text-slate-700 transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-700"
+          >
+            <Icon name="map-pin" size={14} class="text-brand-500" />
+            {area.displayName}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

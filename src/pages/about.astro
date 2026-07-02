@@ -1,0 +1,40 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings } from '@/utils/reader';
+
+const site = await getSiteSettings();
+
+const meta = buildMeta({
+  title: 'About Panun Kaergar | Home Services in Srinagar',
+  description:
+    'Panun Kaergar connects homes in Srinagar and Kashmir with verified plumbers, electricians, AC technicians, and other local service providers.',
+  path: '/about',
+});
+---
+
+<PageLayout meta={meta}>
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 prose prose-slate max-w-none">
+    <h1>About {site.businessName}</h1>
+    <p>{site.description}</p>
+    <p>
+      Panun Kaergar makes it easy to find trusted help for everyday home jobs in Kashmir. Instead of
+      searching for individual technicians, you book through one place — by phone, WhatsApp, our
+      website, or the free mobile app.
+    </p>
+    <h2>Our mission</h2>
+    <p>
+      To help every home in Kashmir get reliable, professional service — quickly and at a fair price.
+    </p>
+    <h2>What we offer</h2>
+    <ul>
+      <li>Carpentry, plumbing, masonry, and electrical</li>
+      <li>Professional cleaning, pest control, and laundry</li>
+      <li>Painting, home appliances, gardening, and salon</li>
+      <li>Interior decor and provider onboarding for local professionals</li>
+    </ul>
+    <p>
+      <a href="/book">Book a service</a> or <a href="/become-a-provider">join as a provider</a>.
+    </p>
+  </section>
+</PageLayout>

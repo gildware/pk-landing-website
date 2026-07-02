@@ -1,0 +1,39 @@
+---
+import Icon from '@/components/Icon.astro';
+import { iconNameFromEmoji } from '@/utils/icons';
+
+interface Props {
+  services: { slug: string; shortName: string; icon?: string }[];
+  areaSlug: string;
+  excludeSlug?: string;
+}
+
+const { services, areaSlug, excludeSlug } = Astro.props;
+const related = services.filter((s) => s.slug !== excludeSlug).slice(0, 4);
+---
+
+{
+  related.length > 0 && (
+    <section class="section-pad border-t border-slate-200 bg-slate-50">
+      <div class="mx-auto max-w-4xl">
+        <h2 class="animate-fade-up text-xl font-bold text-slate-900">Related services in this area</h2>
+        <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+          {related.map((s, i) => (
+            <li class:list={['animate-fade-up', `stagger-${Math.min(i + 1, 4)}`]}>
+              <a
+                href={`/services/${s.slug}/${areaSlug}`}
+                class="card card-hover flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-800"
+              >
+                <span class="icon-badge h-9 w-9">
+                  <Icon name={iconNameFromEmoji(s.icon)} size={18} class="text-brand-600" />
+                </span>
+                {s.shortName}
+                <Icon name="chevron-right" size={16} class="ml-auto text-brand-400" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

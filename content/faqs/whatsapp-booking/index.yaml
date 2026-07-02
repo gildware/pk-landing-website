@@ -1,0 +1,9 @@
+question: whatsapp-booking
+questionText: How do I book on WhatsApp?
+answer: >-
+  Tap any WhatsApp button on this website, or fill the booking form and tap "WhatsApp" to send
+  your details. Include your name, phone number, service needed, and area in Srinagar. Our team
+  replies and confirms your booking.
+category: Booking
+sortOrder: 8
+published: true

@@ -1,0 +1,36 @@
+---
+import Icon from '@/components/Icon.astro';
+
+interface Props {
+  phone: string;
+  hours?: string;
+}
+
+const { phone, hours = 'Mon–Sun: 8:00 AM – 9:00 PM' } = Astro.props;
+
+const items = [
+  { icon: 'shield-check', text: 'Verified local providers' },
+  { icon: 'map-pin', text: 'Serving Srinagar & Kashmir' },
+  { icon: 'clock', text: hours },
+  { icon: 'message', text: '13 service categories' },
+];
+---
+
+<section class="border-y border-slate-200 bg-white py-8">
+  <div class="mx-auto grid max-w-6xl gap-6 px-4 sm:grid-cols-2 lg:grid-cols-4 sm:px-6">
+    {
+      items.map((item) => (
+        <div class="flex items-center gap-3 text-sm text-slate-700">
+          <span class="icon-badge shrink-0">
+            <Icon name={item.icon} size={18} class="text-brand-600" />
+          </span>
+          <span>{item.text}</span>
+        </div>
+      ))
+    }
+  </div>
+  <p class="mx-auto mt-6 max-w-6xl px-4 text-center text-xs text-slate-500 sm:px-6">
+    Book by phone <a href={`tel:${phone}`} class="font-medium text-brand-700">{phone}</a>, WhatsApp, our website form, or the free app.
+    Prices depend on the job — estimates shown in the app or shared when you book by call/WhatsApp.
+  </p>
+</section>

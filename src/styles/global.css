@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+  }
+
+  .card-hover {
+    @apply transition duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md;
+  }
+
+  .icon-badge {
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-brand-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition duration-200 hover:bg-brand-700 hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition duration-200 hover:border-brand-300 hover:bg-brand-50;
+  }
+
+  .section-pad {
+    @apply px-4 py-16 sm:px-6;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out both;
+  }
+
+  .stagger-1 {
+    animation-delay: 0.05s;
+  }
+  .stagger-2 {
+    animation-delay: 0.1s;
+  }
+  .stagger-3 {
+    animation-delay: 0.15s;
+  }
+  .stagger-4 {
+    animation-delay: 0.2s;
+  }
+
+  .prose h2 {
+    @apply mt-8 text-2xl font-bold text-slate-900;
+  }
+  .prose h3 {
+    @apply mt-6 text-xl font-semibold text-slate-900;
+  }
+  .prose p {
+    @apply leading-relaxed text-slate-600;
+  }
+  .prose ul {
+    @apply my-4 list-disc space-y-2 pl-5 text-slate-600;
+  }
+  .prose ol {
+    @apply my-4 list-decimal space-y-2 pl-5 text-slate-600;
+  }
+  .prose a {
+    @apply text-brand-700 underline-offset-2 hover:underline;
+  }
+  .prose strong {
+    @apply font-semibold text-slate-800;
+  }
+
+  .scroll-row {
+    @apply flex gap-5 overflow-x-auto pb-2 scroll-smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.brand.300') transparent;
+  }
+
+  .scroll-row > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .scroll-row::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .scroll-row::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-brand-200;
+  }
+
+  .scroll-row::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

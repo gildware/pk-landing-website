@@ -1,0 +1,36 @@
+---
+import Icon from '@/components/Icon.astro';
+import { iconNameFromEmoji } from '@/utils/icons';
+
+interface Feature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title?: string;
+  items: Feature[];
+}
+
+const { title = 'Why Panun Kaergar', items } = Astro.props;
+---
+
+<section class="section-pad bg-white">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="animate-fade-up text-center text-3xl font-bold text-slate-900">{title}</h2>
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((item, i) => (
+          <article class:list={['card card-hover p-6 animate-fade-up', `stagger-${Math.min(i + 1, 4)}`]}>
+            <span class="icon-badge">
+              <Icon name={iconNameFromEmoji(item.icon, 'star-badge')} size={22} class="text-brand-600" />
+            </span>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">{item.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

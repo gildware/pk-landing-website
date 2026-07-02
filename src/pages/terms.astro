@@ -1,0 +1,42 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { buildMeta } from '@/utils/seo';
+
+const meta = buildMeta({
+  title: 'Terms & Conditions',
+  description: 'Terms and Conditions for using Panun Kaergar home services platform.',
+  path: '/terms',
+});
+---
+
+<PageLayout meta={meta}>
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 prose prose-slate">
+    <h1>Terms & Conditions</h1>
+    <p><em>Last updated: July 2026.</em></p>
+    <p>
+      By using Panun Kaergar's website or mobile applications, you agree to these terms. Panun
+      Kaergar is a platform connecting customers with independent service providers.
+    </p>
+    <h2>Bookings</h2>
+    <p>
+      When you place a booking — through the app, phone, WhatsApp, or our website form — you agree
+      to provide accurate location and contact information. Cancellation and rescheduling policies
+      apply as shown in the app or communicated by our team at the time of booking.
+    </p>
+    <h2>Pricing</h2>
+    <p>
+      Service prices depend on job type and scope. Estimates are shown in the app where available.
+      For website or phone bookings, final pricing is confirmed before work begins.
+    </p>
+    <h2>Providers</h2>
+    <p>
+      Service providers on the platform are independent professionals. Panun Kaergar facilitates
+      booking and payment but providers perform the actual service work.
+    </p>
+    <h2>Contact</h2>
+    <p>
+      Questions about these terms? <a href="/contact">Contact us</a> or see our
+      <a href="/refund">refund</a> and <a href="/cancellation">cancellation</a> policies.
+    </p>
+  </section>
+</PageLayout>

@@ -1,0 +1,24 @@
+name: gardening
+shortName: Gardening
+icon: 🌿
+description: Book gardening services in Srinagar — lawn care, pruning, planting, and garden maintenance for homes and offices.
+seoTitle: Gardening Services in Srinagar
+seoDescription: Book gardening in Srinagar. Lawn mowing, pruning, planting, garden cleanup & maintenance. Call, WhatsApp, or book online.
+serviceList:
+  - Lawn mowing and trimming
+  - Planting and repotting
+  - Pruning and hedge cutting
+  - Garden cleanup and weeding
+  - Seasonal garden maintenance
+  - Office and home garden care
+faqs:
+  - question: Do you offer regular garden maintenance?
+    answer: Yes. Book one-time cleanup or schedule recurring visits depending on provider availability in your area.
+  - question: Can you help with new planting in Srinagar?
+    answer: Providers can advise on seasonal plants and handle planting, soil prep, and basic landscaping support.
+  - question: How do I book gardening in Srinagar?
+    answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app.
+  - question: How much does gardening cost in Srinagar?
+    answer: Pricing depends on garden size and tasks (mowing, cleanup, planting). You see estimates in the app, or our team quotes when you book by phone, WhatsApp, or form.
+published: true
+sortOrder: 10

@@ -1,0 +1,101 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import Icon from '@/components/Icon.astro';
+import { iconNameFromEmoji } from '@/utils/icons';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings, getService, getAreas } from '@/utils/reader';
+import { serviceSchema, breadcrumbSchema, faqSchema } from '@/utils/schema';
+
+export async function getStaticPaths() {
+  const { getServices } = await import('@/utils/reader');
+  const services = await getServices();
+  return services.map((service) => ({ params: { slug: service.slug } }));
+}
+
+const { slug } = Astro.params;
+const service = await getService(slug!);
+if (!service) return Astro.redirect('/404');
+
+const site = await getSiteSettings();
+const areas = await getAreas();
+
+const meta = buildMeta({
+  title: service.seoTitle || `${service.shortName} Services`,
+  description: service.seoDescription || service.description,
+  path: `/services/${service.slug}`,
+});
+
+const schemas = [
+  serviceSchema(service, site),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: service.shortName, path: `/services/${service.slug}` },
+  ]),
+  faqSchema(service.faqs || []),
+].filter(Boolean);
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <section class="section-pad mx-auto max-w-4xl">
+    <p class="animate-fade-up text-sm font-semibold text-brand-700">
+      <a href="/services">Services</a> / {service.shortName}
+    </p>
+    <div class="mt-4 flex items-start gap-4 animate-fade-up stagger-1">
+      <span class="icon-badge shrink-0">
+        <Icon name={iconNameFromEmoji(service.icon)} size={24} class="text-brand-600" />
+      </span>
+      <div>
+        <h1 class="text-4xl font-extrabold text-slate-900">{service.shortName}</h1>
+        <p class="mt-4 text-lg text-slate-600">{service.description}</p>
+      </div>
+    </div>
+
+    {
+      service.serviceList && service.serviceList.length > 0 && (
+        <div class="mt-10 animate-fade-up stagger-2">
+          <h2 class="text-xl font-bold text-slate-900">Services we provide</h2>
+          <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+            {service.serviceList.map((item) => (
+              <li class="flex items-start gap-2 rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-700">
+                <Icon name="check" size={18} class="mt-0.5 shrink-0 text-brand-600" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    {
+      service.bodyHtml && (
+        <div class="prose prose-slate mt-10 max-w-none animate-fade-up" set:html={service.bodyHtml} />
+      )
+    }
+
+    <div class="mt-12 animate-fade-up">
+      <h2 class="text-xl font-bold text-slate-900">Book {service.shortName.toLowerCase()} in Srinagar</h2>
+      <p class="mt-2 text-slate-600">
+        Verified providers across Srinagar — call, WhatsApp, book online, or use the Panun Kaergar app.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-3">
+        {
+          areas.map((area) => (
+            <a
+              href={`/services/${service.slug}/${area.slug}`}
+              class="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700"
+            >
+              <Icon name="map-pin" size={16} />
+              {area.displayName}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FaqSection title="Frequently asked questions" items={service.faqs || []} />
+  <BookingOptions site={site} variant="compact" />
+</PageLayout>

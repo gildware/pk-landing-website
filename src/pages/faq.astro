@@ -1,0 +1,50 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings, getFaqs } from '@/utils/reader';
+import { faqSchema } from '@/utils/schema';
+
+const site = await getSiteSettings();
+const faqs = await getFaqs();
+
+const byCategory = faqs.reduce<Record<string, typeof faqs>>((acc, faq) => {
+  const cat = faq.category || 'General';
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(faq);
+  return acc;
+}, {});
+
+const meta = buildMeta({
+  title: 'FAQ — Home Services in Srinagar | Panun Kaergar',
+  description:
+    'Common questions about booking plumbers, electricians, and AC repair in Srinagar. Call, WhatsApp, book online, or use the Panun Kaergar app.',
+  path: '/faq',
+});
+
+const schemas = [faqSchema(faqs.map((f) => ({ question: f.questionText, answer: f.answer })))].filter(Boolean);
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: 'FAQ' }]} />
+
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <h1 class="text-4xl font-extrabold text-slate-900">Frequently asked questions</h1>
+    <p class="mt-4 text-slate-600">
+      Answers about booking home services in Srinagar — by phone, WhatsApp, our website, or the app.
+    </p>
+  </section>
+
+  {
+    Object.entries(byCategory).map(([category, items]) => (
+      <FaqSection
+        title={category}
+        items={items.map((f) => ({ question: f.questionText, answer: f.answer }))}
+      />
+    ))
+  }
+
+  <BookingOptions site={site} />
+</PageLayout>

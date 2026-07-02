@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  items: { question: string; answer: string }[];
+}
+
+const { title, items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      {title ? <h2 class="animate-fade-up text-2xl font-bold text-slate-900">{title}</h2> : null}
+      <div class:list={['space-y-3', title && 'mt-8']}>
+        {items.map((item, i) => (
+          <details class:list={['card group animate-fade-up overflow-hidden', `stagger-${Math.min(i + 1, 4)}`]}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-slate-900 transition hover:text-brand-700 [&::-webkit-details-marker]:hidden">
+              {item.question}
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 transition group-open:rotate-45">
+                +
+              </span>
+            </summary>
+            <div class="border-t border-slate-100 px-5 pb-5 pt-3 text-sm leading-relaxed text-slate-600">
+              {item.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+  )
+}

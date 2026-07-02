@@ -1,0 +1,46 @@
+---
+import StoreButton from '@/components/StoreButton.astro';
+
+interface Props {
+  playStoreUrl: string;
+  appStoreUrl: string;
+  bookingUrl: string;
+}
+
+const { playStoreUrl, appStoreUrl, bookingUrl } = Astro.props;
+---
+
+<section class="section-pad border-y border-slate-200 bg-gradient-to-br from-slate-50 to-white">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-10 lg:flex-row lg:justify-between">
+    <div class="max-w-lg animate-fade-up text-center lg:text-left">
+      <h2 class="text-3xl font-bold text-slate-900">Download the Panun Kaergar app</h2>
+      <p class="mt-4 text-slate-600">
+        Book services, track your provider, chat with support, and pay — all from your phone.
+        No app? <a href="/book" class="font-medium text-brand-700 hover:underline">Book on our website</a> instead.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+        <StoreButton store="google-play" href={playStoreUrl} />
+        <StoreButton store="app-store" href={appStoreUrl} />
+      </div>
+      <a href={bookingUrl} class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:underline">
+        Book without the app →
+      </a>
+    </div>
+    <div class="relative animate-fade-up stagger-2 shrink-0" aria-hidden="true">
+      <div class="animate-float overflow-hidden rounded-[2rem] border-4 border-slate-800 bg-gradient-to-b from-brand-500 to-brand-800 p-3 shadow-2xl">
+        <div class="h-64 w-36 rounded-[1.4rem] bg-white p-3">
+          <div class="flex items-center gap-1">
+            <div class="h-3 w-3 rounded-full bg-brand-600"></div>
+            <div class="h-2 w-10 rounded bg-slate-200"></div>
+          </div>
+          <div class="mt-4 space-y-2">
+            <div class="h-8 rounded-lg bg-brand-50"></div>
+            <div class="h-8 rounded-lg bg-slate-100"></div>
+            <div class="h-8 rounded-lg bg-slate-100"></div>
+            <div class="h-10 rounded-lg bg-brand-600/20"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

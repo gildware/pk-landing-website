@@ -1,0 +1,22 @@
+name: mens-salon
+shortName: Men's Salon
+icon: 💈
+description: Book men's salon services at home in Srinagar — haircuts, beard trim, grooming, and styling. Call, WhatsApp, or book online.
+seoTitle: Men's Salon at Home in Srinagar
+seoDescription: Book men's grooming at home in Srinagar. Haircut, beard trim, styling & grooming by verified professionals.
+serviceList:
+  - Haircut and styling
+  - Beard trim and shaping
+  - Head massage
+  - Party and event grooming
+  - Hair wash and conditioning
+  - Father and son grooming packages
+faqs:
+  - question: Can I book a men's haircut at home in Srinagar?
+    answer: Yes. Book through our website form, WhatsApp, phone, or the Panun Kaergar app at a time that suits you.
+  - question: Do stylists bring their own tools?
+    answer: Yes. Providers typically bring professional tools and follow hygiene best practices.
+  - question: How much does men's salon at home cost in Srinagar?
+    answer: Pricing depends on services booked (haircut, beard, grooming package). Rates appear in the Panun Kaergar app, or our team shares guidance when you book by phone, WhatsApp, or form.
+published: true
+sortOrder: 11

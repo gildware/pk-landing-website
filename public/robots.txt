@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — allow for discoverability (adjust if needed)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://panunkaergar.com/sitemap.xml
+
+# LLM summary files
+# https://panunkaergar.com/llms.txt
+# https://panunkaergar.com/llms-full.txt

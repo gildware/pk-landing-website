@@ -1,0 +1,103 @@
+---
+import type { BookingSite } from '@/utils/booking';
+import { whatsappHref, generalWhatsAppMessage } from '@/utils/booking';
+import Icon from '@/components/Icon.astro';
+
+interface Props {
+  site: BookingSite;
+  variant?: 'default' | 'compact';
+  showFormLink?: boolean;
+  formHref?: string;
+  showHeading?: boolean;
+}
+
+const {
+  site,
+  variant = 'default',
+  showFormLink = true,
+  formHref = '/book',
+  showHeading = true,
+} = Astro.props;
+
+const waGeneral = whatsappHref(site.whatsapp, generalWhatsAppMessage());
+
+const items = [
+  {
+    key: 'call',
+    label: 'Call us',
+    desc: 'Talk to our team — fastest for urgent jobs',
+    href: `tel:${site.phone}`,
+    icon: 'phone',
+    external: false,
+    accent: 'bg-brand-50 text-brand-600',
+  },
+  {
+    key: 'whatsapp',
+    label: 'WhatsApp',
+    desc: 'Send your service and area — we reply quickly',
+    href: waGeneral,
+    icon: 'whatsapp',
+    external: true,
+    accent: 'bg-emerald-50 text-whatsapp-dark',
+  },
+  ...(showFormLink
+    ? [
+        {
+          key: 'form',
+          label: 'Online form',
+          desc: 'Fill details — we call or WhatsApp you back',
+          href: formHref,
+          icon: 'form',
+          external: false,
+          accent: 'bg-violet-50 text-violet-600',
+        },
+      ]
+    : []),
+  {
+    key: 'app',
+    label: 'Get the app',
+    desc: 'Book, track, and pay on your phone',
+    href: '/download',
+    icon: 'smartphone',
+    external: false,
+    accent: 'bg-slate-100 text-slate-700',
+  },
+];
+
+const gridClass =
+  variant === 'compact'
+    ? 'grid gap-3 sm:grid-cols-2 lg:grid-cols-4'
+    : 'grid gap-4 sm:grid-cols-2 lg:grid-cols-4';
+---
+
+<section class:list={['mx-auto max-w-6xl px-4 sm:px-6', variant === 'default' && 'py-12']}>
+  {
+    showHeading && (
+      <div class="mb-8 text-center lg:text-left animate-fade-up">
+        <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Ways to book</h2>
+        <p class="mt-2 text-slate-600">Call, WhatsApp, use the form, or download the app — pick what works for you.</p>
+      </div>
+    )
+  }
+  <div class={gridClass}>
+    {
+      items.map((item, i) => (
+        <a
+          href={item.href}
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+          class:list={[
+            'card card-hover group flex flex-col p-5 animate-fade-up',
+            `stagger-${Math.min(i + 1, 4)}`,
+          ]}
+        >
+          <span class:list={['icon-badge', item.accent]}>
+            <Icon name={item.icon} size={22} />
+          </span>
+          <span class="mt-3 font-bold text-slate-900 group-hover:text-brand-700">{item.label}</span>
+          <span class="mt-1 text-sm text-slate-500">{item.desc}</span>
+        </a>
+      ))
+    }
+  </div>
+</section>

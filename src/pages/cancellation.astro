@@ -1,0 +1,39 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings } from '@/utils/reader';
+
+const site = await getSiteSettings();
+
+const meta = buildMeta({
+  title: 'Cancellation Policy',
+  description: 'Cancellation and rescheduling policy for Panun Kaergar bookings.',
+  path: '/cancellation',
+});
+---
+
+<PageLayout meta={meta}>
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 prose prose-slate">
+    <h1>Cancellation Policy</h1>
+    <p>
+      You can reschedule or cancel a booking through the Panun Kaergar app, or by contacting our
+      team before the scheduled service time.
+    </p>
+    <h2>How to cancel or reschedule</h2>
+    <ul>
+      <li>Open your booking in the Panun Kaergar customer app, or</li>
+      <li>
+        Call us at <a href={`tel:${site.phone}`}>{site.phone}</a>, WhatsApp us, or email
+        <a href={`mailto:${site.email}`}>{site.email}</a> with your booking reference
+      </li>
+    </ul>
+    <h2>Provider arrival</h2>
+    <p>
+      Cancellation fees, if any, depend on how close to the scheduled time you cancel and the
+      service category. Details are shown in the app at the time of booking where applicable.
+    </p>
+    <p>
+      <a href="/contact">Contact support</a> · <a href="/refund">Refund policy</a> · <a href="/faq">FAQ</a>
+    </p>
+  </section>
+</PageLayout>

@@ -1,0 +1,278 @@
+---
+import type { BookingSite } from '@/utils/booking';
+import WhatsAppButton from '@/components/WhatsAppButton.astro';
+import { groupServices } from '@/utils/serviceGroups';
+
+interface ServiceOption {
+  slug: string;
+  shortName: string;
+}
+
+interface Props {
+  site: BookingSite;
+  services: ServiceOption[];
+  areas?: string[];
+  formId?: string;
+  heading?: string;
+  variant?: 'full' | 'compact';
+}
+
+const {
+  site,
+  services,
+  areas = ['Srinagar — Lal Chowk', 'Srinagar — Rajbagh', 'Srinagar — Bemina', 'Srinagar — Nowgam', 'Srinagar — Rainawari', 'Srinagar — Soura', 'Other in Srinagar'],
+  formId = 'book-service-form',
+  heading = 'Book a home service',
+  variant = 'full',
+} = Astro.props;
+
+const compact = variant === 'compact';
+const web3Key = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
+const serviceGroups = groupServices(services);
+
+const inputClass =
+  'mt-1 w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200';
+const labelClass = 'block text-sm font-medium text-slate-700';
+---
+
+<section
+  class:list={[
+    compact ? 'w-full' : 'mx-auto max-w-2xl px-4 py-8 sm:px-6',
+  ]}
+  id={compact ? undefined : 'book-form'}
+>
+  {
+    compact ? (
+      <div>
+        <h2 class="text-lg font-extrabold text-slate-900 sm:text-xl">{heading}</h2>
+        <p class="mt-0.5 text-xs text-slate-500 sm:text-sm">We confirm your booking by call or WhatsApp.</p>
+      </div>
+    ) : (
+      <>
+        <h2 class="text-2xl font-bold text-slate-900">{heading}</h2>
+        <p class="mt-2 text-sm text-slate-600">
+          Tell us what you need and when. Submit the form, or tap WhatsApp to send your request instantly.
+          Prefer the app? <a href="/download" class="font-medium text-brand-700 hover:underline">Download it free</a>.
+        </p>
+      </>
+    )
+  }
+
+  <form
+    id={formId}
+    class:list={[
+      'space-y-3 sm:space-y-4',
+      compact ? 'mt-3 sm:mt-4' : 'mt-8 space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8',
+    ]}
+  >
+    <div class:list={[compact && 'grid gap-4 sm:grid-cols-2']}>
+      <div>
+        <label for={`${formId}-name`} class={labelClass}>Your name *</label>
+        <input
+          id={`${formId}-name`}
+          name="name"
+          type="text"
+          required
+          autocomplete="name"
+          class={inputClass}
+          placeholder="Full name"
+        />
+      </div>
+      <div class={compact ? '' : 'mt-0'}>
+        <label for={`${formId}-phone`} class={labelClass}>Phone *</label>
+        <input
+          id={`${formId}-phone`}
+          name="phone"
+          type="tel"
+          required
+          autocomplete="tel"
+          class={inputClass}
+          placeholder="+91 98765 43210"
+        />
+      </div>
+    </div>
+
+    <div class:list={[compact && 'grid gap-4 sm:grid-cols-2']}>
+      <div>
+        <label for={`${formId}-service`} class={labelClass}>Service *</label>
+        <select id={`${formId}-service`} name="service" required class={inputClass}>
+          <option value="">Select service</option>
+          {serviceGroups.map((group) => (
+            <optgroup label={group.label}>
+              {group.services.map((s) => (
+                <option value={s.shortName}>{s.shortName}</option>
+              ))}
+            </optgroup>
+          ))}
+          <option value="Other / Custom request">Other / Custom request</option>
+        </select>
+      </div>
+      <div>
+        <label for={`${formId}-area`} class={labelClass}>Area *</label>
+        <select id={`${formId}-area`} name="area" required class={inputClass}>
+          <option value="">Select area</option>
+          {areas.map((area) => (
+            <option value={area}>{area}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    {
+      !compact && (
+        <>
+          <div>
+            <label for={`${formId}-date`} class={labelClass}>Preferred date & time</label>
+            <input
+              id={`${formId}-date`}
+              name="preferredDate"
+              type="text"
+              class={inputClass}
+              placeholder="e.g. Tomorrow morning, 10 AM"
+            />
+          </div>
+          <div>
+            <label for={`${formId}-message`} class={labelClass}>Additional details</label>
+            <textarea
+              id={`${formId}-message`}
+              name="message"
+              rows={3}
+              class={inputClass}
+              placeholder="Describe the issue or job..."
+            ></textarea>
+          </div>
+        </>
+      )
+    }
+
+    {
+      compact && (
+        <div>
+          <label for={`${formId}-message`} class={labelClass}>Details (optional)</label>
+          <input
+            id={`${formId}-message`}
+            name="message"
+            type="text"
+            class={inputClass}
+            placeholder="Brief description..."
+          />
+          <input type="hidden" name="preferredDate" value="" />
+        </div>
+      )
+    }
+
+    <div class="flex flex-col gap-2 sm:flex-row">
+      <WhatsAppButton
+        type="button"
+        label="WhatsApp"
+        dataAction="whatsapp"
+        class="flex-1 py-2.5 text-sm"
+      />
+      <button
+        type="button"
+        data-action="submit"
+        class="flex-1 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-700"
+      >
+        Submit
+      </button>
+    </div>
+    <p class="text-center text-[11px] text-slate-500 sm:text-xs">
+      Or call <a href={`tel:${site.phone}`} class="font-medium text-brand-700">{site.phone}</a>
+    </p>
+  </form>
+
+  <div id={`${formId}-success`} class="mt-4 hidden rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-900">
+    <p class="font-bold">Thanks — we got your request!</p>
+    <p class="mt-1">Our team will call or WhatsApp you shortly to confirm.</p>
+    <div class="mt-3 flex flex-wrap gap-2">
+      <a href={`tel:${site.phone}`} class="rounded-lg bg-white px-3 py-1.5 text-sm font-semibold text-brand-700 shadow-sm">Call</a>
+      <WhatsAppButton id={`${formId}-success-wa`} href="#" label="WhatsApp" class="px-3 py-1.5 text-sm" />
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ formId, web3Key, whatsapp: site.whatsapp, email: site.email, businessName: site.businessName }}>
+  const form = document.getElementById(formId);
+  const success = document.getElementById(`${formId}-success`);
+  const successWa = document.getElementById(`${formId}-success-wa`);
+
+  function digits(w) {
+    return String(w).replace(/\D/g, '');
+  }
+
+  function buildMessage(data) {
+    return [
+      "Hello Panun Kaergar, I'd like to book a home service.",
+      `Name: ${data.name}`,
+      `Phone: ${data.phone}`,
+      `Service: ${data.service}`,
+      `Area: ${data.area}`,
+      data.preferredDate ? `Preferred: ${data.preferredDate}` : '',
+      data.message ? `Details: ${data.message}` : '',
+      '',
+      'Sent via panunkaergar.com booking form',
+    ]
+      .filter(Boolean)
+      .join('\n');
+  }
+
+  function getData(formEl) {
+    return {
+      name: formEl.name.value.trim(),
+      phone: formEl.phone.value.trim(),
+      service: formEl.service.value,
+      area: formEl.area.value,
+      preferredDate: formEl.preferredDate?.value?.trim() ?? '',
+      message: formEl.message.value.trim(),
+    };
+  }
+
+  form?.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn || !form.contains(btn)) return;
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const data = getData(form);
+    const msg = buildMessage(data);
+    const waUrl = `https://wa.me/${digits(whatsapp)}?text=${encodeURIComponent(msg)}`;
+
+    if (btn.dataset.action === 'whatsapp') {
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    if (web3Key) {
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: web3Key,
+          subject: `New booking request — ${data.service}`,
+          from_name: businessName,
+          name: data.name,
+          phone: data.phone,
+          service: data.service,
+          area: data.area,
+          preferred_date: data.preferredDate,
+          message: data.message,
+          replyto: email,
+        }),
+      })
+        .then((r) => r.json())
+        .then((res) => {
+          if (res.success) showSuccess(waUrl);
+          else window.open(waUrl, '_blank', 'noopener,noreferrer');
+        })
+        .catch(() => window.open(waUrl, '_blank', 'noopener,noreferrer'));
+    } else {
+      showSuccess(waUrl);
+    }
+  });
+
+  function showSuccess(waUrl) {
+    form.classList.add('hidden');
+    success?.classList.remove('hidden');
+    if (successWa) successWa.href = waUrl;
+  }
+</script>

@@ -1,0 +1,56 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings } from '@/utils/reader';
+
+const site = await getSiteSettings();
+
+const meta = buildMeta({
+  title: 'Privacy Policy',
+  description: 'Privacy Policy for Panun Kaergar home services platform.',
+  path: '/privacy',
+});
+---
+
+<PageLayout meta={meta}>
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 prose prose-slate">
+    <h1>Privacy Policy</h1>
+    <p><em>Last updated: July 2026.</em></p>
+    <p>
+      Panun Kaergar ("we", "our", "us") operates the Panun Kaergar mobile applications and website.
+      This page informs you of our policies regarding the collection, use, and disclosure of personal
+      information when you use our service.
+    </p>
+    <h2>Information we collect</h2>
+    <p>
+      We collect information you provide when registering, booking services, or contacting support —
+      including name, phone number, email, and address for service delivery.
+    </p>
+    <h2>How we use information</h2>
+    <p>
+      We use your information to process bookings, assign providers, communicate about your service,
+      and improve our platform.
+    </p>
+    <h2>Website booking form</h2>
+    <p>
+      When you submit the booking form on panunkaergar.com, we receive the details you enter (name,
+      phone, service, area, and message) to contact you and confirm your booking. If email delivery
+      is enabled, this may be processed through a third-party form service.
+    </p>
+    <h2>Analytics</h2>
+    <p>
+      We may use analytics tools (such as Google Analytics) to understand how visitors use our
+      website. You can control cookies through your browser settings.
+    </p>
+    <h2>Data sharing</h2>
+    <p>
+      We share booking details with assigned service providers only as needed to complete your job.
+      We do not sell your personal information to third parties.
+    </p>
+    <h2>Contact</h2>
+    <p>
+      For privacy-related questions, email <a href={`mailto:${site.email}`}>{site.email}</a> or
+      <a href="/contact">contact our support team</a>.
+    </p>
+  </section>
+</PageLayout>
