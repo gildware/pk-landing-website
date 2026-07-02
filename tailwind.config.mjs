@@ -32,10 +32,6 @@ export default {
         inter: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'],
       },
       keyframes: {
-        'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(16px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-8px)' },
@@ -47,7 +43,6 @@ export default {
         },
       },
       animation: {
-        'fade-up': 'fade-up 0.6s ease-out both',
         float: 'float 5s ease-in-out infinite',
         'blob-drift': 'blob-drift 12s ease-in-out infinite',
       },

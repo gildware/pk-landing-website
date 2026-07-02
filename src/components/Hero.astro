@@ -42,21 +42,25 @@ const trustItems = [
 ];
 ---
 
-<section class="relative bg-gradient-to-br from-brand-900 via-brand-600 to-brand-700 text-white">
-  <div class="absolute inset-0 hidden overflow-hidden opacity-30 lg:block" aria-hidden="true">
-    <div class="absolute -left-24 top-0 h-80 w-80 rounded-full bg-white/20 blur-3xl animate-blob-drift"></div>
-    <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-sky-300/20 blur-3xl animate-blob-drift [animation-delay:4s]"></div>
-  </div>
-
+<section
+  class="relative bg-brand-900 bg-gradient-to-br from-brand-900 via-brand-600 to-brand-700 text-white"
+  style="background-color: #121228; color: #ffffff;"
+>
   <div class="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:py-24">
     <div class="flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-14">
-      <h1 class="order-1 text-xl font-extrabold leading-snug text-white sm:text-2xl lg:col-start-1 lg:row-start-1 lg:line-clamp-none lg:text-[3.25rem] lg:leading-[1.1]">
+      <h1
+        class="text-xl font-extrabold leading-snug text-white sm:text-2xl lg:col-start-1 lg:row-start-1 lg:text-[3.25rem] lg:leading-[1.1]"
+        style="color: #ffffff;"
+      >
         {title}
       </h1>
 
-      <!-- Booking form first on mobile (after headline) -->
-      <div class="order-2 lg:order-none lg:col-start-2 lg:row-span-3 lg:row-start-1">
-        <div class="scroll-mt-24 rounded-2xl bg-white p-4 shadow-2xl sm:p-6" id="book-form">
+      <div class="lg:col-start-2 lg:row-start-1 lg:row-span-2">
+        <div
+          class="scroll-mt-24 rounded-2xl bg-white p-4 text-slate-900 shadow-2xl sm:p-6"
+          id="book-form"
+          style="background-color: #ffffff; color: #0f172a;"
+        >
           <BookServiceForm
             site={site}
             services={services}
@@ -68,8 +72,7 @@ const trustItems = [
         </div>
       </div>
 
-      <!-- Marketing copy — trimmed on mobile -->
-      <div class="order-3 lg:col-start-1 lg:row-start-2 lg:pt-2">
+      <div class="lg:col-start-1 lg:row-start-2">
         {
           badge && (
             <p class="hidden items-center rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90 sm:inline-flex">
@@ -112,7 +115,6 @@ const trustItems = [
           Need the full form? <a href={primaryHref} class="font-medium text-white underline-offset-2 hover:underline">More booking options</a>
         </p>
 
-        <!-- Mobile-only: compact trust line under form area -->
         <p class="mt-4 text-center text-xs text-white/70 lg:hidden">
           Verified providers · Srinagar · Call, WhatsApp, or online form
         </p>
