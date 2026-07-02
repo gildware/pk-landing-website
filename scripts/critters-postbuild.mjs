@@ -15,15 +15,31 @@ async function collectHtmlFiles(dir, files = []) {
   return files;
 }
 
-function addStylesheetPreload(html) {
-  const match = html.match(/<link[^>]+rel="stylesheet"[^>]+href="(\/_astro\/[^"]+\.css)"[^>]*>/);
-  if (!match) return html;
+/** Convert remaining Astro stylesheets to non-render-blocking preload pattern. */
+function makeStylesheetsAsync(html) {
+  const hrefs = [...new Set([...html.matchAll(/href="(\/_astro\/[^"]+\.css)"/g)].map((m) => m[1]))];
+  if (hrefs.length === 0) return html;
 
-  const href = match[1];
-  const preload = `<link rel="preload" href="${href}" as="style">`;
-  if (html.includes(preload)) return html;
+  let out = html;
+  for (const href of hrefs) {
+    const escaped = href.replace(/\//g, '\\/');
+    out = out.replace(new RegExp(`<link rel="preload" href="${escaped}" as="style"[^>]*>\\s*`, 'g'), '');
+    out = out.replace(new RegExp(`<link rel="stylesheet" href="${escaped}"[^>]*>\\s*`, 'g'), '');
+    out = out.replace(
+      new RegExp(`<noscript><link rel="stylesheet" href="${escaped}"[^>]*><\\/noscript>\\s*`, 'g'),
+      ''
+    );
+  }
 
-  return html.replace(match[0], `${preload}${match[0]}`);
+  const asyncTags = hrefs
+    .map(
+      (href) =>
+        `<link rel="preload" href="${href}" as="style" onload="this.onload=null;this.rel='stylesheet'">` +
+        `<noscript><link rel="stylesheet" href="${href}"></noscript>`
+    )
+    .join('');
+
+  return out.replace('</head>', `${asyncTags}</head>`);
 }
 
 const distDir = fileURLToPath(new URL('../dist', import.meta.url));
@@ -41,7 +57,7 @@ const htmlFiles = await collectHtmlFiles(distDir);
 for (const fullPath of htmlFiles) {
   const html = await readFile(fullPath, 'utf8');
   let optimized = await critters.process(html);
-  optimized = addStylesheetPreload(optimized);
+  optimized = makeStylesheetsAsync(optimized);
   await writeFile(fullPath, optimized);
 }
 

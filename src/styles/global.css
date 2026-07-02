@@ -103,6 +103,15 @@
     @apply max-w-none text-slate-600;
   }
 
+  select:invalid {
+    @apply text-slate-600;
+  }
+
+  select:valid,
+  select option {
+    @apply text-slate-900;
+  }
+
   .prose h2 {
     @apply mt-8 text-2xl font-bold text-slate-900;
   }
