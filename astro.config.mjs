@@ -36,7 +36,4 @@ export default defineConfig({
   adapter: isCmsBuild ? vercel() : undefined,
   integrations: [tailwind(), markdoc(), ...(isCms ? [react(), keystatic()] : [])],
   vite: viteConfig,
-  build: {
-    inlineStylesheets: 'always',
-  },
 });

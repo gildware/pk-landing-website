@@ -24,7 +24,6 @@ import {
   faqSchema,
   websiteSchema,
   mobileApplicationsSchema,
-  reviewSchemas,
 } from '@/utils/schema';
 
 const site = await getSiteSettings();
@@ -59,7 +58,6 @@ const schemas = [
   websiteSchema(site),
   localBusinessSchema(site, areas, services, testimonialSchemaItems),
   ...mobileApplicationsSchema({ ...site, providerPlayStoreUrl: site.providerPlayStoreUrl }),
-  ...reviewSchemas(testimonialSchemaItems, site),
   faqSchema(faqs.slice(0, 6).map((f) => ({ question: f.questionText, answer: f.answer }))),
 ].filter(Boolean);
 ---

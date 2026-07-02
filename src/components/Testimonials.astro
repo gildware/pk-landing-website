@@ -37,11 +37,9 @@ const { title = 'What our customers say', items } = Astro.props;
           >
             {items.map((item) => (
               <figure class="card card-hover flex w-[min(85vw,22rem)] flex-col p-6 sm:w-[22rem]">
-                <div class="flex gap-0.5 text-amber-400" role="img" aria-label={`${item.rating} out of 5 stars`}>
-                  {Array.from({ length: item.rating }).map(() => (
-                    <Icon name="star" size={16} class="fill-amber-400 stroke-amber-400" />
-                  ))}
-                </div>
+                <p class="text-base leading-none tracking-wider text-amber-400" role="img" aria-label={`${item.rating} out of 5 stars`}>
+                  {'★'.repeat(item.rating)}
+                </p>
                 <blockquote class="mt-4 flex-1 text-sm leading-relaxed text-slate-700">
                   "{item.quote}"
                 </blockquote>
