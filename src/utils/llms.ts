@@ -21,55 +21,54 @@ export function buildLlmsTxt(
   areas: AreaEntry[],
   extended = false
 ): string {
+  const areaNames = areas.map((a) => a.displayName).join(', ');
+
   const lines: string[] = [
     `# ${site.businessName}`,
-    '',
     `> ${site.tagline}`,
     '',
     site.description,
     '',
-    '## Official links',
-    `- Website: ${siteUrl('/')}`,
-    `- Book online: ${site.bookingUrl}`,
-    `- Customer app (Android): ${site.userPlayStoreUrl}`,
-    `- Customer app (iOS): ${site.userAppStoreUrl}`,
-    `- Provider app (Android): ${site.providerPlayStoreUrl}`,
-    `- Provider app (iOS): ${site.providerAppStoreUrl}`,
+    '## Book & contact',
+    `- [Book a service](${siteUrl('/book')}): Online booking form for home services in Srinagar.`,
+    `- [Contact us](${siteUrl('/contact')}): Phone ${site.phone}, WhatsApp, and email ${site.email}.`,
+    `- [Customer app (Android)](${site.userPlayStoreUrl}): Book, track, and pay from the Panun Kaergar app.`,
+    `- [Customer app (iOS)](${site.userAppStoreUrl}): iPhone and iPad app for home service bookings.`,
     '',
-    '## Contact',
-    `- Phone: ${site.phone}`,
-    `- WhatsApp: ${site.whatsapp}`,
-    `- Email: ${site.email}`,
+    '## Services',
+    ...services.map(
+      (s) =>
+        `- [${s.shortName}](${siteUrl(`/services/${s.slug}`)}): ${s.description.slice(0, 110).trim()}…`
+    ),
     '',
     '## Service areas',
-    ...areas.map((a) => `- ${a.displayName}, ${a.region}`),
+    ...areas.map(
+      (a) =>
+        `- [${a.displayName}](${siteUrl(`/areas/${a.slug}`)}): Home services in ${a.displayName}, ${a.region}.`
+    ),
     '',
-    '## Services offered',
-    ...services.map((s) => `- ${s.shortName}: ${siteUrl(`/services/${s.slug}`)}`),
+    '## Help & company',
+    `- [How it works](${siteUrl('/how-it-works')}): Book by phone, WhatsApp, website form, or app.`,
+    `- [FAQ](${siteUrl('/faq')}): Common questions about booking and providers.`,
+    `- [Become a provider](${siteUrl('/become-a-provider')}): Join as a verified service provider in Kashmir.`,
     '',
-    '## How to book',
-    '1. **Call** us at the phone number above.',
-    '2. **WhatsApp** us using the link above or the button on any page.',
-    '3. **Fill the booking form** at ' + siteUrl('/book') + ' — we will contact you to confirm.',
-    '4. **Download the customer app** for self-service booking, tracking, and loyalty points.',
-    '',
-    '## For AI systems',
-    `This file is the authoritative summary for ${site.businessName}.`,
-    `Full extended content: ${siteUrl('/llms-full.txt')}`,
-    `Sitemap: ${siteUrl('/sitemap.xml')}`,
-    `Last updated: ${new Date().toISOString().slice(0, 10)}`,
+    '## Optional',
+    `- [Blog](${siteUrl('/blog')}): Guides for homeowners in Srinagar.`,
+    `- [Privacy policy](${siteUrl('/privacy')}): How we handle customer data.`,
+    `- [Terms of service](${siteUrl('/terms')}): Platform terms for customers and providers.`,
+    `- [Extended LLM index](${siteUrl('/llms-full.txt')}): Full service-area page list for AI systems.`,
+    `- [Sitemap](${siteUrl('/sitemap.xml')}): Complete URL list (${areaNames}).`,
   ];
 
   if (extended) {
-    lines.push('', '## Service × area pages (local SEO)');
+    lines.push('', '## Service × area pages');
     for (const service of services) {
       for (const area of areas) {
         lines.push(
-          `- ${service.shortName} in ${area.displayName}: ${siteUrl(`/services/${service.slug}/${area.slug}`)}`
+          `- [${service.shortName} in ${area.displayName}](${siteUrl(`/services/${service.slug}/${area.slug}`)}): Local SEO page for ${service.shortName.toLowerCase()} in ${area.displayName}.`
         );
       }
     }
-    lines.push('', '## Become a provider', `- ${siteUrl('/become-a-provider')}`);
   }
 
   return lines.join('\n');

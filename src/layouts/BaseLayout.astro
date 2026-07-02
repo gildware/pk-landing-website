@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import '@fontsource-variable/inter/wght.css';
 import type { PageMeta } from '@/utils/seo';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const { meta, schemas = [] } = Astro.props;
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!doctype html>
@@ -33,11 +35,23 @@ const { meta, schemas = [] } = Astro.props;
     <meta name="twitter:title" content={meta.title} />
     <meta name="twitter:description" content={meta.description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/logo.webp" as="image" type="image/webp" fetchpriority="high" />
     {
-      import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
+      schemas.length > 0 && (
+        <script type="application/ld+json" set:html={JSON.stringify(schemas.length === 1 ? schemas[0] : schemas)} />
+      )
+    }
+  </head>
+  <body class="min-h-screen bg-white font-sans text-slate-800 antialiased">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-white">
+      Skip to content
+    </a>
+    <slot />
+    {
+      gaId && (
         <>
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_MEASUREMENT_ID}`}></script>
-          <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID }}>
+          <script defer src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+          <script is:inline define:vars={{ gaId }}>
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
@@ -46,22 +60,5 @@ const { meta, schemas = [] } = Astro.props;
         </>
       )
     }
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    {
-      schemas.map((schema) => (
-        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-      ))
-    }
-  </head>
-  <body class="min-h-screen bg-white font-sans text-slate-800 antialiased">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand-600 focus:px-4 focus:py-2 focus:text-white">
-      Skip to content
-    </a>
-    <slot />
   </body>
 </html>

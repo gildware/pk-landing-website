@@ -26,13 +26,18 @@ const footer = site as SiteFooter;
   <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
     <div class="md:col-span-2">
       <a href="/" aria-label={site.businessName}>
-        <img
-          src="/logo.png"
-          alt={site.businessName}
-          width="240"
-          height="59"
-          class="h-9 w-auto max-w-[10.5rem] object-contain sm:h-10 sm:max-w-[11.5rem] lg:h-11 lg:max-w-[12.5rem]"
-        />
+        <picture>
+          <source srcset="/logo.webp" type="image/webp" />
+          <img
+            src="/logo.png"
+            alt={site.businessName}
+            width="240"
+            height="59"
+            loading="lazy"
+            decoding="async"
+            class="h-9 w-[240px] max-w-[10.5rem] object-contain object-left sm:h-10 sm:max-w-[11.5rem] lg:h-11 lg:max-w-[12.5rem]"
+          />
+        </picture>
       </a>
       <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600">
         {footer.footerTagline ??
