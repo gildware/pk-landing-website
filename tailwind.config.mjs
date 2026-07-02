@@ -1,6 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import typography from '@tailwindcss/typography';
-
 /** Panun Kaergar logo blue: #202048 */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -30,7 +28,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        inter: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         'fade-up': {
@@ -54,5 +53,4 @@ export default {
       },
     },
   },
-  plugins: [typography],
 };

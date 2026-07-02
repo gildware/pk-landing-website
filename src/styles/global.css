@@ -16,7 +16,13 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
-    font-family: 'Inter Variable', Inter, system-ui, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      font-family: 'Inter Variable', Inter, system-ui, sans-serif;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -91,6 +97,10 @@
   }
   .stagger-4 {
     animation-delay: 0.2s;
+  }
+
+  .prose {
+    @apply max-w-none text-slate-600;
   }
 
   .prose h2 {
