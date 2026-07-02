@@ -4,7 +4,6 @@ import markdoc from '@astrojs/markdoc';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import vercel from '@astrojs/vercel/serverless';
-import { crittersIntegration } from './critters.integration.mjs';
 
 /** When true, enable Keystatic admin at /keystatic (dev or CMS deploy only). */
 const isCms = process.env.KEYSTATIC_CMS === '1';
@@ -35,11 +34,6 @@ export default defineConfig({
   site,
   output: isCms ? 'hybrid' : 'static',
   adapter: isCmsBuild ? vercel() : undefined,
-  integrations: [
-    tailwind(),
-    markdoc(),
-    ...(isCms ? [] : [crittersIntegration()]),
-    ...(isCms ? [react(), keystatic()] : []),
-  ],
+  integrations: [tailwind(), markdoc(), ...(isCms ? [react(), keystatic()] : [])],
   vite: viteConfig,
 });

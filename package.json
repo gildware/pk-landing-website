@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "cms": "KEYSTATIC_CMS=1 astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/critters-postbuild.mjs",
     "build:cms": "KEYSTATIC_CMS=1 astro build",
     "preview": "astro preview",
     "astro": "astro"
