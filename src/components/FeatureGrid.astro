@@ -18,11 +18,11 @@ const { title = 'Why Panun Kaergar', items } = Astro.props;
 
 <section class="section-pad bg-white">
   <div class="mx-auto max-w-6xl">
-    <h2 class="animate-fade-up text-center text-3xl font-bold text-slate-900">{title}</h2>
+    <h2 class="reveal text-center text-3xl font-bold text-slate-900">{title}</h2>
     <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         items.map((item, i) => (
-          <article class:list={['card card-hover p-6 animate-fade-up', `stagger-${Math.min(i + 1, 4)}`]}>
+          <article class:list={['reveal-scale card card-hover p-6', `reveal-stagger-${Math.min(i + 1, 6)}`]}>
             <span class="icon-badge">
               <Icon name={iconNameFromEmoji(item.icon, 'star-badge')} size={22} class="text-brand-600" />
             </span>

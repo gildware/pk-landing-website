@@ -19,17 +19,17 @@ const { title = 'What our customers say', items } = Astro.props;
   items.length > 0 && (
     <section class="section-pad bg-slate-50" aria-labelledby="testimonials-heading">
       <div class="mx-auto max-w-6xl">
-        <h2 id="testimonials-heading" class="text-center text-3xl font-bold text-slate-900">
+        <h2 id="testimonials-heading" class="reveal text-center text-3xl font-bold text-slate-900">
           {title}
         </h2>
-        <p class="mx-auto mt-3 max-w-xl text-center text-slate-600">
+        <p class="reveal reveal-stagger-1 mx-auto mt-3 max-w-xl text-center text-slate-600">
           Real reviews from homeowners in Srinagar — plumbing, electrical, appliances, salon, and more.
         </p>
 
         <div class="relative mt-10">
           <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {items.map((item) => (
-              <figure class="card card-hover flex flex-col p-6">
+            {items.map((item, i) => (
+              <figure class:list={['reveal-scale card card-hover flex flex-col p-6', `reveal-stagger-${Math.min(i + 1, 6)}`]}>
                 <p class="text-base leading-none tracking-wider text-amber-400" role="img" aria-label={`${item.rating} out of 5 stars`}>
                   {'★'.repeat(item.rating)}
                 </p>

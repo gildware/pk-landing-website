@@ -31,20 +31,28 @@ export default {
         sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         inter: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'],
       },
+      transitionTimingFunction: {
+        smooth: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-8px)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
         'blob-drift': {
           '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
-          '33%': { transform: 'translate(12px, -16px) scale(1.05)' },
-          '66%': { transform: 'translate(-8px, 8px) scale(0.95)' },
+          '33%': { transform: 'translate(16px, -20px) scale(1.06)' },
+          '66%': { transform: 'translate(-12px, 12px) scale(0.94)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
         },
       },
       animation: {
-        float: 'float 5s ease-in-out infinite',
-        'blob-drift': 'blob-drift 12s ease-in-out infinite',
+        float: 'float 6s ease-in-out infinite',
+        'blob-drift': 'blob-drift 14s ease-in-out infinite',
+        shimmer: 'shimmer 2.5s linear infinite',
       },
     },
   },

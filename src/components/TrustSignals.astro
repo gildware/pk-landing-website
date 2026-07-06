@@ -19,8 +19,8 @@ const items = [
 <section class="border-y border-slate-200 bg-white py-8">
   <div class="mx-auto grid max-w-6xl gap-6 px-4 sm:grid-cols-2 lg:grid-cols-4 sm:px-6">
     {
-      items.map((item) => (
-        <div class="flex items-center gap-3 text-sm text-slate-700">
+      items.map((item, i) => (
+        <div class:list={['reveal flex items-center gap-3 text-sm text-slate-700', `reveal-stagger-${Math.min(i + 1, 4)}`]}>
           <span class="icon-badge shrink-0">
             <Icon name={item.icon} size={18} class="text-brand-600" />
           </span>
@@ -29,8 +29,8 @@ const items = [
       ))
     }
   </div>
-  <p class="mx-auto mt-6 max-w-6xl px-4 text-center text-xs text-slate-500 sm:px-6">
-    Book by phone <a href={`tel:${phone}`} class="font-medium text-brand-700">{phone}</a>, WhatsApp, our website form, or the free app.
+  <p class="reveal reveal-stagger-5 mx-auto mt-6 max-w-6xl px-4 text-center text-xs text-slate-500 sm:px-6">
+    Book by phone <a href={`tel:${phone}`} class="font-medium text-brand-700 transition-colors hover:text-brand-800">{phone}</a>, WhatsApp, our website form, or the free app.
     Prices depend on the job — estimates shown in the app or shared when you book by call/WhatsApp.
   </p>
 </section>

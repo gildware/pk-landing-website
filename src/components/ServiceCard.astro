@@ -41,7 +41,7 @@ const Tag = as;
 <Tag
   href={as === 'a' ? link : undefined}
   class:list={[
-    'card card-hover group animate-fade-up flex flex-col p-6',
+    'reveal-scale card card-hover group flex flex-col p-6',
     as === 'a' && 'block',
     className,
   ]}
@@ -78,7 +78,7 @@ const Tag = as;
     ) : areaName ? (
       <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
         Book in {areaName}
-        <Icon name="chevron-right" size={16} class="transition group-hover:translate-x-0.5" />
+        <Icon name="chevron-right" size={16} class="transition-transform duration-300 ease-smooth group-hover:translate-x-1" />
       </span>
     ) : null
   }

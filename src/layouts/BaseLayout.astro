@@ -41,6 +41,9 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
       Skip to content
     </a>
     <slot />
+    <script>
+      import '@/scripts/motion.ts';
+    </script>
     {
       schemas.length > 0 && (
         <script type="application/ld+json" set:html={JSON.stringify(schemas.length === 1 ? schemas[0] : schemas)} />
