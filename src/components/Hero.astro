@@ -19,7 +19,6 @@ interface Props {
   areaName?: string;
   site: BookingSite;
   services: ServiceOption[];
-  areaOptions?: string[];
 }
 
 const {
@@ -32,7 +31,6 @@ const {
   areaName = 'Srinagar',
   site,
   services,
-  areaOptions,
 } = Astro.props;
 
 const trustItems = [
@@ -62,10 +60,10 @@ const trustItems = [
     aria-hidden="true"
   ></div>
 
-  <div class="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:py-24">
-    <div class="flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:items-start lg:gap-14">
+  <div class="relative mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-9 lg:py-14">
+    <div class="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-start lg:gap-12">
       <h1
-        class="animate-fade-up text-xl font-extrabold leading-snug text-white sm:text-2xl lg:col-start-1 lg:row-start-1 lg:text-[3.25rem] lg:leading-[1.1]"
+        class="animate-fade-up text-xl font-extrabold leading-snug text-white sm:text-2xl lg:col-start-1 lg:row-start-1 lg:text-[2.85rem] lg:leading-[1.1]"
         style="color: #ffffff;"
       >
         {title}
@@ -80,7 +78,6 @@ const trustItems = [
           <BookServiceForm
             site={site}
             services={services}
-            areas={areaOptions}
             formId="hero-book-form"
             heading={`Book in ${areaName}`}
             variant="compact"

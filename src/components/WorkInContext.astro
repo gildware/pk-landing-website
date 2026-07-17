@@ -1,0 +1,740 @@
+---
+/**
+ * monday.com-style "Work in context" scroll section.
+ * Floating category cards merge into a Panun Kaergar who colorizes on scroll.
+ */
+import { enrichCategories, type ServiceLike } from '@/utils/categoryCatalog';
+
+interface Props {
+  services: ServiceLike[];
+  areaName?: string;
+}
+
+const { services = [], areaName = 'Srinagar' } = Astro.props;
+
+type Scatter = {
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
+  ring: 'near' | 'mid' | 'far';
+  /** Phone layout — all cards around the team */
+  mobile?: { top?: string; bottom?: string; left?: string; right?: string };
+};
+
+/**
+ * Zigzag scatter — horizontal offsets differ so sides don’t read as columns.
+ */
+const scatterPlan: Record<string, Scatter> = {
+  plumbing: {
+    top: '4%', left: '8%', ring: 'mid',
+    mobile: { top: '3%', left: '5%' },
+  },
+  painting: {
+    top: '7%', left: '28%', ring: 'near',
+    mobile: { top: '5%', left: '26%' },
+  },
+  carpentry: {
+    top: '3%', right: '10%', ring: 'mid',
+    mobile: { top: '3%', right: '6%' },
+  },
+  'womens-salon': {
+    top: '8%', right: '28%', ring: 'near',
+    mobile: { top: '6%', right: '24%' },
+  },
+  electrician: {
+    top: '22%', left: '18%', ring: 'far',
+    mobile: { top: '20%', left: '14%' },
+  },
+  masonry: {
+    top: '26%', right: '4%', ring: 'mid',
+    mobile: { top: '22%', right: '5%' },
+  },
+  'pest-control': {
+    top: '40%', left: '4%', ring: 'near',
+    mobile: { top: '38%', left: '5%' },
+  },
+  'interior-decor': {
+    top: '38%', right: '16%', ring: 'far',
+    mobile: { top: '36%', right: '14%' },
+  },
+  'professional-cleaning': {
+    top: '54%', left: '14%', ring: 'far',
+    mobile: { top: '52%', left: '12%' },
+  },
+  gardening: {
+    top: '56%', right: '6%', ring: 'mid',
+    mobile: { top: '54%', right: '5%' },
+  },
+  'home-appliances': {
+    bottom: '20%', left: '6%', ring: 'mid',
+    mobile: { bottom: '20%', left: '5%' },
+  },
+  'mens-salon': {
+    bottom: '6%', left: '22%', ring: 'near',
+    mobile: { bottom: '4%', left: '18%' },
+  },
+  'dry-clean-laundry': {
+    bottom: '8%', right: '8%', ring: 'mid',
+    mobile: { bottom: '5%', right: '6%' },
+  },
+  'tank-cleaning': {
+    bottom: '18%', right: '24%', ring: 'near',
+    mobile: { bottom: '16%', right: '22%' },
+  },
+};
+
+const fallbackScatter: Scatter[] = [
+  { top: '4%', left: '8%', ring: 'mid', mobile: { top: '3%', left: '5%' } },
+  { top: '7%', left: '28%', ring: 'near', mobile: { top: '5%', left: '26%' } },
+  { top: '3%', right: '10%', ring: 'mid', mobile: { top: '3%', right: '6%' } },
+  { top: '8%', right: '28%', ring: 'near', mobile: { top: '6%', right: '24%' } },
+  { top: '22%', left: '18%', ring: 'far', mobile: { top: '20%', left: '14%' } },
+  { top: '26%', right: '4%', ring: 'mid', mobile: { top: '22%', right: '5%' } },
+  { top: '40%', left: '4%', ring: 'near', mobile: { top: '38%', left: '5%' } },
+  { top: '38%', right: '16%', ring: 'far', mobile: { top: '36%', right: '14%' } },
+  { top: '54%', left: '14%', ring: 'far', mobile: { top: '52%', left: '12%' } },
+  { top: '56%', right: '6%', ring: 'mid', mobile: { top: '54%', right: '5%' } },
+  { bottom: '20%', left: '6%', ring: 'mid', mobile: { bottom: '20%', left: '5%' } },
+  { bottom: '6%', left: '22%', ring: 'near', mobile: { bottom: '4%', left: '18%' } },
+  { bottom: '8%', right: '8%', ring: 'mid', mobile: { bottom: '5%', right: '6%' } },
+  { bottom: '18%', right: '24%', ring: 'near', mobile: { bottom: '16%', right: '22%' } },
+];
+
+const shortMeta: Record<string, string> = {
+  plumbing: 'Leaks · taps · pipes',
+  carpentry: 'Doors · shelves · polish',
+  electrician: 'Wiring · fans · switches',
+  painting: 'Interior · exterior',
+  'professional-cleaning': 'Deep clean · kitchen',
+  masonry: 'Brick · plaster · tile',
+  'pest-control': 'Safe home treatment',
+  'interior-decor': 'Styling · finish tips',
+  gardening: 'Lawn · plants · trim',
+  'home-appliances': 'AC · fridge · wash',
+  'dry-clean-laundry': 'Laundry · garments',
+  'mens-salon': 'Hair · beard · care',
+  'womens-salon': 'Hair · beauty · home',
+  'tank-cleaning': 'Home tank service',
+};
+
+/** Per-card merge speeds — higher arrives sooner (monday-style stagger) */
+const speedByRing = { near: 1.35, mid: 1.05, far: 0.78 } as const;
+const speedJitter = [0.12, -0.08, 0.18, -0.14, 0.06, 0.22, -0.1, 0.15, -0.18, 0.09, 0.2, -0.05, 0.11, -0.16];
+
+const categories = enrichCategories(services, areaName).map((cat, i) => {
+  const plan = scatterPlan[cat.slug] ?? fallbackScatter[i % fallbackScatter.length];
+  const speed = Math.min(1.55, Math.max(0.62, speedByRing[plan.ring] + (speedJitter[i % speedJitter.length] ?? 0)));
+  return {
+    ...cat,
+    meta: shortMeta[cat.slug] ?? cat.meta,
+    scatter: plan,
+    ring: plan.ring,
+    speed,
+  };
+});
+---
+
+<section class="work-context" data-work-context aria-label="Skills in context">
+  <div class="work-context__intro">
+    <h2 class="work-context__title reveal">Skills in context</h2>
+    <div class="work-context__subtitle-wrap reveal reveal-stagger-1">
+      <p class="work-context__subtitle">
+        <span class="work-context__subtitle-strong">A Panun Kaergar is only as good as their skills </span>Pros have the skills they need before they act - ensuring work is being carried out confidently and accurately.
+      </p>
+      <a href="/book" class="work-context__cta">
+        <span>Get Started</span>
+        <span class="work-context__cta-arrow" aria-hidden="true">
+          <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M7.03.22a.75.75 0 0 0-1.06 1.06L8.94 4.25H1a.75.75 0 0 0 0 1.5h7.94L5.97 8.72a.75.75 0 1 0 1.06 1.06l4.6-4.6a.75.75 0 0 0 0-1.06L7.03.22Z"
+              fill="currentColor"></path>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="work-context__track" data-context-track>
+    <div class="work-context__sticky" data-context-sticky>
+      <div class="work-context__stage" data-context-stage style="--progress: 0;">
+        <div class="work-context__compose">
+          <div class="work-context__reveal" data-context-reveal>
+            <h3 class="work-context__title work-context__reveal-title">PANUN KAERGAR</h3>
+            <p class="work-context__subtitle work-context__reveal-copy">
+              Kashmir ka apna home service platform
+            </p>
+          </div>
+
+          <div class="work-context__person" data-context-person>
+            <!-- monday-style soft desaturated "before" → full color fills on scroll -->
+            <img
+              class="work-context__person-img work-context__person-img--outline"
+              src="/images/context/kaergar-outline.png?v=12"
+              alt=""
+              width="1536"
+              height="1024"
+              loading="eager"
+              decoding="async"
+              data-context-outline
+            />
+            <img
+              class="work-context__person-img work-context__person-img--color"
+              src="/images/context/kaergar-color.png?v=12"
+              alt="Panun Kaergar providers for every home service, each with their tools"
+              width="1536"
+              height="1024"
+              loading="eager"
+              decoding="async"
+              data-context-color
+            />
+          </div>
+        </div>
+
+        {
+          categories.map((cat) => {
+            const s = cat.scatter;
+            const m = s.mobile ?? {};
+            const pos = [
+              s.top ? `top:${s.top}` : '',
+              s.bottom ? `bottom:${s.bottom}` : '',
+              s.left ? `left:${s.left}` : '',
+              s.right ? `right:${s.right}` : '',
+              m.top ? `--m-top:${m.top}` : '',
+              m.bottom ? `--m-bottom:${m.bottom}` : '',
+              m.left ? `--m-left:${m.left}` : '',
+              m.right ? `--m-right:${m.right}` : '',
+            ]
+              .filter(Boolean)
+              .join(';');
+            return (
+              <div
+                class:list={[
+                  'work-context__float',
+                  `work-context__float--${cat.ring}`,
+                ]}
+                data-context-float
+                data-slug={cat.slug}
+                style={`--soft: ${cat.soft}; --accent: ${cat.accent}; --speed: ${cat.speed}; ${pos}`}
+                aria-hidden="true"
+              >
+                <div class="work-context__float-card">
+                  <span class="work-context__float-icon">
+                    <img src={cat.icon} alt="" width="80" height="80" loading="lazy" />
+                  </span>
+                  <p class="work-context__float-label">{cat.label}</p>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .work-context {
+    background: #fff;
+    padding-top: 4.5rem;
+    overflow: clip;
+  }
+
+  .work-context__intro {
+    margin: 0 auto;
+    max-width: 48rem;
+    padding: 0 1.25rem;
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .work-context__intro {
+      padding: 0 1.5rem;
+    }
+  }
+
+  .work-context__title {
+    font-size: clamp(1.85rem, 1.4rem + 1.6vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+  }
+
+  .work-context__subtitle-wrap {
+    margin-top: 1rem;
+  }
+
+  .work-context__subtitle {
+    margin: 0 auto;
+    max-width: 40rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #475569;
+  }
+
+  .work-context__subtitle-strong {
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .work-context__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.35rem;
+    padding: 0.85rem 1.35rem;
+    border-radius: 9999px;
+    background: #202048;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.25s ease;
+  }
+
+  .work-context__cta:hover {
+    background: #1b1b3d;
+    transform: translateY(-1px);
+  }
+
+  .work-context__cta-arrow {
+    display: inline-flex;
+  }
+
+  .work-context__track {
+    position: relative;
+    width: 100%;
+    height: 260vh;
+  }
+
+  .work-context__sticky {
+    --header-offset: 4.75rem;
+    position: sticky;
+    top: var(--header-offset);
+    height: calc(100vh - var(--header-offset));
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .work-context__stage {
+    position: relative;
+    width: min(72rem, 100%);
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: clamp(0.85rem, 2.5vw, 1.75rem);
+    box-sizing: border-box;
+  }
+
+  /* Title + team grow/colorize together with --progress */
+  .work-context__compose {
+    position: relative;
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem 0.75rem 1rem;
+    box-sizing: border-box;
+    transform: scale(calc(0.72 + 0.28 * var(--progress, 0)));
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .work-context__reveal {
+    position: relative;
+    z-index: 2;
+    flex: 0 0 auto;
+    width: min(40rem, 96%);
+    margin: 0;
+    padding: 0.15rem 0.25rem;
+    text-align: center;
+    /* Always visible — gray → color with scroll */
+    filter: grayscale(calc(1 - var(--progress, 0)));
+    opacity: calc(0.55 + 0.45 * var(--progress, 0));
+    pointer-events: none;
+  }
+
+  .work-context__reveal-title {
+    margin: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .work-context__reveal-copy {
+    margin: 0.25rem auto 0;
+    max-width: 40rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.6;
+    color: #0f172a;
+  }
+
+  .work-context__person {
+    position: relative;
+    z-index: 1;
+    flex: 0 1 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: min(48rem, 94%);
+    max-height: min(58vh, 28rem);
+    min-height: 0;
+  }
+
+  .work-context__person-img {
+    display: block;
+    width: 100%;
+    max-height: min(58vh, 28rem);
+    height: auto;
+    object-fit: contain;
+    object-position: bottom center;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .work-context__person-img--outline {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .work-context__person-img--color {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    height: auto;
+    max-height: min(58vh, 28rem);
+    object-fit: contain;
+    object-position: bottom center;
+    opacity: var(--progress, 0);
+    will-change: opacity;
+  }
+
+  .work-context__float {
+    position: absolute;
+    z-index: 5;
+    width: clamp(5rem, 3.75rem + 4.5vw, 6.75rem);
+    will-change: transform, opacity;
+    --merge-x: 0px;
+    --merge-y: 0px;
+    --speed: 1;
+    /* Each card merges at its own speed */
+    --p: min(1, calc(var(--progress, 0) * var(--speed)));
+    transform:
+      translate(
+        calc(var(--merge-x) * -1 * var(--p)),
+        calc(var(--merge-y) * -1 * var(--p))
+      )
+      scale(calc(1 - 0.82 * var(--p)));
+    opacity: calc(1 - var(--p) * 1.2);
+    pointer-events: none;
+  }
+
+  .work-context__float--near {
+    z-index: 6;
+  }
+
+  .work-context__float--mid {
+    z-index: 5;
+  }
+
+  .work-context__float--far {
+    z-index: 4;
+  }
+
+  /* Card: icon on top, label wraps to 2 lines below */
+  .work-context__float-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    min-height: 5.75rem;
+    padding: 0.6rem 0.45rem 0.5rem;
+    border-radius: 0.85rem;
+    background: color-mix(in srgb, var(--soft) 88%, white);
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.05),
+      0 14px 28px -12px rgb(0 0 0 / 0.16);
+    box-sizing: border-box;
+  }
+
+  .work-context__float-icon {
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 0;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  .work-context__float-icon img {
+    width: 72%;
+    height: 72%;
+    max-width: 3.5rem;
+    max-height: 3.5rem;
+    object-fit: contain;
+  }
+
+  .work-context__float-label {
+    margin: 0;
+    width: 100%;
+    min-height: 1.7em;
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    color: #0f172a;
+    white-space: normal;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  @media (max-width: 640px) {
+    .work-context {
+      padding-top: 3rem;
+    }
+
+    .work-context__track {
+      height: 230vh;
+    }
+
+    .work-context__sticky {
+      --header-offset: 4.25rem;
+      overflow: hidden;
+    }
+
+    .work-context__stage {
+      width: 100%;
+      padding-inline: 0.85rem;
+      box-sizing: border-box;
+    }
+
+    .work-context__compose {
+      z-index: 8;
+      justify-content: center;
+      gap: 0.35rem;
+      /* Narrow at start (room for orbiting cards) → full width when merged */
+      width: calc(48% + 50% * var(--progress, 0));
+      max-width: 100%;
+      margin-inline: auto;
+      padding: 0.5rem 0;
+      transform: none;
+      will-change: width;
+    }
+
+    .work-context__reveal {
+      width: 100%;
+      z-index: 9;
+      filter: grayscale(calc(1 - var(--progress, 0)));
+      opacity: calc(0.65 + 0.35 * var(--progress, 0));
+    }
+
+    .work-context__reveal-title {
+      font-size: clamp(1.05rem, 0.8rem + 2vw, 1.35rem);
+      white-space: nowrap;
+    }
+
+    .work-context__reveal-copy {
+      font-size: 0.75rem;
+      margin-top: 0.15rem;
+    }
+
+    /* Team fills the growing compose — big after full scroll */
+    .work-context__person {
+      width: 100%;
+      max-width: 100%;
+      max-height: calc(24vh + 40vh * var(--progress, 0));
+    }
+
+    .work-context__person-img,
+    .work-context__person-img--color {
+      max-height: calc(24vh + 40vh * var(--progress, 0));
+    }
+
+    /* All category cards around the team — padded from screen edges */
+    .work-context__float {
+      width: 4.15rem;
+      z-index: 5;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+    }
+
+    .work-context__float[style*='--m-top'] {
+      top: var(--m-top) !important;
+    }
+
+    .work-context__float[style*='--m-bottom'] {
+      bottom: var(--m-bottom) !important;
+    }
+
+    .work-context__float[style*='--m-left'] {
+      left: var(--m-left) !important;
+    }
+
+    .work-context__float[style*='--m-right'] {
+      right: var(--m-right) !important;
+    }
+
+    .work-context__float-card {
+      min-height: 5.1rem;
+      padding: 0.4rem 0.3rem 0.35rem;
+      border-radius: 0.7rem;
+      gap: 0.25rem;
+    }
+
+    .work-context__float-icon img {
+      width: 70%;
+      height: 70%;
+      max-width: 2.25rem;
+      max-height: 2.25rem;
+    }
+
+    .work-context__float-label {
+      font-size: 0.525rem;
+      min-height: 1.85em;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .work-context__track {
+      height: auto;
+    }
+
+    .work-context__sticky {
+      position: relative;
+      top: 0;
+      height: auto;
+      min-height: 28rem;
+    }
+
+    .work-context__stage {
+      --progress: 1 !important;
+      height: 28rem;
+    }
+
+    .work-context__compose {
+      transform: none;
+    }
+
+    .work-context__reveal {
+      filter: none;
+      opacity: 1;
+    }
+
+    .work-context__float {
+      opacity: 0 !important;
+    }
+  }
+</style>
+
+<script>
+  function initWorkInContext() {
+    const root = document.querySelector('[data-work-context]');
+    if (!(root instanceof HTMLElement)) return;
+    if (root.dataset.bound === 'true') return;
+    root.dataset.bound = 'true';
+
+    const track = root.querySelector('[data-context-track]');
+    const stage = root.querySelector('[data-context-stage]');
+    const floats = Array.from(root.querySelectorAll('[data-context-float]'));
+    if (!(track instanceof HTMLElement) || !(stage instanceof HTMLElement)) return;
+
+    const reduced =
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduced) {
+      stage.style.setProperty('--progress', '1');
+      return;
+    }
+
+    function layoutMergeVectors() {
+      const person = root.querySelector('[data-context-person]');
+      if (!(person instanceof HTMLElement)) return;
+
+      const prev = stage.style.getPropertyValue('--progress') || '0';
+      stage.style.setProperty('--progress', '0');
+      floats.forEach((el) => {
+        if (!(el instanceof HTMLElement)) return;
+        el.style.setProperty('--merge-x', '0px');
+        el.style.setProperty('--merge-y', '0px');
+      });
+
+      const stageRect = stage.getBoundingClientRect();
+      const personRect = person.getBoundingClientRect();
+      const targetX = personRect.left + personRect.width * 0.5 - stageRect.left;
+      const targetY = personRect.top + personRect.height * 0.42 - stageRect.top;
+
+      floats.forEach((el) => {
+        if (!(el instanceof HTMLElement)) return;
+        if (getComputedStyle(el).display === 'none') return;
+        const r = el.getBoundingClientRect();
+        if (r.width < 1 || r.height < 1) return;
+        const cx = r.left + r.width * 0.5 - stageRect.left;
+        const cy = r.top + r.height * 0.5 - stageRect.top;
+        el.style.setProperty('--merge-x', `${(cx - targetX).toFixed(1)}px`);
+        el.style.setProperty('--merge-y', `${(cy - targetY).toFixed(1)}px`);
+      });
+
+      stage.style.setProperty('--progress', prev);
+    }
+
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      const rect = track.getBoundingClientRect();
+      const total = Math.max(1, track.offsetHeight - window.innerHeight);
+      const scrolled = Math.min(total, Math.max(0, -rect.top));
+      const raw = scrolled / total;
+      const progress = Math.min(1, Math.max(0, raw < 0.08 ? 0 : (raw - 0.08) / 0.84));
+      stage.style.setProperty('--progress', progress.toFixed(4));
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+
+    layoutMergeVectors();
+    update();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      layoutMergeVectors();
+      update();
+    });
+  }
+
+  initWorkInContext();
+  document.addEventListener('astro:page-load', initWorkInContext);
+</script>

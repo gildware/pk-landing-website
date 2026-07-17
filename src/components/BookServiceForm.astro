@@ -11,7 +11,6 @@ interface ServiceOption {
 interface Props {
   site: BookingSite;
   services: ServiceOption[];
-  areas?: string[];
   formId?: string;
   heading?: string;
   variant?: 'full' | 'compact';
@@ -20,19 +19,26 @@ interface Props {
 const {
   site,
   services,
-  areas = ['Srinagar — Lal Chowk', 'Srinagar — Rajbagh', 'Srinagar — Bemina', 'Srinagar — Nowgam', 'Srinagar — Rainawari', 'Srinagar — Soura', 'Other in Srinagar'],
   formId = 'book-service-form',
   heading = 'Book a home service',
   variant = 'full',
 } = Astro.props;
 
 const compact = variant === 'compact';
-const web3Key = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
+const apiBaseUrl = (import.meta.env.PUBLIC_ADMIN_API_URL ?? '').replace(/\/$/, '');
 const serviceGroups = groupServices(services);
+const serviceOptions = [
+  ...serviceGroups.flatMap((group) =>
+    group.services.map((s) => ({ group: group.label, value: s.shortName })),
+  ),
+  { group: '', value: 'Other / Custom request' },
+];
 
 const inputClass =
-  'mt-1 w-full rounded-xl border border-slate-400 bg-white px-3 py-2.5 text-sm text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200';
+  'field-input mt-1 w-full rounded-xl border border-slate-400 bg-white px-3 py-2.5 text-sm text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200';
+const textareaClass = `${inputClass} resize-y py-3`;
 const labelClass = 'block text-sm font-medium text-slate-800';
+const errorClass = 'field-error mt-1 text-xs text-red-600';
 ---
 
 <section
@@ -60,61 +66,74 @@ const labelClass = 'block text-sm font-medium text-slate-800';
 
   <form
     id={formId}
+    novalidate
     class:list={[
       'space-y-3 sm:space-y-4',
       compact ? 'mt-3 sm:mt-4' : 'mt-8 space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8',
     ]}
   >
     <div class:list={[compact && 'grid gap-4 sm:grid-cols-2']}>
-      <div>
+      <div data-field="name">
         <label for={`${formId}-name`} class={labelClass}>Your name *</label>
         <input
           id={`${formId}-name`}
           name="name"
           type="text"
-          required
           autocomplete="name"
           class={inputClass}
           placeholder="Full name"
         />
+        <p class={`${errorClass} hidden`} role="alert"></p>
       </div>
-      <div class={compact ? '' : 'mt-0'}>
+      <div class={compact ? '' : 'mt-0'} data-field="phone">
         <label for={`${formId}-phone`} class={labelClass}>Phone *</label>
         <input
           id={`${formId}-phone`}
           name="phone"
           type="tel"
-          required
           autocomplete="tel"
           class={inputClass}
           placeholder="+91 98765 43210"
         />
+        <p class={`${errorClass} hidden`} role="alert"></p>
       </div>
     </div>
 
     <div class:list={[compact && 'grid gap-4 sm:grid-cols-2']}>
-      <div>
-        <label for={`${formId}-service`} class={labelClass}>Service *</label>
-        <select id={`${formId}-service`} name="service" required class={inputClass}>
-          <option value="">Select service</option>
-          {serviceGroups.map((group) => (
-            <optgroup label={group.label}>
-              {group.services.map((s) => (
-                <option value={s.shortName}>{s.shortName}</option>
-              ))}
-            </optgroup>
-          ))}
-          <option value="Other / Custom request">Other / Custom request</option>
-        </select>
+      <div class="searchable-select relative" data-field="service" data-service-search>
+        <label for={`${formId}-service-search`} class={labelClass}>Service *</label>
+        <input type="hidden" id={`${formId}-service`} name="service" value="" />
+        <div class="relative mt-1">
+          <input
+            id={`${formId}-service-search`}
+            type="text"
+            role="combobox"
+            aria-expanded="false"
+            aria-controls={`${formId}-service-list`}
+            aria-autocomplete="list"
+            autocomplete="off"
+            class={inputClass}
+            placeholder="Search or select a service"
+          />
+          <ul
+            id={`${formId}-service-list`}
+            role="listbox"
+            class="absolute z-20 mt-1 hidden max-h-56 w-full overflow-y-auto rounded-xl border border-slate-200 bg-white py-1 shadow-lg"
+          ></ul>
+        </div>
+        <p class={`${errorClass} hidden`} role="alert"></p>
       </div>
-      <div>
-        <label for={`${formId}-area`} class={labelClass}>Area *</label>
-        <select id={`${formId}-area`} name="area" required class={inputClass}>
-          <option value="">Select area</option>
-          {areas.map((area) => (
-            <option value={area}>{area}</option>
-          ))}
-        </select>
+      <div data-field="area">
+        <label for={`${formId}-area`} class={labelClass}>Address *</label>
+        <input
+          id={`${formId}-area`}
+          name="area"
+          type="text"
+          autocomplete="street-address"
+          class={inputClass}
+          placeholder="Neighborhood or full address"
+        />
+        <p class={`${errorClass} hidden`} role="alert"></p>
       </div>
     </div>
 
@@ -131,15 +150,16 @@ const labelClass = 'block text-sm font-medium text-slate-800';
               placeholder="e.g. Tomorrow morning, 10 AM"
             />
           </div>
-          <div>
-            <label for={`${formId}-message`} class={labelClass}>Additional details</label>
+          <div data-field="message">
+            <label for={`${formId}-message`} class={labelClass}>Service details *</label>
             <textarea
               id={`${formId}-message`}
               name="message"
               rows={3}
-              class={inputClass}
+              class={`${textareaClass} min-h-[7rem]`}
               placeholder="Describe the issue or job..."
             ></textarea>
+            <p class={`${errorClass} hidden`} role="alert"></p>
           </div>
         </>
       )
@@ -147,15 +167,16 @@ const labelClass = 'block text-sm font-medium text-slate-800';
 
     {
       compact && (
-        <div>
-          <label for={`${formId}-message`} class={labelClass}>Details (optional)</label>
-          <input
+        <div data-field="message">
+          <label for={`${formId}-message`} class={labelClass}>Service details *</label>
+          <textarea
             id={`${formId}-message`}
             name="message"
-            type="text"
-            class={inputClass}
+            rows={2}
+            class={textareaClass}
             placeholder="Brief description..."
-          />
+          ></textarea>
+          <p class={`${errorClass} hidden`} role="alert"></p>
           <input type="hidden" name="preferredDate" value="" />
         </div>
       )
@@ -171,11 +192,13 @@ const labelClass = 'block text-sm font-medium text-slate-800';
       <button
         type="button"
         data-action="submit"
-        class="flex-1 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-700"
+        data-submit-label="Submit"
+        class="flex-1 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-70"
       >
         Submit
       </button>
     </div>
+    <p id={`${formId}-submit-error`} class="hidden text-center text-xs text-red-600 sm:text-sm" role="alert"></p>
     <p class="text-center text-[11px] text-slate-500 sm:text-xs">
       Or call <a href={`tel:${site.phone}`} class="font-medium text-brand-700">{site.phone}</a>
     </p>
@@ -191,10 +214,22 @@ const labelClass = 'block text-sm font-medium text-slate-800';
   </div>
 </section>
 
-<script define:vars={{ formId, web3Key, whatsapp: site.whatsapp, email: site.email, businessName: site.businessName }}>
+<script define:vars={{ formId, apiBaseUrl, whatsapp: site.whatsapp, serviceOptions }}>
   const form = document.getElementById(formId);
   const success = document.getElementById(`${formId}-success`);
   const successWa = document.getElementById(`${formId}-success-wa`);
+  const submitError = document.getElementById(`${formId}-submit-error`);
+  const submitButton = form?.querySelector('button[data-action="submit"]');
+
+  const serviceInput = document.getElementById(`${formId}-service`);
+  const serviceSearch = document.getElementById(`${formId}-service-search`);
+  const serviceList = document.getElementById(`${formId}-service-list`);
+
+  const validServiceValues = new Set(serviceOptions.map((opt) => opt.value));
+  const errorBorderClasses = ['border-red-500', 'focus:border-red-500', 'focus:ring-red-200'];
+  const normalBorderClasses = ['border-slate-400', 'focus:border-brand-500', 'focus:ring-brand-200'];
+
+  let activeOptionIndex = -1;
 
   function digits(w) {
     return String(w).replace(/\D/g, '');
@@ -206,7 +241,7 @@ const labelClass = 'block text-sm font-medium text-slate-800';
       `Name: ${data.name}`,
       `Phone: ${data.phone}`,
       `Service: ${data.service}`,
-      `Area: ${data.area}`,
+      `Address: ${data.area}`,
       data.preferredDate ? `Preferred: ${data.preferredDate}` : '',
       data.message ? `Details: ${data.message}` : '',
       '',
@@ -220,19 +255,288 @@ const labelClass = 'block text-sm font-medium text-slate-800';
     return {
       name: formEl.name.value.trim(),
       phone: formEl.phone.value.trim(),
-      service: formEl.service.value,
-      area: formEl.area.value,
+      service: formEl.service.value.trim(),
+      area: formEl.area.value.trim(),
       preferredDate: formEl.preferredDate?.value?.trim() ?? '',
       message: formEl.message.value.trim(),
     };
+  }
+
+  function getFieldInput(fieldName) {
+    if (fieldName === 'service') return serviceSearch;
+    return form?.elements.namedItem(fieldName);
+  }
+
+  function setFieldError(fieldName, message) {
+    const group = form?.querySelector(`[data-field="${fieldName}"]`);
+    const input = getFieldInput(fieldName);
+    const errorEl = group?.querySelector('.field-error');
+    if (!input || !errorEl) return;
+
+    input.classList.remove(...normalBorderClasses);
+    input.classList.add(...errorBorderClasses);
+    input.setAttribute('aria-invalid', 'true');
+    errorEl.textContent = message;
+    errorEl.classList.remove('hidden');
+  }
+
+  function clearFieldError(fieldName) {
+    const group = form?.querySelector(`[data-field="${fieldName}"]`);
+    const input = getFieldInput(fieldName);
+    const errorEl = group?.querySelector('.field-error');
+    if (!input || !errorEl) return;
+
+    input.classList.remove(...errorBorderClasses);
+    input.classList.add(...normalBorderClasses);
+    input.removeAttribute('aria-invalid');
+    errorEl.textContent = '';
+    errorEl.classList.add('hidden');
+  }
+
+  function clearAllErrors() {
+    for (const fieldName of ['name', 'phone', 'service', 'area', 'message']) {
+      clearFieldError(fieldName);
+    }
+  }
+
+  function validateForm() {
+    const data = getData(form);
+    const errors = {};
+
+    if (!data.name) {
+      errors.name = 'Please enter your name.';
+    }
+
+    if (!data.phone) {
+      errors.phone = 'Please enter your phone number.';
+    } else if (digits(data.phone).length < 10) {
+      errors.phone = 'Enter a valid 10-digit phone number.';
+    }
+
+    if (!data.service || !validServiceValues.has(data.service)) {
+      errors.service = 'Please select a service from the list.';
+    }
+
+    if (!data.area) {
+      errors.area = 'Please enter your address.';
+    }
+
+    if (!data.message) {
+      errors.message = 'Please describe what you need.';
+    }
+
+    return errors;
+  }
+
+  function showErrors(errors) {
+    clearAllErrors();
+    for (const [fieldName, message] of Object.entries(errors)) {
+      setFieldError(fieldName, message);
+    }
+
+    const firstInvalid = Object.keys(errors)[0];
+    const firstInput = getFieldInput(firstInvalid);
+    firstInput?.focus();
+  }
+
+  for (const fieldName of ['name', 'phone', 'area', 'message']) {
+    const input = getFieldInput(fieldName);
+    input?.addEventListener('input', () => clearFieldError(fieldName));
+  }
+
+  function renderServiceOptions(query = '') {
+    if (!serviceList) return;
+    const q = query.trim().toLowerCase();
+    const matches = serviceOptions.filter((opt) => {
+      const haystack = `${opt.group} ${opt.value}`.toLowerCase();
+      return !q || haystack.includes(q);
+    });
+
+    serviceList.innerHTML = '';
+    activeOptionIndex = -1;
+
+    if (matches.length === 0) {
+      const empty = document.createElement('li');
+      empty.className = 'px-3 py-2 text-sm text-slate-500';
+      empty.textContent = 'No matching services';
+      serviceList.appendChild(empty);
+      return;
+    }
+
+    let lastGroup = null;
+    for (const opt of matches) {
+      if (opt.group && opt.group !== lastGroup) {
+        const heading = document.createElement('li');
+        heading.className = 'px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500';
+        heading.setAttribute('role', 'presentation');
+        heading.textContent = opt.group;
+        serviceList.appendChild(heading);
+        lastGroup = opt.group;
+      }
+
+      const item = document.createElement('li');
+      item.setAttribute('role', 'option');
+      item.dataset.value = opt.value;
+      item.className =
+        'cursor-pointer px-3 py-2 text-sm text-slate-900 hover:bg-brand-50 aria-selected:bg-brand-100';
+      item.textContent = opt.value;
+      serviceList.appendChild(item);
+    }
+  }
+
+  function openServiceList() {
+    if (!serviceList || !serviceSearch) return;
+    renderServiceOptions(serviceSearch.value);
+    serviceList.classList.remove('hidden');
+    serviceSearch.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeServiceList() {
+    if (!serviceList || !serviceSearch) return;
+    serviceList.classList.add('hidden');
+    serviceSearch.setAttribute('aria-expanded', 'false');
+    activeOptionIndex = -1;
+  }
+
+  function selectService(value) {
+    if (!serviceInput || !serviceSearch) return;
+    serviceInput.value = value;
+    serviceSearch.value = value;
+    clearFieldError('service');
+    closeServiceList();
+  }
+
+  function getServiceOptionElements() {
+    return serviceList ? [...serviceList.querySelectorAll('[role="option"]')] : [];
+  }
+
+  function highlightServiceOption(index) {
+    const options = getServiceOptionElements();
+    options.forEach((el, i) => {
+      el.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      el.classList.toggle('bg-brand-50', i === index);
+    });
+    if (options[index]) {
+      options[index].scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  serviceSearch?.addEventListener('focus', openServiceList);
+  serviceSearch?.addEventListener('input', () => {
+    if (serviceInput) serviceInput.value = '';
+    clearFieldError('service');
+    openServiceList();
+  });
+
+  serviceSearch?.addEventListener('keydown', (e) => {
+    const options = getServiceOptionElements();
+    if (!options.length) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        openServiceList();
+      }
+      return;
+    }
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeOptionIndex = Math.min(activeOptionIndex + 1, options.length - 1);
+      highlightServiceOption(activeOptionIndex);
+      return;
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeOptionIndex = Math.max(activeOptionIndex - 1, 0);
+      highlightServiceOption(activeOptionIndex);
+      return;
+    }
+
+    if (e.key === 'Enter' && activeOptionIndex >= 0) {
+      e.preventDefault();
+      selectService(options[activeOptionIndex].dataset.value ?? '');
+      return;
+    }
+
+    if (e.key === 'Escape') {
+      closeServiceList();
+    }
+  });
+
+  serviceList?.addEventListener('mousedown', (e) => {
+    const option = e.target.closest('[role="option"]');
+    if (!option) return;
+    e.preventDefault();
+    selectService(option.dataset.value ?? '');
+  });
+
+  document.addEventListener('click', (e) => {
+    const wrapper = serviceSearch?.closest('.searchable-select');
+    if (wrapper && !wrapper.contains(e.target)) {
+      closeServiceList();
+    }
+  });
+
+  function clearSubmitError() {
+    if (!submitError) return;
+    submitError.textContent = '';
+    submitError.classList.add('hidden');
+  }
+
+  function showSubmitError(message) {
+    if (!submitError) return;
+    submitError.textContent = message;
+    submitError.classList.remove('hidden');
+  }
+
+  function setSubmitting(isSubmitting) {
+    if (!submitButton) return;
+    const defaultLabel = submitButton.dataset.submitLabel || 'Submit';
+    submitButton.disabled = isSubmitting;
+    submitButton.textContent = isSubmitting ? 'Submitting...' : defaultLabel;
+  }
+
+  async function submitToBackend(data) {
+    if (!apiBaseUrl) {
+      throw new Error('Booking is temporarily unavailable. Please use WhatsApp or call us.');
+    }
+
+    const response = await fetch(`${apiBaseUrl}/api/v1/public/web-booking/submit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        name: data.name,
+        phone: data.phone,
+        service: data.service,
+        area: data.area,
+        preferred_date: data.preferredDate,
+        message: data.message,
+      }),
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.response_code !== 'default_store_200') {
+      const firstError = Array.isArray(result.errors) && result.errors[0]?.message
+        ? result.errors[0].message
+        : result.message || 'Could not submit your request. Please try WhatsApp or call us.';
+      throw new Error(firstError);
+    }
+
+    return result;
   }
 
   form?.addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-action]');
     if (!btn || !form.contains(btn)) return;
     e.preventDefault();
-    if (!form.reportValidity()) return;
 
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      showErrors(errors);
+      return;
+    }
+
+    clearSubmitError();
     const data = getData(form);
     const msg = buildMessage(data);
     const waUrl = `https://wa.me/${digits(whatsapp)}?text=${encodeURIComponent(msg)}`;
@@ -242,32 +546,13 @@ const labelClass = 'block text-sm font-medium text-slate-800';
       return;
     }
 
-    if (web3Key) {
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: web3Key,
-          subject: `New booking request — ${data.service}`,
-          from_name: businessName,
-          name: data.name,
-          phone: data.phone,
-          service: data.service,
-          area: data.area,
-          preferred_date: data.preferredDate,
-          message: data.message,
-          replyto: email,
-        }),
+    setSubmitting(true);
+    submitToBackend(data)
+      .then(() => showSuccess(waUrl))
+      .catch((error) => {
+        showSubmitError(error?.message || 'Could not submit your request. Please try WhatsApp or call us.');
       })
-        .then((r) => r.json())
-        .then((res) => {
-          if (res.success) showSuccess(waUrl);
-          else window.open(waUrl, '_blank', 'noopener,noreferrer');
-        })
-        .catch(() => window.open(waUrl, '_blank', 'noopener,noreferrer'));
-    } else {
-      showSuccess(waUrl);
-    }
+      .finally(() => setSubmitting(false));
   });
 
   function showSuccess(waUrl) {

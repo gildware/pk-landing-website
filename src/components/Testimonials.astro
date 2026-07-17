@@ -17,28 +17,36 @@ const { title = 'What our customers say', items } = Astro.props;
 
 {
   items.length > 0 && (
-    <section class="section-pad bg-slate-50" aria-labelledby="testimonials-heading">
-      <div class="mx-auto max-w-6xl">
-        <h2 id="testimonials-heading" class="reveal text-center text-3xl font-bold text-slate-900">
+    <section class="testimonials" aria-labelledby="testimonials-heading">
+      <div class="testimonials__inner">
+        <h2 id="testimonials-heading" class="reveal testimonials__title">
           {title}
         </h2>
-        <p class="reveal reveal-stagger-1 mx-auto mt-3 max-w-xl text-center text-slate-600">
+        <p class="reveal reveal-stagger-1 testimonials__subtitle">
           Real reviews from homeowners in Srinagar — plumbing, electrical, appliances, salon, and more.
         </p>
 
-        <div class="relative mt-10">
-          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="testimonials__band">
+          <div class="scroll-row testimonials__row" role="list" aria-label="Customer reviews">
             {items.map((item, i) => (
-              <figure class:list={['reveal-scale card card-hover flex flex-col p-6', `reveal-stagger-${Math.min(i + 1, 6)}`]}>
-                <p class="text-base leading-none tracking-wider text-amber-400" role="img" aria-label={`${item.rating} out of 5 stars`}>
+              <figure
+                role="listitem"
+                class:list={[
+                  'reveal-scale card card-hover testimonials__card',
+                  `reveal-stagger-${Math.min(i + 1, 6)}`,
+                ]}
+              >
+                <p
+                  class="testimonials__stars"
+                  role="img"
+                  aria-label={`${item.rating} out of 5 stars`}
+                >
                   {'★'.repeat(item.rating)}
                 </p>
-                <blockquote class="mt-4 flex-1 text-sm leading-relaxed text-slate-700">
-                  "{item.quote}"
-                </blockquote>
-                <figcaption class="mt-4 border-t border-slate-100 pt-4">
-                  <p class="font-semibold text-slate-900">{item.customerName}</p>
-                  <p class="text-xs text-slate-500">
+                <blockquote class="testimonials__quote">"{item.quote}"</blockquote>
+                <figcaption class="testimonials__meta">
+                  <p class="testimonials__name">{item.customerName}</p>
+                  <p class="testimonials__detail">
                     {item.location} · {item.service}
                   </p>
                 </figcaption>
@@ -50,3 +58,138 @@ const { title = 'What our customers say', items } = Astro.props;
     </section>
   )
 }
+
+<style>
+  .testimonials {
+    padding: 2.5rem 1rem 2.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .testimonials {
+      padding: 3rem 1.5rem;
+    }
+  }
+
+  .testimonials__inner {
+    margin-inline: auto;
+    max-width: 72rem;
+  }
+
+  .testimonials__title {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .testimonials__subtitle {
+    margin: 0.5rem auto 0;
+    max-width: 36rem;
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #475569;
+  }
+
+  /* Short background band — fully visible; cards sit on top of it */
+  .testimonials__band {
+    margin-top: 1.25rem;
+    padding: 1.1rem 0 1.15rem;
+    border-radius: 1.25rem;
+    background: #f1f5f9;
+    overflow: visible;
+  }
+
+  /* Phone: centered card with ~10% of left/right cards peeking */
+  .testimonials__row {
+    gap: 0.75rem;
+    padding-inline: 10%;
+    scrollbar-width: none;
+  }
+
+  .testimonials__row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonials__row .testimonials__card {
+    scroll-snap-align: center;
+  }
+
+  .testimonials__card {
+    display: flex;
+    width: 80%;
+    min-height: 16.5rem;
+    flex-direction: column;
+    padding: 1.15rem 1.2rem;
+  }
+
+  .testimonials__stars {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    color: #fbbf24;
+  }
+
+  .testimonials__quote {
+    margin: 0.65rem 0 0;
+    flex: 1;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #334155;
+  }
+
+  .testimonials__meta {
+    margin-top: 0.65rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .testimonials__name {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+
+  .testimonials__detail {
+    margin: 0.15rem 0 0;
+    font-size: 0.7rem;
+    color: #64748b;
+  }
+
+  @media (min-width: 640px) {
+    .testimonials__title {
+      font-size: 1.875rem;
+    }
+
+    .testimonials__band {
+      margin-top: 1.5rem;
+      padding: 1.25rem 0;
+    }
+
+    .testimonials__row {
+      gap: 1.25rem;
+      padding-inline: 1.25rem;
+      scrollbar-width: thin;
+    }
+
+    .testimonials__row::-webkit-scrollbar {
+      display: block;
+    }
+
+    .testimonials__row .testimonials__card {
+      scroll-snap-align: start;
+    }
+
+    .testimonials__card {
+      width: 18.5rem;
+      min-height: 17.5rem;
+      padding: 1.25rem 1.35rem;
+    }
+
+    .testimonials__quote {
+      font-size: 0.875rem;
+    }
+  }
+</style>

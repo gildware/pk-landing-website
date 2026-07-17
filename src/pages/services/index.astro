@@ -6,31 +6,22 @@ import Icon from '@/components/Icon.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings, getServices, getAreas, siteUrl } from '@/utils/reader';
 import { breadcrumbSchema, itemListSchema } from '@/utils/schema';
+import { serviceGroupDefs } from '@/utils/serviceGroups';
 
 const site = await getSiteSettings();
 const services = await getServices();
 const areas = await getAreas();
 const primaryArea = areas[0];
 
-const serviceGroups = [
-  {
-    title: 'Home repair & construction',
-    slugs: ['carpentry', 'plumbing', 'masonry', 'electrician', 'painting', 'interior-decor'],
-  },
-  {
-    title: 'Cleaning & care',
-    slugs: ['professional-cleaning', 'pest-control', 'dry-clean-laundry', 'gardening'],
-  },
-  {
-    title: 'Appliances & lifestyle',
-    slugs: ['home-appliances', 'mens-salon', 'womens-salon'],
-  },
-];
+const serviceGroups = serviceGroupDefs.map((g) => ({
+  title: g.label,
+  slugs: [...g.slugs],
+}));
 
 const meta = buildMeta({
-  title: 'All Home Services in Srinagar — 13 Categories',
+  title: `All Home Services in Srinagar — ${services.length} Categories`,
   description:
-    'Book carpentry, plumbing, masonry, electrician, cleaning, pest control, laundry, painting, appliances, gardening, salon & interior decor in Srinagar. Call, WhatsApp, or book online.',
+    'Book carpentry, plumbing, masonry, electrician, cleaning, pest control, laundry, painting, appliances, gardening, salon, tank cleaning & interior decor in Srinagar. Call, WhatsApp, or book online.',
   path: '/services',
 });
 
@@ -57,8 +48,8 @@ const schemas = [
       Home services in {primaryArea?.displayName ?? 'Srinagar'}
     </h1>
     <p class="mt-4 max-w-3xl animate-fade-up text-lg text-slate-600 stagger-1">
-      Panun Kaergar offers <strong>13 service categories</strong> across Srinagar — from carpentry and
-      plumbing to salon at home and interior decor. Every category has verified local providers.
+      Panun Kaergar offers <strong>{services.length} service categories</strong> across Srinagar — from carpentry and
+      plumbing to salon at home, tank cleaning, and interior decor. Every category has verified local providers.
       Book by phone, WhatsApp, our website, or the free app.
     </p>
 

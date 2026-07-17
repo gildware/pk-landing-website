@@ -1,0 +1,753 @@
+---
+/**
+ * Pinned category stack below the site header.
+ * Cards stack inside a sticky panel; after the last card, the whole section scrolls away together.
+ */
+import { enrichCategories, type ServiceLike } from '@/utils/categoryCatalog';
+
+interface Props {
+  services: ServiceLike[];
+  areaName?: string;
+}
+
+const { services, areaName = 'Srinagar' } = Astro.props;
+const categories = enrichCategories(services, areaName);
+const initial = categories[0];
+const count = Math.max(categories.length, 1);
+---
+
+{
+  categories.length > 0 && (
+    <section
+      class="category-stack"
+      data-category-stack
+      aria-label="Service categories"
+      style={`--active-accent: ${initial.accent}; --active-soft: ${initial.soft}; --stack-count: ${count};`}
+    >
+      <div class="category-stack__track" data-stack-track>
+        <div class="category-stack__panel" data-stack-panel>
+          <div class="category-stack__inner">
+            <aside class="category-stack__copy">
+              <div class="category-stack__copy-inner">
+                <p class="category-stack__eyebrow" data-stack-eyebrow>
+                  {initial.label}
+                </p>
+                <h2 class="category-stack__title" data-stack-heading>
+                  {initial.heading}
+                </h2>
+                <p class="category-stack__subtitle" data-stack-blurb>
+                  {initial.blurb}
+                </p>
+                <a href="/services" class="category-stack__cta category-stack__cta--primary">
+                  <span>View all services</span>
+                  <span class="category-stack__cta-arrow" aria-hidden="true">
+                    <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M7.03.22a.75.75 0 0 0-1.06 1.06L8.94 4.25H1a.75.75 0 0 0 0 1.5h7.94L5.97 8.72a.75.75 0 1 0 1.06 1.06l4.6-4.6a.75.75 0 0 0 0-1.06L7.03.22Z"
+                        fill="currentColor"></path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </aside>
+
+            <div class="category-stack__stage" data-stack-stage>
+              {categories.map((cat, i) => (
+                <article
+                  class:list={['category-stack__card', i === 0 && 'is-active']}
+                  style={`--soft: ${cat.soft}; --mid: ${cat.mid}; --accent: ${cat.accent}; --stack-index: ${i};`}
+                  data-stack-card
+                  data-label={cat.label}
+                  data-heading={cat.heading}
+                  data-blurb={cat.blurb}
+                  data-slug={cat.slug}
+                  data-accent={cat.accent}
+                  data-soft={cat.soft}
+                >
+                  <div class="category-stack__card-surface">
+                    <div class="category-stack__card-top">
+                      <span class="category-stack__icon" aria-hidden="true">
+                        <img
+                          src={cat.icon}
+                          alt=""
+                          width="40"
+                          height="40"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </span>
+                      <p class="category-stack__card-meta">{cat.meta}</p>
+                    </div>
+
+                    <div class="category-stack__card-body">
+                      <h3 class="category-stack__card-title">
+                        <a href={`/services/${cat.slug}`} class="category-stack__card-title-link">
+                          {cat.label}
+                        </a>
+                      </h3>
+                      <p class="category-stack__card-desc">
+                        {cat.description || cat.blurb}
+                      </p>
+                    </div>
+
+                    {
+                      cat.subcategories.length > 0 && (
+                        <ul class="category-stack__subs" aria-label={`${cat.label} subcategories`}>
+                          {cat.subcategories.map((sub) => (
+                            <li class="category-stack__sub-pill">
+                              {/*
+                                Use the local category icon (same as card header).
+                                CDN subcategory assets are white silhouettes that collapse
+                                into black dots at pill size on light backgrounds.
+                              */}
+                              <img
+                                class="category-stack__sub-icon"
+                                src={cat.icon}
+                                alt=""
+                                width="20"
+                                height="20"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                              <span>{sub.name}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )
+                    }
+
+                    <a href={`/services/${cat.slug}`} class="category-stack__cta category-stack__cta--card">
+                      <span>Explore {cat.label}</span>
+                      <span class="category-stack__cta-arrow" aria-hidden="true">
+                        <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M7.03.22a.75.75 0 0 0-1.06 1.06L8.94 4.25H1a.75.75 0 0 0 0 1.5h7.94L5.97 8.72a.75.75 0 1 0 1.06 1.06l4.6-4.6a.75.75 0 0 0 0-1.06L7.03.22Z"
+                            fill="currentColor"></path>
+                        </svg>
+                      </span>
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .category-stack {
+    --header-h: 72px;
+    --stack-count: 14;
+    /* Gardening natural height (~323px) + 50px */
+    --card-h: 373px;
+    --stack-peek: 0.55rem;
+    --active-accent: #0369a1;
+    --active-soft: #bae6fd;
+    position: relative;
+    width: 100%;
+    margin-top: 3.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .category-stack {
+      margin-top: 4.5rem;
+    }
+  }
+
+  /* Scroll runway: stack all cards, then release the whole panel upward */
+  .category-stack__track {
+    position: relative;
+    height: calc(var(--stack-count) * 48vh + 28vh);
+  }
+
+  .category-stack__panel {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 1;
+    padding: 2.5rem 0 2.75rem;
+    background:
+      radial-gradient(
+        ellipse 85% 55% at 12% 12%,
+        color-mix(in srgb, var(--active-soft) 70%, transparent),
+        transparent 62%
+      ),
+      radial-gradient(
+        ellipse 65% 45% at 88% 22%,
+        color-mix(in srgb, var(--active-accent) 11%, transparent),
+        transparent 55%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--active-soft) 26%, #f8fafc) 0%,
+        #ffffff 52%,
+        color-mix(in srgb, var(--active-soft) 16%, #f1f5f9) 100%
+      );
+    transition: background 0.4s ease;
+  }
+
+  @media (min-width: 900px) {
+    .category-stack__panel {
+      padding: 3.25rem 0 3.25rem;
+    }
+  }
+
+  .category-stack__inner {
+    width: min(72rem, 100%);
+    margin-inline: auto;
+    padding-inline: 1rem;
+    display: grid;
+    gap: 1.75rem;
+    align-items: start;
+  }
+
+  @media (min-width: 640px) {
+    .category-stack__inner {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .category-stack__inner {
+      grid-template-columns: minmax(15rem, 0.95fr) minmax(18rem, 1.15fr);
+      gap: 3rem;
+    }
+  }
+
+  .category-stack__copy {
+    min-width: 0;
+    align-self: start;
+  }
+
+  .category-stack__copy-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0.85rem;
+    border-left: 3px solid var(--active-accent);
+    transition: border-color 0.35s ease;
+  }
+
+  .category-stack__eyebrow {
+    margin: 0 0 0.45rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--active-accent);
+    transition:
+      color 0.35s ease,
+      opacity 0.22s ease,
+      transform 0.22s ease;
+  }
+
+  .category-stack__title {
+    margin: 0;
+    font-size: clamp(1.45rem, 1.25rem + 0.9vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #0f172a;
+    text-wrap: balance;
+    transition:
+      opacity 0.22s ease,
+      transform 0.22s ease;
+  }
+
+  .category-stack__subtitle {
+    margin: 0.65rem 0 0;
+    max-width: 26rem;
+    font-size: 0.925rem;
+    line-height: 1.55;
+    color: #475569;
+    transition:
+      opacity 0.22s ease,
+      transform 0.22s ease;
+  }
+
+  .category-stack__copy-inner.is-swapping .category-stack__eyebrow,
+  .category-stack__copy-inner.is-swapping .category-stack__title,
+  .category-stack__copy-inner.is-swapping .category-stack__subtitle {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .category-stack__stage {
+    position: relative;
+    width: 100%;
+    height: calc(var(--card-h) + (var(--stack-count) - 1) * var(--stack-peek));
+    min-width: 0;
+  }
+
+  .category-stack__card {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: var(--card-h);
+    z-index: calc(10 + var(--stack-index));
+    display: flex;
+    will-change: transform;
+    transform: translateY(115%);
+    /* Only waiting cards are hidden; visible cards are always fully opaque */
+    opacity: 0;
+    pointer-events: none;
+    isolation: isolate;
+  }
+
+  .category-stack__card.is-active,
+  .category-stack__card.is-stacked {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  /* First card starts settled as the stack base (before/without JS) */
+  .category-stack__card.is-active:first-child {
+    transform: translateY(0);
+  }
+
+  .category-stack__card-surface {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    padding: 1.45rem 1.35rem 1.3rem;
+    border-radius: 1.15rem;
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, #ffffff);
+    /* Solid base so nothing shows through — no translucent mixes */
+    background-color: var(--soft);
+    background-image: linear-gradient(
+      155deg,
+      var(--soft) 0%,
+      color-mix(in srgb, var(--mid) 65%, #ffffff) 48%,
+      #ffffff 100%
+    );
+    box-shadow:
+      0 4px 6px -1px color-mix(in srgb, var(--accent) 12%, transparent),
+      0 18px 36px -16px color-mix(in srgb, var(--accent) 32%, transparent);
+    overflow: hidden;
+  }
+
+  .category-stack__card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-shrink: 0;
+  }
+
+  .category-stack__icon {
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    background: #fff;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+
+  .category-stack__icon img {
+    width: 1.55rem;
+    height: 1.55rem;
+    object-fit: contain;
+  }
+
+  .category-stack__card-body {
+    margin-top: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .category-stack__card-title {
+    margin: 0;
+    font-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.55rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: #0f172a;
+  }
+
+  .category-stack__card-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .category-stack__card-title-link:hover {
+    color: var(--accent, var(--active-accent));
+  }
+
+  .category-stack__card-desc {
+    margin: 0.4rem 0 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: #334155;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .category-stack__card-meta {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .category-stack__subs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0.85rem 0 0;
+    padding: 0;
+    list-style: none;
+    flex: 1;
+    min-height: 0;
+    align-content: flex-start;
+    overflow: hidden;
+  }
+
+  .category-stack__sub-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    max-width: 100%;
+    padding: 0.25rem 0.55rem 0.25rem 0.25rem;
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 0.92);
+    border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #0f172a;
+  }
+
+  .category-stack__sub-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    padding: 0.1rem;
+    border-radius: 0.35rem;
+    object-fit: contain;
+    background: #ffffff;
+  }
+
+  .category-stack__sub-pill span {
+    color: #0f172a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .category-stack__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    align-self: flex-start;
+    padding: 0.65rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.25s ease;
+  }
+
+  .category-stack__cta--primary,
+  .category-stack__cta--card {
+    margin-top: auto;
+    padding-top: 0.85rem;
+    color: #fff;
+  }
+
+  .category-stack__cta--primary {
+    margin-top: 0.85rem;
+    background: #202048;
+  }
+
+  .category-stack__cta--card {
+    background: var(--accent, var(--active-accent));
+  }
+
+  .category-stack__cta:hover {
+    filter: brightness(0.92);
+    transform: translateY(-1px);
+  }
+
+  .category-stack__cta-arrow {
+    display: inline-flex;
+  }
+
+  /* Mobile only — compact card that fits the phone screen with Explore fully visible.
+     Desktop sticky stacking / pin / opacity unchanged. */
+  @media (max-width: 899px) {
+    .category-stack {
+      /* Fit under header + short copy; don't let the card run off-screen */
+      --card-h: min(360px, calc(100dvh - var(--header-h) - 8.75rem));
+      --stack-peek: 0.32rem;
+    }
+
+    .category-stack__panel {
+      /* Height follows content only — avoids a tall empty white band under the card */
+      padding: 0.65rem 0 1.25rem;
+      overflow: visible;
+    }
+
+    .category-stack__inner {
+      gap: 0.65rem;
+    }
+
+    .category-stack__title {
+      font-size: clamp(1.15rem, 0.95rem + 1vw, 1.35rem);
+    }
+
+    .category-stack__subtitle {
+      margin-top: 0.45rem;
+      font-size: 0.78rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .category-stack__cta--primary {
+      margin-top: 0.65rem;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.8rem;
+    }
+
+    /* Stage = one card tall on phone (peek strip is tiny; avoids a huge empty panel) */
+    .category-stack__stage {
+      height: var(--card-h);
+    }
+
+    .category-stack__card-surface {
+      padding: 0.85rem 0.9rem 0.85rem;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    .category-stack__card-body {
+      margin-top: 0.55rem;
+    }
+
+    .category-stack__card-title {
+      font-size: clamp(1.15rem, 1rem + 0.4vw, 1.35rem);
+    }
+
+    .category-stack__card-desc {
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+      -webkit-line-clamp: 2;
+    }
+
+    /* Two pill rows max so Explore stays inside the card */
+    .category-stack__subs {
+      flex: 0 1 auto;
+      margin-top: 0.5rem;
+      gap: 0.28rem;
+      max-height: 3.5rem;
+      overflow: hidden;
+    }
+
+    .category-stack__sub-pill {
+      font-size: 0.62rem;
+      padding: 0.2rem 0.45rem 0.2rem 0.2rem;
+    }
+
+    .category-stack__sub-icon {
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+
+    /* Fully visible pill button — no bottom buffer pushing it into the clip edge */
+    .category-stack__cta--card {
+      margin-top: 0.65rem;
+      margin-bottom: 0;
+      padding: 0.6rem 0.95rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      border-radius: 9999px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .category-stack__track {
+      height: auto;
+    }
+
+    .category-stack__panel {
+      position: relative;
+      top: auto;
+    }
+
+    .category-stack__stage {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: auto;
+    }
+
+    .category-stack__card {
+      position: relative;
+      inset: auto;
+      height: var(--card-h);
+      transform: none !important;
+      opacity: 1 !important;
+      pointer-events: auto;
+    }
+  }
+</style>
+
+<script>
+  function initCategoryStack() {
+    const root = document.querySelector('[data-category-stack]');
+    if (!(root instanceof HTMLElement)) return;
+
+    const track = root.querySelector('[data-stack-track]');
+    const copy = root.querySelector('.category-stack__copy-inner');
+    const cards = [...root.querySelectorAll('[data-stack-card]')];
+    const eyebrow = root.querySelector('[data-stack-eyebrow]');
+    const heading = root.querySelector('[data-stack-heading]');
+    const blurb = root.querySelector('[data-stack-blurb]');
+
+    if (!(track instanceof HTMLElement) || cards.length === 0) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    let activeIndex = -1;
+    let swapTimer = 0;
+    const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+    const peekPx = () => {
+      const raw = getComputedStyle(root).getPropertyValue('--stack-peek').trim();
+      const n = Number.parseFloat(raw);
+      if (!Number.isFinite(n)) return 9;
+      return raw.endsWith('rem') ? n * 16 : n;
+    };
+
+    const applyTheme = (card) => {
+      root.style.setProperty('--active-accent', card.getAttribute('data-accent') || '#202048');
+      root.style.setProperty('--active-soft', card.getAttribute('data-soft') || '#e2e8f0');
+    };
+
+    const applyCopy = (card, animate) => {
+      const label = card.getAttribute('data-label') || '';
+      const nextHeading = card.getAttribute('data-heading') || '';
+      const nextBlurb = card.getAttribute('data-blurb') || '';
+
+      applyTheme(card);
+
+      const commitText = () => {
+        if (eyebrow) eyebrow.textContent = label;
+        if (heading) heading.textContent = nextHeading;
+        if (blurb) blurb.textContent = nextBlurb;
+        copy?.classList.remove('is-swapping');
+      };
+
+      if (!animate || !copy) {
+        window.clearTimeout(swapTimer);
+        commitText();
+        return;
+      }
+
+      copy.classList.add('is-swapping');
+      window.clearTimeout(swapTimer);
+      swapTimer = window.setTimeout(commitText, 140);
+    };
+
+    const update = () => {
+      const headerH = 72;
+      const rect = track.getBoundingClientRect();
+      const panelH = root.querySelector('[data-stack-panel]')?.getBoundingClientRect().height || window.innerHeight - headerH;
+      const scrollable = Math.max(rect.height - panelH, 1);
+      const progress = clamp((-rect.top + headerH) / scrollable, 0, 1);
+      const isMobile = window.matchMedia('(max-width: 899px)').matches;
+
+      const count = cards.length;
+      const segment = 1 / count;
+      // Phone: delay advancing so Explore isn't covered by the next card too early
+      const hold = isMobile ? 0.35 : 0;
+      let nextActive = clamp(Math.floor(progress / segment + 0.0001), 0, count - 1);
+      if (hold > 0 && nextActive > 0) {
+        const localAt = (progress - nextActive * segment) / segment;
+        if (localAt < hold) nextActive -= 1;
+      }
+      const step = peekPx();
+
+      cards.forEach((card, i) => {
+        const local = clamp((progress - i * segment) / segment, 0, 1);
+        const restY = i * step;
+        const cardH = card.offsetHeight || 373;
+
+        if (i < nextActive) {
+          // Already in the stack — stay pinned at peek, always opaque
+          const depth = nextActive - i;
+          card.style.transform = `translateY(${restY}px) scale(${Math.max(0.97, 1 - depth * 0.008)})`;
+          card.style.opacity = '1';
+        } else if (i === nextActive) {
+          if (i === 0) {
+            // First card never scrolls/moves — stays as the stack base
+            card.style.transform = 'translateY(0px) scale(1)';
+            card.style.opacity = '1';
+          } else {
+            // Later cards slide up fully opaque (no fade)
+            const t = hold > 0 ? clamp((local - hold) / (1 - hold), 0, 1) : local;
+            const from = cardH * (isMobile ? 1.45 : 1.08);
+            const yPx = (1 - t) * from + t * restY;
+            card.style.transform = `translateY(${yPx}px) scale(1)`;
+            card.style.opacity = '1';
+          }
+        } else {
+          // Not entered yet — parked below, hidden
+          card.style.transform = `translateY(${cardH * (isMobile ? 1.45 : 1.15)}px)`;
+          card.style.opacity = '0';
+        }
+
+        card.classList.toggle('is-active', i === nextActive);
+        card.classList.toggle('is-stacked', i < nextActive);
+      });
+
+      if (nextActive !== activeIndex) {
+        activeIndex = nextActive;
+        applyCopy(cards[activeIndex], true);
+      }
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    };
+
+    if (root._stackCleanup) root._stackCleanup();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    root._stackCleanup = () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      window.clearTimeout(swapTimer);
+    };
+
+    applyCopy(cards[0], false);
+    activeIndex = 0;
+    update();
+  }
+
+  initCategoryStack();
+  document.addEventListener('astro:page-load', initCategoryStack);
+</script>

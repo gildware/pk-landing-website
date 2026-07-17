@@ -1,0 +1,898 @@
+---
+/**
+ * Monday.com-style interactive category showcase.
+ * Tall portrait cards: center rises first, then sides slide out from behind.
+ */
+import { enrichCategories, type ServiceLike } from '@/utils/categoryCatalog';
+
+interface Props {
+  services: ServiceLike[];
+  areaName?: string;
+}
+
+const { services, areaName = 'Srinagar' } = Astro.props;
+
+const categories = enrichCategories(services, areaName).map((cat) => ({
+  id: cat.slug,
+  label: cat.label,
+  prompt: cat.prompt,
+  accent: cat.accent,
+  soft: cat.soft,
+  cards: [
+    { role: 'side' as const, title: cat.meta, meta: areaName, tone: 'cool' as const },
+    {
+      role: 'main' as const,
+      title: `${cat.label} pro`,
+      meta: `Verified · ${areaName}`,
+      tone: 'photo' as const,
+    },
+    { role: 'side' as const, title: cat.title, meta: 'Book a slot', tone: 'warm' as const },
+  ],
+}));
+
+const initial = categories[0] ?? {
+  id: 'plumbing',
+  label: 'Plumbing',
+  prompt: '',
+  accent: '#0369a1',
+  soft: '#bae6fd',
+  cards: [],
+};
+---
+
+{
+  categories.length > 0 && (
+<section class="category-showcase section-pad overflow-x-clip bg-white" data-category-showcase>
+  <div class="mx-auto max-w-3xl text-center">
+    <h2 class="reveal font-figtree text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
+      Home services as one team
+    </h2>
+    <p class="reveal reveal-stagger-1 mx-auto mt-4 max-w-2xl font-figtree text-base leading-relaxed text-slate-600 sm:text-lg">
+      Get more done with verified providers working side by side with you across Srinagar.
+    </p>
+  </div>
+
+  <div class="mx-auto mt-10 max-w-3xl sm:mt-12">
+    <div class="reveal relative mx-auto w-full max-w-xl sm:max-w-2xl">
+      <div
+        class="category-showcase__stage relative mx-auto w-full"
+        data-stage
+        style={`--accent: ${initial.accent}; --soft: ${initial.soft};`}
+      >
+        {
+          categories.map((cat, catIndex) => (
+            <div
+              class:list={[
+                'category-showcase__panel',
+                catIndex === 0 ? 'is-active' : '',
+              ]}
+              data-panel={cat.id}
+              aria-hidden={catIndex !== 0}
+            >
+              {cat.cards.map((card, i) => (
+                <div
+                  class:list={[
+                    'category-showcase__card',
+                    `category-showcase__card--${card.role}`,
+                    `category-showcase__card--${i}`,
+                    `tone-${card.tone}`,
+                  ]}
+                >
+                  <div class="category-showcase__media" aria-hidden="true">
+                    <span class="category-showcase__placeholder-icon">IMG</span>
+                  </div>
+
+                  {card.role === 'main' ? (
+                    <>
+                      <div class="category-showcase__name-pill">
+                        {card.title}
+                      </div>
+                      <div class="category-showcase__prompt">
+                        <p
+                          class="category-showcase__typewriter"
+                          data-typewriter
+                          data-full-text={cat.prompt}
+                          aria-label={cat.prompt}
+                        ></p>
+                        <span class="category-showcase__send" aria-hidden="true">
+                          <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                        </span>
+                      </div>
+                    </>
+                  ) : (
+                    <div class:list={['category-showcase__callout', i === 0 ? 'is-left' : 'is-right']}>
+                      <p class="category-showcase__callout-title">{card.title}</p>
+                      <p class="category-showcase__callout-meta">{card.meta}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Category tabs — single line, centered -->
+      <div
+        class="category-showcase__tabs mt-6"
+        role="tablist"
+        aria-label="Service categories"
+        data-tabs
+      >
+        {
+          categories.map((cat, i) => (
+            <button
+              type="button"
+              role="tab"
+              class:list={['category-showcase__tab', i === 0 && 'is-active']}
+              data-tab={cat.id}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              id={`cat-tab-${cat.id}`}
+            >
+              <span class="category-showcase__dot" aria-hidden="true" />
+              {cat.label}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+  )
+}
+
+<style>
+  /* Centered image stage */
+  .category-showcase__stage {
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    height: auto;
+    min-height: 240px;
+  }
+
+  @media (min-width: 640px) {
+    .category-showcase__stage {
+      min-height: 300px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .category-showcase__stage {
+      min-height: 340px;
+    }
+  }
+
+  .category-showcase__panel {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .category-showcase__panel.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .category-showcase__panel.is-active .category-showcase__card--1 {
+    animation: showcase-main-in 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0ms;
+  }
+
+  .category-showcase__panel.is-active .category-showcase__card--0 {
+    animation: showcase-left-from-behind 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 280ms;
+  }
+
+  .category-showcase__panel.is-active .category-showcase__card--2 {
+    animation: showcase-right-from-behind 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 360ms;
+  }
+
+  .category-showcase__panel.is-active .category-showcase__card--1 .category-showcase__name-pill,
+  .category-showcase__panel.is-active .category-showcase__card--1 .category-showcase__prompt {
+    animation: showcase-text-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 220ms;
+  }
+
+  .category-showcase__panel.is-active .category-showcase__card--1 .category-showcase__prompt {
+    animation-delay: 320ms;
+  }
+
+  .category-showcase__panel.is-active .category-showcase__callout {
+    animation: showcase-callout-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .category-showcase__panel.is-active .category-showcase__card--0 .category-showcase__callout {
+    animation-delay: 480ms;
+  }
+
+  .category-showcase__panel.is-active .category-showcase__card--2 .category-showcase__callout {
+    animation-delay: 560ms;
+  }
+
+  .category-showcase__panel.is-exiting {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .category-showcase__panel.is-exiting .category-showcase__card--0 {
+    animation: showcase-left-tuck 0.32s cubic-bezier(0.4, 0, 1, 1) both;
+  }
+
+  .category-showcase__panel.is-exiting .category-showcase__card--2 {
+    animation: showcase-right-tuck 0.32s cubic-bezier(0.4, 0, 1, 1) both;
+    animation-delay: 40ms;
+  }
+
+  .category-showcase__panel.is-exiting .category-showcase__card--1 {
+    animation: showcase-main-out 0.35s cubic-bezier(0.4, 0, 1, 1) both;
+    animation-delay: 100ms;
+  }
+
+  .category-showcase__card {
+    position: absolute;
+    overflow: visible;
+    will-change: transform, opacity;
+  }
+
+  .category-showcase__media {
+    width: 100%;
+    height: 100%;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.06),
+      0 22px 44px -14px rgb(0 0 0 / 0.18);
+    background:
+      linear-gradient(145deg, var(--soft) 0%, color-mix(in srgb, var(--accent) 35%, white) 55%, var(--soft) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Shorter card stack */
+  .category-showcase__card--0 {
+    left: 0;
+    top: 14%;
+    width: 34%;
+    height: 72%;
+    z-index: 1;
+  }
+
+  .category-showcase__card--1 {
+    left: 26%;
+    top: 4%;
+    width: 48%;
+    height: 86%;
+    z-index: 3;
+  }
+
+  .category-showcase__card--2 {
+    right: 0;
+    top: 14%;
+    width: 34%;
+    height: 72%;
+    z-index: 2;
+  }
+
+  .tone-photo .category-showcase__media {
+    background:
+      linear-gradient(160deg, color-mix(in srgb, var(--accent) 50%, #202048) 0%, var(--accent) 48%, var(--soft) 100%);
+  }
+
+  .tone-cool .category-showcase__media {
+    background:
+      linear-gradient(135deg, #e2e8f0 0%, color-mix(in srgb, var(--accent) 28%, #f8fafc) 100%);
+  }
+
+  .tone-warm .category-showcase__media {
+    background:
+      linear-gradient(135deg, #fef3c7 0%, color-mix(in srgb, var(--accent) 30%, #fff7ed) 100%);
+  }
+
+  .category-showcase__placeholder-icon {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgb(255 255 255 / 0.5);
+  }
+
+  /* monday: floating white callouts hanging off side cards */
+  .category-showcase__callout {
+    position: absolute;
+    z-index: 4;
+    width: max-content;
+    max-width: 11.5rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 1rem;
+    background: rgb(255 255 255 / 0.96);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+    backdrop-filter: blur(8px);
+  }
+
+  .category-showcase__callout.is-left {
+    top: 18%;
+    left: -10%;
+  }
+
+  .category-showcase__callout.is-right {
+    top: 14%;
+    right: -10%;
+  }
+
+  .category-showcase__callout-title {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #0f172a;
+  }
+
+  .category-showcase__callout-meta {
+    margin: 0.15rem 0 0;
+    font-size: 0.6875rem;
+    line-height: 1.3;
+    color: #64748b;
+  }
+
+  /* monday: compact name pill on main card (not full-width overlay) */
+  .category-showcase__name-pill {
+    position: absolute;
+    left: 50%;
+    bottom: 4.5rem;
+    z-index: 4;
+    transform: translateX(-50%);
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 0.95);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.12);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #0f172a;
+    white-space: nowrap;
+  }
+
+  /* monday prompt bar — frosted, sits on bottom of main card */
+  .category-showcase__prompt {
+    position: absolute;
+    left: 0.65rem;
+    right: 0.65rem;
+    bottom: 0.65rem;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.7rem;
+    border-radius: 0.65rem;
+    background: rgb(255 255 255 / 0.55);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.08);
+  }
+
+  .category-showcase__prompt p,
+  .category-showcase__typewriter {
+    margin: 0;
+    flex: 1;
+    min-height: 2.1em;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    color: #0f172a;
+  }
+
+  .category-showcase__typewriter.is-typing::after {
+    content: '';
+    display: inline-block;
+    width: 0.08em;
+    height: 1em;
+    margin-left: 1px;
+    vertical-align: -0.1em;
+    background: #0f172a;
+    animation: showcase-caret 0.8s steps(1) infinite;
+  }
+
+  @keyframes showcase-caret {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .category-showcase__send {
+    display: inline-flex;
+    height: 1.65rem;
+    width: 1.65rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: #202048;
+    color: #fff;
+  }
+
+  /* Single-line category row — active stays centered with neighbors on both sides */
+  .category-showcase__tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .category-showcase__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-showcase__tab {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 0.4rem;
+    border: 0;
+    background: transparent;
+    padding: 0.25rem 0;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #94a3b8;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+      color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      font-weight 0.25s ease;
+  }
+
+  @media (min-width: 640px) {
+    .category-showcase__tabs {
+      gap: 1.25rem;
+    }
+
+    .category-showcase__tab {
+      font-size: 0.875rem;
+    }
+  }
+
+  .category-showcase__tab:hover {
+    color: #64748b;
+  }
+
+  .category-showcase__tab.is-active {
+    color: #0f172a;
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  @media (min-width: 640px) {
+    .category-showcase__tab.is-active {
+      font-size: 1.35rem;
+    }
+  }
+
+  .category-showcase__dot {
+    height: 0.45rem;
+    width: 0.45rem;
+    border-radius: 9999px;
+    background: currentColor;
+    opacity: 0.55;
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .category-showcase__tab.is-active .category-showcase__dot {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+
+  @keyframes showcase-main-in {
+    0% {
+      opacity: 0;
+      transform: translateY(48px) scale(0.92);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes showcase-left-from-behind {
+    0% {
+      opacity: 0;
+      transform: translateX(65%) scale(0.88);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes showcase-right-from-behind {
+    0% {
+      opacity: 0;
+      transform: translateX(-65%) scale(0.88);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes showcase-text-in {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .category-showcase__prompt {
+    transform-origin: center bottom;
+  }
+
+  .category-showcase__panel.is-active .category-showcase__card--1 .category-showcase__prompt {
+    animation-name: showcase-prompt-in;
+  }
+
+  @keyframes showcase-prompt-in {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes showcase-callout-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.9) translateY(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes showcase-left-tuck {
+    to {
+      opacity: 0;
+      transform: translateX(55%) scale(0.9);
+    }
+  }
+
+  @keyframes showcase-right-tuck {
+    to {
+      opacity: 0;
+      transform: translateX(-55%) scale(0.9);
+    }
+  }
+
+  @keyframes showcase-main-out {
+    to {
+      opacity: 0;
+      transform: translateY(-18px) scale(0.95);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .category-showcase__stage {
+      aspect-ratio: 16 / 11;
+      min-height: 220px;
+    }
+
+    .category-showcase__card--0,
+    .category-showcase__card--2 {
+      width: 32%;
+      height: 68%;
+      top: 16%;
+    }
+
+    .category-showcase__card--1 {
+      width: 52%;
+      left: 24%;
+      height: 82%;
+    }
+
+    .category-showcase__callout {
+      max-width: 7.5rem;
+      padding: 0.4rem 0.55rem;
+    }
+
+    .category-showcase__callout.is-left {
+      left: -4%;
+      top: 14%;
+    }
+
+    .category-showcase__callout.is-right {
+      right: -4%;
+      top: 12%;
+    }
+
+    .category-showcase__callout-title {
+      font-size: 0.6875rem;
+    }
+
+    .category-showcase__callout-meta {
+      font-size: 0.625rem;
+    }
+
+    .category-showcase__name-pill {
+      bottom: 4.75rem;
+      font-size: 0.6875rem;
+      padding: 0.3rem 0.65rem;
+    }
+
+    .category-showcase__prompt {
+      padding: 0.5rem 0.55rem;
+    }
+
+    .category-showcase__prompt p,
+    .category-showcase__typewriter {
+      font-size: 0.65rem;
+    }
+  }
+</style>
+
+<script>
+  function initCategoryShowcase() {
+    const root = document.querySelector('[data-category-showcase]');
+    if (!(root instanceof HTMLElement)) return;
+    if (root.dataset.bound === 'true') return;
+    root.dataset.bound = 'true';
+
+    const stage = root.querySelector('[data-stage]');
+    const tabsEl = root.querySelector('[data-tabs]');
+    const tabs = Array.from(root.querySelectorAll('[data-tab]'));
+    const panels = Array.from(root.querySelectorAll('[data-panel]'));
+    if (!(stage instanceof HTMLElement) || tabs.length === 0) return;
+
+    const accents = {
+      plumbing: { accent: '#3b82f6', soft: '#dbeafe' },
+      carpentry: { accent: '#b45309', soft: '#fef3c7' },
+      electrician: { accent: '#e8b818', soft: '#fef9c3' },
+      cleaning: { accent: '#0d9488', soft: '#ccfbf1' },
+      painting: { accent: '#7c3aed', soft: '#ede9fe' },
+      salon: { accent: '#db2777', soft: '#fce7f3' },
+      'pest-control': { accent: '#059669', soft: '#d1fae5' },
+    };
+
+    // Keep original cycle order for autoplay; DOM order is rotated around active.
+    const ids = tabs
+      .map((t) => (t instanceof HTMLElement ? t.dataset.tab : ''))
+      .filter(Boolean);
+
+    const firstTab = tabs.find((t) => t.classList.contains('is-active')) || tabs[0];
+    let activeId = firstTab instanceof HTMLElement ? firstTab.dataset.tab || '' : '';
+    let animating = false;
+    let autoTimer = null;
+    let typeTimer = null;
+    const AUTO_MS = 3000;
+    const TYPE_MS = 28;
+    const prefersReduced =
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function stopTypewriter() {
+      if (typeTimer) {
+        window.clearInterval(typeTimer);
+        typeTimer = null;
+      }
+      root.querySelectorAll('[data-typewriter]').forEach((el) => {
+        el.classList.remove('is-typing');
+      });
+    }
+
+    function runTypewriter(panel) {
+      stopTypewriter();
+      if (!(panel instanceof HTMLElement)) return;
+
+      const el = panel.querySelector('[data-typewriter]');
+      if (!(el instanceof HTMLElement)) return;
+
+      const full = el.dataset.fullText || '';
+      if (!full) return;
+
+      if (prefersReduced) {
+        el.textContent = full;
+        el.classList.remove('is-typing');
+        return;
+      }
+
+      el.textContent = '';
+      el.classList.add('is-typing');
+      let i = 0;
+
+      typeTimer = window.setInterval(() => {
+        i += 1;
+        el.textContent = full.slice(0, i);
+        if (i >= full.length) {
+          window.clearInterval(typeTimer);
+          typeTimer = null;
+          // Keep caret briefly, then hide
+          window.setTimeout(() => el.classList.remove('is-typing'), 600);
+        }
+      }, TYPE_MS);
+    }
+
+    function getTabs() {
+      return Array.from(root.querySelectorAll('[data-tab]'));
+    }
+
+    /** Rotate so active sits in the middle — neighbors on left and right. */
+    function arrangeTabsAround(id) {
+      if (!(tabsEl instanceof HTMLElement)) return;
+      const list = getTabs();
+      const n = list.length;
+      if (n < 2) return;
+
+      const activeIndex = list.findIndex(
+        (t) => t instanceof HTMLElement && t.dataset.tab === id,
+      );
+      if (activeIndex < 0) return;
+
+      const mid = Math.floor(n / 2);
+      const start = (activeIndex - mid + n) % n;
+      for (let i = 0; i < n; i++) {
+        tabsEl.appendChild(list[(start + i) % n]);
+      }
+    }
+
+    function centerActiveTab({ smooth = false } = {}) {
+      if (!(tabsEl instanceof HTMLElement)) return;
+      const tab = getTabs().find(
+        (t) => t instanceof HTMLElement && t.dataset.tab === activeId,
+      );
+      if (!(tab instanceof HTMLElement)) return;
+
+      // Side padding so the centered item can sit mid-viewport with peers beside it
+      const pad = Math.max(0, tabsEl.clientWidth / 2 - tab.offsetWidth / 2);
+      tabsEl.style.paddingLeft = `${pad}px`;
+      tabsEl.style.paddingRight = `${pad}px`;
+
+      const cRect = tabsEl.getBoundingClientRect();
+      const tRect = tab.getBoundingClientRect();
+      const delta = tRect.left + tRect.width / 2 - (cRect.left + cRect.width / 2);
+      if (Math.abs(delta) < 1) return;
+      tabsEl.scrollBy({
+        left: delta,
+        behavior: smooth && !prefersReduced ? 'smooth' : 'auto',
+      });
+    }
+
+    function syncCenteredTabs(id, { smooth = false } = {}) {
+      arrangeTabsAround(id);
+      // Font-size change affects width — center twice (now + after transition)
+      centerActiveTab({ smooth: false });
+      window.requestAnimationFrame(() => {
+        centerActiveTab({ smooth });
+        window.setTimeout(() => centerActiveTab({ smooth: false }), 320);
+      });
+    }
+
+    function setActive(nextId, { fromAuto = false } = {}) {
+      if (!nextId || nextId === activeId || animating) return;
+      animating = true;
+      stopTypewriter();
+
+      const current = panels.find((p) => p instanceof HTMLElement && p.dataset.panel === activeId);
+      const next = panels.find((p) => p instanceof HTMLElement && p.dataset.panel === nextId);
+      const colors = accents[nextId];
+
+      activeId = nextId;
+
+      getTabs().forEach((tab) => {
+        if (!(tab instanceof HTMLElement)) return;
+        const on = tab.dataset.tab === nextId;
+        tab.classList.toggle('is-active', on);
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+
+      syncCenteredTabs(nextId, { smooth: !fromAuto });
+
+      if (colors) {
+        stage.style.setProperty('--accent', colors.accent);
+        stage.style.setProperty('--soft', colors.soft);
+      }
+
+      if (current instanceof HTMLElement) {
+        current.classList.add('is-exiting');
+        current.classList.remove('is-active');
+        const prevType = current.querySelector('[data-typewriter]');
+        if (prevType instanceof HTMLElement) prevType.textContent = '';
+      }
+
+      window.setTimeout(() => {
+        if (current instanceof HTMLElement) {
+          current.classList.remove('is-exiting');
+          current.setAttribute('aria-hidden', 'true');
+        }
+        if (next instanceof HTMLElement) {
+          void next.offsetWidth;
+          next.classList.add('is-active');
+          next.setAttribute('aria-hidden', 'false');
+          // Start typing after the prompt fades in
+          window.setTimeout(() => runTypewriter(next), 280);
+        }
+        animating = false;
+        if (!fromAuto) restartAuto();
+      }, 460);
+    }
+
+    function nextCategory() {
+      const i = ids.indexOf(activeId);
+      const nextId = ids[(i + 1) % ids.length];
+      if (nextId) setActive(nextId, { fromAuto: true });
+    }
+
+    function stopAuto() {
+      if (autoTimer) {
+        window.clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = window.setInterval(nextCategory, AUTO_MS);
+    }
+
+    function restartAuto() {
+      stopAuto();
+      startAuto();
+    }
+
+    if (tabsEl instanceof HTMLElement) {
+      tabsEl.addEventListener('click', (e) => {
+        const tab = e.target instanceof Element ? e.target.closest('[data-tab]') : null;
+        if (tab instanceof HTMLElement && tab.dataset.tab) {
+          setActive(tab.dataset.tab);
+          restartAuto();
+        }
+      });
+    }
+
+    // Type the initially active panel
+    const initialPanel = panels.find(
+      (p) => p instanceof HTMLElement && p.dataset.panel === activeId,
+    );
+    window.setTimeout(() => runTypewriter(initialPanel), 400);
+
+    // Active in the middle with categories on both sides
+    syncCenteredTabs(activeId, { smooth: false });
+    window.addEventListener('resize', () => {
+      syncCenteredTabs(activeId, { smooth: false });
+    });
+
+    // Keep categories cycling whenever any part of the section is on-screen
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          const visible = entries.some((en) => en.isIntersecting);
+          if (visible) startAuto();
+          else stopAuto();
+        },
+        { threshold: 0, rootMargin: '0px 0px -10% 0px' },
+      );
+      io.observe(root);
+    }
+
+    // Always kick off immediately so the first cycle isn't waiting on IO
+    startAuto();
+  }
+
+  initCategoryShowcase();
+  document.addEventListener('astro:page-load', initCategoryShowcase);
+</script>

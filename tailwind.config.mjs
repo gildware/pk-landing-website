@@ -30,6 +30,7 @@ export default {
       fontFamily: {
         sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         inter: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'],
+        figtree: ['Figtree', 'system-ui', 'sans-serif'],
       },
       transitionTimingFunction: {
         smooth: 'cubic-bezier(0.16, 1, 0.3, 1)',

@@ -1,4 +1,6 @@
 ---
+import { getServices } from '@/utils/reader';
+
 interface SiteNav {
   businessName: string;
   bookingUrl: string;
@@ -9,91 +11,173 @@ interface Props {
 }
 
 const { site } = Astro.props;
+const services = await getServices();
+
 const nav = [
+  {
+    label: 'Services',
+    href: '/services',
+    children: [
+      { href: '/services', label: 'All services' },
+      ...services.map((s) => ({ href: `/services/${s.slug}`, label: s.shortName })),
+    ],
+  },
+  { label: 'Areas', href: '/areas' },
+  {
+    label: 'Resources',
+    href: '/how-it-works',
+    children: [
+      { href: '/how-it-works', label: 'How it works' },
+      { href: '/faq', label: 'FAQ' },
+      { href: '/blog', label: 'Blog' },
+      { href: '/about', label: 'About us' },
+      { href: '/download', label: 'Download app' },
+    ],
+  },
+  { label: 'Become a provider', href: '/become-a-provider' },
+];
+
+const mobileNav = [
   { href: '/services', label: 'Services' },
   { href: '/areas', label: 'Areas' },
   { href: '/how-it-works', label: 'How it works' },
   { href: '/faq', label: 'FAQ' },
   { href: '/about', label: 'About' },
   { href: '/become-a-provider', label: 'Become a provider' },
+  { href: '/download', label: 'Download app' },
+  { href: '/contact', label: 'Contact' },
 ];
 ---
 
-<header id="site-header" class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-md transition-shadow duration-500 ease-smooth">
-  <div class="relative mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-    <a href="/" class="flex h-[50px] shrink-0 items-center py-0.5" aria-label={site.businessName}>
-      <picture>
-        <source srcset="/logo-header.webp" type="image/webp" />
-        <img
-          src="/logo.png"
-          alt={site.businessName}
-          width="205"
-          height="50"
-          decoding="async"
-          class="h-[50px] w-[205px] max-w-[13rem] object-contain object-left"
-        />
-      </picture>
-    </a>
+<header
+  id="site-header"
+  class="sticky top-0 z-50 bg-white font-figtree transition-shadow duration-500 ease-smooth"
+>
+  <div class="relative mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
+    <div class="flex min-w-0 items-center gap-8 lg:gap-10">
+      <a href="/" class="flex h-[34px] shrink-0 items-center" aria-label={site.businessName}>
+        <picture>
+          <source srcset="/logo-header.webp" type="image/webp" />
+          <img
+            src="/logo.png"
+            alt={site.businessName}
+            width="139"
+            height="34"
+            decoding="async"
+            class="h-[34px] w-[139px] object-contain object-left"
+          />
+        </picture>
+      </a>
 
-    <nav class="flex items-center gap-2 lg:gap-5" aria-label="Main">
-      <ul class="hidden items-center gap-5 text-sm font-medium text-slate-600 lg:flex">
-        {nav.map((item) => (
-          <li>
-            <a href={item.href} class="relative transition-colors duration-300 ease-smooth hover:text-brand-700 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-brand-600 after:transition-all after:duration-300 after:ease-smooth hover:after:w-full">{item.label}</a>
-          </li>
-        ))}
-      </ul>
+      <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+        {
+          nav.map((item) =>
+            item.children ? (
+              <div class="nav-dropdown group relative">
+                <a
+                  href={item.href}
+                  class="inline-flex items-center gap-1 rounded-md px-3 py-2 text-[15px] font-medium text-[#323338] transition-colors duration-200 hover:bg-slate-50 hover:text-brand-700"
+                >
+                  {item.label}
+                  <svg class="h-3.5 w-3.5 text-[#676879] transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+                <div class="nav-dropdown-panel invisible absolute left-0 top-full z-50 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <ul class="min-w-[220px] rounded-xl border border-slate-200/80 bg-white py-2 shadow-lg shadow-slate-900/8">
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          class="block px-4 py-2.5 text-sm font-medium text-[#323338] transition-colors hover:bg-slate-50 hover:text-brand-700"
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <a
+                href={item.href}
+                class="rounded-md px-3 py-2 text-[15px] font-medium text-[#323338] transition-colors duration-200 hover:bg-slate-50 hover:text-brand-700"
+              >
+                {item.label}
+              </a>
+            )
+          )
+        }
+      </nav>
+    </div>
 
-      <div class="flex items-center gap-2">
-        <a
-          href="/download"
-          class="hidden rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 md:inline-block"
-        >
-          Download app
-        </a>
-        <a href="/#book-form" class="btn-primary px-4 py-2.5 text-sm sm:px-5">
-          Book now
-        </a>
-        <button
-          type="button"
-          id="mobile-menu-btn"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-slate-600 transition hover:bg-slate-100 lg:hidden"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-          aria-label="Open menu"
-        >
-          <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-          <svg id="menu-icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-
-      <ul
-        id="mobile-menu"
-        class="absolute left-0 right-0 top-full hidden border-t border-slate-200 bg-white px-4 py-4 lg:hidden"
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a
+        href="/download"
+        class="hidden text-[15px] font-medium text-[#323338] transition-colors hover:text-brand-700 md:inline"
       >
-        {nav.map((item) => (
+        Download app
+      </a>
+      <a
+        href="/contact"
+        class="hidden items-center justify-center rounded-full border border-brand-600 px-4 py-2 text-[14px] font-medium text-brand-600 transition-colors duration-200 hover:bg-brand-50 sm:inline-flex"
+      >
+        Contact us
+      </a>
+      <a
+        href="/#book-form"
+        class="inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-600 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-200 hover:bg-brand-700 sm:px-5"
+      >
+        Book now
+        <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+      <button
+        type="button"
+        id="mobile-menu-btn"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[#323338] transition hover:bg-slate-100 lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <ul
+      id="mobile-menu"
+      class="absolute left-0 right-0 top-full hidden border-t border-slate-200 bg-white px-5 py-4 shadow-lg sm:px-8 lg:hidden"
+    >
+      {
+        mobileNav.map((item) => (
           <li>
-            <a href={item.href} class="mobile-nav-link block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-brand-700">
+            <a
+              href={item.href}
+              class="mobile-nav-link block rounded-lg px-3 py-2.5 text-[15px] font-medium text-[#323338] hover:bg-slate-50 hover:text-brand-700"
+            >
               {item.label}
             </a>
           </li>
-        ))}
-        <li>
-          <a href="/download" class="mobile-nav-link block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">
-            Download app
-          </a>
-        </li>
-        <li>
-          <a href="/contact" class="mobile-nav-link block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">
-            Contact
-          </a>
-        </li>
-      </ul>
-    </nav>
+        ))
+      }
+      <li class="mt-2 border-t border-slate-100 pt-3">
+        <a
+          href="/#book-form"
+          class="mobile-nav-link flex items-center justify-center gap-1.5 rounded-full bg-brand-600 px-4 py-2.5 text-sm font-medium text-white"
+        >
+          Book now
+          <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </li>
+    </ul>
   </div>
 </header>
 

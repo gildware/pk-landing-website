@@ -4,9 +4,11 @@ import Hero from '@/components/Hero.astro';
 import Testimonials from '@/components/Testimonials.astro';
 import AppDownload from '@/components/AppDownload.astro';
 import FeatureGrid from '@/components/FeatureGrid.astro';
-import ServiceCard from '@/components/ServiceCard.astro';
 import Icon from '@/components/Icon.astro';
-import TrustSignals from '@/components/TrustSignals.astro';
+import CategoryShowcase from '@/components/CategoryShowcase.astro';
+import CategoryMarquee from '@/components/CategoryMarquee.astro';
+import CategoryStack from '@/components/CategoryStack.astro';
+import WorkInContext from '@/components/WorkInContext.astro';
 import { buildMeta } from '@/utils/seo';
 import {
   getSiteSettings,
@@ -34,11 +36,6 @@ const areas = await getAreas();
 const faqs = await getFaqs();
 const testimonials = await getTestimonials();
 const primaryArea = getPrimaryArea(areas);
-
-const areaOptions = [
-  ...(primaryArea.neighborhoods?.map((n) => `${primaryArea.displayName} — ${n}`) ?? []),
-  `Other in ${primaryArea.displayName}`,
-];
 
 const meta = buildMeta({
   title: `${site.businessName} | Carpentry, Plumbing, Electrician & More in Srinagar`,
@@ -74,38 +71,21 @@ const schemas = [
     areaName={primaryArea.displayName}
     site={site}
     services={services}
-    areaOptions={areaOptions}
   />
 
-  <TrustSignals phone={site.phone} hours={(site as { businessHours?: string }).businessHours} />
+  <CategoryMarquee
+    categories={services.map((s) => ({ slug: s.slug, shortName: s.shortName }))}
+  />
 
-  <section class="section-pad mx-auto max-w-6xl">
-    <div class="reveal flex items-end justify-between gap-4">
-      <div>
-        <h2 class="text-3xl font-bold text-slate-900">Popular home services</h2>
-        <p class="mt-2 text-slate-600">13 categories — carpentry, plumbing, cleaning, salon & more in {primaryArea.displayName}</p>
-      </div>
-      <a href="/services" class="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 transition-all duration-300 ease-smooth hover:gap-2 hover:underline">
-        View all
-        <Icon name="chevron-right" size={16} />
-      </a>
-    </div>
-    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        services.slice(0, 6).map((service, i) => (
-          <ServiceCard
-            slug={service.slug}
-            shortName={service.shortName}
-            description={service.description}
-            icon={service.icon}
-            areaSlug={primaryArea.slug}
-            areaName={primaryArea.displayName}
-            class={`reveal-stagger-${Math.min(i + 1, 6)}`}
-          />
-        ))
-      }
-    </div>
-  </section>
+  <CategoryShowcase
+    services={services.map((s) => ({ slug: s.slug, shortName: s.shortName, description: s.description }))}
+    areaName={primaryArea.displayName}
+  />
+
+  <WorkInContext
+    services={services.map((s) => ({ slug: s.slug, shortName: s.shortName, description: s.description }))}
+    areaName={primaryArea.displayName}
+  />
 
   {homepage?.platformFeatures && homepage.platformFeatures.length > 0 && (
     <FeatureGrid title="Why use Panun Kaergar?" items={homepage.platformFeatures} />
@@ -162,6 +142,16 @@ const schemas = [
   {homepageHtml && <section class="mx-auto max-w-3xl px-4 pb-16 sm:px-6 prose prose-slate" set:html={homepageHtml} />}
 
   <AppDownload playStoreUrl={site.userPlayStoreUrl} appStoreUrl={site.userAppStoreUrl} bookingUrl="/book" />
+
+  <CategoryStack
+    services={services.map((s) => ({
+      slug: s.slug,
+      shortName: s.shortName,
+      description: s.description,
+      serviceList: s.serviceList,
+    }))}
+    areaName={primaryArea.displayName}
+  />
 
   <section class="section-pad border-t border-slate-200 bg-white">
     <div class="mx-auto max-w-6xl">

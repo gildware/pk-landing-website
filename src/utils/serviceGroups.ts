@@ -6,7 +6,7 @@ export const serviceGroupDefs = [
   },
   {
     label: 'Cleaning & care',
-    slugs: ['professional-cleaning', 'pest-control', 'dry-clean-laundry', 'gardening'],
+    slugs: ['professional-cleaning', 'pest-control', 'dry-clean-laundry', 'gardening', 'tank-cleaning'],
   },
   {
     label: 'Appliances & lifestyle',
