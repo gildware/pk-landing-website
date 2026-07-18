@@ -1,16 +1,34 @@
 name: electrician
 shortName: Electrician
 icon: ⚡
-description: Book an electrician across Kashmir for wiring, lights, fans, and switchboard repairs. Call, WhatsApp, or book online.
-seoTitle: Electrician Services | Panun Kaergar
-seoDescription: Book a verified electrician across Kashmir. Wiring, switch repairs, fan & light installation, and safety checks.
+description: >-
+  Book a verified electrician across Kashmir for wiring, lights, fans, switchboards,
+  and electrical repairs. Call, WhatsApp, website, or the Panun Kaergar app.
+seoTitle: Electrician Services in Kashmir | Book an Electrician | Panun Kaergar
+seoDescription: >-
+  Book verified electricians across Kashmir — wiring, switches, fans, lights & MCB help.
+  Same-day slots when available. Call +91 8899 181 555 or book online.
 serviceList:
   - Electricity Installation
   - Electricity Repair Services
 faqs:
+  - question: How do I book an electrician with Panun Kaergar?
+    answer: >-
+      Call +91 8899 181 555, WhatsApp us, fill the form at panunkaergar.com/book-a-home-service,
+      or use the Panun Kaergar app. Share your district, locality, and preferred time — we confirm your booking.
+  - question: Do you provide emergency or same-day electrical repair?
+    answer: >-
+      Book the earliest available slot by phone, WhatsApp, form, or app. Availability depends on partners
+      in your zone. Call us for urgent faults such as sparks, burning smells, or a board that will not stay on.
+  - question: Which areas do you cover for electrician services?
+    answer: >-
+      We serve districts across Kashmir including Srinagar, Budgam, Ganderbal, Baramulla, Anantnag,
+      Pulwama, and more. Availability is confirmed by address when you book.
+  - question: Are Panun Kaergar electricians verified?
+    answer: Partners on our platform go through onboarding and are rated by customers after each completed job.
   - question: How much does an electrician visit cost with Panun Kaergar?
-    answer: Pricing depends on the job type. You'll see estimates in the app before confirming, or our team can share guidance when you book by phone, WhatsApp, or form.
-  - question: Do you provide emergency electrical repair?
-    answer: Book the earliest available slot by calling, WhatsApp, form, or app. Availability depends on partners in your zone.
+    answer: >-
+      Pricing depends on the job type and materials. You see estimates in the app before confirming, or our
+      team shares guidance when you book by phone, WhatsApp, or form.
 published: true
 sortOrder: 4

@@ -1,21 +1,35 @@
 name: professional-cleaning
 shortName: Professional Cleaning
 icon: 🧹
-description: Book professional home cleaning and office cleaning across Kashmir — deep clean, kitchen, bathroom, and commercial spaces. Call, WhatsApp, or book online.
-seoTitle: Professional Cleaning | Panun Kaergar — Home & Office
-seoDescription: Book home cleaning and office cleaning across Kashmir. Deep clean, kitchen, bathroom, sofa cleaning & commercial spaces. Verified partners.
+description: >-
+  Book professional home cleaning and office cleaning across Kashmir — deep clean, kitchen,
+  bathroom, sofa, and commercial spaces. Call, WhatsApp, website, or the Panun Kaergar app.
+seoTitle: Professional Cleaning in Kashmir | Home & Office | Panun Kaergar
+seoDescription: >-
+  Book home and office cleaning across Kashmir — deep clean, kitchen, bathroom, sofa &
+  post-renovation cleanup. Call +91 8899 181 555 or book online.
 serviceList:
   - Home Cleaning
   - Office & Commercial Cleaning
   - Post-Construction Cleaning
 faqs:
+  - question: How do I book cleaning with Panun Kaergar?
+    answer: >-
+      Call +91 8899 181 555, WhatsApp us, fill the form at panunkaergar.com/book-a-home-service,
+      or use the Panun Kaergar app. Share your district, property size, and preferred time — we confirm your booking.
   - question: Do you offer both home and office cleaning?
-    answer: Yes. Book home deep cleaning for apartments and houses, or office cleaning for shops, clinics, and workplaces across Kashmir.
+    answer: >-
+      Yes. Book home deep cleaning for apartments and houses, or office cleaning for shops, clinics,
+      and workplaces across Kashmir.
   - question: Do I need to provide cleaning supplies?
     answer: Most partners bring their own supplies. Mention special requirements when you book.
-  - question: How do I book cleaning with Panun Kaergar?
-    answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app.
+  - question: Which areas do you cover for professional cleaning?
+    answer: >-
+      We serve districts across Kashmir including Srinagar, Budgam, Ganderbal, Baramulla, Anantnag,
+      Pulwama, and more. Availability is confirmed by address when you book.
   - question: How much does home or office cleaning cost with Panun Kaergar?
-    answer: Pricing depends on home size and service type (deep clean, kitchen only, office, etc.). Estimates appear in the app, or our team quotes when you book by phone, WhatsApp, or form.
+    answer: >-
+      Pricing depends on property size and service type (deep clean, kitchen only, office, etc.).
+      Estimates appear in the app, or our team quotes when you book by phone, WhatsApp, or form.
 published: true
 sortOrder: 2
