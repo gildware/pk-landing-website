@@ -82,7 +82,7 @@ export const servicePageMeta: Record<string, ServicePageMeta> = {
   'appliance-repair': {
     parentSlug: 'home-appliances',
     useFullParentCatalog: true,
-    icon: '/images/categories/home-appliances.png',
+    icon: '/images/categories/icons/home-appliances.webp',
   },
   'home-pest-control': {
     parentSlug: 'pest-control',

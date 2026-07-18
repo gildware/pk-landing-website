@@ -50,7 +50,7 @@ const extraCount = Math.max(0, subcategories.length - visibleSubs.length);
   <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
     <img
       src={cardImage}
-      alt=""
+      alt={`${shortName} home service by Panun Kaergar`}
       width="640"
       height="400"
       loading="lazy"
@@ -67,7 +67,7 @@ const extraCount = Math.max(0, subcategories.length - visibleSubs.length);
     <span
       class="absolute bottom-3 left-3 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/95 shadow-md ring-1 ring-black/5 backdrop-blur-sm transition duration-300 group-hover:scale-105"
     >
-      <img src={categoryImage} alt="" width="24" height="24" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
+      <img src={categoryImage} alt="" width="96" height="96" class="h-6 w-6 object-contain" loading="lazy" decoding="async" aria-hidden="true" />
     </span>
   </div>
 

@@ -33,11 +33,12 @@ const others = areas.filter((a) => a.slug !== currentSlug);
               <img
                 src={areaImage(area.slug)}
                 alt=""
-                width="32"
-                height="32"
+                width="64"
+                height="64"
                 class="h-full w-full object-cover"
                 loading="lazy"
                 decoding="async"
+                aria-hidden="true"
               />
             </span>
             <span class="truncate">{area.displayName}</span>

@@ -172,7 +172,7 @@ const meta = buildMeta({
               <figure class:list={['about-hero-mosaic__cell', `about-hero-mosaic__cell--${i + 1}`]}>
                 <img
                   src={img.src}
-                  alt=""
+                  alt={img.alt}
                   width="768"
                   height="512"
                   class="h-full w-full object-cover"
@@ -509,7 +509,7 @@ const meta = buildMeta({
                   <div class="about-gallery__media">
                     <img
                       src={item.image}
-                      alt=""
+                      alt={`${item.label} services by Panun Kaergar`}
                       width="320"
                       height="320"
                       class="h-full w-full object-cover"

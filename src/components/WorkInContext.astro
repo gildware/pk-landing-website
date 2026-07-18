@@ -192,6 +192,7 @@ const categories = enrichCategories(services, areaName).map((cat, i) => {
               height="800"
               loading="lazy"
               decoding="async"
+              aria-hidden="true"
               data-context-outline
             />
             <img
@@ -199,7 +200,7 @@ const categories = enrichCategories(services, areaName).map((cat, i) => {
               src="/images/context/kaergar-color.webp?v=13"
               srcset="/images/context/kaergar-color-800.webp?v=13 800w, /images/context/kaergar-color.webp?v=13 1200w"
               sizes="(max-width: 768px) 100vw, min(48rem, 94vw)"
-              alt="Panun Kaergar partners for every home service, each with their tools"
+              alt="Verified Panun Kaergar partners for home services across Kashmir, each with their tools"
               width="1200"
               height="800"
               loading="lazy"
@@ -238,7 +239,7 @@ const categories = enrichCategories(services, areaName).map((cat, i) => {
               >
                 <div class="work-context__float-card">
                   <span class="work-context__float-icon">
-                    <img src={cat.icon} alt="" width="80" height="80" loading="lazy" />
+                    <img src={cat.icon} alt="" width="96" height="96" loading="lazy" decoding="async" aria-hidden="true" />
                   </span>
                   <p class="work-context__float-label">{cat.label}</p>
                 </div>

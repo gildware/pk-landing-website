@@ -138,7 +138,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Doors, shelves & polish',
     meta: 'Clear quotes before work',
     prompt: 'Furniture repair, doors, cabinets — skilled carpenters near you.',
-    icon: '/images/categories/carpentry.png',
+    icon: '/images/categories/icons/carpentry.webp',
     soft: '#fde68a',
     mid: '#f59e0b',
     accent: '#92400e',
@@ -154,7 +154,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Leaks, taps & pipes — handled',
     meta: 'Same-day visits when available',
     prompt: 'Book a verified plumber for leaks, taps, and pipe repairs.',
-    icon: '/images/categories/plumbing.png',
+    icon: '/images/categories/icons/plumbing.webp',
     soft: '#bae6fd',
     mid: '#38bdf8',
     accent: '#0369a1',
@@ -170,7 +170,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Solid work, neat finish',
     meta: 'Repair & new work',
     prompt: 'Brickwork, plastering, tile fitting, and wall repairs by verified masons.',
-    icon: '/images/categories/masonry.png',
+    icon: '/images/categories/icons/masonry.webp',
     soft: '#fed7aa',
     mid: '#fb923c',
     accent: '#c2410c',
@@ -186,7 +186,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Wiring, fans & switches',
     meta: 'Safety-first partners',
     prompt: 'Wiring, switches, fans, and safe electrical repairs at home.',
-    icon: '/images/categories/electrician.png',
+    icon: '/images/categories/icons/electrician.webp',
     soft: '#fef08a',
     mid: '#eab308',
     accent: '#a16207',
@@ -202,7 +202,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Deep clean, kitchen & more',
     meta: 'Book a convenient slot',
     prompt: 'Deep cleaning, kitchen, bathrooms — professional teams on call.',
-    icon: '/images/categories/cleaning.png',
+    icon: '/images/categories/icons/cleaning.webp',
     soft: '#99f6e4',
     mid: '#2dd4bf',
     accent: '#0f766e',
@@ -218,7 +218,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Safe home treatments',
     meta: 'Follow-up when needed',
     prompt: 'Safe treatments for homes — cockroaches, ants, and more.',
-    icon: '/images/categories/pest-control.png',
+    icon: '/images/categories/icons/pest-control.webp',
     soft: '#bbf7d0',
     mid: '#4ade80',
     accent: '#15803d',
@@ -234,7 +234,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Wash, iron & dry clean',
     meta: 'Pickup where available',
     prompt: 'Dry cleaning and laundry for suits, sarees, and everyday clothes.',
-    icon: '/images/categories/dry-clean.png',
+    icon: '/images/categories/icons/dry-clean.webp',
     soft: '#c7d2fe',
     mid: '#818cf8',
     accent: '#3730a3',
@@ -250,7 +250,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Interior & exterior finishes',
     meta: 'Estimate before you book',
     prompt: 'Interior & exterior painting with neat finishes and clear quotes.',
-    icon: '/images/categories/painting.png',
+    icon: '/images/categories/icons/painting.webp',
     soft: '#fecdd3',
     mid: '#fb7185',
     accent: '#be123c',
@@ -266,7 +266,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'AC, fridge, wash & more',
     meta: 'Brand-aware technicians',
     prompt: 'AC, fridge, washing machine, TV, and geyser repair by verified techs.',
-    icon: '/images/categories/home-appliances.png',
+    icon: '/images/categories/icons/home-appliances.webp',
     soft: '#e2e8f0',
     mid: '#94a3b8',
     accent: '#334155',
@@ -282,7 +282,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Lawn, plants & trim',
     meta: 'One-time or recurring',
     prompt: 'Lawn mowing, pruning, planting, and garden cleanup near you.',
-    icon: '/images/categories/gardening.png',
+    icon: '/images/categories/icons/gardening.webp',
     soft: '#d9f99d',
     mid: '#a3e635',
     accent: '#4d7c0f',
@@ -298,7 +298,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Hair, beard & styling',
     meta: 'Flexible time slots',
     prompt: "Men's haircut, beard trim, and grooming at your door.",
-    icon: '/images/categories/mens-salon.png',
+    icon: '/images/categories/icons/mens-salon.webp',
     soft: '#e9d5ff',
     mid: '#c084fc',
     accent: '#6b21a8',
@@ -314,7 +314,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Hair, facial & beauty',
     meta: 'Home beauty visits',
     prompt: "Women's hair, facials, manicure, and party makeup at home.",
-    icon: '/images/categories/womens-salon.png',
+    icon: '/images/categories/icons/womens-salon.webp',
     soft: '#fbcfe8',
     mid: '#f472b6',
     accent: '#9d174d',
@@ -330,7 +330,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Styling & space planning',
     meta: 'Consultation first',
     prompt: 'Space planning, styling, and home makeover support.',
-    icon: '/images/categories/interior-decor.png',
+    icon: '/images/categories/icons/interior-decor.webp',
     soft: '#fde68a',
     mid: '#fbbf24',
     accent: '#202048',
@@ -346,7 +346,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Install, repair & fabricate',
     meta: 'Windows, doors & grills',
     prompt: 'Aluminium and steel installation, repairs, and custom fabrication.',
-    icon: '/images/categories/aluminium-steel-works.webp',
+    icon: '/images/categories/icons/aluminium-steel-works.webp',
     soft: '#cbd5e1',
     mid: '#64748b',
     accent: '#1e293b',
@@ -362,7 +362,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Dog & cat grooming',
     meta: 'Gentle home visits',
     prompt: 'Dog and cat grooming with verified local pet care partners.',
-    icon: '/images/categories/pet-grooming.webp',
+    icon: '/images/categories/icons/pet-grooming.webp',
     soft: '#fde68a',
     mid: '#f59e0b',
     accent: '#b45309',
@@ -378,7 +378,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     title: 'Wash, repair & bike care',
     meta: 'Cars, bikes & scooters',
     prompt: 'Car wash, car repair, and bike & scooter service near you.',
-    icon: '/images/categories/vehicle-services.webp',
+    icon: '/images/categories/icons/vehicle-services.webp',
     soft: '#bfdbfe',
     mid: '#60a5fa',
     accent: '#1d4ed8',
@@ -399,7 +399,7 @@ export function enrichCategory(service: ServiceLike, areaName = 'Srinagar') {
   const visual = categoryCatalog[service.slug] ?? categoryCatalog[parentSlug];
   const label = service.shortName || visual?.label || service.slug;
   const parentIcon =
-    pageMeta?.icon ?? visual?.icon ?? categoryCatalog[parentSlug]?.icon ?? '/images/categories/plumbing.png';
+    pageMeta?.icon ?? visual?.icon ?? categoryCatalog[parentSlug]?.icon ?? '/images/categories/icons/plumbing.webp';
 
   const fromAdmin = categorySubcategories[service.slug] ?? categorySubcategories[parentSlug];
   const filteredSubs =
@@ -450,6 +450,6 @@ export function categoryIcon(slug: string) {
   return (
     categoryCatalog[slug]?.icon ??
     (parent ? categoryCatalog[parent]?.icon : undefined) ??
-    '/images/categories/plumbing.png'
+    '/images/categories/icons/plumbing.webp'
   );
 }

@@ -144,10 +144,10 @@ const initial = categories[0] ?? {
                     `tone-${card.tone}`,
                   ]}
                 >
-                  <div class="category-showcase__media" aria-hidden="true">
+                  <div class="category-showcase__media">
                     <img
                       src={card.image}
-                      alt=""
+                      alt={`${cat.label} — ${card.title} in ${areaName}`}
                       width="480"
                       height="640"
                       class:list={[
