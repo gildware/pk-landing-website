@@ -20,8 +20,11 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 Sitemap: https://panunkaergar.com/sitemap.xml
 
-# LLM summary files
+# LLM discovery (https://llmstxt.org)
 # https://panunkaergar.com/llms.txt
 # https://panunkaergar.com/llms-full.txt

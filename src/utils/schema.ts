@@ -17,6 +17,52 @@ interface SiteForSchema {
   providerPlayStoreUrl?: string;
   facebookUrl?: string;
   instagramUrl?: string;
+  postalCode?: string | null;
+  latitude?: string | null;
+  longitude?: string | null;
+  googleMapsUrl?: string | null;
+  businessHours?: string | null;
+}
+
+const WEEKDAYS = [
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+] as const;
+
+const EVERY_DAY = [...WEEKDAYS, 'Sunday'] as const;
+
+function postalAddress(site: SiteForSchema) {
+  return {
+    '@type': 'PostalAddress',
+    streetAddress: site.address,
+    addressLocality: 'Srinagar',
+    addressRegion: 'Jammu and Kashmir',
+    postalCode: site.postalCode || '190008',
+    addressCountry: 'IN',
+  };
+}
+
+function openingHoursSpecs() {
+  return [
+    {
+      '@type': 'OpeningHoursSpecification',
+      name: 'Office',
+      dayOfWeek: [...WEEKDAYS],
+      opens: '10:00',
+      closes: '18:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      name: 'Call center support',
+      dayOfWeek: [...EVERY_DAY],
+      opens: '10:00',
+      closes: '22:00',
+    },
+  ];
 }
 
 interface TestimonialForSchema {
@@ -43,13 +89,8 @@ export function organizationSchema(site: SiteForSchema) {
     description: site.description,
     telephone: site.phone,
     email: site.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Srinagar',
-      addressRegion: 'Jammu & Kashmir',
-      addressCountry: 'IN',
-      streetAddress: site.address,
-    },
+    address: postalAddress(site),
+    ...(site.googleMapsUrl ? { hasMap: site.googleMapsUrl } : {}),
     sameAs,
   };
 }
@@ -61,11 +102,6 @@ export function websiteSchema(site: SiteForSchema) {
     name: site.businessName,
     url: siteUrl('/'),
     description: site.description,
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${siteUrl('/services')}?q={search_term_string}`,
-      'query-input': 'required name=search_term_string',
-    },
   };
 }
 
@@ -89,6 +125,9 @@ export function localBusinessSchema(
     telephone: site.phone,
     email: site.email,
     priceRange: '₹₹',
+    image: siteUrl('/logo-square.png'),
+    address: postalAddress(site),
+    openingHoursSpecification: openingHoursSpecs(),
     areaServed: areas.map((area) => ({
       '@type': 'City',
       name: area.displayName,
@@ -107,6 +146,18 @@ export function localBusinessSchema(
       })),
     },
   };
+
+  if (site.latitude && site.longitude) {
+    schema.geo = {
+      '@type': 'GeoCoordinates',
+      latitude: site.latitude,
+      longitude: site.longitude,
+    };
+  }
+
+  if (site.googleMapsUrl) {
+    schema.hasMap = site.googleMapsUrl;
+  }
 
   if (avgRating && testimonials.length > 0) {
     schema.aggregateRating = {

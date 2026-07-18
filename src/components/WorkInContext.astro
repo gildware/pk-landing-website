@@ -183,21 +183,25 @@ const categories = enrichCategories(services, areaName).map((cat, i) => {
             <!-- monday-style soft desaturated "before" → full color fills on scroll -->
             <img
               class="work-context__person-img work-context__person-img--outline"
-              src="/images/context/kaergar-outline.png?v=12"
+              src="/images/context/kaergar-outline.webp?v=13"
+              srcset="/images/context/kaergar-outline-800.webp?v=13 800w, /images/context/kaergar-outline.webp?v=13 1200w"
+              sizes="(max-width: 768px) 100vw, min(48rem, 94vw)"
               alt=""
-              width="1536"
-              height="1024"
-              loading="eager"
+              width="1200"
+              height="800"
+              loading="lazy"
               decoding="async"
               data-context-outline
             />
             <img
               class="work-context__person-img work-context__person-img--color"
-              src="/images/context/kaergar-color.png?v=12"
+              src="/images/context/kaergar-color.webp?v=13"
+              srcset="/images/context/kaergar-color-800.webp?v=13 800w, /images/context/kaergar-color.webp?v=13 1200w"
+              sizes="(max-width: 768px) 100vw, min(48rem, 94vw)"
               alt="Panun Kaergar partners for every home service, each with their tools"
-              width="1536"
-              height="1024"
-              loading="eager"
+              width="1200"
+              height="800"
+              loading="lazy"
               decoding="async"
               data-context-color
             />

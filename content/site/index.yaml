@@ -8,7 +8,11 @@ description: >-
 phone: '+91 8899 181 555'
 whatsapp: '+918899181555'
 email: contact@panunkaergar.com
-address: Srinagar, Jammu & Kashmir, India
+address: '59, Main Road, Jawahar Nagar, Srinagar, Jammu and Kashmir 190008'
+postalCode: '190008'
+latitude: '34.0624876'
+longitude: '74.8151868'
+googleMapsUrl: 'https://www.google.com/maps?cid=7535359143158483636'
 bookingUrl: https://panunkaergar.com
 userPlayStoreUrl: https://play.google.com/store/apps/details?id=com.panunkaergar.user&hl=en_IN
 userAppStoreUrl: https://apps.apple.com/in/app/panun-kaergar/id6504860745
@@ -24,7 +28,8 @@ heroSubtitle: >-
   verified partner to your home at a time that suits you.
 heroCtaBook: Book now
 heroCtaProvider: Join as a partner
-businessHours: 'Mon–Sun: 8:00 AM – 9:00 PM'
+businessHours: >-
+  Office: Mon–Sat 10:00 AM – 6:00 PM · Call support: 10:00 AM – 10:00 PM
 mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.8!2d74.8151868!3d34.0624876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e18fb3d84154d1%3A0x6892f93776f40ab4!2sGildware%20Technologies!5e0!3m2!1sen!2sin!4v1!5m2!1sen!2sin'
 poweredByName: Gildware Technologies
 footerTagline: Book verified home service partners in Srinagar and Kashmir.

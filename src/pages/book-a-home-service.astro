@@ -16,7 +16,9 @@ const meta = buildMeta({
   path: BOOK_PATH,
 });
 
-const hours = (site as { businessHours?: string }).businessHours ?? 'Mon–Sun: 8:00 AM – 9:00 PM';
+const hours =
+  (site as { businessHours?: string }).businessHours ??
+  'Office: Mon–Sat 10:00 AM – 6:00 PM · Call support: 10:00 AM – 10:00 PM';
 ---
 
 <PageLayout meta={meta}>

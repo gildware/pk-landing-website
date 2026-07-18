@@ -31,6 +31,10 @@ export default config({
         whatsapp: fields.text({ label: 'WhatsApp number' }),
         email: fields.text({ label: 'Email' }),
         address: fields.text({ label: 'Business address', multiline: true }),
+        postalCode: fields.text({ label: 'Postal code', defaultValue: '190008' }),
+        latitude: fields.text({ label: 'Latitude (for schema)' }),
+        longitude: fields.text({ label: 'Longitude (for schema)' }),
+        googleMapsUrl: fields.url({ label: 'Google Maps place URL' }),
         bookingUrl: fields.url({ label: 'Web booking URL' }),
         userPlayStoreUrl: fields.url({ label: 'Customer app — Play Store' }),
         userAppStoreUrl: fields.url({ label: 'Customer app — App Store' }),
@@ -47,7 +51,8 @@ export default config({
         }),
         businessHours: fields.text({
           label: 'Business hours',
-          defaultValue: 'Mon–Sun: 8:00 AM – 9:00 PM',
+          defaultValue:
+            'Office: Mon–Sat 10:00 AM – 6:00 PM · Call support: 10:00 AM – 10:00 PM',
         }),
         mapEmbedUrl: fields.url({ label: 'Google Maps embed URL (optional)' }),
         heroBadge: fields.text({ label: 'Hero badge line (above title)' }),
