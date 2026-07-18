@@ -1,0 +1,32 @@
+name: electrical-repairs
+shortName: Electrical Repairs
+icon: "⚡"
+description: >-
+  Book electrical repairs across Kashmir — short circuits, faulty switches, power issues, and fixture repairs by verified electricians.
+seoTitle: Electrical Repairs | Panun Kaergar
+seoDescription: >-
+  Book electrical repair services across Kashmir. Switch, wiring & power issue repairs by verified Panun Kaergar electricians.
+parentSlug: electrician
+serviceList:
+  - Fault Diagnosis
+  - Lighting Repair
+  - PCB & Transformer Auto-Cut
+  - Short Circuit & Voltage Issues
+  - Fan repair
+  - MCB/fuse repair
+  - MCB/fuse replacement
+  - Switch/socket repair & replacement
+  - Switchboard repair & replacement
+  - Tubelight repair & Installation
+faqs:
+  - question: What electrical repairs can I book?
+    answer: >-
+      Repair jobs from our live catalog including switches, fixtures, and related electrical faults.
+  - question: Can I get same-day help?
+    answer: >-
+      Often yes, depending on partner availability in your area.
+  - question: Are electricians verified?
+    answer: >-
+      Yes — partners are onboarded and rated after jobs.
+published: true
+sortOrder: 107

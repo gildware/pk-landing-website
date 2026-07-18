@@ -4,11 +4,12 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
 import StickyMobileCta from '@/components/StickyMobileCta.astro';
-import type { PageMeta } from '@/utils/seo';
+import ScrollProgress from '@/components/ScrollProgress.astro';
+import type { BuiltPageMeta } from '@/utils/seo';
 import { getSiteSettings } from '@/utils/reader';
 
 interface Props {
-  meta: PageMeta;
+  meta: BuiltPageMeta;
   schemas?: object[];
   hideStickyCta?: boolean;
 }
@@ -25,4 +26,5 @@ const site = await getSiteSettings();
   <Footer site={site} />
   <WhatsAppFloat whatsapp={site.whatsapp} />
   {!hideStickyCta && <StickyMobileCta site={site} />}
+  <ScrollProgress offsetForStickyCta={!hideStickyCta} />
 </BaseLayout>

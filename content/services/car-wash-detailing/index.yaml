@@ -1,0 +1,25 @@
+name: car-wash-detailing
+shortName: "Car Wash & Detailing"
+icon: "🚗"
+description: >-
+  Book car wash and detailing across Kashmir — exterior wash, interior cleaning, and detailing with verified partners.
+seoTitle: Car Wash & Detailing | Panun Kaergar
+seoDescription: >-
+  Book car wash & detailing across Kashmir. Exterior wash, interior clean & detailing by verified Panun Kaergar partners.
+parentSlug: vehicle-services
+serviceList:
+  - Exterior Car Wash
+  - Interior Car Cleaning
+  - Full Car Detailing
+faqs:
+  - question: What wash packages are available?
+    answer: >-
+      See the live catalog for exterior wash, interior cleaning, and detailing options.
+  - question: Do you come to my location?
+    answer: >-
+      Many services are mobile or workshop-based — confirm when you book.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 116

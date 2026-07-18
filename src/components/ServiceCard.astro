@@ -1,10 +1,10 @@
 ---
 import Icon from '@/components/Icon.astro';
-import { iconNameFromEmoji } from '@/utils/icons';
+import { categoryIcon } from '@/utils/categoryCatalog';
 
-interface AreaLink {
+interface SubCategoryPill {
   slug: string;
-  displayName: string;
+  name: string;
 }
 
 interface Props {
@@ -12,11 +12,12 @@ interface Props {
   shortName: string;
   description: string;
   icon?: string;
-  areaSlug?: string;
-  areaName?: string;
+  image?: string;
+  /** Override corner icon (e.g. subcategory CDN icon) */
+  badgeIcon?: string;
+  subcategories?: SubCategoryPill[];
   href?: string;
-  areas?: AreaLink[];
-  as?: 'a' | 'article';
+  featured?: boolean;
   class?: string;
 }
 
@@ -24,62 +25,82 @@ const {
   slug,
   shortName,
   description,
-  icon,
-  areaSlug,
-  areaName,
+  image,
+  badgeIcon,
+  subcategories = [],
   href,
-  areas = [],
-  as = 'a',
+  featured = false,
   class: className = '',
 } = Astro.props;
 
-const link = href ?? (areaSlug ? `/services/${slug}/${areaSlug}` : `/services/${slug}`);
-const iconName = iconNameFromEmoji(icon);
-const Tag = as;
+const link = href ?? `/services/${slug}`;
+const categoryImage = badgeIcon ?? categoryIcon(slug);
+const cardImage = image ?? `/images/categories/cards/${slug}.webp`;
+const visibleSubs = subcategories.slice(0, 4);
+const extraCount = Math.max(0, subcategories.length - visibleSubs.length);
 ---
 
-<Tag
-  href={as === 'a' ? link : undefined}
+<a
+  href={link}
   class:list={[
-    'reveal-scale card card-hover group flex flex-col p-6',
-    as === 'a' && 'block',
+    'reveal-scale group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition duration-300 ease-smooth hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg',
     className,
   ]}
 >
-  <span class="icon-badge">
-    <Icon name={iconName} size={22} class="text-brand-600" />
-  </span>
-  {
-    as === 'article' ? (
-      <h2 class="mt-4 text-xl font-bold">
-        <a href={link} class="text-slate-900 hover:text-brand-700">
-          {shortName}
-        </a>
-      </h2>
-    ) : (
-      <h3 class="mt-4 text-xl font-bold text-slate-900 group-hover:text-brand-700">{shortName}</h3>
-    )
-  }
-  <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{description}</p>
-  {
-    areas.length > 0 ? (
-      <ul class="mt-4 flex flex-wrap gap-2">
-        {areas.map((area) => (
-          <li>
-            <a
-              href={`/services/${slug}/${area.slug}`}
-              class="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700 transition hover:bg-brand-100"
-            >
-              {area.displayName}
-            </a>
-          </li>
-        ))}
-      </ul>
-    ) : areaName ? (
-      <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
-        Book in {areaName}
-        <Icon name="chevron-right" size={16} class="transition-transform duration-300 ease-smooth group-hover:translate-x-1" />
-      </span>
-    ) : null
-  }
-</Tag>
+  <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+    <img
+      src={cardImage}
+      alt=""
+      width="640"
+      height="400"
+      loading="lazy"
+      decoding="async"
+      class="h-full w-full object-cover transition duration-500 ease-smooth group-hover:scale-[1.04]"
+    />
+    {
+      featured && (
+        <span class="absolute right-3 top-3 rounded-md bg-white/95 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-brand-700 shadow-sm ring-1 ring-black/5">
+          Popular
+        </span>
+      )
+    }
+    <span
+      class="absolute bottom-3 left-3 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/95 shadow-md ring-1 ring-black/5 backdrop-blur-sm transition duration-300 group-hover:scale-105"
+    >
+      <img src={categoryImage} alt="" width="24" height="24" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
+    </span>
+  </div>
+
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="text-lg font-bold text-slate-900 transition group-hover:text-brand-700">
+      {shortName}
+    </h3>
+    <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{description}</p>
+
+    {
+      visibleSubs.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-1.5">
+          {visibleSubs.map((sub) => (
+            <li class="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-700">
+              {sub.name}
+            </li>
+          ))}
+          {extraCount > 0 && (
+            <li class="rounded-full bg-brand-50 px-2.5 py-1 text-[11px] font-semibold text-brand-700">
+              +{extraCount} more
+            </li>
+          )}
+        </ul>
+      )
+    }
+
+    <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+      View category
+      <Icon
+        name="chevron-right"
+        size={16}
+        class="transition-transform duration-300 ease-smooth group-hover:translate-x-1"
+      />
+    </span>
+  </div>
+</a>

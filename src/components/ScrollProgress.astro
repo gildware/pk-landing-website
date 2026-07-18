@@ -1,0 +1,144 @@
+---
+/**
+ * Site-wide scroll progress bar + circular back-to-top control.
+ * Mounted once in PageLayout so every page gets it.
+ */
+interface Props {
+  /** Lift above the mobile sticky booking bar when present */
+  offsetForStickyCta?: boolean;
+}
+
+const { offsetForStickyCta = true } = Astro.props;
+const mobileBottom = offsetForStickyCta ? 'bottom-20' : 'bottom-6';
+---
+
+<div
+  id="scroll-progress-bar"
+  class="pointer-events-none fixed inset-x-0 top-0 z-[60] h-1 origin-left bg-brand-600"
+  role="progressbar"
+  aria-label="Page scroll progress"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+></div>
+
+<button
+  id="scroll-to-top"
+  type="button"
+  class:list={[
+    'scroll-to-top fixed right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white text-brand-600 opacity-0 shadow-lg ring-1 ring-slate-200/80 transition-all duration-300 ease-smooth pointer-events-none md:bottom-24 md:right-6',
+    mobileBottom,
+  ]}
+  aria-label="Scroll to top"
+  tabindex="-1"
+>
+  <svg class="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
+    <circle
+      cx="24"
+      cy="24"
+      r="21"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      class="text-slate-200"
+    />
+    <circle
+      id="scroll-progress-ring"
+      cx="24"
+      cy="24"
+      r="21"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      class="text-brand-600"
+      style="stroke-dasharray: 131.95; stroke-dashoffset: 131.95;"
+    />
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="relative h-5 w-5" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7" />
+  </svg>
+</button>
+
+<script>
+  function initScrollProgress() {
+    const bar = document.getElementById('scroll-progress-bar');
+    const btn = document.getElementById('scroll-to-top');
+    const ring = document.getElementById('scroll-progress-ring');
+    if (!bar || !btn || !ring) return;
+
+    const CIRCUMFERENCE = 2 * Math.PI * 21;
+    ring.style.strokeDasharray = String(CIRCUMFERENCE);
+
+    let ticking = false;
+    let visible = false;
+
+    const update = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = Math.max(
+        document.documentElement.scrollHeight - window.innerHeight,
+        0,
+      );
+      const progress = docHeight > 0 ? Math.min(scrollTop / docHeight, 1) : 0;
+      const percent = Math.round(progress * 100);
+
+      bar.style.transform = `scaleX(${progress})`;
+      bar.setAttribute('aria-valuenow', String(percent));
+
+      ring.style.strokeDashoffset = String(CIRCUMFERENCE * (1 - progress));
+
+      const shouldShow = scrollTop > 280;
+      if (shouldShow !== visible) {
+        visible = shouldShow;
+        btn.classList.toggle('opacity-0', !shouldShow);
+        btn.classList.toggle('pointer-events-none', !shouldShow);
+        btn.classList.toggle('opacity-100', shouldShow);
+        btn.tabIndex = shouldShow ? 0 : -1;
+      }
+
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    btn.addEventListener('click', () => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+
+  initScrollProgress();
+  document.addEventListener('astro:page-load', initScrollProgress);
+</script>
+
+<style>
+  #scroll-progress-bar {
+    transform: scaleX(0);
+    will-change: transform;
+  }
+
+  .scroll-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -8px rgb(32 32 72 / 0.28);
+  }
+
+  .scroll-to-top:focus-visible {
+    outline: 2px solid #202048;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-to-top {
+      transition: opacity 0.01ms !important;
+    }
+  }
+</style>

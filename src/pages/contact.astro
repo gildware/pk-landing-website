@@ -1,13 +1,10 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
-import Breadcrumbs from '@/components/Breadcrumbs.astro';
-import BookServiceForm from '@/components/BookServiceForm.astro';
 import Icon from '@/components/Icon.astro';
 import { buildMeta } from '@/utils/seo';
-import { getSiteSettings, getServices } from '@/utils/reader';
+import { getSiteSettings } from '@/utils/reader';
 
 const site = await getSiteSettings();
-const services = await getServices();
 const mapUrl = (site as { mapEmbedUrl?: string }).mapEmbedUrl;
 
 const meta = buildMeta({
@@ -18,12 +15,10 @@ const meta = buildMeta({
 ---
 
 <PageLayout meta={meta}>
-  <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: 'Contact' }]} />
-
   <section class="section-pad mx-auto max-w-6xl pb-8">
     <h1 class="animate-fade-up text-4xl font-extrabold text-slate-900">Contact Panun Kaergar</h1>
     <p class="mt-4 max-w-2xl animate-fade-up text-lg text-slate-600 stagger-1">
-      Questions about a booking? Call, WhatsApp, or email us — or send a booking request using the form below.
+      Questions about a booking? Call, WhatsApp, or email us.
     </p>
   </section>
 
@@ -93,6 +88,4 @@ const meta = buildMeta({
       )
     }
   </div>
-
-  <BookServiceForm site={site} services={services} formId="contact-book-form" heading="Send a booking request" />
 </PageLayout>

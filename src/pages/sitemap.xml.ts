@@ -1,18 +1,17 @@
 import type { APIRoute } from 'astro';
-import { siteUrl, getServices, getAreas, getBlogPosts } from '@/utils/reader';
+import { siteUrl, getServices, getAllServices, getAreas } from '@/utils/reader';
+import { SERVICE_AREAS_PATH, areaPath } from '@/utils/areaPaths';
 
 const staticPaths = [
   '/',
-  '/book',
+  '/book-a-home-service',
   '/services',
-  '/areas',
+  SERVICE_AREAS_PATH,
   '/about',
   '/contact',
   '/download',
-  '/become-a-provider',
-  '/how-it-works',
+  '/become-a-partner',
   '/faq',
-  '/blog',
   '/privacy',
   '/terms',
   '/refund',
@@ -23,15 +22,14 @@ const staticPaths = [
 
 export const GET: APIRoute = async () => {
   const services = await getServices();
+  const allServicePages = await getAllServices();
   const areas = await getAreas();
-  const posts = await getBlogPosts();
 
   const urls = [
     ...staticPaths,
-    ...services.map((s) => `/services/${s.slug}`),
-    ...areas.map((a) => `/areas/${a.slug}`),
+    ...allServicePages.map((s) => `/services/${s.slug}`),
+    ...areas.map((a) => areaPath(a.slug)),
     ...services.flatMap((s) => areas.map((a) => `/services/${s.slug}/${a.slug}`)),
-    ...posts.map((p) => `/blog/${p.slug}`),
   ];
 
   const today = new Date().toISOString().slice(0, 10);

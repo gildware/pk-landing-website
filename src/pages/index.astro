@@ -9,6 +9,7 @@ import CategoryShowcase from '@/components/CategoryShowcase.astro';
 import CategoryMarquee from '@/components/CategoryMarquee.astro';
 import CategoryStack from '@/components/CategoryStack.astro';
 import WorkInContext from '@/components/WorkInContext.astro';
+import AreasMarquee from '@/components/AreasMarquee.astro';
 import { buildMeta } from '@/utils/seo';
 import {
   getSiteSettings,
@@ -27,6 +28,7 @@ import {
   websiteSchema,
   mobileApplicationsSchema,
 } from '@/utils/schema';
+import { BOOK_PATH } from '@/utils/booking';
 
 const site = await getSiteSettings();
 const homepage = await getHomepage();
@@ -64,9 +66,9 @@ const schemas = [
     title={site.heroTitle}
     subtitle={site.heroSubtitle}
     badge={(site as { heroBadge?: string }).heroBadge}
-    primaryHref="/book"
+    primaryHref={BOOK_PATH}
     primaryLabel={site.heroCtaBook}
-    secondaryHref="/become-a-provider"
+    secondaryHref="/become-a-partner"
     secondaryLabel={site.heroCtaProvider}
     areaName={primaryArea.displayName}
     site={site}
@@ -107,12 +109,6 @@ const schemas = [
               </div>
             ))}
           </div>
-          <p class="reveal reveal-stagger-4 mt-8 text-center">
-            <a href="/how-it-works" class="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 transition-all duration-300 ease-smooth hover:gap-2 hover:underline">
-              Learn more about how it works
-              <Icon name="chevron-right" size={16} />
-            </a>
-          </p>
         </div>
       </section>
     )
@@ -141,7 +137,13 @@ const schemas = [
 
   {homepageHtml && <section class="mx-auto max-w-3xl px-4 pb-16 sm:px-6 prose prose-slate" set:html={homepageHtml} />}
 
-  <AppDownload playStoreUrl={site.userPlayStoreUrl} appStoreUrl={site.userAppStoreUrl} bookingUrl="/book" />
+  <AppDownload
+    userPlayStoreUrl={site.userPlayStoreUrl}
+    userAppStoreUrl={site.userAppStoreUrl}
+    providerPlayStoreUrl={site.providerPlayStoreUrl}
+    providerAppStoreUrl={site.providerAppStoreUrl}
+    bookingUrl={BOOK_PATH}
+  />
 
   <CategoryStack
     services={services.map((s) => ({
@@ -153,20 +155,20 @@ const schemas = [
     areaName={primaryArea.displayName}
   />
 
-  <section class="section-pad border-t border-slate-200 bg-white">
-    <div class="mx-auto max-w-6xl">
+  <section class="border-t border-slate-200 bg-white">
+    <div class="section-pad mx-auto max-w-6xl !pb-0">
       <h2 class="reveal text-3xl font-bold text-slate-900">Where we serve</h2>
-      <div class="mt-8 flex flex-wrap gap-3">
-        {areas.map((area, i) => (
-          <a
-            href={`/areas/${area.slug}`}
-            class:list={['reveal pill-hover inline-flex items-center gap-2 rounded-full border border-slate-200 px-5 py-2 text-sm font-medium text-slate-700', `reveal-stagger-${Math.min(i + 1, 6)}`]}
-          >
-            <Icon name="map-pin" size={14} class="text-brand-500" />
-            {area.displayName}
-          </a>
-        ))}
-      </div>
+      <p class="reveal mt-3 max-w-2xl text-slate-600">
+        Home services across all districts of Kashmir — from Srinagar to Kupwara, Anantnag to Baramulla.
+      </p>
+    </div>
+    <AreasMarquee areas={areas.map((a) => ({ slug: a.slug, displayName: a.displayName }))} />
+    <div class="section-pad mx-auto max-w-6xl !pt-6">
+      <p class="reveal text-sm text-slate-500">
+        <a href="/service-areas" class="font-medium text-brand-700 underline-offset-2 hover:underline">
+          View all service areas
+        </a>
+      </p>
     </div>
   </section>
 </PageLayout>

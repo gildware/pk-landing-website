@@ -1,0 +1,28 @@
+name: carpentry-installation
+shortName: Carpentry Installation
+icon: "🪚"
+description: >-
+  Book carpentry installation across Kashmir — doors, wardrobes, cabinets, furniture assembly, and custom woodwork fitting.
+seoTitle: Carpentry Installation | Panun Kaergar
+seoDescription: >-
+  Book carpentry installation across Kashmir. Doors, wardrobes, cabinets, furniture assembly & custom fitting by verified carpenters.
+parentSlug: carpentry
+serviceList:
+  - Door Installation
+  - Furniture Installation
+  - Kitchen Cabinet Installation
+  - Wardrobe Installation
+  - Wooden Panel Installation
+  - Book a carpenter
+faqs:
+  - question: What carpentry installation jobs are available?
+    answer: >-
+      Door installation, furniture assembly, kitchen cabinets, wardrobes, wooden panels, and more.
+  - question: Do carpenters bring tools?
+    answer: >-
+      Partners typically arrive with standard tools. Share material and site details when you book.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the Panun Kaergar app.
+published: true
+sortOrder: 102

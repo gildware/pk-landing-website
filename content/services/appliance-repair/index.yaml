@@ -1,0 +1,46 @@
+name: appliance-repair
+shortName: Appliance Repair
+icon: "🔌"
+description: >-
+  Book appliance repair across Kashmir — AC, fridge, washing machine, geyser, TV, RO, and more with verified technicians.
+seoTitle: Appliance Repair | Panun Kaergar
+seoDescription: >-
+  Book home appliance repair across Kashmir. AC, fridge, washing machine, geyser, TV & more by verified Panun Kaergar technicians.
+parentSlug: home-appliances
+serviceList:
+  - AC Installation
+  - AC Repair
+  - AC Servicing
+  - AC Uninstallation
+  - Annual plan [2 times/year]
+  - Anti-rust spray (avoid gas leak)
+  - Foam-jet AC service
+  - Foam-jet service (2 ACs)
+  - Foam-jet service (3 ACs)
+  - Foam-jet service (4 ACs)
+  - Foam-jet service (5 ACs)
+  - Gas refill & check-up
+  - Inverter Repair
+  - Inverter/battery Installation
+  - Inverter check-up
+  - Inverter fuse replacement
+  - Inverter servicing
+  - Inverter uninstallation
+  - cctv repair
+  - Geyser Cleaning
+  - Geyser Installation
+  - Geyser Repair
+  - Geyser check-up
+  - Geyser connection leakage repair
+faqs:
+  - question: Which appliances do you cover?
+    answer: >-
+      Air conditioners, refrigerators, washing machines, geysers, TVs, RO purifiers, inverters, and more from our catalog.
+  - question: Do technicians carry spare parts?
+    answer: >-
+      Common parts may be available; uncommon parts are arranged after inspection.
+  - question: How do I book appliance repair?
+    answer: >-
+      Call, WhatsApp, website form, or the Panun Kaergar app.
+published: true
+sortOrder: 112

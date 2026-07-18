@@ -1,0 +1,30 @@
+name: masonry-installs
+shortName: Masonry Installs
+icon: "🧱"
+description: >-
+  Book masonry installs across Kashmir — brickwork, block work, plastering, and new tile fitting with verified local masons. Call, WhatsApp, or book online.
+seoTitle: Masonry Installs | Panun Kaergar
+seoDescription: >-
+  Book masonry installation across Kashmir. Brickwork, plastering, tile fitting & new construction support from verified Panun Kaergar partners.
+parentSlug: masonry
+serviceList:
+  - Brick Work Construction
+  - Concrete Work
+  - Drain Construction
+  - Floor Tiling Installation
+  - Plaster Rendering
+  - Step / Stair Construction
+  - Stone Work Construction
+  - Book a Mason
+faqs:
+  - question: What is included in masonry installs?
+    answer: >-
+      Installation work such as brickwork, block laying, plastering, and new tile fitting — depending on the job you describe when you book.
+  - question: How do I book masonry installs?
+    answer: >-
+      Call us, WhatsApp us, fill the booking form, or use the Panun Kaergar app. Share the site details and preferred time.
+  - question: Are masons verified?
+    answer: >-
+      Partners go through onboarding and are rated by customers after each completed job.
+published: true
+sortOrder: 100

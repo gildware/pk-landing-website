@@ -1,103 +1,247 @@
 ---
 import type { BookingSite } from '@/utils/booking';
-import { whatsappHref, generalWhatsAppMessage } from '@/utils/booking';
+import {
+  BOOK_PATH,
+  whatsappHref,
+  generalWhatsAppMessage,
+  partnerWhatsAppMessage,
+} from '@/utils/booking';
 import Icon from '@/components/Icon.astro';
+import StoreButton from '@/components/StoreButton.astro';
 
 interface Props {
   site: BookingSite;
-  variant?: 'default' | 'compact';
+  variant?: 'default' | 'compact' | 'sidebar';
   showFormLink?: boolean;
   formHref?: string;
   showHeading?: boolean;
+  /** book = customer booking; partner = join as service partner */
+  intent?: 'book' | 'partner';
 }
 
 const {
   site,
   variant = 'default',
   showFormLink = true,
-  formHref = '/book',
+  formHref = BOOK_PATH,
   showHeading = true,
+  intent = 'book',
 } = Astro.props;
 
-const waGeneral = whatsappHref(site.whatsapp, generalWhatsAppMessage());
+const sidebar = variant === 'sidebar';
+const isPartner = intent === 'partner';
+const waHref = whatsappHref(
+  site.whatsapp,
+  isPartner ? partnerWhatsAppMessage() : generalWhatsAppMessage(),
+);
+const playStoreUrl = isPartner
+  ? (site.providerPlayStoreUrl ?? site.userPlayStoreUrl)
+  : site.userPlayStoreUrl;
+const appStoreUrl = isPartner
+  ? (site.providerAppStoreUrl ?? site.userAppStoreUrl)
+  : site.userAppStoreUrl;
 
 const items = [
   {
     key: 'call',
-    label: 'Call us',
-    desc: 'Talk to our team — fastest for urgent jobs',
+    label: isPartner ? 'Call to join' : 'Call to book',
+    desc: sidebar
+      ? isPartner
+        ? 'Tell us your trade and area — we’ll help you start verification.'
+        : 'Tell us the service, your area, and a preferred time — we’ll arrange a verified partner.'
+      : isPartner
+        ? 'Talk to our team — fastest way to start'
+        : 'Talk to our team — fastest for urgent jobs',
     href: `tel:${site.phone}`,
     icon: 'phone',
     external: false,
-    accent: 'bg-brand-50 text-brand-600',
+    accent: 'bg-sky-100 text-sky-700',
+    cardBg: 'border-sky-200/80 bg-sky-50',
+    cta: 'Call now',
+    ctaClass: 'bg-brand-600 text-white hover:bg-brand-700',
   },
   {
     key: 'whatsapp',
     label: 'WhatsApp',
-    desc: 'Send your service and area — we reply quickly',
-    href: waGeneral,
+    desc: sidebar
+      ? isPartner
+        ? 'Send your trade, area, and experience — we reply quickly.'
+        : 'Send your service, area, and preferred time — we reply quickly and confirm your booking.'
+      : isPartner
+        ? 'Send your trade and area — we reply quickly'
+        : 'Send your service and area — we reply quickly',
+    href: waHref,
     icon: 'whatsapp',
     external: true,
-    accent: 'bg-emerald-50 text-whatsapp-dark',
+    accent: 'bg-emerald-100 text-whatsapp-dark',
+    cardBg: 'border-emerald-200/80 bg-emerald-50',
+    cta: 'Chat on WhatsApp',
+    ctaClass: 'bg-whatsapp-dark text-white hover:bg-[#0e6b5f]',
   },
   ...(showFormLink
     ? [
         {
           key: 'form',
           label: 'Online form',
-          desc: 'Fill details — we call or WhatsApp you back',
+          desc: isPartner
+            ? 'Fill details — we call or WhatsApp you back'
+            : 'Fill details — we call or WhatsApp you back',
           href: formHref,
           icon: 'form',
           external: false,
-          accent: 'bg-violet-50 text-violet-600',
+          accent: 'bg-amber-100 text-amber-800',
+          cardBg: 'border-amber-200/80 bg-amber-50',
+          cta: 'Fill the form',
+          ctaClass: 'bg-brand-600 text-white hover:bg-brand-700',
         },
       ]
     : []),
   {
     key: 'app',
-    label: 'Get the app',
-    desc: 'Book, track, and pay on your phone',
-    href: '/download',
+    label: isPartner ? 'Get the Partner app' : 'Get the app',
+    desc: sidebar
+      ? isPartner
+        ? 'Sign up, get verified, and manage jobs from your phone.'
+        : 'Book services, track requests, and manage bookings from your phone.'
+      : isPartner
+        ? 'Sign up and manage jobs on your phone'
+        : 'Book, track, and pay on your phone',
+    href: isPartner ? '/download#partner' : '/download',
     icon: 'smartphone',
     external: false,
-    accent: 'bg-slate-100 text-slate-700',
+    accent: 'bg-orange-100 text-orange-800',
+    cardBg: 'border-orange-200/80 bg-orange-50',
+    cta: 'Download the app',
+    ctaClass: 'bg-slate-900 text-white hover:bg-slate-800',
   },
 ];
 
 const gridClass =
-  variant === 'compact'
-    ? 'grid gap-3 sm:grid-cols-2 lg:grid-cols-4'
-    : 'grid gap-4 sm:grid-cols-2 lg:grid-cols-4';
+  variant === 'sidebar'
+    ? 'flex flex-col gap-2'
+    : variant === 'compact'
+      ? 'grid gap-3 sm:grid-cols-2 lg:grid-cols-4'
+      : 'grid gap-4 sm:grid-cols-2 lg:grid-cols-4';
+
+const sidebarCtaClass =
+  'inline-flex w-full items-center justify-center gap-2 rounded-lg px-3 py-1.5 text-sm font-bold transition active:scale-[0.98]';
+
+const heading = sidebar
+  ? isPartner
+    ? 'Quick join'
+    : 'Quick book'
+  : isPartner
+    ? 'Ways to join'
+    : 'Ways to book';
 ---
 
-<section class:list={['mx-auto max-w-6xl px-4 sm:px-6', variant === 'default' && 'py-12']}>
+<section
+  class:list={[
+    sidebar ? 'w-full' : 'mx-auto max-w-6xl px-4 sm:px-6',
+    variant === 'default' && 'py-12',
+    variant === 'compact' && 'py-12 sm:py-16',
+  ]}
+>
   {
     showHeading && (
-      <div class="mb-8 text-center lg:text-left animate-fade-up">
-        <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">Ways to book</h2>
-        <p class="mt-2 text-slate-600">Call, WhatsApp, use the form, or download the app — pick what works for you.</p>
+      <div class:list={['animate-fade-up', sidebar ? 'mb-2.5 text-left' : 'mb-8 text-center lg:text-left']}>
+        <h2 class:list={[sidebar ? 'text-base font-extrabold text-slate-900' : 'text-2xl font-bold text-slate-900 sm:text-3xl']}>
+          {heading}
+        </h2>
+        {!sidebar && (
+          <p class="mt-2 text-slate-600">
+            {isPartner
+              ? 'Call, WhatsApp, use the form, or download the Partner app — pick what works for you.'
+              : 'Call, WhatsApp, use the form, or download the app — pick what works for you.'}
+          </p>
+        )}
       </div>
     )
   }
   <div class={gridClass}>
     {
-      items.map((item, i) => (
-        <a
-          href={item.href}
-          target={item.external ? '_blank' : undefined}
-          rel={item.external ? 'noopener noreferrer' : undefined}
-          class:list={[
-            'card card-hover group flex flex-col p-5 animate-fade-up',
-            `stagger-${Math.min(i + 1, 4)}`,
-          ]}
-        >
-          <span class:list={['icon-badge', item.accent]}>
-            <Icon name={item.icon} size={22} />
-          </span>
-          <span class="mt-3 font-bold text-slate-900 group-hover:text-brand-700">{item.label}</span>
-          <span class="mt-1 text-sm text-slate-500">{item.desc}</span>
-        </a>
-      ))
+      items.map((item, i) =>
+        sidebar && item.key === 'app' ? (
+          <div
+            class:list={[
+              'flex flex-col gap-2 rounded-xl border p-3 shadow-sm animate-fade-up',
+              item.cardBg,
+              `stagger-${Math.min(i + 1, 4)}`,
+            ]}
+          >
+            <div class="flex items-start gap-2.5">
+              <span class:list={['icon-badge !h-9 !w-9 shrink-0', item.accent]}>
+                <Icon name={item.icon} size={18} />
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-bold text-slate-900">{item.label}</span>
+                <span class="mt-0.5 block text-xs leading-relaxed text-slate-600">{item.desc}</span>
+              </span>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <StoreButton
+                store="google-play"
+                href={playStoreUrl}
+                class="!w-full !justify-start !gap-1.5 !rounded-lg !px-2 !py-1.5 [&_svg]:!h-5 [&_svg]:!w-5 [&_span]:!min-w-0 [&_span_span:first-child]:!text-[9px] [&_span_span:last-child]:!text-xs"
+              />
+              <StoreButton
+                store="app-store"
+                href={appStoreUrl}
+                class="!w-full !justify-start !gap-1.5 !rounded-lg !px-2 !py-1.5 [&_svg]:!h-5 [&_svg]:!w-5 [&_span]:!min-w-0 [&_span_span:first-child]:!text-[9px] [&_span_span:last-child]:!text-xs"
+              />
+            </div>
+          </div>
+        ) : sidebar ? (
+          <div
+            class:list={[
+              'flex flex-col gap-2 rounded-xl border p-3 shadow-sm animate-fade-up',
+              item.cardBg,
+              `stagger-${Math.min(i + 1, 4)}`,
+            ]}
+          >
+            <div class="flex items-start gap-2.5">
+              <span class:list={['icon-badge !h-9 !w-9 shrink-0', item.accent]}>
+                <Icon name={item.icon} size={18} />
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-bold text-slate-900">{item.label}</span>
+                {item.key === 'call' && (
+                  <span class="mt-0.5 block text-sm font-semibold text-brand-700">{site.phone}</span>
+                )}
+                <p class="mt-0.5 text-xs leading-relaxed text-slate-600">{item.desc}</p>
+              </span>
+            </div>
+            <a
+              href={item.href}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+              class:list={[sidebarCtaClass, item.ctaClass]}
+            >
+              {item.key === 'whatsapp' && <Icon name="whatsapp" size={16} />}
+              {item.key === 'call' && <Icon name="phone" size={16} />}
+              {item.cta}
+            </a>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noopener noreferrer' : undefined}
+            class:list={[
+              'card card-hover group flex flex-col p-5 animate-fade-up',
+              `stagger-${Math.min(i + 1, 4)}`,
+            ]}
+          >
+            <span class:list={['icon-badge shrink-0', item.accent]}>
+              <Icon name={item.icon} size={22} />
+            </span>
+            <span class="mt-3 block font-bold text-slate-900 group-hover:text-brand-700">
+              {item.label}
+            </span>
+            <span class="mt-1 block text-sm text-slate-500">{item.desc}</span>
+          </a>
+        )
+      )
     }
   </div>
 </section>

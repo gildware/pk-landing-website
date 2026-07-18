@@ -135,7 +135,7 @@ export function mobileApplicationsSchema(site: SiteForSchema) {
     {
       '@context': 'https://schema.org',
       '@type': 'MobileApplication',
-      name: `${site.businessName} — Provider App`,
+      name: `${site.businessName} — Partner App`,
       operatingSystem: 'Android, iOS',
       applicationCategory: 'BusinessApplication',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
@@ -163,7 +163,7 @@ export function reviewSchemas(testimonials: TestimonialForSchema[], site: SiteFo
   }));
 }
 
-export function serviceSchema(service: ServiceEntry, site: SiteForSchema) {
+export function serviceSchema(service: ServiceEntry, site: SiteForSchema, areas?: AreaEntry[]) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -174,10 +174,15 @@ export function serviceSchema(service: ServiceEntry, site: SiteForSchema) {
       name: site.businessName,
       url: siteUrl('/'),
     },
-    areaServed: {
-      '@type': 'City',
-      name: 'Srinagar',
-    },
+    areaServed: areas?.length
+      ? areas.map((area) => ({
+          '@type': 'City',
+          name: area.displayName,
+        }))
+      : {
+          '@type': 'AdministrativeArea',
+          name: 'Kashmir',
+        },
     url: siteUrl(`/services/${service.slug}`),
   };
 }
@@ -186,23 +191,38 @@ export function serviceAreaPageSchema(
   service: ServiceEntry,
   area: AreaEntry,
   site: SiteForSchema,
-  pageUrl: string
+  pageUrl: string,
+  description?: string
 ) {
+  const neighborhoods = area.neighborhoods || [];
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: `${service.shortName} in ${area.displayName}`,
-    description: `${service.shortName} services in ${area.displayName} by ${site.businessName}.`,
+    description:
+      description ||
+      `${service.shortName} services in ${area.displayName} by ${site.businessName}.`,
     provider: {
       '@type': 'LocalBusiness',
       name: site.businessName,
       telephone: site.phone,
       url: siteUrl('/'),
     },
-    areaServed: {
-      '@type': 'City',
-      name: area.displayName,
-    },
+    areaServed: [
+      {
+        '@type': 'AdministrativeArea',
+        name: area.displayName,
+      },
+      ...neighborhoods.slice(0, 20).map((name) => ({
+        '@type': 'Place',
+        name,
+        containedInPlace: {
+          '@type': 'AdministrativeArea',
+          name: area.displayName,
+        },
+      })),
+    ],
+    serviceType: service.shortName,
     url: pageUrl,
   };
 }
@@ -236,22 +256,6 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
-export function articleSchema(post: {
-  title: string;
-  description: string;
-  slug: string;
-  publishedAt: string;
-}) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: post.description,
-    datePublished: post.publishedAt,
-    url: siteUrl(`/blog/${post.slug}`),
-  };
-}
-
 export function itemListSchema(
   items: { name: string; url: string; description?: string }[],
   listName: string
@@ -268,5 +272,73 @@ export function itemListSchema(
       url: item.url,
       ...(item.description ? { description: item.description } : {}),
     })),
+  };
+}
+
+/** LocalBusiness + Place markup for a district service-area page. */
+export function areaLocalBusinessSchema(
+  site: SiteForSchema,
+  area: AreaEntry,
+  pagePath: string,
+  services: ServiceEntry[]
+) {
+  const neighborhoods = area.neighborhoods || [];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HomeAndConstructionBusiness',
+    name: `${site.businessName} — ${area.displayName}`,
+    url: siteUrl(pagePath),
+    description: area.seoDescription || area.description,
+    telephone: site.phone,
+    email: site.email,
+    priceRange: '₹₹',
+    image: siteUrl(`/images/areas/${area.slug}.webp`),
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: area.displayName,
+      addressRegion: 'Jammu & Kashmir',
+      addressCountry: 'IN',
+    },
+    areaServed: [
+      {
+        '@type': 'AdministrativeArea',
+        name: area.displayName,
+        containedInPlace: {
+          '@type': 'AdministrativeArea',
+          name: 'Kashmir',
+          containedInPlace: {
+            '@type': 'State',
+            name: 'Jammu & Kashmir',
+          },
+        },
+      },
+      ...neighborhoods.map((name) => ({
+        '@type': 'Place',
+        name,
+        containedInPlace: {
+          '@type': 'City',
+          name: area.displayName,
+        },
+      })),
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `Home services in ${area.displayName}`,
+      itemListElement: services.map((service, index) => ({
+        '@type': 'Offer',
+        position: index + 1,
+        itemOffered: {
+          '@type': 'Service',
+          name: `${service.shortName} in ${area.displayName}`,
+          url: siteUrl(`/services/${service.slug}/${area.slug}`),
+        },
+      })),
+    },
+    parentOrganization: {
+      '@type': 'Organization',
+      name: site.businessName,
+      url: siteUrl('/'),
+    },
   };
 }

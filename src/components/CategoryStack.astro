@@ -171,6 +171,12 @@ const count = Math.max(categories.length, 1);
     position: sticky;
     top: var(--header-h);
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Fill the viewport under the header so the tint doesn’t cut off into a white band */
+    min-height: calc(100dvh - var(--header-h));
+    box-sizing: border-box;
     padding: 2.5rem 0 2.75rem;
     background:
       radial-gradient(
@@ -186,7 +192,7 @@ const count = Math.max(categories.length, 1);
       linear-gradient(
         180deg,
         color-mix(in srgb, var(--active-soft) 26%, #f8fafc) 0%,
-        #ffffff 52%,
+        color-mix(in srgb, var(--active-soft) 10%, #ffffff) 45%,
         color-mix(in srgb, var(--active-soft) 16%, #f1f5f9) 100%
       );
     transition: background 0.4s ease;
@@ -217,12 +223,20 @@ const count = Math.max(categories.length, 1);
     .category-stack__inner {
       grid-template-columns: minmax(15rem, 0.95fr) minmax(18rem, 1.15fr);
       gap: 3rem;
+      /* Keep copy flush with the top of the card stack */
+      align-items: start;
     }
   }
 
   .category-stack__copy {
     min-width: 0;
-    align-self: start;
+    /* Desktop JS syncs translateY with the active card’s stack offset */
+  }
+
+  @media (max-width: 899px) {
+    .category-stack__copy {
+      transform: none !important;
+    }
   }
 
   .category-stack__copy-inner {
@@ -497,13 +511,15 @@ const count = Math.max(categories.length, 1);
     }
 
     .category-stack__panel {
-      /* Height follows content only — avoids a tall empty white band under the card */
+      /* Keep full-viewport tint; pin content near the top for readable phone layout */
+      justify-content: flex-start;
       padding: 0.65rem 0 1.25rem;
       overflow: visible;
     }
 
     .category-stack__inner {
       gap: 0.65rem;
+      align-items: start;
     }
 
     .category-stack__title {
@@ -615,6 +631,7 @@ const count = Math.max(categories.length, 1);
     if (!(root instanceof HTMLElement)) return;
 
     const track = root.querySelector('[data-stack-track]');
+    const copyCol = root.querySelector('.category-stack__copy');
     const copy = root.querySelector('.category-stack__copy-inner');
     const cards = [...root.querySelectorAll('[data-stack-card]')];
     const eyebrow = root.querySelector('[data-stack-eyebrow]');
@@ -684,6 +701,8 @@ const count = Math.max(categories.length, 1);
         if (localAt < hold) nextActive -= 1;
       }
       const step = peekPx();
+      // Align left copy with the settled stack face (not mid-slide entrance)
+      const copyAlignY = nextActive * step;
 
       cards.forEach((card, i) => {
         const local = clamp((progress - i * segment) / segment, 0, 1);
@@ -717,6 +736,11 @@ const count = Math.max(categories.length, 1);
         card.classList.toggle('is-active', i === nextActive);
         card.classList.toggle('is-stacked', i < nextActive);
       });
+
+      // Desktop: keep left copy level with the active card in the stack
+      if (copyCol instanceof HTMLElement) {
+        copyCol.style.transform = isMobile ? '' : `translateY(${copyAlignY}px)`;
+      }
 
       if (nextActive !== activeIndex) {
         activeIndex = nextActive;

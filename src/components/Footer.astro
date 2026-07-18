@@ -1,5 +1,6 @@
 ---
 import Icon from '@/components/Icon.astro';
+import { BOOK_PATH } from '@/utils/booking';
 
 interface SiteFooter {
   businessName: string;
@@ -41,7 +42,7 @@ const footer = site as SiteFooter;
       </a>
       <p class="mt-4 max-w-md text-sm leading-relaxed text-slate-600">
         {footer.footerTagline ??
-          "Kashmir's trusted platform to book verified home service providers — carpentry, plumbing, electrician, cleaning, salon, appliances, and more."}
+          "Kashmir's trusted platform to book verified home service partners — carpentry, plumbing, electrician, cleaning, salon, appliances, pet grooming, vehicle care, and more."}
       </p>
       <div class="mt-5 flex flex-col gap-2 text-sm text-slate-600">
         <a href={`tel:${site.phone}`} class="inline-flex items-center gap-2 transition hover:text-brand-700">
@@ -93,12 +94,11 @@ const footer = site as SiteFooter;
     <div>
       <p class="font-semibold text-slate-900">Explore</p>
       <ul class="mt-3 space-y-2 text-sm text-slate-600">
-        <li><a href="/book" class="transition hover:text-brand-700">Book a service</a></li>
+        <li><a href={BOOK_PATH} class="transition hover:text-brand-700">Book a service</a></li>
         <li><a href="/services" class="transition hover:text-brand-700">All services</a></li>
-        <li><a href="/areas" class="transition hover:text-brand-700">Service areas</a></li>
-        <li><a href="/blog" class="transition hover:text-brand-700">Blog</a></li>
+        <li><a href="/service-areas" class="transition hover:text-brand-700">Service areas</a></li>
         <li><a href="/download" class="transition hover:text-brand-700">Download app</a></li>
-        <li><a href="/become-a-provider" class="transition hover:text-brand-700">Become a provider</a></li>
+        <li><a href="/become-a-partner" class="transition hover:text-brand-700">Become a partner</a></li>
       </ul>
     </div>
 

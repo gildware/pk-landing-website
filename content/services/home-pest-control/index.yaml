@@ -1,0 +1,26 @@
+name: home-pest-control
+shortName: Home Pest Control
+icon: "🐛"
+description: >-
+  Book home pest control across Kashmir — cockroaches, ants, termites, rodents, and general household pest treatment.
+seoTitle: Home Pest Control | Panun Kaergar
+seoDescription: >-
+  Book home pest control across Kashmir. Cockroach, ant, termite & rodent treatment by verified Panun Kaergar partners.
+parentSlug: pest-control
+serviceList:
+  - Apartment cockroach control
+  - Bungalow cockroach control
+  - Kitchen cockroach control
+  - Partial home cockroach control
+faqs:
+  - question: What home pests do you treat?
+    answer: >-
+      Common household pests including cockroaches, ants, termites, and rodents — see live catalog for packages.
+  - question: Is treatment safe for families?
+    answer: >-
+      Partners use professional treatments; share pet and child details when you book.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 113

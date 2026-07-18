@@ -1,0 +1,46 @@
+name: renovation-painting
+shortName: Renovation Painting
+icon: "🎨"
+description: >-
+  Book renovation painting across Kashmir — interior and exterior painting for homes, rooms, and refresh projects.
+seoTitle: Renovation Painting | Panun Kaergar
+seoDescription: >-
+  Book renovation painting across Kashmir. Interior & exterior painting for home makeovers by verified Panun Kaergar painters.
+parentSlug: painting
+serviceList:
+  - Building Painting
+  - Exterior Wall Painting
+  - Full House Exterior Painting
+  - Boundary Wall Painting
+  - Exterior Door & Gate Painting
+  - Exterior Window & Grille Painting
+  - Exterior Primer Application
+  - Exterior Wall Putty & Crack Repair
+  - Exterior Touch-up & Patch Painting
+  - Waterproof Weather Shield Coating
+  - Door Painting
+  - Full House Interior Painting
+  - Full Room Painting
+  - Primer Application
+  - Texture Wall Painting
+  - Wall Putty Application
+  - Window Painting
+  - Book a Painter
+  - Single Wall Accent Painting
+  - Ceiling Painting
+  - Ceiling & Trim Painting
+  - Interior Touch-up & Patch Painting
+  - Interior Painting Consultation
+  - Old Paint Removal & Surface Scraping
+faqs:
+  - question: Do you cover interior and exterior?
+    answer: >-
+      Yes — renovation painting includes both interior and exterior jobs from our live catalog.
+  - question: Should I arrange paint?
+    answer: >-
+      You can supply paint or ask the partner for recommendations when you book.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 110

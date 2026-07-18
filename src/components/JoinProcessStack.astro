@@ -1,0 +1,613 @@
+---
+/**
+ * Scroll-pinned join process: all steps stay visible on the left;
+ * step images stack on the right as the user scrolls through each step.
+ */
+interface Step {
+  n: number;
+  title: string;
+  desc: string;
+  image: string;
+  imageAlt: string;
+}
+
+interface Props {
+  steps: Step[];
+}
+
+const { steps } = Astro.props;
+const count = Math.max(steps.length, 1);
+const first = steps[0];
+---
+
+{
+  steps.length > 0 && (
+    <section
+      class="join-stack"
+      data-join-stack
+      aria-label="How to join"
+      style={`--stack-count: ${count};`}
+    >
+      <div class="join-stack__track" data-join-track>
+        <div class="join-stack__panel" data-join-panel>
+          <div class="join-stack__intro">
+            <h2 class="join-stack__heading">How to join — the process</h2>
+            <p class="join-stack__lede">
+              Five simple steps from download to your first booking request.
+            </p>
+          </div>
+
+          <div class="join-stack__inner">
+            <ol class="join-stack__steps" data-join-steps>
+              {steps.map((s, i) => (
+                <li>
+                  <button
+                    type="button"
+                    class:list={['join-stack__step', i === 0 && 'is-active']}
+                    data-join-step
+                    data-join-index={i}
+                    aria-current={i === 0 ? 'step' : undefined}
+                  >
+                    <span class="join-stack__step-num" aria-hidden="true">
+                      {s.n}
+                    </span>
+                    <span class="join-stack__step-copy">
+                      <span class="join-stack__step-title">{s.title}</span>
+                      <span class="join-stack__step-desc">{s.desc}</span>
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+
+            <div class="join-stack__stage" data-join-stage aria-hidden="true">
+              {steps.map((s, i) => (
+                <article
+                  class:list={['join-stack__card', i === 0 && 'is-active']}
+                  style={`--stack-index: ${i};`}
+                  data-join-card
+                  data-join-index={i}
+                >
+                  <div class="join-stack__card-surface">
+                    <img
+                      src={s.image}
+                      alt={s.imageAlt}
+                      width="960"
+                      height="720"
+                      class="join-stack__card-img"
+                      loading={i === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
+                    <div class="join-stack__card-caption">
+                      <span class="join-stack__card-num">Step {s.n}</span>
+                      <span class="join-stack__card-title">{s.title}</span>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .join-stack {
+    --header-h: 72px;
+    --stack-count: 5;
+    --card-h: 420px;
+    --stack-peek: 0.65rem;
+    position: relative;
+    width: 100%;
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 48%, #ffffff 100%);
+  }
+
+  .join-stack__track {
+    position: relative;
+    height: calc(var(--stack-count) * 42vh + 24vh);
+  }
+
+  .join-stack__panel {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 1;
+    padding: 2.5rem 0 2.75rem;
+  }
+
+  @media (min-width: 900px) {
+    .join-stack__panel {
+      padding: 3rem 0 3.25rem;
+    }
+  }
+
+  .join-stack__intro {
+    width: min(72rem, 100%);
+    margin-inline: auto;
+    padding-inline: 1rem;
+    margin-bottom: 1.75rem;
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .join-stack__intro {
+      padding-inline: 1.5rem;
+      margin-bottom: 2.25rem;
+    }
+  }
+
+  .join-stack__heading {
+    margin: 0;
+    font-size: clamp(1.65rem, 1.4rem + 1vw, 1.9rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+  }
+
+  .join-stack__lede {
+    margin: 0.75rem auto 0;
+    max-width: 32rem;
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: #475569;
+  }
+
+  .join-stack__inner {
+    width: min(72rem, 100%);
+    margin-inline: auto;
+    padding-inline: 1rem;
+    display: grid;
+    gap: 1.75rem;
+    align-items: start;
+  }
+
+  @media (min-width: 640px) {
+    .join-stack__inner {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .join-stack__inner {
+      grid-template-columns: minmax(16rem, 0.95fr) minmax(18rem, 1.15fr);
+      gap: 3rem;
+      align-items: center;
+    }
+  }
+
+  .join-stack__steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .join-stack__step {
+    display: flex;
+    width: 100%;
+    gap: 0.9rem;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .join-stack__step:hover {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: #e2e8f0;
+  }
+
+  .join-stack__step.is-active {
+    background: #ffffff;
+    border-color: color-mix(in srgb, #202048 22%, #e2e8f0);
+    box-shadow:
+      0 4px 6px -1px rgb(32 32 72 / 6%),
+      0 14px 28px -16px rgb(32 32 72 / 22%);
+  }
+
+  .join-stack__step.is-done .join-stack__step-num {
+    background: #202048;
+    color: #fff;
+  }
+
+  .join-stack__step-num {
+    display: flex;
+    height: 2.35rem;
+    width: 2.35rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 0.9rem;
+    font-weight: 800;
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .join-stack__step.is-active .join-stack__step-num {
+    background: #202048;
+    color: #fff;
+    box-shadow: 0 8px 18px -8px rgb(32 32 72 / 55%);
+  }
+
+  .join-stack__step-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-top: 0.15rem;
+  }
+
+  .join-stack__step-title {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: #0f172a;
+    line-height: 1.25;
+  }
+
+  .join-stack__step-desc {
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: #64748b;
+  }
+
+  .join-stack__step.is-active .join-stack__step-desc {
+    color: #475569;
+  }
+
+  .join-stack__stage {
+    position: relative;
+    width: 100%;
+    height: calc(var(--card-h) + (var(--stack-count) - 1) * var(--stack-peek));
+    min-width: 0;
+  }
+
+  .join-stack__card {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: var(--card-h);
+    z-index: calc(10 + var(--stack-index));
+    display: flex;
+    will-change: transform;
+    transform: translateY(115%);
+    opacity: 0;
+    pointer-events: none;
+    isolation: isolate;
+  }
+
+  .join-stack__card.is-active,
+  .join-stack__card.is-stacked {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  .join-stack__card.is-active:first-child {
+    transform: translateY(0);
+  }
+
+  .join-stack__card-surface {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #0f172a;
+    box-shadow:
+      0 4px 6px -1px rgb(15 23 42 / 10%),
+      0 22px 40px -18px rgb(15 23 42 / 35%);
+  }
+
+  .join-stack__card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .join-stack__card-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 3.5rem 1.25rem 1.15rem;
+    background: linear-gradient(180deg, transparent 0%, rgb(15 23 42 / 78%) 70%);
+    color: #fff;
+  }
+
+  .join-stack__card-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #cbd5e1;
+  }
+
+  .join-stack__card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 899px) {
+    .join-stack {
+      --card-h: 260px;
+      --stack-peek: 0.4rem;
+    }
+
+    .join-stack__track {
+      height: calc(var(--stack-count) * 58vh + 16vh);
+    }
+
+    .join-stack__panel {
+      padding: 1.5rem 0 1.25rem;
+    }
+
+    .join-stack__intro {
+      margin-bottom: 0.85rem;
+      text-align: left;
+    }
+
+    .join-stack__heading {
+      font-size: 1.4rem;
+    }
+
+    .join-stack__lede {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .join-stack__inner {
+      gap: 0.85rem;
+    }
+
+    .join-stack__steps {
+      gap: 0.2rem;
+    }
+
+    .join-stack__step {
+      padding: 0.45rem 0.55rem;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .join-stack__step-num {
+      height: 1.75rem;
+      width: 1.75rem;
+      font-size: 0.75rem;
+    }
+
+    .join-stack__step-copy {
+      padding-top: 0;
+    }
+
+    .join-stack__step-title {
+      font-size: 0.86rem;
+    }
+
+    .join-stack__step-desc {
+      display: none;
+    }
+
+    .join-stack__step.is-active .join-stack__step-desc {
+      display: block;
+      font-size: 0.75rem;
+      margin-top: 0.1rem;
+    }
+
+    .join-stack__stage {
+      height: calc(var(--card-h) + (var(--stack-count) - 1) * var(--stack-peek));
+    }
+
+    .join-stack__card-caption {
+      padding: 2.25rem 1rem 0.9rem;
+    }
+
+    .join-stack__card-title {
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .join-stack__track {
+      height: auto;
+    }
+
+    .join-stack__panel {
+      position: relative;
+      top: auto;
+    }
+
+    .join-stack__stage {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: auto;
+    }
+
+    .join-stack__card {
+      position: relative;
+      inset: auto;
+      height: var(--card-h);
+      transform: none !important;
+      opacity: 1 !important;
+      pointer-events: auto;
+    }
+  }
+</style>
+
+<script>
+  function initJoinProcessStack() {
+    const root = document.querySelector('[data-join-stack]');
+    if (!(root instanceof HTMLElement)) return;
+
+    const track = root.querySelector('[data-join-track]');
+    const cards = [...root.querySelectorAll('[data-join-card]')];
+    const steps = [...root.querySelectorAll('[data-join-step]')];
+
+    if (!(track instanceof HTMLElement) || cards.length === 0) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let activeIndex = -1;
+    const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+
+    const peekPx = () => {
+      const raw = getComputedStyle(root).getPropertyValue('--stack-peek').trim();
+      const n = Number.parseFloat(raw);
+      if (!Number.isFinite(n)) return 10;
+      return raw.endsWith('rem') ? n * 16 : n;
+    };
+
+    const setActive = (index) => {
+      if (index === activeIndex) return;
+      activeIndex = index;
+
+      cards.forEach((card, i) => {
+        card.classList.toggle('is-active', i === index);
+        card.classList.toggle('is-stacked', i < index);
+      });
+
+      steps.forEach((step, i) => {
+        step.classList.toggle('is-active', i === index);
+        step.classList.toggle('is-done', i < index);
+        if (i === index) step.setAttribute('aria-current', 'step');
+        else step.removeAttribute('aria-current');
+      });
+    };
+
+    const progressForIndex = (index) => {
+      const count = cards.length;
+      if (count <= 1) return 0;
+      return clamp((index + 0.35) / count, 0, 1);
+    };
+
+    const scrollToStep = (index) => {
+      const headerH = 72;
+      const panel =
+        root.querySelector('[data-join-panel]')?.getBoundingClientRect().height ||
+        window.innerHeight - headerH;
+      const scrollable = Math.max(track.offsetHeight - panel, 1);
+      const trackTop = track.getBoundingClientRect().top + window.scrollY;
+      const targetY = trackTop - headerH + progressForIndex(index) * scrollable;
+      window.scrollTo({ top: targetY, behavior: reduceMotion ? 'auto' : 'smooth' });
+    };
+
+    const update = () => {
+      if (reduceMotion) {
+        setActive(0);
+        return;
+      }
+
+      const headerH = 72;
+      const rect = track.getBoundingClientRect();
+      const panelH =
+        root.querySelector('[data-join-panel]')?.getBoundingClientRect().height ||
+        window.innerHeight - headerH;
+      const scrollable = Math.max(rect.height - panelH, 1);
+      const progress = clamp((-rect.top + headerH) / scrollable, 0, 1);
+      const isMobile = window.matchMedia('(max-width: 899px)').matches;
+
+      const count = cards.length;
+      const segment = 1 / count;
+      const hold = isMobile ? 0.28 : 0;
+      let nextActive = clamp(Math.floor(progress / segment + 0.0001), 0, count - 1);
+      if (hold > 0 && nextActive > 0) {
+        const localAt = (progress - nextActive * segment) / segment;
+        if (localAt < hold) nextActive -= 1;
+      }
+      const step = peekPx();
+
+      cards.forEach((card, i) => {
+        const local = clamp((progress - i * segment) / segment, 0, 1);
+        const restY = i * step;
+        const cardH = card.offsetHeight || 420;
+
+        if (i < nextActive) {
+          const depth = nextActive - i;
+          card.style.transform = `translateY(${restY}px) scale(${Math.max(0.97, 1 - depth * 0.01)})`;
+          card.style.opacity = '1';
+        } else if (i === nextActive) {
+          if (i === 0) {
+            card.style.transform = 'translateY(0px) scale(1)';
+            card.style.opacity = '1';
+          } else {
+            const t = hold > 0 ? clamp((local - hold) / (1 - hold), 0, 1) : local;
+            const from = cardH * (isMobile ? 1.45 : 1.08);
+            const yPx = (1 - t) * from + t * restY;
+            card.style.transform = `translateY(${yPx}px) scale(1)`;
+            card.style.opacity = '1';
+          }
+        } else {
+          card.style.transform = `translateY(${cardH * (isMobile ? 1.45 : 1.15)}px)`;
+          card.style.opacity = '0';
+        }
+
+        card.classList.toggle('is-active', i === nextActive);
+        card.classList.toggle('is-stacked', i < nextActive);
+      });
+
+      setActive(nextActive);
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    };
+
+    steps.forEach((step) => {
+      step.addEventListener('click', () => {
+        const index = Number(step.getAttribute('data-join-index') || '0');
+        if (reduceMotion) {
+          setActive(index);
+          return;
+        }
+        scrollToStep(index);
+      });
+    });
+
+    if (root._joinStackCleanup) root._joinStackCleanup();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    root._joinStackCleanup = () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+
+    setActive(0);
+    update();
+  }
+
+  initJoinProcessStack();
+  document.addEventListener('astro:page-load', initJoinProcessStack);
+</script>

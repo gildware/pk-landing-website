@@ -1,0 +1,21 @@
+name: vehicle-services
+shortName: Vehicle Services
+icon: 🚗
+description: Book vehicle services across Kashmir — car wash & detailing, car repair & maintenance, and bike & scooter service. Call, WhatsApp, or book online.
+seoTitle: Vehicle Services | Panun Kaergar
+seoDescription: Book car wash, car repair & bike/scooter service across Kashmir. Verified local vehicle care partners. Call or book online.
+serviceList:
+  - Car Wash & Detailing
+  - Car Repair & Maintenance
+  - Bike & Scooter Service
+faqs:
+  - question: What vehicle services can I book?
+    answer: Car wash & detailing, car repair & maintenance, and bike & scooter service — depending on partner coverage in your area.
+  - question: Do technicians come to my location?
+    answer: Many services are mobile or workshop-based. Confirm how the visit works when you book.
+  - question: How do I book vehicle services with Panun Kaergar?
+    answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app.
+  - question: How much do vehicle services cost with Panun Kaergar?
+    answer: Pricing depends on vehicle type and job. Estimates appear in the app, or our team quotes when you book by phone, WhatsApp, or form.
+published: true
+sortOrder: 16

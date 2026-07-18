@@ -1,5 +1,10 @@
 import { siteUrl } from './reader';
 
+const SITE_NAME = 'Panun Kaergar';
+const DEFAULT_OG_IMAGE = '/logo-square.png';
+const DEFAULT_OG_IMAGE_WIDTH = 1024;
+const DEFAULT_OG_IMAGE_HEIGHT = 1024;
+
 export interface PageMeta {
   title: string;
   description: string;
@@ -7,6 +12,21 @@ export interface PageMeta {
   ogType?: string;
   noindex?: boolean;
   ogImage?: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+}
+
+export interface BuiltPageMeta {
+  title: string;
+  description: string;
+  canonical: string;
+  ogType: string;
+  noindex: boolean;
+  ogImage: string;
+  ogImageAlt: string;
+  ogImageWidth: number;
+  ogImageHeight: number;
 }
 
 export function buildMeta({
@@ -15,10 +35,14 @@ export function buildMeta({
   path,
   ogType = 'website',
   noindex = false,
-  ogImage = '/og-image.svg',
-}: PageMeta & { ogImage?: string }) {
+  ogImage = DEFAULT_OG_IMAGE,
+  ogImageAlt,
+  ogImageWidth,
+  ogImageHeight,
+}: PageMeta): BuiltPageMeta {
   const url = siteUrl(path);
-  const fullTitle = title.includes('Panun Kaergar') ? title : `${title} | Panun Kaergar`;
+  const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+  const isDefaultOg = ogImage === DEFAULT_OG_IMAGE || ogImage === '/og-image.svg';
 
   return {
     title: fullTitle,
@@ -26,7 +50,10 @@ export function buildMeta({
     canonical: url,
     ogType,
     noindex,
-    ogImage: siteUrl(ogImage),
+    ogImage: siteUrl(isDefaultOg ? DEFAULT_OG_IMAGE : ogImage),
+    ogImageAlt: ogImageAlt || `${SITE_NAME} — home services in Kashmir`,
+    ogImageWidth: ogImageWidth ?? (isDefaultOg ? DEFAULT_OG_IMAGE_WIDTH : 1200),
+    ogImageHeight: ogImageHeight ?? (isDefaultOg ? DEFAULT_OG_IMAGE_HEIGHT : 630),
   };
 }
 

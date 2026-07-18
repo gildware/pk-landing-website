@@ -1,0 +1,26 @@
+name: masonry-repairs
+shortName: Masonry Repairs
+icon: "🧱"
+description: >-
+  Book masonry repairs across Kashmir — wall cracks, damaged plaster, loose tiles, and patch-up work with verified local masons.
+seoTitle: Masonry Repairs | Panun Kaergar
+seoDescription: >-
+  Book masonry repair services across Kashmir. Wall cracks, plaster fixes, tile repairs & patch-ups from verified Panun Kaergar partners.
+parentSlug: masonry
+serviceList:
+  - Floor Tile Repair
+  - Plaster Repair
+  - Stair Repair
+  - Wall Crack Repair
+faqs:
+  - question: What masonry repairs can I book?
+    answer: >-
+      Common jobs include wall crack repairs, plaster patching, tile refixing, and small structural touch-ups.
+  - question: How fast can a mason visit?
+    answer: >-
+      Same-day or next-day slots are often available depending on your area and partner availability.
+  - question: How is pricing shared?
+    answer: >-
+      You get guidance by phone, WhatsApp, or form — or see estimates in the app before confirming.
+published: true
+sortOrder: 101

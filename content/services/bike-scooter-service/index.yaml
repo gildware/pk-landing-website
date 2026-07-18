@@ -1,0 +1,27 @@
+name: bike-scooter-service
+shortName: "Bike & Scooter Service"
+icon: "🛵"
+description: >-
+  Book bike and scooter service across Kashmir — servicing, repairs, and maintenance with verified local partners.
+seoTitle: Bike & Scooter Service | Panun Kaergar
+seoDescription: >-
+  Book bike & scooter service across Kashmir. Servicing and repairs by verified Panun Kaergar partners.
+parentSlug: vehicle-services
+serviceList:
+  - Bike General Service
+  - Scooter Periodic Service
+  - Bike & Scooter Wash
+  - Two-Wheeler Tyre Puncture Repair
+  - Two-Wheeler Battery Replacement
+faqs:
+  - question: What bike or scooter jobs can I book?
+    answer: >-
+      Servicing and repair options from our live catalog.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+  - question: Are partners verified?
+    answer: >-
+      Yes — partners are onboarded and rated after jobs.
+published: true
+sortOrder: 118

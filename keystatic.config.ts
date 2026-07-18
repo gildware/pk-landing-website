@@ -34,16 +34,16 @@ export default config({
         bookingUrl: fields.url({ label: 'Web booking URL' }),
         userPlayStoreUrl: fields.url({ label: 'Customer app — Play Store' }),
         userAppStoreUrl: fields.url({ label: 'Customer app — App Store' }),
-        providerPlayStoreUrl: fields.url({ label: 'Provider app — Play Store' }),
-        providerAppStoreUrl: fields.url({ label: 'Provider app — App Store' }),
+        providerPlayStoreUrl: fields.url({ label: 'Partner app — Play Store' }),
+        providerAppStoreUrl: fields.url({ label: 'Partner app — App Store' }),
         facebookUrl: fields.url({ label: 'Facebook' }),
         instagramUrl: fields.url({ label: 'Instagram' }),
         heroTitle: fields.text({ label: 'Homepage hero title' }),
         heroSubtitle: fields.text({ label: 'Homepage hero subtitle', multiline: true }),
         heroCtaBook: fields.text({ label: 'Hero CTA — Book', defaultValue: 'Book a service' }),
         heroCtaProvider: fields.text({
-          label: 'Hero CTA — Provider',
-          defaultValue: 'Become a provider',
+          label: 'Hero CTA — Partner',
+          defaultValue: 'Become a partner',
         }),
         businessHours: fields.text({
           label: 'Business hours',
@@ -109,6 +109,11 @@ export default config({
         description: fields.text({ label: 'Short description', multiline: true }),
         seoTitle: fields.text({ label: 'SEO title' }),
         seoDescription: fields.text({ label: 'SEO meta description', multiline: true }),
+        parentSlug: fields.text({
+          label: 'Parent category slug (optional)',
+          description:
+            'If set, this is a focused subcategory page and is hidden from top-level category lists.',
+        }),
         serviceList: fields.array(fields.text({ label: 'Sub-service' }), {
           label: 'What we offer',
         }),
@@ -227,29 +232,6 @@ export default config({
         rating: fields.integer({ label: 'Rating (1-5)', defaultValue: 5 }),
         published: fields.checkbox({ label: 'Published', defaultValue: true }),
         sortOrder: fields.integer({ label: 'Sort order', defaultValue: 0 }),
-      },
-    }),
-    blogPosts: collection({
-      label: 'Blog Posts',
-      slugField: 'title',
-      path: 'content/blog/*/',
-      schema: {
-        title: fields.slug({ name: { label: 'Post slug' } }),
-        displayTitle: fields.text({ label: 'Title' }),
-        description: fields.text({ label: 'SEO description', multiline: true }),
-        publishedAt: fields.date({ label: 'Published date' }),
-        author: fields.text({ label: 'Author', defaultValue: 'Panun Kaergar' }),
-        published: fields.checkbox({ label: 'Published', defaultValue: true }),
-        body: fields.markdoc({
-          label: 'Content',
-          extension: 'mdoc',
-          options: {
-            image: {
-              directory: 'public/images/blog/',
-              publicPath: '/images/blog/',
-            },
-          },
-        }),
       },
     }),
   },

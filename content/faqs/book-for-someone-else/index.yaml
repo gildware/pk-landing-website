@@ -1,0 +1,9 @@
+question: book-for-someone-else
+questionText: Can I book a service for someone else?
+answer: >-
+  Yes. Share the service needed, the address where work will happen, and a contact number for
+  that location. You can book through the app, website form, phone, or WhatsApp — just mention
+  that the job is for another household.
+category: Booking
+sortOrder: 16
+published: true

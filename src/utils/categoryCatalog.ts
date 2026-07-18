@@ -1,7 +1,10 @@
 /**
  * Shared presentation for service categories.
  * Marketing slugs are the URL source of truth; adminSlug maps to panun-admin parents.
+ * Categories + subcategories mirror the live panun-admin `categories` table only.
  */
+
+import { getServicePageMeta } from '@/utils/servicePageMeta';
 
 const CDN = 'https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod';
 
@@ -42,52 +45,84 @@ function sub(slug: string, name: string, file: string): SubCategoryPill {
 /** Subcategories from live panun-admin DB, keyed by marketing slug */
 export const categorySubcategories: Record<string, SubCategoryPill[]> = {
   carpentry: [
-    sub('carpentry-installation', 'Carpentry Installation', 'carpentry-installation/2026-07-08-6a4e20e74ace9.webp'),
-    sub('carpentry-repairs', 'Carpentry Repairs', 'carpentry-repairs/2026-07-08-6a4e20f04b517.webp'),
+    sub('carpentry-installation', 'Carpentry Installation', 'carpentry-installation/2026-07-08-6a4e20e363690.webp'),
+    sub('carpentry-repairs', 'Carpentry Repairs', 'carpentry-repairs/2026-07-08-6a4e20ebdfb4c.webp'),
+    sub('roofing-works', 'Roofing Works', 'roofing-works/2026-07-17-6a59b0fa66e93.webp'),
   ],
   plumbing: [
-    sub('plumbing-fixtures', 'Plumbing Fixtures', 'plumbing-fixtures/2026-07-08-6a4e2c36c6bbb.webp'),
-    sub('plumbing-installs', 'Plumbing Installs', 'plumbing-installs/2026-07-08-6a4e2c3c633b5.webp'),
+    sub('plumbing-fixtures', 'Plumbing Fixtures', 'plumbing-fixtures/2026-07-08-6a4e2c3455733.webp'),
+    sub('plumbing-installs', 'Plumbing Installs', 'plumbing-installs/2026-07-08-6a4e2c3a3a5ab.webp'),
   ],
   masonry: [
-    sub('masonry-installs', 'Masonry Installs', 'masonry-installs/2026-07-08-6a4e2c10bcbbb.webp'),
-    sub('masonry-repairs', 'Masonry Repairs', 'masonry-repairs/2026-07-08-6a4e2c16d7ec0.webp'),
+    sub('masonry-installs', 'Masonry Installs', 'masonry-installs/2026-07-08-6a4e2c0dd2475.webp'),
+    sub('masonry-repairs', 'Masonry Repairs', 'masonry-repairs/2026-07-08-6a4e2c1434738.webp'),
   ],
   electrician: [
-    sub('installation-services', 'Electricity Installation', 'installation-services/2026-07-08-6a4e2bdd53d96.webp'),
-    sub('repairing-services', 'Electricity Repair', 'repairing-services/2026-07-08-6a4e2be386fdb.webp'),
+    sub('installation-services', 'Electricity Installation', 'installation-services/2026-07-08-6a4e2bd98ecb0.webp'),
+    sub('repairing-services', 'Electricity Repair Services', 'repairing-services/2026-07-08-6a4e2be0eb8c9.webp'),
   ],
   'professional-cleaning': [
-    sub('home-cleaning', 'Home Cleaning', 'home-cleaning/2026-07-08-6a4e2bfd92933.webp'),
-    sub('office-commercial-cleaning', 'Office & Commercial', 'office-commercial-cleaning/2026-07-08-6a4e2c314674f.webp'),
-    sub('post-construction-cleaning', 'Post-Construction', 'post-construction-cleaning/2026-07-08-6a4e2c42a8c9c.webp'),
+    sub('home-cleaning', 'Home Cleaning', 'home-cleaning/2026-07-08-6a4e2bfb04c94.webp'),
+    sub('office-commercial-cleaning', 'Office & Commercial Cleaning', 'office-commercial-cleaning/2026-07-08-6a4e2c2ec105d.webp'),
+    sub('post-construction-cleaning', 'Post-Construction Cleaning', 'post-construction-cleaning/2026-07-08-6a4e2c3fcc8c1.webp'),
   ],
   'dry-clean-laundry': [
-    sub('garment-care', 'Garment Care', 'dry-clean/2026-07-11-6a521bfa82b7f.webp'),
-    sub('household-fabric-care', 'Household Fabric Care', 'wash-laundry/2026-07-11-6a521c03e6ecd.webp'),
-    sub('premium-fabric-care', 'Premium Fabric Care', 'premium-fabric-care/2026-07-08-6a4e2c48b10f8.webp'),
+    sub('dry-clean', 'Dry Clean', 'dry-clean/2026-07-11-6a521bf5f10ed.webp'),
+    sub('wash-laundry', 'Laundry', 'wash-laundry/2026-07-11-6a521bff58f89.webp'),
   ],
   painting: [
-    sub('exterior-painting', 'Exterior Painting', 'exterior-painting/2026-07-08-6a4e2be98a76e.webp'),
-    sub('interior-painting', 'Interior Painting', 'interior-painting/2026-07-08-6a4e2c0ace82d.webp'),
+    sub('exterior-painting', 'Exterior Painting', 'exterior-painting/2026-07-08-6a4e2be6bdabd.webp'),
+    sub('interior-painting', 'Interior Painting', 'interior-painting/2026-07-08-6a4e2c0718699.webp'),
   ],
   'home-appliances': [
-    sub('air-conditioners', 'Air Conditioners', 'air-conditioners/2026-07-08-6a4e25956ace1.webp'),
-    sub('refrigerators', 'Refrigerators', 'refrigerators/2026-07-08-6a4e25c605988.webp'),
-    sub('washing-machine', 'Washing Machine', 'washing-machine/2026-07-08-6a4e25d94ec98.webp'),
-    sub('led-smart-tv', 'LED / Smart TV', 'led-smart-tv/2026-07-08-6a4e25bcaa606.webp'),
-    sub('geysers', 'Geysers', 'geysers/2026-07-08-6a4e25b35e02e.webp'),
-    sub('battery-inverters', 'Battery & Inverters', 'battery-inverters/2026-07-08-6a4e259f43b8a.webp'),
+    sub('air-conditioners', 'Air Conditioners', 'air-conditioners/2026-07-08-6a4e25915f04e.webp'),
+    sub('battery-inverters', 'Battery & Inverters', 'battery-inverters/2026-07-08-6a4e259af2536.webp'),
+    sub('cctv', 'CCTV', 'cctv/2026-07-08-6a4e25a47c2de.webp'),
+    sub('geysers', 'Geysers', 'geysers/2026-07-08-6a4e25ae60556.webp'),
+    sub('led-smart-tv', 'LED / Smart TV', 'led-smart-tv/2026-07-08-6a4e25b843be1.webp'),
+    sub('refrigerators', 'Refrigerators', 'refrigerators/2026-07-08-6a4e25c1c96a5.webp'),
+    sub('induction-heaters', 'Small Appliances', 'induction-heaters/2026-07-08-6a4e25cad58b5.webp'),
+    sub('washing-machine', 'Washing Machine', 'washing-machine/2026-07-08-6a4e25d468714.webp'),
+    sub('ro-purifier', 'Water Purifier', 'ro-purifier/2026-07-08-6a4e25dda37f4.webp'),
   ],
   'mens-salon': [
-    sub('mens-beard-shaving', "Beard & Shaving", 'mens-beard-shaving/2026-07-08-6a4e2c1cc8b0e.webp'),
-    sub('mens-hair-services', 'Hair Services', 'mens-hair-services/2026-07-08-6a4e2c2386126.webp'),
-    sub('mens-skin-grooming-care', 'Skin & Grooming', 'mens-skin-grooming-care/2026-07-08-6a4e2c2a749b1.webp'),
+    sub('mens-beard-shaving', "Men's Beard & Shaving", 'mens-beard-shaving/2026-07-08-6a4e2c1a70c7f.webp'),
+    sub('mens-hair-services', "Men's Hair Services", 'mens-hair-services/2026-07-08-6a4e2c21000da.webp'),
+    sub('mens-skin-grooming-care', "Men's Skin & Grooming Care", 'mens-skin-grooming-care/2026-07-08-6a4e2c2789744.webp'),
   ],
   'womens-salon': [
-    sub('beauty-grooming', 'Beauty & Grooming', 'beauty-grooming/2026-07-08-6a4e2bd46b872.webp'),
-    sub('hair-care-services', 'Hair Care', 'hair-care-services/2026-07-08-6a4e2bf7c44b9.webp'),
-    sub('skin-facial-care', 'Skin & Facial', 'skin-facial-care/2026-07-08-6a4e2c4f3cd88.webp'),
+    sub('beauty-grooming', 'Beauty & Grooming', 'beauty-grooming/2026-07-08-6a4e2bd193c90.webp'),
+    sub('hair-care-services', 'Hair Care Services', 'hair-care-services/2026-07-08-6a4e2bf40f2dd.webp'),
+    sub('skin-facial-care', 'Skin & Facial Care', 'skin-facial-care/2026-07-08-6a4e2c4cd1cc9.webp'),
+  ],
+  'pest-control': [
+    sub('home-pest-control', 'Home Pest Control', 'home-pest-control/2026-07-11-6a52331934e04.webp'),
+    sub('office-pest-control', 'Office Pest Control', 'office-pest-control/2026-07-11-6a52331dc0094.webp'),
+    sub('restaurant-pest-control', 'Restaurant Pest Control', 'restaurant-pest-control/2026-07-11-6a523322b9e01.webp'),
+  ],
+  gardening: [
+    sub('lawn-grass-care', 'Lawn & Grass Care', 'lawn-grass-care/2026-07-13-6a54a2fbe537d.webp'),
+    sub('planting-soil-care', 'Planting & Soil Care', 'planting-soil-care/2026-07-13-6a54a303ba776.webp'),
+    sub('pruning-trimming', 'Pruning & Trimming', 'pruning-trimming/2026-07-13-6a54a30b0555b.webp'),
+    sub('garden-cleanup-maintenance', 'Garden Cleanup & Maintenance', 'garden-cleanup-maintenance/2026-07-13-6a54a2f40d8c0.webp'),
+  ],
+  'aluminium-steel-works': [
+    sub('metal-works-installation', 'Metal Works Installation', 'metal-works-installation/2026-07-12-6a5297813acf4.webp'),
+    sub('metal-works-repairs', 'Metal Works Repairs', 'metal-works-repairs/2026-07-12-6a52978525ea0.webp'),
+    sub('metal-works-fabrication', 'Metal Works Fabrication', 'metal-works-fabrication/2026-07-12-6a52977d58e7b.webp'),
+  ],
+  'interior-decor': [
+    sub('home-decor-consultation', 'Home Decor Consultation', 'home-decor-consultation/2026-07-13-6a549f7d3cec4.webp'),
+    sub('commercial-decor-styling', 'Commercial Decor Styling', 'commercial-decor-styling/2026-07-13-6a549f7628491.webp'),
+  ],
+  'pet-grooming': [
+    sub('dog-grooming', 'Dog Grooming', 'dog-grooming/2026-07-12-6a528e24df4d0.webp'),
+    sub('cat-grooming', 'Cat Grooming', 'cat-grooming/2026-07-12-6a528e21de347.webp'),
+  ],
+  'vehicle-services': [
+    sub('car-wash-detailing', 'Car Wash & Detailing', 'car-wash-detailing/2026-07-13-6a54a29fda874.webp'),
+    sub('car-repair-maintenance', 'Car Repair & Maintenance', 'car-repair-maintenance/2026-07-13-6a54a2992013a.webp'),
+    sub('bike-scooter-service', 'Bike & Scooter Service', 'bike-scooter-service/2026-07-13-6a54a29233240.webp'),
   ],
 };
 
@@ -149,7 +184,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     blurb:
       'Book a verified electrician who puts safety first. Tell us what’s failing, choose a time, and get a technician to your door for installs or repairs.',
     title: 'Wiring, fans & switches',
-    meta: 'Safety-first providers',
+    meta: 'Safety-first partners',
     prompt: 'Wiring, switches, fans, and safe electrical repairs at home.',
     icon: '/images/categories/electrician.png',
     soft: '#fef08a',
@@ -175,6 +210,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
   },
   'pest-control': {
     slug: 'pest-control',
+    adminSlug: 'pest-control',
     label: 'Pest control',
     heading: 'Pests in the house?',
     blurb:
@@ -194,7 +230,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     label: 'Dry clean & laundry',
     heading: 'Need dry clean or laundry?',
     blurb:
-      'Book care for suits, sarees, everyday wash & iron, and delicate fabrics. Ask about pickup in your area, and share fabric details so the right provider handles your clothes.',
+      'Book care for suits, sarees, everyday wash & iron, and delicate fabrics. Ask about pickup in your area, and share fabric details so the right partner handles your clothes.',
     title: 'Wash, iron & dry clean',
     meta: 'Pickup where available',
     prompt: 'Dry cleaning and laundry for suits, sarees, and everyday clothes.',
@@ -238,6 +274,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
   },
   gardening: {
     slug: 'gardening',
+    adminSlug: 'gardening',
     label: 'Gardening',
     heading: 'Garden looking overgrown?',
     blurb:
@@ -285,6 +322,7 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
   },
   'interior-decor': {
     slug: 'interior-decor',
+    adminSlug: 'interior-decor',
     label: 'Interior decor',
     heading: 'Refreshing a room?',
     blurb:
@@ -298,20 +336,52 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     accent: '#202048',
     scatter: { top: '44%', right: '1%' },
   },
-  'tank-cleaning': {
-    slug: 'tank-cleaning',
-    adminSlug: 'tamkey-cleaning',
-    label: 'Tank cleaning',
-    heading: 'Time to clean the tank?',
+  'aluminium-steel-works': {
+    slug: 'aluminium-steel-works',
+    adminSlug: 'aluminium-steel-works',
+    label: 'Aluminium & steel',
+    heading: 'Need metal work done?',
     blurb:
-      'Book overhead or underground water tank cleaning for safer water at home. Share access details when you request, and keep household water fresher with regular care.',
-    title: 'Water tank cleaning',
-    meta: 'Home tank service',
-    prompt: 'Book water tank cleaning for safer, cleaner household water storage.',
-    icon: '/images/categories/cleaning.png',
-    soft: '#a5f3fc',
-    mid: '#22d3ee',
-    accent: '#0e7490',
+      'Book aluminium and steel installation, repairs, and fabrication for windows, doors, grills, and custom metal work. Describe the job and schedule a verified fabricator.',
+    title: 'Install, repair & fabricate',
+    meta: 'Windows, doors & grills',
+    prompt: 'Aluminium and steel installation, repairs, and custom fabrication.',
+    icon: '/images/categories/aluminium-steel-works.webp',
+    soft: '#cbd5e1',
+    mid: '#64748b',
+    accent: '#1e293b',
+    scatter: { bottom: '18%', right: '24%' },
+  },
+  'pet-grooming': {
+    slug: 'pet-grooming',
+    adminSlug: 'pet-grooming',
+    label: 'Pet grooming',
+    heading: 'Pet need a groom?',
+    blurb:
+      'Book dog or cat grooming at home — baths, trims, and coat care with gentle handling. Share your pet’s breed and needs when you book.',
+    title: 'Dog & cat grooming',
+    meta: 'Gentle home visits',
+    prompt: 'Dog and cat grooming with verified local pet care partners.',
+    icon: '/images/categories/pet-grooming.webp',
+    soft: '#fde68a',
+    mid: '#f59e0b',
+    accent: '#b45309',
+    scatter: { bottom: '22%', left: '30%' },
+  },
+  'vehicle-services': {
+    slug: 'vehicle-services',
+    adminSlug: 'vehicle-services',
+    label: 'Vehicle services',
+    heading: 'Car or bike need care?',
+    blurb:
+      'Book car wash & detailing, car repair & maintenance, or bike & scooter service. Share the vehicle type and issue, then pick a convenient slot.',
+    title: 'Wash, repair & bike care',
+    meta: 'Cars, bikes & scooters',
+    prompt: 'Car wash, car repair, and bike & scooter service near you.',
+    icon: '/images/categories/vehicle-services.webp',
+    soft: '#bfdbfe',
+    mid: '#60a5fa',
+    accent: '#1d4ed8',
     scatter: { bottom: '14%', right: '34%' },
   },
 };
@@ -324,13 +394,21 @@ export interface ServiceLike {
 }
 
 export function enrichCategory(service: ServiceLike, areaName = 'Srinagar') {
-  const visual = categoryCatalog[service.slug];
-  const label = visual?.label ?? service.shortName;
-  const parentIcon = visual?.icon ?? '/images/categories/plumbing.png';
+  const pageMeta = getServicePageMeta(service.slug);
+  const parentSlug = pageMeta?.parentSlug ?? service.slug;
+  const visual = categoryCatalog[service.slug] ?? categoryCatalog[parentSlug];
+  const label = service.shortName || visual?.label || service.slug;
+  const parentIcon =
+    pageMeta?.icon ?? visual?.icon ?? categoryCatalog[parentSlug]?.icon ?? '/images/categories/plumbing.png';
 
-  const fromAdmin = categorySubcategories[service.slug];
+  const fromAdmin = categorySubcategories[service.slug] ?? categorySubcategories[parentSlug];
+  const filteredSubs =
+    pageMeta?.liveSubSlugs?.length && fromAdmin
+      ? fromAdmin.filter((s) => pageMeta.liveSubSlugs!.includes(s.slug))
+      : fromAdmin;
+
   const subcategories: SubCategoryPill[] =
-    fromAdmin ??
+    filteredSubs ??
     (service.serviceList ?? []).slice(0, 6).map((name, i) => ({
       slug: `${service.slug}-${i}`,
       name,
@@ -345,7 +423,7 @@ export function enrichCategory(service: ServiceLike, areaName = 'Srinagar') {
     heading: visual?.heading ?? `Need ${service.shortName.toLowerCase()}?`,
     blurb:
       visual?.blurb ??
-      `Book verified ${service.shortName.toLowerCase()} providers across ${areaName}. Share what you need, pick a time that works, and get clear next steps by phone, WhatsApp, website, or the app.`,
+      `Book verified ${service.shortName.toLowerCase()} partners across ${areaName}. Share what you need, pick a time that works, and get clear next steps by phone, WhatsApp, website, or the app.`,
     /** Card title uses category name */
     title: label,
     meta: visual?.meta ?? 'Verified local pros',
@@ -356,6 +434,7 @@ export function enrichCategory(service: ServiceLike, areaName = 'Srinagar') {
     accent: visual?.accent ?? '#202048',
     scatter: visual?.scatter,
     adminSlug: visual?.adminSlug,
+    parentSlug: pageMeta?.parentSlug,
     subcategories,
   };
 }
@@ -365,5 +444,12 @@ export function enrichCategories(services: ServiceLike[] | undefined, areaName =
 }
 
 export function categoryIcon(slug: string) {
-  return categoryCatalog[slug]?.icon ?? '/images/categories/plumbing.png';
+  const pageMeta = getServicePageMeta(slug);
+  if (pageMeta?.icon) return pageMeta.icon;
+  const parent = pageMeta?.parentSlug;
+  return (
+    categoryCatalog[slug]?.icon ??
+    (parent ? categoryCatalog[parent]?.icon : undefined) ??
+    '/images/categories/plumbing.png'
+  );
 }

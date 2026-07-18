@@ -1,0 +1,111 @@
+---
+import Icon from '@/components/Icon.astro';
+import { areaImage } from '@/utils/areaVisuals';
+import { areaPath } from '@/utils/areaPaths';
+
+interface Props {
+  slug: string;
+  displayName: string;
+  region: string;
+  description: string;
+  neighborhoods?: string[];
+  serviceLabels?: string[];
+  class?: string;
+}
+
+const {
+  slug,
+  displayName,
+  region,
+  description,
+  neighborhoods = [],
+  serviceLabels = [],
+  class: className = '',
+} = Astro.props;
+
+const image = areaImage(slug);
+const href = areaPath(slug);
+const neighborhoodCount = neighborhoods.length;
+---
+
+<a
+  href={href}
+  class:list={[
+    'area-card reveal-scale group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition duration-500 ease-smooth hover:-translate-y-1.5 hover:border-brand-200 hover:shadow-xl',
+    className,
+  ]}
+>
+  <div class="relative aspect-[16/10] overflow-hidden bg-slate-200">
+    <img
+      src={image}
+      alt={`Home services in ${displayName}, Kashmir`}
+      width="640"
+      height="400"
+      loading="lazy"
+      decoding="async"
+      class="h-full w-full object-cover transition duration-700 ease-smooth group-hover:scale-[1.06]"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-brand-950/80 via-brand-950/25 to-transparent"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 sm:p-5">
+      <div class="min-w-0">
+        <h2 class="truncate text-xl font-extrabold tracking-tight text-white sm:text-2xl">
+          {displayName}
+        </h2>
+        <p class="mt-0.5 truncate text-xs font-medium text-white/75 sm:text-sm">{region}</p>
+      </div>
+      <span
+        class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/95 text-brand-700 shadow-md ring-1 ring-black/5 transition duration-300 group-hover:scale-110"
+        aria-hidden="true"
+      >
+        <Icon name="map-pin" size={18} />
+      </span>
+    </div>
+  </div>
+
+  <div class="flex flex-1 flex-col p-5 sm:p-6">
+    <p class="line-clamp-2 text-sm leading-relaxed text-slate-600">{description}</p>
+
+    {
+      serviceLabels.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-1.5">
+          {serviceLabels.slice(0, 4).map((label) => (
+            <li class="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-700">
+              {label}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <div class="mt-auto flex items-center justify-between gap-3 pt-5">
+      {
+        neighborhoodCount > 0 ? (
+          <span class="text-xs font-medium text-slate-500">
+            {neighborhoodCount} localities covered
+          </span>
+        ) : (
+          <span class="text-xs font-medium text-slate-500">District-wide coverage</span>
+        )
+      }
+      <span class="inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+        Explore
+        <Icon
+          name="chevron-right"
+          size={16}
+          class="transition-transform duration-300 ease-smooth group-hover:translate-x-1"
+        />
+      </span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .area-card:focus-visible {
+    outline: 2px solid #1e3a8a;
+    outline-offset: 3px;
+  }
+</style>

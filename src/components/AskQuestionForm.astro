@@ -1,0 +1,270 @@
+---
+import type { BookingSite } from '@/utils/booking';
+import WhatsAppButton from '@/components/WhatsAppButton.astro';
+
+interface Props {
+  site: BookingSite;
+  formId?: string;
+}
+
+const { site, formId = 'ask-question-form' } = Astro.props;
+
+const inputClass =
+  'field-input mt-1 w-full rounded-xl border border-slate-400 bg-white px-3 py-2.5 text-sm text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200';
+const textareaClass = `${inputClass} resize-y py-3`;
+const labelClass = 'block text-sm font-medium text-slate-800';
+const errorClass = 'field-error mt-1 text-xs text-red-600';
+---
+
+<div class="ask-question-form">
+  <form id={formId} novalidate class="space-y-4">
+    <div data-field="name">
+      <label for={`${formId}-name`} class={labelClass}>Your name *</label>
+      <input
+        id={`${formId}-name`}
+        name="name"
+        type="text"
+        autocomplete="name"
+        class={inputClass}
+        placeholder="Full name"
+      />
+      <p class={`${errorClass} hidden`} role="alert"></p>
+    </div>
+
+    <div data-field="phone">
+      <label for={`${formId}-phone`} class={labelClass}>Phone *</label>
+      <input
+        id={`${formId}-phone`}
+        name="phone"
+        type="tel"
+        autocomplete="tel"
+        class={inputClass}
+        placeholder="+91 98765 43210"
+      />
+      <p class={`${errorClass} hidden`} role="alert"></p>
+    </div>
+
+    <div data-field="email">
+      <label for={`${formId}-email`} class={labelClass}>Email <span class="font-normal text-slate-500">(optional)</span></label>
+      <input
+        id={`${formId}-email`}
+        name="email"
+        type="email"
+        autocomplete="email"
+        class={inputClass}
+        placeholder="you@example.com"
+      />
+      <p class={`${errorClass} hidden`} role="alert"></p>
+    </div>
+
+    <div data-field="question">
+      <label for={`${formId}-question`} class={labelClass}>Your question *</label>
+      <textarea
+        id={`${formId}-question`}
+        name="question"
+        rows="4"
+        class={textareaClass}
+        placeholder="What would you like to know about booking or services?"
+      ></textarea>
+      <p class={`${errorClass} hidden`} role="alert"></p>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <button
+        type="submit"
+        data-action="whatsapp"
+        data-submit-label="Send on WhatsApp"
+        class="w-full rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        Send on WhatsApp
+      </button>
+      <button
+        type="button"
+        data-action="email"
+        class="w-full rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand-300 hover:bg-brand-50"
+      >
+        Send by email
+      </button>
+    </div>
+    <p id={`${formId}-submit-error`} class="hidden text-center text-xs text-red-600 sm:text-sm" role="alert"></p>
+    <p class="text-center text-[11px] text-slate-500 sm:text-xs">
+      Or call <a href={`tel:${site.phone}`} class="font-medium text-brand-700">{site.phone}</a>
+    </p>
+  </form>
+
+  <div id={`${formId}-success`} class="mt-2 hidden rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-900">
+    <p class="font-bold">Thanks — we got your question!</p>
+    <p class="mt-1">Our team will reply by call, WhatsApp, or email shortly.</p>
+    <div class="mt-3 flex flex-wrap gap-2">
+      <a href={`tel:${site.phone}`} class="rounded-lg bg-white px-3 py-1.5 text-sm font-semibold text-brand-700 shadow-sm">Call</a>
+      <WhatsAppButton id={`${formId}-success-wa`} href="#" label="Follow up on WhatsApp" class="px-3 py-1.5 text-sm" />
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ formId, whatsapp: site.whatsapp, email: site.email }}>
+  const form = document.getElementById(formId);
+  const success = document.getElementById(`${formId}-success`);
+  const successWa = document.getElementById(`${formId}-success-wa`);
+  const submitError = document.getElementById(`${formId}-submit-error`);
+  const submitButton = form?.querySelector('button[data-action="whatsapp"]');
+
+  const errorBorderClasses = ['border-red-500', 'focus:border-red-500', 'focus:ring-red-200'];
+  const normalBorderClasses = ['border-slate-400', 'focus:border-brand-500', 'focus:ring-brand-200'];
+
+  function digits(w) {
+    return String(w).replace(/\D/g, '');
+  }
+
+  function getData(formEl) {
+    return {
+      name: formEl.name.value.trim(),
+      phone: formEl.phone.value.trim(),
+      email: formEl.email.value.trim(),
+      question: formEl.question.value.trim(),
+    };
+  }
+
+  function buildMessage(data) {
+    return [
+      'Hello Panun Kaergar, I have a question.',
+      `Name: ${data.name}`,
+      `Phone: ${data.phone}`,
+      data.email ? `Email: ${data.email}` : '',
+      `Question: ${data.question}`,
+      '',
+      'Sent via panunkaergar.com FAQ page',
+    ]
+      .filter(Boolean)
+      .join('\n');
+  }
+
+  function setFieldError(fieldName, message) {
+    const group = form?.querySelector(`[data-field="${fieldName}"]`);
+    const input = form?.elements.namedItem(fieldName);
+    const errorEl = group?.querySelector('.field-error');
+    if (!input || !errorEl) return;
+    input.classList.remove(...normalBorderClasses);
+    input.classList.add(...errorBorderClasses);
+    input.setAttribute('aria-invalid', 'true');
+    errorEl.textContent = message;
+    errorEl.classList.remove('hidden');
+  }
+
+  function clearFieldError(fieldName) {
+    const group = form?.querySelector(`[data-field="${fieldName}"]`);
+    const input = form?.elements.namedItem(fieldName);
+    const errorEl = group?.querySelector('.field-error');
+    if (!input || !errorEl) return;
+    input.classList.remove(...errorBorderClasses);
+    input.classList.add(...normalBorderClasses);
+    input.removeAttribute('aria-invalid');
+    errorEl.textContent = '';
+    errorEl.classList.add('hidden');
+  }
+
+  function clearAllErrors() {
+    for (const fieldName of ['name', 'phone', 'email', 'question']) {
+      clearFieldError(fieldName);
+    }
+  }
+
+  function validateForm() {
+    const data = getData(form);
+    const errors = {};
+
+    if (!data.name) errors.name = 'Please enter your name.';
+    if (!data.phone) {
+      errors.phone = 'Please enter your phone number.';
+    } else if (digits(data.phone).length < 10) {
+      errors.phone = 'Enter a valid 10-digit phone number.';
+    }
+    if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      errors.email = 'Enter a valid email address.';
+    }
+    if (!data.question || data.question.length < 8) {
+      errors.question = 'Please write a short question (at least a few words).';
+    }
+
+    return errors;
+  }
+
+  function showErrors(errors) {
+    clearAllErrors();
+    for (const [fieldName, message] of Object.entries(errors)) {
+      setFieldError(fieldName, message);
+    }
+    const firstInvalid = Object.keys(errors)[0];
+    form?.elements.namedItem(firstInvalid)?.focus();
+  }
+
+  for (const fieldName of ['name', 'phone', 'email', 'question']) {
+    form?.elements.namedItem(fieldName)?.addEventListener('input', () => clearFieldError(fieldName));
+  }
+
+  function clearSubmitError() {
+    if (!submitError) return;
+    submitError.textContent = '';
+    submitError.classList.add('hidden');
+  }
+
+  function showSubmitError(message) {
+    if (!submitError) return;
+    submitError.textContent = message;
+    submitError.classList.remove('hidden');
+  }
+
+  function setSubmitting(isSubmitting) {
+    if (!submitButton) return;
+    const defaultLabel = submitButton.dataset.submitLabel || 'Send question';
+    submitButton.disabled = isSubmitting;
+    submitButton.textContent = isSubmitting ? 'Sending...' : defaultLabel;
+  }
+
+  function showSuccess(waUrl) {
+    form.classList.add('hidden');
+    success?.classList.remove('hidden');
+    if (successWa) successWa.href = waUrl;
+  }
+
+  form?.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn || !form.contains(btn)) return;
+    e.preventDefault();
+
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      showErrors(errors);
+      return;
+    }
+
+    clearSubmitError();
+    const data = getData(form);
+    const msg = buildMessage(data);
+    const waUrl = `https://wa.me/${digits(whatsapp)}?text=${encodeURIComponent(msg)}`;
+
+    if (btn.dataset.action === 'email') {
+      setSubmitting(true);
+      try {
+        const subject = encodeURIComponent(`FAQ question from ${data.name}`);
+        const body = encodeURIComponent(msg);
+        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        showSuccess(waUrl);
+      } catch {
+        showSubmitError('Could not open email. Please try WhatsApp or call us.');
+      } finally {
+        setSubmitting(false);
+      }
+      return;
+    }
+
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+    showSuccess(waUrl);
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const waBtn = form.querySelector('button[data-action="whatsapp"]');
+    waBtn?.click();
+  });
+</script>

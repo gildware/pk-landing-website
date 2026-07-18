@@ -1,0 +1,1163 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import StoreButton from '@/components/StoreButton.astro';
+import PartnerApplicationForm from '@/components/PartnerApplicationForm.astro';
+import JoinProcessStack from '@/components/JoinProcessStack.astro';
+import Icon from '@/components/Icon.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings, getServices } from '@/utils/reader';
+import { categoryIcon } from '@/utils/categoryCatalog';
+import { whatsappHref, partnerWhatsAppMessage } from '@/utils/booking';
+
+const site = await getSiteSettings();
+const services = await getServices();
+const categories = services.map((s) => ({
+  label: s.shortName,
+  image: categoryIcon(s.slug),
+  slug: s.slug,
+}));
+const categoryLoop = [...categories, ...categories];
+const partnerWhatsAppHref = whatsappHref(site.whatsapp, partnerWhatsAppMessage());
+
+const meta = buildMeta({
+  title: 'Become a Service Partner in Srinagar | Panun Kaergar',
+  description:
+    'Join Panun Kaergar as a plumber, electrician, or home service partner in Srinagar. Get booking requests through the Partner app.',
+  path: '/become-a-partner',
+});
+
+const reasons = [
+  {
+    icon: 'map-pin',
+    title: 'More local customers',
+    description:
+      'Homes across Srinagar already book through Panun Kaergar. Join once and get requests matched to the services you offer — without chasing leads on your own.',
+  },
+  {
+    icon: 'smartphone',
+    title: 'Work from one app',
+    description:
+      'Accept jobs, update your schedule, and track earnings in the Partner app. Spend less time coordinating and more time on the work itself.',
+  },
+  {
+    icon: 'shield-check',
+    title: 'Trusted local brand',
+    description:
+      'Customers book verified partners. Your profile, ratings, and completed jobs help you stand out as a reliable professional in Kashmir.',
+  },
+];
+
+const benefits = [
+  {
+    icon: 'target',
+    title: 'Matched booking requests',
+    description:
+      'Receive jobs for the categories and areas you choose — carpentry, plumbing, electrical, cleaning, salon, appliances, and more.',
+    highlight: 'Jobs matched to your skills',
+    detail:
+      'Set your categories and service areas once. Panun Kaergar routes nearby booking requests to you so you spend less time hunting for work.',
+    image: '/images/partner-benefits/matched-booking-requests.webp',
+    imageAlt: 'Partner receiving a matched booking request on their phone',
+  },
+  {
+    icon: 'clock',
+    title: 'Flexible schedule',
+    description:
+      'Decide when you are available. Accept the jobs that fit your day and manage your calendar from the Partner app.',
+    highlight: 'Work on your terms',
+    detail:
+      'Go online when you want jobs, stay offline when you need a break. Accept only the requests that fit your day.',
+    image: '/images/partner-benefits/flexible-schedule.webp',
+    imageAlt: 'Partner setting availability on a schedule calendar',
+  },
+  {
+    icon: 'star',
+    title: 'Reviews that build trust',
+    description:
+      'Happy customers leave ratings that grow your reputation and help you win more work over time.',
+    highlight: 'Reputation that compounds',
+    detail:
+      'Every completed job can earn a rating. Strong reviews help customers choose you next — and unlock steadier demand.',
+    image: '/images/partner-benefits/reviews-trust.webp',
+    imageAlt: 'Happy customer leaving a five-star review after a job',
+  },
+  {
+    icon: 'check',
+    title: 'Clear payments',
+    description:
+      'See job value, commission, and settlements in one place so you always know what you earned.',
+    highlight: 'Earnings you can track',
+    detail:
+      'From accepted job to settlement, amounts stay visible in the Partner app — no guessing what you made this week.',
+    image: '/images/partner-benefits/clear-payments.webp',
+    imageAlt: 'Partner checking earnings and settlement status on a phone',
+  },
+  {
+    icon: 'message',
+    title: 'Support when you need it',
+    description:
+      'Our team helps with onboarding, verification questions, and day-to-day partner support.',
+    highlight: 'Local team behind you',
+    detail:
+      'Get help with profile setup, verification, and everyday questions so you can stay focused on the job.',
+    image: '/images/partner-benefits/support.webp',
+    imageAlt: 'Partner getting help from the Panun Kaergar support team',
+  },
+  {
+    icon: 'home',
+    title: 'Grow your trade',
+    description:
+      'Start with one skill or add more categories later. Use the platform to expand the services you offer locally.',
+    highlight: 'Expand as you grow',
+    detail:
+      'Begin with what you know best, then add categories when you are ready — all from one partner profile in Srinagar.',
+    image: '/images/partner-benefits/grow-trade.webp',
+    imageAlt: 'Skilled professional expanding tools and services for more trade work',
+  },
+  {
+    icon: 'shield-check',
+    title: 'Verified partner profile',
+    description:
+      'Build trust with a verified profile so customers know they are booking a checked local professional.',
+    highlight: 'Trust customers can see',
+    detail:
+      'Once approved, your verified badge and profile details help homes in Srinagar choose you with confidence.',
+    image: '/images/partner-benefits/verified-profile.webp',
+    imageAlt: 'Verified partner profile with trust badge on a phone',
+  },
+  {
+    icon: 'smartphone',
+    title: 'Work from one app',
+    description:
+      'Accept jobs, update availability, and track earnings in the Partner app — without juggling calls and notes.',
+    highlight: 'Everything in your pocket',
+    detail:
+      'Manage requests, schedule, and payments in one place so you spend less time coordinating and more time on the job.',
+    image: '/images/partner-benefits/work-from-one-app.webp',
+    imageAlt: 'Partner managing bookings, schedule, and earnings in one app',
+  },
+];
+
+const steps = [
+  {
+    n: 1,
+    title: 'Download the Partner app',
+    desc: 'Free on Google Play and the App Store.',
+    image: '/images/join-process/01-download.webp',
+    imageAlt: 'Partner downloading the Panun Kaergar Partner app from Google Play and the App Store',
+  },
+  {
+    n: 2,
+    title: 'Sign up and add your details',
+    desc: 'Tell us what services you offer and where you work.',
+    image: '/images/join-process/02-signup.webp',
+    imageAlt: 'Partner creating a profile with services offered and work area in Srinagar',
+  },
+  {
+    n: 3,
+    title: 'Get verified',
+    desc: 'Our team checks your profile before you go live.',
+    image: '/images/join-process/03-verified.webp',
+    imageAlt: 'Partner profile approved and verified before going live',
+  },
+  {
+    n: 4,
+    title: 'Choose your service categories',
+    desc: 'Pick carpentry, plumbing, electrician, cleaning, salon, appliances, or other categories to receive matching bookings.',
+    image: '/images/join-process/04-categories.webp',
+    imageAlt: 'Partner selecting service categories like carpentry, plumbing, and electrician',
+  },
+  {
+    n: 5,
+    title: 'Accept jobs and earn',
+    desc: 'Receive requests, complete jobs, and track payments in the app.',
+    image: '/images/join-process/05-accept-earn.webp',
+    imageAlt: 'Partner accepting a booking request and tracking earnings in the app',
+  },
+];
+
+---
+
+<PageLayout meta={meta} hideStickyCta>
+  <!-- Hero: match home page layout -->
+  <section
+    class="relative overflow-hidden bg-brand-900 bg-gradient-to-br from-brand-900 via-brand-600 to-brand-700 text-white"
+    style="background-color: #121228; color: #ffffff;"
+  >
+    <div class="hero-blob -left-24 top-0 h-72 w-72 bg-brand-500/30" style="animation-delay: 0s;" aria-hidden="true"></div>
+    <div class="hero-blob -right-16 bottom-0 h-96 w-96 bg-accent/20" style="animation-delay: -5s;" aria-hidden="true"></div>
+    <div class="hero-blob left-1/3 top-1/2 h-48 w-48 bg-white/10" style="animation-delay: -9s;" aria-hidden="true"></div>
+
+    <div class="relative mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-9 lg:py-14">
+      <div class="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-start lg:gap-12">
+        <h1
+          class="animate-fade-up text-xl font-extrabold leading-snug text-white sm:text-2xl lg:col-start-1 lg:row-start-1 lg:text-[2.85rem] lg:leading-[1.1]"
+          style="color: #ffffff;"
+        >
+          Join as a service partner
+        </h1>
+
+        <div class="lg:col-start-2 lg:row-start-1 lg:row-span-2">
+          <div
+            class="animate-slide-right stagger-2 scroll-mt-24 rounded-2xl bg-white p-4 text-slate-900 shadow-2xl transition-shadow duration-500 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)] sm:p-6"
+            id="partner-form"
+            style="background-color: #ffffff; color: #0f172a;"
+          >
+            <PartnerApplicationForm
+              site={site}
+              services={services}
+              formId="hero-partner-form"
+              heading="Apply to join"
+              variant="compact"
+            />
+          </div>
+        </div>
+
+        <div class="lg:col-start-1 lg:row-start-2">
+          <p class="animate-fade-up stagger-1 hidden items-center rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90 backdrop-blur-sm sm:inline-flex">
+            For skilled professionals in Kashmir
+          </p>
+          <p class="animate-fade-up stagger-2 mt-3 hidden max-w-xl text-lg leading-relaxed text-white/85 lg:block">
+            Get verified booking requests in Srinagar. Call, WhatsApp, or download the Partner app.
+          </p>
+
+          <ul class="animate-fade-up stagger-3 mt-6 hidden flex-wrap gap-x-6 gap-y-3 text-sm text-white/80 lg:flex">
+            <li class="flex items-center gap-2">
+              <Icon name="check" size={17} class="text-white" />
+              Free to apply
+            </li>
+            <li class="animate-fade-in stagger-4 flex items-center gap-2">
+              <Icon name="map-pin" size={17} class="text-white" />
+              Local jobs in Srinagar
+            </li>
+            <li class="animate-fade-in stagger-5 flex items-center gap-2">
+              <Icon name="shield-check" size={17} class="text-white" />
+              Verified partner profile
+            </li>
+          </ul>
+
+          <div class="animate-fade-up stagger-4 mt-6 flex flex-wrap gap-3">
+            <a
+              href={`tel:${site.phone}`}
+              class="inline-flex items-center gap-2 rounded-xl border-2 border-white/40 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10"
+            >
+              <Icon name="phone" size={18} />
+              Call {site.phone}
+            </a>
+            <a
+              href={partnerWhatsAppHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl border-2 border-emerald-300/50 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-emerald-300/80 hover:bg-emerald-400/15"
+            >
+              <Icon name="whatsapp" size={18} />
+              WhatsApp
+            </a>
+          </div>
+
+          <div class="animate-fade-up stagger-5 mt-4 hidden flex-wrap gap-3 lg:flex">
+            <StoreButton store="google-play" href={site.providerPlayStoreUrl} />
+            <StoreButton store="app-store" href={site.providerAppStoreUrl} />
+          </div>
+
+          <p class="animate-fade-up mt-4 text-center text-xs text-white/70 lg:hidden">
+            Call · WhatsApp · Partner app · Srinagar
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why join -->
+  <section class="border-y border-slate-200 bg-white">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-extrabold text-slate-900">Why join Panun Kaergar?</h2>
+        <p class="mt-3 text-lg text-slate-600">
+          Stop relying only on word of mouth. Become a verified partner and let customers who already
+          trust Panun Kaergar find you.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          reasons.map((item, i) => (
+            <article
+              class:list={[
+                'reveal-scale card card-hover p-6 sm:p-7',
+                `reveal-stagger-${Math.min(i + 1, 6)}`,
+              ]}
+            >
+              <span class="icon-badge">
+                <Icon name={item.icon} size={22} class="text-brand-600" />
+              </span>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits (monday.com-style accordion) -->
+  <section class="bg-white" aria-labelledby="partner-benefits-heading">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">
+          Built for local professionals
+        </p>
+        <h2 id="partner-benefits-heading" class="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          Benefits of joining
+        </h2>
+        <p class="mt-3 text-lg text-slate-600">
+          Everything you need to run more of your trade through one local marketplace — from first
+          booking request to payment settlement.
+        </p>
+      </div>
+
+      <div
+        class="partner-benefits reveal mt-10 sm:mt-12"
+        data-partner-benefits
+      >
+        <div class="partner-benefits__shell">
+          <div class="partner-benefits__layout">
+            <div class="partner-benefits__acc">
+              {
+                benefits.map((item, i) => (
+                  <button
+                    type="button"
+                    class:list={['partner-benefits__item', i === 0 && 'is-open']}
+                    data-benefit-item
+                    data-benefit-index={i}
+                    data-benefit-title={item.title}
+                    data-benefit-detail={item.detail}
+                    data-benefit-highlight={item.highlight}
+                    data-benefit-image={item.image}
+                    data-benefit-alt={item.imageAlt}
+                    data-benefit-icon={item.icon}
+                    aria-expanded={i === 0 ? 'true' : 'false'}
+                    aria-controls="partner-benefit-card"
+                    id={`partner-benefit-trigger-${i}`}
+                  >
+                    <span class="partner-benefits__item-header">
+                      <span class="partner-benefits__plus" aria-hidden="true">
+                        <span class="partner-benefits__plus-h" />
+                        <span class="partner-benefits__plus-v" />
+                      </span>
+                      <span class="partner-benefits__item-title">{item.title}</span>
+                    </span>
+                    <span class="partner-benefits__item-body">
+                      <span class="partner-benefits__item-desc">{item.description}</span>
+                    </span>
+                  </button>
+                ))
+              }
+            </div>
+
+            <div
+              class="partner-benefits__card"
+              id="partner-benefit-card"
+              data-benefit-card
+              role="region"
+              aria-live="polite"
+              aria-labelledby="partner-benefit-trigger-0"
+            >
+              <div class="partner-benefits__card-media">
+                <img
+                  src={benefits[0].image}
+                  alt={benefits[0].imageAlt}
+                  width="1280"
+                  height="720"
+                  class="partner-benefits__card-img"
+                  data-benefit-card-img
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="partner-benefits__card-preload" aria-hidden="true">
+                  {
+                    benefits.slice(1).map((item) => (
+                      <img src={item.image} alt="" width="1280" height="720" loading="lazy" decoding="async" />
+                    ))
+                  }
+                </div>
+                <div class="partner-benefits__card-overlay" aria-hidden="true" />
+                <span class="partner-benefits__card-badge" aria-hidden="true">
+                  {
+                    benefits.map((item, i) => (
+                      <span
+                        class:list={['partner-benefits__badge-icon', i === 0 && 'is-active']}
+                        data-benefit-badge-icon
+                        data-benefit-index={i}
+                      >
+                        <Icon name={item.icon} size={22} class="text-white" />
+                      </span>
+                    ))
+                  }
+                </span>
+              </div>
+              <div class="partner-benefits__card-body">
+                <p class="partner-benefits__card-kicker" data-benefit-card-kicker>
+                  {benefits[0].highlight}
+                </p>
+                <h3 class="partner-benefits__card-title" data-benefit-card-title>
+                  {benefits[0].title}
+                </h3>
+                <p class="partner-benefits__card-text" data-benefit-card-text>
+                  {benefits[0].detail}
+                </p>
+                <a href="#partner-form" class="partner-benefits__card-cta">
+                  Apply to join
+                  <Icon name="chevron-right" size={18} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .partner-benefits__shell {
+      border-radius: 1.75rem;
+      background: #f3f4f6;
+      padding: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .partner-benefits__shell {
+        border-radius: 2rem;
+        padding: 1.25rem;
+      }
+    }
+
+    .partner-benefits__layout {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @media (min-width: 1024px) {
+      .partner-benefits__layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        align-items: stretch;
+        gap: 1.25rem;
+      }
+    }
+
+    .partner-benefits__acc {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .partner-benefits__item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: 1.5px solid rgb(15 23 42 / 0.14);
+      border-radius: 9999px;
+      background: transparent;
+      color: rgb(15 23 42);
+      padding: 0.85rem 1.1rem;
+      cursor: pointer;
+      transition:
+        background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.35s ease,
+        border-radius 0.35s ease,
+        box-shadow 0.35s ease,
+        padding 0.35s ease;
+    }
+
+    .partner-benefits__item:hover {
+      border-color: rgb(15 23 42 / 0.28);
+      background: rgb(255 255 255 / 0.45);
+    }
+
+    .partner-benefits__item.is-open {
+      border-color: transparent;
+      border-radius: 1.35rem;
+      background: #fff;
+      padding: 1.15rem 1.25rem 1.25rem;
+      box-shadow: 0 10px 30px -18px rgb(15 23 42 / 0.35);
+    }
+
+    .partner-benefits__item-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .partner-benefits__plus {
+      position: relative;
+      display: inline-flex;
+      height: 1.35rem;
+      width: 1.35rem;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid rgb(15 23 42 / 0.35);
+      border-radius: 9999px;
+    }
+
+    .partner-benefits__plus-h,
+    .partner-benefits__plus-v {
+      position: absolute;
+      background: rgb(15 23 42);
+      border-radius: 9999px;
+      transition:
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.3s ease,
+        width 0.3s ease;
+    }
+
+    .partner-benefits__plus-h {
+      height: 1.5px;
+      width: 0.55rem;
+    }
+
+    .partner-benefits__plus-v {
+      height: 0.55rem;
+      width: 1.5px;
+    }
+
+    .partner-benefits__item.is-open .partner-benefits__plus {
+      border-color: transparent;
+      width: 0;
+      margin: 0;
+      opacity: 0;
+    }
+
+    .partner-benefits__item-title {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: rgb(15 23 42);
+    }
+
+    .partner-benefits__item-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition:
+        grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.3s ease,
+        margin 0.3s ease;
+      margin-top: 0;
+    }
+
+    .partner-benefits__item.is-open .partner-benefits__item-body {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 0.65rem;
+    }
+
+    .partner-benefits__item-desc {
+      overflow: hidden;
+      display: block;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: rgb(71 85 105);
+    }
+
+    .partner-benefits__card {
+      display: flex;
+      flex-direction: column;
+      height: 34rem;
+      overflow: hidden;
+      border-radius: 1.35rem;
+      background: #fff;
+      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .partner-benefits__card.is-switching {
+      opacity: 0.55;
+    }
+
+    @media (min-width: 640px) {
+      .partner-benefits__card {
+        height: 36rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .partner-benefits__layout {
+        align-items: start;
+      }
+
+      .partner-benefits__card {
+        height: 36rem;
+        position: sticky;
+        top: 6rem;
+      }
+    }
+
+    .partner-benefits__card-media {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+      background: linear-gradient(145deg, #1e3a8a 0%, #2563eb 55%, #0ea5e9 100%);
+    }
+
+    .partner-benefits__card-img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center center;
+      opacity: 0.9;
+      transition:
+        opacity 0.28s ease,
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .partner-benefits__card.is-switching .partner-benefits__card-img {
+      opacity: 0.35;
+      transform: scale(1.03);
+    }
+
+    .partner-benefits__card-preload {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .partner-benefits__card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgb(15 23 42 / 0.35) 0%,
+        rgb(15 23 42 / 0.05) 55%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+
+    .partner-benefits__card-badge {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      display: inline-flex;
+      height: 2.75rem;
+      width: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.9rem;
+      background: rgb(15 23 42 / 0.45);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px -12px rgb(15 23 42 / 0.5);
+    }
+
+    .partner-benefits__badge-icon {
+      position: absolute;
+      display: inline-flex;
+      opacity: 0;
+      transform: scale(0.9);
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .partner-benefits__badge-icon.is-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .partner-benefits__card-body {
+      flex: 0 0 12.25rem;
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem 1.35rem 1.4rem;
+    }
+
+    .partner-benefits__card-kicker {
+      margin: 0;
+      min-height: 1.1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #2563eb;
+    }
+
+    .partner-benefits__card-title {
+      margin: 0.4rem 0 0;
+      min-height: 2.5rem;
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: rgb(15 23 42);
+    }
+
+    .partner-benefits__card-text {
+      margin: 0.55rem 0 0;
+      flex: 1 1 auto;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: rgb(71 85 105);
+    }
+
+    .partner-benefits__card-cta {
+      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #1d4ed8;
+      transition: gap 0.25s ease, color 0.25s ease;
+    }
+
+    .partner-benefits__card-cta:hover {
+      gap: 0.4rem;
+      color: #1e40af;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .partner-benefits__item,
+      .partner-benefits__item-body,
+      .partner-benefits__plus-h,
+      .partner-benefits__plus-v,
+      .partner-benefits__card,
+      .partner-benefits__card-img,
+      .partner-benefits__badge-icon,
+      .partner-benefits__card-cta {
+        transition: none;
+      }
+    }
+  </style>
+
+  <script>
+    function initPartnerBenefits() {
+      const root = document.querySelector('[data-partner-benefits]');
+      if (!(root instanceof HTMLElement) || root.dataset.benefitsReady === '1') return;
+      root.dataset.benefitsReady = '1';
+
+      const items = [...root.querySelectorAll('[data-benefit-item]')];
+      const card = root.querySelector('[data-benefit-card]');
+      const img = root.querySelector('[data-benefit-card-img]');
+      const kicker = root.querySelector('[data-benefit-card-kicker]');
+      const title = root.querySelector('[data-benefit-card-title]');
+      const text = root.querySelector('[data-benefit-card-text]');
+      const badgeIcons = [...root.querySelectorAll('[data-benefit-badge-icon]')];
+      if (!(card instanceof HTMLElement) || !(img instanceof HTMLImageElement) || !items.length) return;
+
+      let activeIndex = 0;
+      let switchTimer = 0;
+
+      function activate(index) {
+        const trigger = items[index];
+        if (!(trigger instanceof HTMLElement) || index === activeIndex) return;
+
+        activeIndex = index;
+        items.forEach((item, i) => {
+          const open = i === index;
+          item.classList.toggle('is-open', open);
+          item.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        card.setAttribute('aria-labelledby', trigger.id);
+        card.classList.add('is-switching');
+        window.clearTimeout(switchTimer);
+
+        const nextTitle = trigger.getAttribute('data-benefit-title') || '';
+        const nextDetail = trigger.getAttribute('data-benefit-detail') || '';
+        const nextHighlight = trigger.getAttribute('data-benefit-highlight') || '';
+        const nextImage = trigger.getAttribute('data-benefit-image') || '';
+        const nextAlt = trigger.getAttribute('data-benefit-alt') || '';
+
+        switchTimer = window.setTimeout(() => {
+          if (kicker) kicker.textContent = nextHighlight;
+          if (title) title.textContent = nextTitle;
+          if (text) text.textContent = nextDetail;
+          if (nextImage) {
+            img.src = nextImage;
+            img.alt = nextAlt;
+          }
+          badgeIcons.forEach((icon) => {
+            icon.classList.toggle(
+              'is-active',
+              Number(icon.getAttribute('data-benefit-index')) === index,
+            );
+          });
+          card.classList.remove('is-switching');
+        }, 160);
+      }
+
+      items.forEach((item) => {
+        item.addEventListener('click', () => {
+          const index = Number(item.getAttribute('data-benefit-index'));
+          if (Number.isNaN(index)) return;
+          activate(index);
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPartnerBenefits);
+    } else {
+      initPartnerBenefits();
+    }
+    document.addEventListener('astro:page-load', initPartnerBenefits);
+  </script>
+
+  <!-- Categories -->
+  <section class="border-y border-slate-200 bg-white">
+    <div class="section-pad mx-auto max-w-6xl pb-8 sm:pb-10">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-extrabold text-slate-900">Services you can offer</h2>
+        <p class="mt-3 text-lg text-slate-600">
+          Select the categories that match your skills. You can update them later as your work grows.
+        </p>
+      </div>
+    </div>
+
+    <div class="partner-category-marquee reveal pb-12 sm:pb-16" data-partner-marquee aria-label="All service categories">
+      <p class="sr-only">
+        Services include {categories.map((c) => c.label).join(', ')}.
+      </p>
+
+      <button
+        type="button"
+        class="partner-category-marquee__nav partner-category-marquee__nav--prev"
+        data-marquee-prev
+        aria-label="Scroll categories left"
+      >
+        <Icon name="chevron-right" size={22} class="rotate-180" />
+      </button>
+      <button
+        type="button"
+        class="partner-category-marquee__nav partner-category-marquee__nav--next"
+        data-marquee-next
+        aria-label="Scroll categories right"
+      >
+        <Icon name="chevron-right" size={22} />
+      </button>
+
+      <div class="partner-category-marquee__row">
+        <ul class="partner-category-marquee__track" data-marquee-track>
+          {
+            categoryLoop.map((cat) => (
+              <li class="partner-category-marquee__item">
+                <div class="partner-category-marquee__card">
+                  <div class="partner-category-marquee__media">
+                    <img
+                      src={cat.image}
+                      alt=""
+                      width="240"
+                      height="240"
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="partner-category-marquee__label">{cat.label}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .partner-category-marquee {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partner-category-marquee__nav {
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      display: inline-flex;
+      height: 2.75rem;
+      width: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgb(226 232 240);
+      border-radius: 9999px;
+      background: rgb(255 255 255 / 0.95);
+      color: rgb(30 41 59);
+      box-shadow: 0 8px 20px -10px rgb(15 23 42 / 0.35);
+      transform: translateY(-50%);
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .partner-category-marquee__nav:hover {
+      border-color: rgb(147 197 253);
+      background: #fff;
+      box-shadow: 0 12px 24px -12px rgb(15 23 42 / 0.4);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .partner-category-marquee__nav:active {
+      transform: translateY(-50%) scale(0.97);
+    }
+
+    .partner-category-marquee__nav--prev {
+      left: 0.75rem;
+    }
+
+    .partner-category-marquee__nav--next {
+      right: 0.75rem;
+    }
+
+    .partner-category-marquee__row {
+      overflow: hidden;
+      padding-block: 1.75rem;
+      mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    }
+
+    .partner-category-marquee__track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      gap: 1rem;
+      padding-inline: 1rem;
+      list-style: none;
+      margin: 0;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .partner-category-marquee__item {
+      position: relative;
+      flex: 0 0 9.5rem;
+      height: 12.5rem;
+      list-style: none;
+    }
+
+    .partner-category-marquee__card {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 1rem;
+      border: 1px solid rgb(226 232 240);
+      background: rgb(248 250 252);
+      transform-origin: center center;
+      transition:
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .partner-category-marquee__media {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .partner-category-marquee__label {
+      margin: 0;
+      flex: 0 0 auto;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: rgb(30 41 59);
+      transition: font-size 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .partner-category-marquee__item:hover {
+      z-index: 3;
+    }
+
+    .partner-category-marquee__item:hover .partner-category-marquee__card {
+      border-color: rgb(147 197 253);
+      box-shadow: 0 8px 18px -12px rgb(15 23 42 / 0.28);
+      transform: scale(1.04);
+    }
+
+    .partner-category-marquee__item:hover .partner-category-marquee__label {
+      font-size: 0.9375rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .partner-category-marquee__row {
+        overflow-x: auto;
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+
+      .partner-category-marquee__card,
+      .partner-category-marquee__label {
+        transition: none;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .partner-category-marquee__nav {
+        height: 3rem;
+        width: 3rem;
+      }
+
+      .partner-category-marquee__nav--prev {
+        left: 1.25rem;
+      }
+
+      .partner-category-marquee__nav--next {
+        right: 1.25rem;
+      }
+
+      .partner-category-marquee__track {
+        gap: 1.25rem;
+      }
+
+      .partner-category-marquee__item {
+        flex-basis: 11rem;
+        height: 14rem;
+      }
+
+      .partner-category-marquee__item:hover .partner-category-marquee__card {
+        transform: scale(1.05);
+      }
+
+      .partner-category-marquee__item:hover .partner-category-marquee__label {
+        font-size: 0.9375rem;
+      }
+    }
+  </style>
+
+  <script>
+    function initPartnerCategoryMarquee() {
+      const root = document.querySelector('[data-partner-marquee]');
+      const track = root?.querySelector('[data-marquee-track]');
+      const prevBtn = root?.querySelector('[data-marquee-prev]');
+      const nextBtn = root?.querySelector('[data-marquee-next]');
+      if (!(root instanceof HTMLElement) || !(track instanceof HTMLElement)) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let offset = 0;
+      let paused = false;
+      let resumeTimer = 0;
+      let halfWidth = 0;
+      let raf = 0;
+
+      const speed = 0.45;
+
+      function measure() {
+        halfWidth = track.scrollWidth / 2;
+      }
+
+      function apply() {
+        if (halfWidth > 0) {
+          while (offset <= -halfWidth) offset += halfWidth;
+          while (offset > 0) offset -= halfWidth;
+        }
+        track.style.transform = `translate3d(${offset}px, 0, 0)`;
+      }
+
+      function nudge(delta) {
+        paused = true;
+        window.clearTimeout(resumeTimer);
+        offset += delta;
+        apply();
+        if (!reduceMotion) {
+          resumeTimer = window.setTimeout(() => {
+            paused = false;
+          }, 2200);
+        }
+      }
+
+      function tick() {
+        if (!paused && !reduceMotion && halfWidth > 0) {
+          offset -= speed;
+          apply();
+        }
+        raf = window.requestAnimationFrame(tick);
+      }
+
+      measure();
+      apply();
+
+      if (!reduceMotion) {
+        raf = window.requestAnimationFrame(tick);
+      }
+
+      root.addEventListener('mouseenter', () => {
+        paused = true;
+      });
+      root.addEventListener('mouseleave', () => {
+        if (!reduceMotion) paused = false;
+      });
+
+      prevBtn?.addEventListener('click', () => nudge(220));
+      nextBtn?.addEventListener('click', () => nudge(-220));
+
+      window.addEventListener(
+        'resize',
+        () => {
+          measure();
+          apply();
+        },
+        { passive: true },
+      );
+
+      window.addEventListener('beforeunload', () => {
+        window.cancelAnimationFrame(raf);
+        window.clearTimeout(resumeTimer);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPartnerCategoryMarquee);
+    } else {
+      initPartnerCategoryMarquee();
+    }
+  </script>
+
+  <!-- Process: stacked cards -->
+  <JoinProcessStack steps={steps} />
+
+  <!-- Final CTA -->
+  <section class="section-pad bg-brand-900 text-white">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-extrabold sm:text-4xl">Ready to start earning with Panun Kaergar?</h2>
+      <p class="mt-4 text-lg text-blue-100">
+        Apply with the form above, or download the Partner app and complete your profile. New booking
+        requests for your skills can start coming in once you are approved.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href="#partner-form" class="btn-primary bg-white text-brand-600 hover:bg-brand-50">
+          Apply now
+        </a>
+        <StoreButton store="google-play" href={site.providerPlayStoreUrl} />
+        <StoreButton store="app-store" href={site.providerAppStoreUrl} />
+      </div>
+      <p class="mt-8 text-sm text-blue-100/90">
+        Questions about joining? Call{' '}
+        <a href={`tel:${site.phone}`} class="font-semibold text-white underline-offset-2 hover:underline">
+          {site.phone}
+        </a>
+        {' '}or{' '}
+        <a
+          href={`https://wa.me/${site.whatsapp.replace(/\D/g, '')}`}
+          class="font-semibold text-white underline-offset-2 hover:underline"
+        >
+          WhatsApp us
+        </a>
+        .
+      </p>
+    </div>
+  </section>
+</PageLayout>

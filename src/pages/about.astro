@@ -1,40 +1,1039 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import CategoryMarquee from '@/components/CategoryMarquee.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import Icon from '@/components/Icon.astro';
+import CtaBanner from '@/components/CtaBanner.astro';
 import { buildMeta } from '@/utils/seo';
-import { getSiteSettings } from '@/utils/reader';
+import { getSiteSettings, getServices } from '@/utils/reader';
+import { categoryIcon } from '@/utils/categoryCatalog';
+import { BOOK_PATH } from '@/utils/booking';
 
 const site = await getSiteSettings();
+const services = await getServices();
+
+const categories = services.map((s) => ({
+  slug: s.slug,
+  shortName: s.shortName,
+}));
+
+const gallery = services.map((s) => ({
+  label: s.shortName,
+  href: `/services/${s.slug}`,
+  image: categoryIcon(s.slug),
+}));
+const galleryLoop = [...gallery, ...gallery];
+
+const storyImages = [
+  {
+    src: '/images/about/about-hero-main.webp',
+    alt: 'Panun Kaergar professional arriving at a Kashmiri home doorway',
+  },
+  {
+    src: '/images/about/about-hero-garden.webp',
+    alt: 'Garden care service for homes in Kashmir',
+  },
+  {
+    src: '/images/about/about-hero-home.webp',
+    alt: 'Everyday home cleaning and care services',
+  },
+  {
+    src: '/images/about/about-hero-vehicle.webp',
+    alt: 'Vehicle care service outside a Kashmiri home',
+  },
+];
+
+const values = [
+  {
+    icon: 'shield-check',
+    title: 'Reliability',
+    description:
+      'Every service on Panun Kaergar is vetted to meet high standards of quality — so you can book with confidence.',
+  },
+  {
+    icon: 'sparkles',
+    title: 'Cultural pride',
+    description:
+      'We promote Kashmir’s traditional skills and craftsmanship by connecting local artisans and service providers to a broader audience.',
+  },
+  {
+    icon: 'target',
+    title: 'Customer focus',
+    description:
+      'Your satisfaction is our priority. We strive to make every interaction seamless, professional, and satisfying.',
+  },
+];
+
+const whyChoose = [
+  'A wide range of services from local experts',
+  'Easy booking by phone, WhatsApp, website, or app',
+  'Transparent pricing and trusted professionals',
+  'Dedicated to supporting the local economy and artisans of Kashmir',
+];
+
+const missionPillars = [
+  {
+    icon: 'home',
+    title: 'For every household',
+    description:
+      'From urgent repairs to planned upgrades — one place for the help homes in Kashmir need most.',
+  },
+  {
+    icon: 'hammer',
+    title: 'For local skilled hands',
+    description:
+      'We put plumbers, electricians, cleaners, salon pros, and artisans in front of customers who are ready to book.',
+  },
+  {
+    icon: 'smartphone',
+    title: 'For modern convenience',
+    description:
+      'Call, WhatsApp, website, or app — book in minutes and get a verified partner at a time that suits you.',
+  },
+];
+
+const bridgePoints = [
+  {
+    title: 'Traditional craftsmanship',
+    description:
+      'Local skills — from carpentry and masonry to finishing work — stay visible and bookable for the next generation of customers.',
+  },
+  {
+    title: 'Everyday modern needs',
+    description:
+      'Appliance repair, cleaning, salon, pest control, vehicle help, and more — services that keep Kashmiri homes running smoothly.',
+  },
+  {
+    title: 'One trusted network',
+    description:
+      'Instead of hunting for contacts, you describe the job once and we connect you with a verified professional nearby.',
+  },
+];
+
+const promiseSteps = [
+  {
+    n: '01',
+    title: 'Tell us what you need',
+    desc: 'Share the service, area, and preferred time — phone, WhatsApp, form, or app.',
+  },
+  {
+    n: '02',
+    title: 'We match a partner',
+    desc: 'A verified local professional is assigned based on the job and availability.',
+  },
+  {
+    n: '03',
+    title: 'Service at your door',
+    desc: 'They arrive prepared, complete the work, and you get clear, reliable support.',
+  },
+];
 
 const meta = buildMeta({
   title: 'About Panun Kaergar | Home Services in Srinagar',
   description:
-    'Panun Kaergar connects homes in Srinagar and Kashmir with verified plumbers, electricians, AC technicians, and other local service providers.',
+    'Panun Kaergar is Kashmir’s home-services platform — connecting households with verified local professionals for plumbing, electrical, cleaning, salon, and more. Built by Gildware Technologies.',
   path: '/about',
 });
 ---
 
 <PageLayout meta={meta}>
-  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 prose prose-slate max-w-none">
-    <h1>About {site.businessName}</h1>
-    <p>{site.description}</p>
-    <p>
-      Panun Kaergar makes it easy to find trusted help for everyday home jobs in Kashmir. Instead of
-      searching for individual technicians, you book through one place — by phone, WhatsApp, our
-      website, or the free mobile app.
-    </p>
-    <h2>Our mission</h2>
-    <p>
-      To help every home in Kashmir get reliable, professional service — quickly and at a fair price.
-    </p>
-    <h2>What we offer</h2>
-    <ul>
-      <li>Carpentry, plumbing, masonry, and electrical</li>
-      <li>Professional cleaning, pest control, and laundry</li>
-      <li>Painting, home appliances, gardening, and salon</li>
-      <li>Interior decor and provider onboarding for local professionals</li>
-    </ul>
-    <p>
-      <a href="/book">Book a service</a> or <a href="/become-a-provider">join as a provider</a>.
-    </p>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-brand-900 text-white">
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-900 via-brand-700 to-brand-600" aria-hidden="true"></div>
+    <div class="hero-blob -left-24 top-0 h-72 w-72 bg-brand-500/30" style="animation-delay: 0s;" aria-hidden="true"></div>
+    <div class="hero-blob -right-16 bottom-0 h-96 w-96 bg-accent/20" style="animation-delay: -5s;" aria-hidden="true"></div>
+    <div class="hero-blob left-1/3 top-1/2 h-48 w-48 bg-white/10" style="animation-delay: -9s;" aria-hidden="true"></div>
+
+    <div class="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:py-20">
+      <div>
+        <p class="animate-fade-up text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+          About us
+        </p>
+        <h1 class="animate-fade-up stagger-1 mt-3 font-extrabold leading-[1.05] tracking-tight text-white text-[clamp(2.4rem,6vw,3.75rem)]">
+          Panun Kaergar
+        </h1>
+        <p class="animate-fade-up stagger-2 mt-5 max-w-xl text-lg leading-relaxed text-white/85">
+          A one-stop solution for home, garden, vehicle, and everyday service needs in Kashmir —
+          connecting you with expert professionals who bring quality and convenience to your
+          doorstep.
+        </p>
+        <div class="animate-fade-up stagger-3 mt-8 flex flex-wrap gap-3">
+          <a href={BOOK_PATH} class="btn-primary bg-white text-brand-700 hover:bg-brand-50">Book a service</a>
+          <a href="/become-a-partner" class="btn-secondary border-white/25 bg-white/10 text-white hover:border-white/40 hover:bg-white/15">
+            Join as a partner
+          </a>
+        </div>
+      </div>
+
+      <div class="animate-slide-right stagger-2 relative mx-auto w-full max-w-md lg:max-w-none">
+        <div class="about-hero-mosaic" aria-hidden="true">
+          {
+            storyImages.map((img, i) => (
+              <figure class:list={['about-hero-mosaic__cell', `about-hero-mosaic__cell--${i + 1}`]}>
+                <img
+                  src={img.src}
+                  alt=""
+                  width="768"
+                  height="512"
+                  class="h-full w-full object-cover"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </figure>
+            ))
+          }
+        </div>
+        <p class="sr-only">
+          Panun Kaergar covers home, garden, and vehicle services — connecting expert professionals
+          to your doorstep in Kashmir.
+        </p>
+      </div>
+    </div>
   </section>
+
+  <CategoryMarquee categories={categories} />
+
+  <!-- Who we are -->
+  <section class="border-b border-slate-200 bg-white">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal-left relative overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+          <img
+            src="/images/about/about-who-we-are.webp"
+            alt="Tradition and technology in a Kashmiri home — booking help while a local craftsman works"
+            width="1536"
+            height="1024"
+            class="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+          <div
+            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-900/35 via-transparent to-transparent"
+            aria-hidden="true"
+          ></div>
+        </div>
+
+        <div class="reveal">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Who we are</p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Tradition and technology, for every home in Kashmir
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            Our platform offers a diverse range of services tailored to households and individuals
+            across Kashmir — from everyday repairs and cleaning to salon, appliances, gardening, and
+            more. We bridge the gap between skilled local providers and customers who need reliable,
+            timely help.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-slate-600">
+            Panun Kaergar is proudly developed and launched by{' '}
+            <span class="font-semibold text-slate-900">{site.poweredByName ?? 'Gildware Technologies'}</span>,
+            a technology company dedicated to creating practical solutions that enhance everyday
+            life. We combine local insight with modern product design so customers get the best of
+            both worlds.
+          </p>
+          <ul class="mt-8 space-y-3">
+            {
+              [
+                'Verified partners for home and lifestyle services',
+                'Book by phone, WhatsApp, website, or free mobile app',
+                'Built for Srinagar and communities across Kashmir',
+              ].map((item, i) => (
+                <li
+                  class:list={[
+                    'reveal flex items-start gap-3 text-slate-700',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <span class="icon-badge mt-0.5 h-8 w-8 shrink-0">
+                    <Icon name="check" size={16} class="text-brand-600" />
+                  </span>
+                  <span class="pt-1 text-sm font-medium sm:text-base">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Our mission</p>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          Reliable help for every home — and fair work for local pros
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-slate-600">
+          To help every home in Kashmir get professional service quickly and at a fair price, while
+          preserving rich local craftsmanship and making modern bookings simple.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          missionPillars.map((item, i) => (
+            <article
+              class:list={[
+                'reveal-scale rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-7',
+                `reveal-stagger-${Math.min(i + 1, 6)}`,
+              ]}
+            >
+              <span class="icon-badge">
+                <Icon name={item.icon} size={22} class="text-brand-600" />
+              </span>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Heritage bridge -->
+  <section class="border-y border-slate-200 bg-white">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal order-2 lg:order-1">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            Heritage meets modern life
+          </p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            From traditional skills to today’s home needs
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            Whether it’s repairing a home, beautifying a lawn, or booking essential lifestyle
+            services, Panun Kaergar connects skilled hands with households that need them — without
+            losing Kashmir’s spirit of craftsmanship.
+          </p>
+
+          <ul class="mt-8 space-y-5">
+            {
+              bridgePoints.map((item, i) => (
+                <li
+                  class:list={[
+                    'reveal border-l-2 border-brand-600 pl-4',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <h3 class="font-bold text-slate-900">{item.title}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-slate-600 sm:text-base">
+                    {item.description}
+                  </p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="reveal-right order-1 lg:order-2">
+          <div class="about-float-stack">
+            <figure class="about-float-stack__main">
+              <img
+                src="/images/about/about-heritage-main.webp"
+                alt="Traditional Kashmiri craftsmanship alongside modern home appliance care"
+                width="1536"
+                height="1024"
+                class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <figure class="about-float-stack__float">
+              <img
+                src="/images/about/about-heritage-detail.webp"
+                alt="Close-up of traditional woodworking craftsmanship in Kashmir"
+                width="1536"
+                height="1024"
+                class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-brand-900 via-brand-700 to-brand-600 text-white">
+    <div class="hero-blob -left-16 top-0 h-64 w-64 bg-white/10" style="animation-delay: -2s;" aria-hidden="true"></div>
+    <div class="hero-blob -right-10 bottom-0 h-72 w-72 bg-accent/20" style="animation-delay: -7s;" aria-hidden="true"></div>
+    <div class="section-pad relative mx-auto max-w-4xl text-center">
+      <p class="reveal text-sm font-semibold uppercase tracking-[0.2em] text-accent">Our vision</p>
+      <h2 class="reveal reveal-stagger-1 mt-3 text-3xl font-extrabold sm:text-4xl">
+        Kashmir’s most trusted platform for service solutions
+      </h2>
+      <p class="reveal reveal-stagger-2 mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/85">
+        To become Kashmir’s most trusted and comprehensive platform for service solutions —
+        preserving the region’s rich craftsmanship while introducing practical ways to simplify life
+        for everyone.
+      </p>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="border-b border-slate-200 bg-white">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Our values</p>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900">What guides every booking</h2>
+        <p class="mt-3 text-lg text-slate-600">
+          Reliability, cultural pride, and customer focus — the standards behind every partner and
+          every visit.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {
+          values.map((item, i) => (
+            <article
+              class:list={[
+                'reveal-scale card card-hover p-6 sm:p-7',
+                `reveal-stagger-${Math.min(i + 1, 6)}`,
+              ]}
+            >
+              <span class="icon-badge">
+                <Icon name={item.icon} size={22} class="text-brand-600" />
+              </span>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- How we help -->
+  <section class="bg-slate-50">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+        <div class="reveal-left overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+          <img
+            src="/images/about/about-how-we-help.webp"
+            alt="From booking request to a verified partner arriving at your door in Kashmir"
+            width="1536"
+            height="1024"
+            class="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="reveal">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">How we help</p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Three simple steps from request to done
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            No more chasing numbers or guessing who to trust. Describe the job — we handle the match.
+          </p>
+
+          <ol class="mt-8 space-y-4">
+            {
+              promiseSteps.map((step, i) => (
+                <li
+                  class:list={[
+                    'reveal flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
+                    {step.n}
+                  </span>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900">{step.title}</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-slate-600">{step.desc}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+
+          <div class="reveal mt-8">
+            <a href={BOOK_PATH} class="btn-secondary">
+              See booking options
+              <Icon name="chevron-right" size={18} class="ml-1" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services carousel -->
+  <section class="bg-gradient-to-b from-white to-slate-50">
+    <div class="section-pad mx-auto max-w-6xl pb-8 sm:pb-10">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">What we cover</p>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Services for every household</h2>
+        <p class="mt-3 text-lg text-slate-600">
+          From plumbing and electrical to cleaning, salon, appliances, and more — browse the
+          categories customers book every day.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-gallery reveal pb-14 sm:pb-16" data-about-gallery aria-label="Service categories">
+      <p class="sr-only">
+        Services include {gallery.map((g) => g.label).join(', ')}.
+      </p>
+
+      <button
+        type="button"
+        class="about-gallery__nav about-gallery__nav--prev"
+        data-gallery-prev
+        aria-label="Scroll services left"
+      >
+        <Icon name="chevron-right" size={22} class="rotate-180" />
+      </button>
+      <button
+        type="button"
+        class="about-gallery__nav about-gallery__nav--next"
+        data-gallery-next
+        aria-label="Scroll services right"
+      >
+        <Icon name="chevron-right" size={22} />
+      </button>
+
+      <div class="about-gallery__row">
+        <ul class="about-gallery__track" data-gallery-track>
+          {
+            galleryLoop.map((item) => (
+              <li class="about-gallery__item">
+                <a href={item.href} class="about-gallery__card">
+                  <div class="about-gallery__media">
+                    <img
+                      src={item.image}
+                      alt=""
+                      width="320"
+                      height="320"
+                      class="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="about-gallery__label">{item.label}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose -->
+  <section class="border-y border-slate-200 bg-white">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal order-2 lg:order-1">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            Why choose Panun Kaergar?
+          </p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Local experts. Simple booking. Trusted help.
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            Join the Panun Kaergar community and experience the blend of tradition and technology —
+            your reliable partner for service needs across Kashmir, brought to you by{' '}
+            {site.poweredByName ?? 'Gildware Technologies'}.
+          </p>
+
+          <ul class="mt-8 space-y-4">
+            {
+              whyChoose.map((item, i) => (
+                <li
+                  class:list={[
+                    'reveal flex gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3.5 transition-colors duration-300 hover:border-brand-200 hover:bg-brand-50/40',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white">
+                    <Icon name="check" size={14} class="text-white" />
+                  </span>
+                  <span class="text-sm font-medium leading-relaxed text-slate-800 sm:text-base">
+                    {item}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+
+          <div class="reveal mt-8 flex flex-wrap gap-3">
+            <a href={BOOK_PATH} class="btn-primary">Book now</a>
+            <a href="/services" class="btn-secondary">Browse services</a>
+          </div>
+        </div>
+
+        <div class="reveal-right order-1 lg:order-2 overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+          <img
+            src="/images/about/about-why-choose.webp"
+            alt="Trusted local expert finishing a home repair for a satisfied customer in Kashmir"
+            width="1536"
+            height="1024"
+            class="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Built by -->
+  <section class="bg-gradient-to-br from-slate-50 via-white to-brand-50/40">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal grid items-center gap-10 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Built by</p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900">
+            {site.poweredByName ?? 'Gildware Technologies'}
+          </h2>
+          <p class="mt-4 text-base leading-relaxed text-slate-600">
+            At Gildware Technologies, we combine deep cultural insights with practical technology to
+            build platforms that empower communities and businesses alike. With the Panun Kaergar
+            app, our mission is to preserve Kashmir’s traditional services while embracing modern
+            requirements.
+          </p>
+        </div>
+        <dl class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
+            <dt class="text-sm font-semibold text-slate-500">Focus</dt>
+            <dd class="mt-1 font-semibold text-slate-900">Local service marketplaces</dd>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
+            <dt class="text-sm font-semibold text-slate-500">Region</dt>
+            <dd class="mt-1 font-semibold text-slate-900">Srinagar & Kashmir</dd>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
+            <dt class="text-sm font-semibold text-slate-500">For customers</dt>
+            <dd class="mt-1 font-semibold text-slate-900">Trusted home help, fast</dd>
+          </div>
+          <div class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
+            <dt class="text-sm font-semibold text-slate-500">For partners</dt>
+            <dd class="mt-1 font-semibold text-slate-900">More bookings, one app</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ways to book -->
+  <section class="border-t border-slate-200 bg-white">
+    <div class="section-pad mx-auto max-w-6xl pb-4">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Get in touch</p>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900">Book the way that suits you</h2>
+        <p class="mt-3 text-lg text-slate-600">
+          Questions about a service, a booking, or becoming a partner? Reach us anytime during
+          business hours.
+        </p>
+      </div>
+    </div>
+    <BookingOptions site={site} />
+  </section>
+
+  <!-- Contact strip -->
+  <section class="border-y border-slate-200 bg-slate-50">
+    <div class="section-pad mx-auto max-w-6xl py-12 sm:py-14">
+      <div class="reveal grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5">
+          <p class="text-sm font-semibold text-slate-500">Support team</p>
+          <p class="mt-1 font-bold text-slate-900">Panun Kaergar</p>
+        </div>
+        <a href={`mailto:${site.email}`} class="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-brand-300">
+          <p class="text-sm font-semibold text-slate-500">Email</p>
+          <p class="mt-1 font-bold text-brand-700">{site.email}</p>
+        </a>
+        <a href={`tel:${site.phone}`} class="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-brand-300">
+          <p class="text-sm font-semibold text-slate-500">Phone</p>
+          <p class="mt-1 font-bold text-brand-700">{site.phone}</p>
+        </a>
+        <div class="rounded-2xl border border-slate-200 bg-white p-5">
+          <p class="text-sm font-semibold text-slate-500">Address</p>
+          <p class="mt-1 text-sm font-semibold leading-relaxed text-slate-900">{site.address}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="Ready to book with Panun Kaergar?"
+    description="Tell us what you need — we connect you with a verified local professional at a time that suits you."
+    primaryHref={BOOK_PATH}
+    primaryLabel="Book a service"
+  />
 </PageLayout>
+
+<style>
+  .about-hero-mosaic {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.75rem;
+    min-height: 18rem;
+  }
+
+  .about-hero-mosaic__cell {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid rgb(255 255 255 / 0.18);
+    box-shadow: 0 18px 40px -24px rgb(0 0 0 / 0.55);
+    background: rgb(15 23 42 / 0.35);
+  }
+
+  .about-hero-mosaic__cell--1 {
+    grid-row: 1 / span 2;
+    animation: about-float 7s ease-in-out infinite;
+  }
+
+  .about-hero-mosaic__cell--2 {
+    animation: about-float 8s ease-in-out infinite;
+    animation-delay: -1.5s;
+  }
+
+  .about-hero-mosaic__cell--3 {
+    animation: about-float 7.5s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+
+  .about-hero-mosaic__cell--4 {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .about-hero-mosaic {
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      grid-template-rows: 1fr 1fr;
+      min-height: 20rem;
+    }
+
+    .about-hero-mosaic__cell--1 {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    .about-hero-mosaic__cell--2 {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .about-hero-mosaic__cell--3 {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .about-hero-mosaic__cell--4 {
+      display: block;
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      animation: about-float 9s ease-in-out infinite;
+      animation-delay: -2s;
+    }
+  }
+
+  @keyframes about-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .about-float-stack {
+    position: relative;
+    min-height: 20rem;
+  }
+
+  .about-float-stack__main {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    border: 1px solid rgb(226 232 240);
+    box-shadow: 0 25px 50px -28px rgb(15 23 42 / 0.35);
+    aspect-ratio: 4 / 3;
+  }
+
+  .about-float-stack__float {
+    position: absolute;
+    right: -0.5rem;
+    bottom: -1.25rem;
+    margin: 0;
+    width: min(52%, 15rem);
+    overflow: hidden;
+    border-radius: 1.15rem;
+    border: 3px solid #fff;
+    box-shadow: 0 18px 36px -18px rgb(15 23 42 / 0.4);
+    aspect-ratio: 4 / 3;
+    animation: about-float 6.5s ease-in-out infinite;
+  }
+
+  @media (min-width: 1024px) {
+    .about-float-stack__float {
+      right: -1rem;
+      bottom: -1.5rem;
+    }
+  }
+
+  .about-gallery {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-gallery__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-flex;
+    height: 2.75rem;
+    width: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(226 232 240);
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 0.95);
+    color: rgb(30 41 59);
+    box-shadow: 0 8px 20px -10px rgb(15 23 42 / 0.35);
+    transform: translateY(-50%);
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .about-gallery__nav:hover {
+    border-color: rgb(147 197 253);
+    background: #fff;
+    box-shadow: 0 12px 24px -12px rgb(15 23 42 / 0.4);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .about-gallery__nav:active {
+    transform: translateY(-50%) scale(0.97);
+  }
+
+  .about-gallery__nav--prev {
+    left: 0.75rem;
+  }
+
+  .about-gallery__nav--next {
+    right: 0.75rem;
+  }
+
+  .about-gallery__row {
+    overflow: hidden;
+    padding-block: 1.75rem;
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  .about-gallery__track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 1rem;
+    padding-inline: 1rem;
+    list-style: none;
+    margin: 0;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .about-gallery__item {
+    position: relative;
+    flex: 0 0 10rem;
+    height: 13rem;
+    list-style: none;
+  }
+
+  .about-gallery__card {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 1px solid rgb(226 232 240);
+    background: #fff;
+    text-decoration: none;
+    transform-origin: center center;
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  .about-gallery__media {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    background: rgb(248 250 252);
+  }
+
+  .about-gallery__media img {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .about-gallery__label {
+    margin: 0;
+    flex: 0 0 auto;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: rgb(30 41 59);
+  }
+
+  .about-gallery__item:hover {
+    z-index: 3;
+  }
+
+  .about-gallery__item:hover .about-gallery__card {
+    border-color: rgb(147 197 253);
+    box-shadow: 0 10px 22px -12px rgb(15 23 42 / 0.3);
+    transform: scale(1.04);
+  }
+
+  .about-gallery__item:hover .about-gallery__media img {
+    transform: scale(1.06);
+  }
+
+  @media (min-width: 640px) {
+    .about-gallery__nav {
+      height: 3rem;
+      width: 3rem;
+    }
+
+    .about-gallery__nav--prev {
+      left: 1.25rem;
+    }
+
+    .about-gallery__nav--next {
+      right: 1.25rem;
+    }
+
+    .about-gallery__track {
+      gap: 1.25rem;
+    }
+
+    .about-gallery__item {
+      flex-basis: 12rem;
+      height: 15rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-hero-mosaic__cell,
+    .about-float-stack__float {
+      animation: none;
+    }
+
+    .about-gallery__row {
+      overflow-x: auto;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+
+    .about-gallery__card,
+    .about-gallery__media img {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  function initAboutGallery() {
+    const root = document.querySelector('[data-about-gallery]');
+    const track = root?.querySelector('[data-gallery-track]');
+    const prevBtn = root?.querySelector('[data-gallery-prev]');
+    const nextBtn = root?.querySelector('[data-gallery-next]');
+    if (!(root instanceof HTMLElement) || !(track instanceof HTMLElement)) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let offset = 0;
+    let paused = false;
+    let resumeTimer = 0;
+    let halfWidth = 0;
+    let raf = 0;
+    const speed = 0.42;
+
+    function measure() {
+      halfWidth = track.scrollWidth / 2;
+    }
+
+    function apply() {
+      if (halfWidth > 0) {
+        while (offset <= -halfWidth) offset += halfWidth;
+        while (offset > 0) offset -= halfWidth;
+      }
+      track.style.transform = `translate3d(${offset}px, 0, 0)`;
+    }
+
+    function nudge(delta) {
+      paused = true;
+      window.clearTimeout(resumeTimer);
+      offset += delta;
+      apply();
+      if (!reduceMotion) {
+        resumeTimer = window.setTimeout(() => {
+          paused = false;
+        }, 2200);
+      }
+    }
+
+    function tick() {
+      if (!paused && !reduceMotion && halfWidth > 0) {
+        offset -= speed;
+        apply();
+      }
+      raf = window.requestAnimationFrame(tick);
+    }
+
+    measure();
+    apply();
+
+    if (!reduceMotion) {
+      raf = window.requestAnimationFrame(tick);
+    }
+
+    root.addEventListener('mouseenter', () => {
+      paused = true;
+    });
+    root.addEventListener('mouseleave', () => {
+      if (!reduceMotion) paused = false;
+    });
+
+    prevBtn?.addEventListener('click', () => nudge(240));
+    nextBtn?.addEventListener('click', () => nudge(-240));
+
+    window.addEventListener(
+      'resize',
+      () => {
+        measure();
+        apply();
+      },
+      { passive: true },
+    );
+
+    window.addEventListener('beforeunload', () => {
+      window.cancelAnimationFrame(raf);
+      window.clearTimeout(resumeTimer);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAboutGallery);
+  } else {
+    initAboutGallery();
+  }
+</script>

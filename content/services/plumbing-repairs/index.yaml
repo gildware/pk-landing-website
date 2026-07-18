@@ -1,0 +1,28 @@
+name: plumbing-repairs
+shortName: Plumbing Repairs
+icon: "🔧"
+description: >-
+  Book plumbing repairs across Kashmir — leaks, blockages, dripping taps, toilet issues, and emergency pipe fixes.
+seoTitle: Plumbing Repairs | Panun Kaergar
+seoDescription: >-
+  Book plumbing repair services across Kashmir. Leak fixes, blocked drains, tap & toilet repairs by verified plumbers.
+parentSlug: plumbing
+serviceList:
+  - Leak detection & pipe repair
+  - Blocked drain & sewer clearing
+  - Dripping tap & mixer repair
+  - Toilet & flush repair
+  - Water line emergency fixes
+  - Bathroom & kitchen plumbing repairs
+faqs:
+  - question: What plumbing repairs can I book?
+    answer: >-
+      Leaks, blocked drains, tap repairs, toilet issues, and related emergency fixes.
+  - question: Do you offer emergency visits?
+    answer: >-
+      Urgent slots are arranged when a partner is available in your area.
+  - question: How is pricing shared?
+    answer: >-
+      Estimates appear in the app, or our team guides you by phone, WhatsApp, or form.
+published: true
+sortOrder: 105

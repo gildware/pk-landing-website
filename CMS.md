@@ -24,7 +24,6 @@ Open the CMS and use the sidebar:
 | **Service Areas** | Srinagar neighborhoods |
 | **Service × Area Pages** | SEO pages like “Plumbing in Srinagar” |
 | **Testimonials** | Customer quotes |
-| **Blog Posts** | Articles |
 | **FAQs** | Questions & answers |
 
 After saving, wait 1–2 minutes for the live site to update (automatic rebuild).
@@ -139,5 +138,3 @@ Open **http://127.0.0.1:4321/keystatic** (use `127.0.0.1`, not `localhost`). If 
 **“Can't log in to CMS”** — GitHub account needs write access to the repo. Check GitHub App is installed on the repo.
 
 **“Saved but site didn't update”** — Check Cloudflare Pages build logs. Ensure CMS commits are on the branch Cloudflare watches (usually `main`).
-
-**“Blog post not showing”** — Ensure **Published** is checked and click Save again.

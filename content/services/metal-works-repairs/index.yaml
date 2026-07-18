@@ -1,0 +1,31 @@
+name: metal-works-repairs
+shortName: "Aluminium & Steel Repairs"
+icon: "🏗️"
+description: >-
+  Book aluminium and steel repairs across Kashmir — damaged frames, hinges, locks, grills, and metal fitting fixes.
+seoTitle: Aluminium & Steel Repairs | Panun Kaergar
+seoDescription: >-
+  Book aluminium & steel repair services across Kashmir. Frame, grill, gate & metal fitting repairs by verified partners.
+parentSlug: aluminium-steel-works
+serviceList:
+  - ACP Panel Repair
+  - Aluminium Window Repair
+  - Aluminium Door Repair
+  - uPVC Window & Door Repair
+  - Railing Repair
+  - Gate & Grill Repair
+  - False Ceiling Repair
+  - PVC Panel Repair
+  - Shop Shutter Repair
+faqs:
+  - question: What metal repairs can I book?
+    answer: >-
+      Frame repairs, hinge and lock fixes, grill repairs, and related aluminium or steel maintenance.
+  - question: Can partners visit at home?
+    answer: >-
+      Yes — most jobs are on-site depending on the work.
+  - question: How is pricing shared?
+    answer: >-
+      Guidance by phone, WhatsApp, or form — or estimates in the app.
+published: true
+sortOrder: 109

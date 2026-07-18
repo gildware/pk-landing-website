@@ -1,0 +1,27 @@
+name: metal-works-fabrication
+shortName: "Aluminium & Steel Fabrication"
+icon: "🏗️"
+description: >-
+  Book aluminium and steel fabrication across Kashmir — custom frames, grills, gates, and metal fabrication by verified partners.
+seoTitle: Aluminium & Steel Fabrication | Panun Kaergar
+seoDescription: >-
+  Book aluminium & steel fabrication across Kashmir. Custom frames, grills, gates & metal works by verified Panun Kaergar partners.
+parentSlug: aluminium-steel-works
+serviceList:
+  - Custom MS Gate Fabrication
+  - Custom SS Grill Fabrication
+  - Custom Railing Fabrication
+  - Custom Aluminium Window Fabrication
+  - Steel Bracket Fabrication
+faqs:
+  - question: What fabrication work can I book?
+    answer: >-
+      Custom frames, grills, gates, and related aluminium or steel fabrication jobs from our catalog.
+  - question: Do I need measurements ready?
+    answer: >-
+      Share sizes and photos when you book so partners can quote accurately.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 108

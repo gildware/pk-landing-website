@@ -1,0 +1,3257 @@
+{
+  "exportedAt": "2026-07-18",
+  "categories": {
+    "carpentry": {
+      "marketingSlug": "carpentry",
+      "adminSlug": "carpentary",
+      "adminName": "Carpentry Services",
+      "serviceCount": 14,
+      "subcategories": [
+        {
+          "slug": "carpentry-installation",
+          "name": "Carpentry Installation",
+          "services": [
+            {
+              "name": "Door Installation",
+              "slug": "door-installation",
+              "shortDescription": "Expert door fitting by verified carpenters at your home.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/door-installation/2026-07-08-6a4e58dc3e9c1.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Furniture Installation",
+              "slug": "furniture-installation",
+              "shortDescription": "Expert furniture assembly by verified carpenters at your home.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/furniture-installation/2026-07-10-6a50befea5e30.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Kitchen Cabinet Installation",
+              "slug": "kitchen-cabinet-installation",
+              "shortDescription": "Expert kitchen cabinet fitting by verified carpenters at home.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/kitchen-cabinet-installation/2026-07-10-6a50bf0764bef.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wardrobe Installation",
+              "slug": "wardrobe-installation",
+              "shortDescription": "Expert wardrobe fitting by verified carpenters at your home.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wardrobe-installation/2026-07-10-6a50bf11387ba.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wooden Panel Installation",
+              "slug": "wooden-panel-installation",
+              "shortDescription": "Expert wooden panel fitting by verified carpenters at home.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wooden-panel-installation/2026-07-10-6a50bf1d9684d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Book a carpenter",
+              "slug": "book-a-carpenter",
+              "shortDescription": "Book a verified Panun Kaergar carpenter by the hour, half-day, or full day for flexible on-site help with tools and skilled hands.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/book-a-carpenter/2026-07-11-6a526cb97c747.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "carpentry-repairs",
+          "name": "Carpentry Repairs",
+          "services": [
+            {
+              "name": "Door Repair",
+              "slug": "door-repair",
+              "shortDescription": "Professional door repair for homes and offices. Panun Kaergar fixes damaged doors, loose hinges, alignment issues, and broken fittings to restore smooth operation and durability.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/door-repair/2026-07-10-6a51338452021.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Furniture Repair",
+              "slug": "furniture-repair",
+              "shortDescription": "Professional furniture repair for homes and offices. Panun Kaergar fixes damaged frames, loose joints, broken parts, and worn fittings to restore strength, stability, and usability.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/furniture-repair/2026-07-10-6a5133904ef57.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Kitchen Cabinet Repair",
+              "slug": "kitchen-cabinet-repair",
+              "shortDescription": "Professional kitchen cabinet repair for homes. Panun Kaergar fixes damaged panels, loose hinges, broken doors, and faulty fittings to restore strength, functionality, and neat appearance.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/kitchen-cabinet-repair/2026-07-10-6a5133af362d7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wardrobe Repair",
+              "slug": "wardrobe-repair",
+              "shortDescription": "Professional wardrobe repair for bedrooms and storage units. Panun Kaergar fixes damaged panels, loose hinges, sliding issues, and broken fittings to restore durability and smooth functionality.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wardrobe-repair/2026-07-10-6a5133a479c27.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Window Repair",
+              "slug": "window-repair",
+              "shortDescription": "Professional window repair for homes and offices. Panun Kaergar fixes damaged frames, loose fittings, alignment issues, and worn parts to restore strength and smooth functionality.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/window-repair/2026-07-10-6a51339ab5fb0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wooden Panel Repair",
+              "slug": "wooden-panel-repair",
+              "shortDescription": "Professional wooden panel repair for walls and interiors. Panun Kaergar fixes damaged panels, loose fittings, cracks, and alignment issues to restore strength, appearance, and durability.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wooden-panel-repair/2026-07-10-6a5133ba44af0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "roofing-works",
+          "name": "Roofing Works",
+          "services": [
+            {
+              "name": "Roof Installation",
+              "slug": "roof-installation",
+              "shortDescription": "Expert wooden roof fitting by verified carpenters at home.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/roof-installation/2026-07-10-6a50bf27c2ab5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Roof Repair",
+              "slug": "roof-repair",
+              "shortDescription": "Professional roof repair for wooden roofs and structures. Panun Kaergar fixes damaged sections, loose supports, and weakened frames to restore strength, safety, and durability.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/roof-repair/2026-07-10-6a5133c63d5bf.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "professional-cleaning": {
+      "marketingSlug": "professional-cleaning",
+      "adminSlug": "cleaning",
+      "adminName": "Cleaning Services",
+      "serviceCount": 24,
+      "subcategories": [
+        {
+          "slug": "home-cleaning",
+          "name": "Home Cleaning",
+          "services": [
+            {
+              "name": "carpet cleaning",
+              "slug": "carpet-cleaning",
+              "shortDescription": "Thorough Carpet cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/carpet-cleaning/2026-07-11-6a52340da460f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Full home cleaning",
+              "slug": "full-home-cleaning",
+              "shortDescription": "Thorough Full Home Cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/full-home-cleaning/2026-07-11-6a517d92e0e37.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Kitchen Cleaning",
+              "slug": "kitchen-cleaning",
+              "shortDescription": "Thorough Kitchen Cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/kitchen-cleaning/2026-07-11-6a517d982664d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "tanky cleaning",
+              "slug": "tanky-cleaning",
+              "shortDescription": "Thorough Tanky Cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tanky-cleaning/2026-07-11-6a517d9d621c9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "2 visits: Fabric sofa cleaning",
+              "slug": "2-visits-fabric-sofa-cleaning",
+              "shortDescription": "Thorough 2 visits: Fabric sofa cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/2-visits-fabric-sofa-cleaning/2026-07-11-6a52330ec4245.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "3 visits: Mattress cleaning",
+              "slug": "3-visits-mattress-cleaning",
+              "shortDescription": "Thorough 3 visits: Mattress cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/3-visits-mattress-cleaning/2026-07-11-6a52336138064.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Bed cleaning",
+              "slug": "bed-cleaning",
+              "shortDescription": "Thorough Bed cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/bed-cleaning/2026-07-11-6a5233796bad5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Bedroom essential cleaning",
+              "slug": "bedroom-essential-cleaning",
+              "shortDescription": "Thorough Bedroom essential cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/bedroom-essential-cleaning/2026-07-11-6a5233a9aba42.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dining table & chairs cleaning",
+              "slug": "dining-table-chairs-cleaning",
+              "shortDescription": "Thorough Dining table & chairs cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dining-table-chairs-cleaning/2026-07-11-6a52344d2e974.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Fabric headboard",
+              "slug": "fabric-headboard",
+              "shortDescription": "Thorough Fabric headboard by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/fabric-headboard/2026-07-11-6a52348c95f84.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Fabric sofa cleaning",
+              "slug": "fabric-sofa-cleaning",
+              "shortDescription": "Thorough Fabric sofa cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/fabric-sofa-cleaning/2026-07-11-6a52223406dd7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Fan cleaning",
+              "slug": "fan-cleaning",
+              "shortDescription": "Thorough Fan cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/fan-cleaning/2026-07-11-6a5222bc0f6dc.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Leather sofa cleaning & polishing",
+              "slug": "leather-sofa-cleaning-polishing",
+              "shortDescription": "Thorough Leather sofa cleaning & polishing by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/leather-sofa-cleaning-polishing/2026-07-11-6a5222d31c5c4.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Mattress cleaning",
+              "slug": "mattress-cleaning",
+              "shortDescription": "Thorough Mattress cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mattress-cleaning/2026-07-11-6a5223624c236.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Mirror cleaning",
+              "slug": "mirror-cleaning",
+              "shortDescription": "Thorough Mirror cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mirror-cleaning/2026-07-11-6a522391e27ab.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Ottoman",
+              "slug": "ottoman",
+              "shortDescription": "Thorough Ottoman by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ottoman/2026-07-11-6a5223a3543d5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Recliner/ lounge chair",
+              "slug": "recliner-lounge-chair",
+              "shortDescription": "Thorough Recliner/ lounge chair by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/recliner-lounge-chair/2026-07-11-6a5223b4b5863.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Showcase/ cabinet",
+              "slug": "showcase-cabinet",
+              "shortDescription": "Thorough Showcase/ cabinet by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/showcase-cabinet/2026-07-11-6a5223d8198b1.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Sofa center table",
+              "slug": "sofa-center-table",
+              "shortDescription": "Thorough Sofa center table by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/sofa-center-table/2026-07-11-6a5223e7a0fb0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Sofa cum bed",
+              "slug": "sofa-cum-bed",
+              "shortDescription": "Thorough Sofa cum bed by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/sofa-cum-bed/2026-07-11-6a5223fa5c2d2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Sofa, windows & cobweb cleaning",
+              "slug": "sofa-windows-cobweb-cleaning",
+              "shortDescription": "Thorough Sofa, windows & cobweb cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/sofa-windows-cobweb-cleaning/2026-07-11-6a522434e474c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Study table & chair",
+              "slug": "study-table-chair",
+              "shortDescription": "Thorough Study table & chair by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/study-table-chair/2026-07-11-6a5224c6262d7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Windows (with grills) & glass doors cleaning",
+              "slug": "windows-with-grills-glass-doors-cleaning",
+              "shortDescription": "Thorough Windows (with grills) & glass doors cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/windows-with-grills-glass-doors-cleaning/2026-07-11-6a5224d4c3b40.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Windows (without grill) & glass doors cleaning",
+              "slug": "windows-without-grill-glass-doors-cleaning",
+              "shortDescription": "Thorough Windows (without grill) & glass doors cleaning by trusted Panun Kaergar professionals for cleaner spaces, fresher surfaces, and a polished finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/windows-without-grill-glass-doors-cleaning/2026-07-11-6a522516cbaae.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "dry-clean-laundry": {
+      "marketingSlug": "dry-clean-laundry",
+      "adminSlug": "laundry",
+      "adminName": "Dry Cleaning & Laundry",
+      "serviceCount": 12,
+      "subcategories": [
+        {
+          "slug": "dry-clean",
+          "name": "Dry Clean",
+          "services": [
+            {
+              "name": "Lehenga dry clean",
+              "slug": "lehenga-dry-clean",
+              "shortDescription": "Delicate Lehenga Dry Clean by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/lehenga-dry-clean/2026-07-11-6a520a9d2a62d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Suit Dry Clean",
+              "slug": "suit-dry-clean",
+              "shortDescription": "Delicate Suit Dry Clean by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/suit-dry-clean/2026-07-11-6a5209d864214.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shirt Dry Clean",
+              "slug": "shirt-dry-clean",
+              "shortDescription": "Delicate Shirt Dry Clean by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shirt-dry-clean/2026-07-11-6a5209eb40366.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Saree Dry Clean",
+              "slug": "saree-dry-clean",
+              "shortDescription": "Delicate Saree Dry Clean by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/saree-dry-clean/2026-07-11-6a5209f86fe02.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Blazer Dry Clean",
+              "slug": "blazer-dry-clean",
+              "shortDescription": "Delicate Blazer Dry Clean by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/blazer-dry-clean/2026-07-11-6a520a094c98c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Woolen Dry Clean",
+              "slug": "woolen-dry-clean",
+              "shortDescription": "Delicate Woolen Dry Clean by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/woolen-dry-clean/2026-07-11-6a520a165ff7d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shawl & Pashmina Dry Clean",
+              "slug": "shawl-pashmina-dry-clean",
+              "shortDescription": "Delicate Shawl & Pashmina Dry Clean by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shawl-pashmina-dry-clean/2026-07-11-6a520a28e9389.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "wash-laundry",
+          "name": "Laundry",
+          "services": [
+            {
+              "name": "Wash & Iron",
+              "slug": "wash-and-iron",
+              "shortDescription": "Delicate Wash & Iron by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wash-and-iron/2026-07-11-6a520a3a57ece.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Iron Only",
+              "slug": "iron-only",
+              "shortDescription": "Delicate Iron Only by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/iron-only/2026-07-11-6a520a517bbdf.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Curtain Cleaning",
+              "slug": "curtain-cleaning",
+              "shortDescription": "Delicate Curtain Cleaning by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/curtain-cleaning/2026-07-11-6a520a646d9c0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Bedsheet & Linen Cleaning",
+              "slug": "bedsheet-linen-cleaning",
+              "shortDescription": "Delicate Bedsheet & Linen Cleaning by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/bedsheet-linen-cleaning/2026-07-11-6a520a78ca37a.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Blanket Cleaning",
+              "slug": "blanket-cleaning",
+              "shortDescription": "Delicate Blanket Cleaning by Panun Kaergar fabric-care specialists for safer handling, cleaner finish, and ready-to-wear results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/blanket-cleaning/2026-07-11-6a520a8d929c1.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "electrician": {
+      "marketingSlug": "electrician",
+      "adminSlug": "electrical",
+      "adminName": "Electrician Services",
+      "serviceCount": 37,
+      "subcategories": [
+        {
+          "slug": "installation-services",
+          "name": "Electricity Installation",
+          "services": [
+            {
+              "name": "Electrical Wiring",
+              "slug": "electrical-wiring",
+              "shortDescription": "Professional Electrical Wiring by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/electrical-wiring/2026-07-11-6a517da72c36e.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Lighting Installation",
+              "slug": "lighting-installation",
+              "shortDescription": "Professional Lighting Installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/lighting-installation/2026-07-11-6a517dabb5f06.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Switch &  Sockets",
+              "slug": "switch-sockets",
+              "shortDescription": "Professional Switch & Sockets by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/switch-sockets/2026-07-11-6a517db0688ec.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Book a consultation",
+              "slug": "book-a-consultation",
+              "shortDescription": "Professional Book a consultation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/book-a-consultation/2026-07-11-6a52255bda400.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Bulb installation/replacement",
+              "slug": "bulb-installationreplacement",
+              "shortDescription": "Professional Bulb installation/replacement by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/bulb-installationreplacement/2026-07-11-6a52256cb9b5a.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Ceiling light installation",
+              "slug": "ceiling-light-installation",
+              "shortDescription": "Professional Ceiling light installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ceiling-light-installation/2026-07-11-6a52258c79f01.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Chandelier installation",
+              "slug": "chandelier-installation",
+              "shortDescription": "Professional Chandelier installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/chandelier-installation/2026-07-11-6a5225a2885e0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Decorative fan installation",
+              "slug": "decorative-fan-installation",
+              "shortDescription": "Professional Decorative fan installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/decorative-fan-installation/2026-07-11-6a5225c5e87d9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Exhaust/pedestal/tower fan installation",
+              "slug": "exhaustpedestaltower-fan-installation",
+              "shortDescription": "Professional Exhaust/pedestal/tower fan installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/exhaustpedestaltower-fan-installation/2026-07-11-6a5225e147edd.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Fan regulator replacement",
+              "slug": "fan-regulator-replacement",
+              "shortDescription": "Professional Fan regulator replacement by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/fan-regulator-replacement/2026-07-11-6a522600e3f17.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Fancy light installation/replacement",
+              "slug": "fancy-light-installationreplacement",
+              "shortDescription": "Professional Fancy light installation/replacement by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/fancy-light-installationreplacement/2026-07-11-6a52260f11368.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Hanging light installation",
+              "slug": "hanging-light-installation",
+              "shortDescription": "Professional Hanging light installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/hanging-light-installation/2026-07-11-6a52261eb310c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Home theatre installation",
+              "slug": "home-theatre-installation",
+              "shortDescription": "Professional Home theatre installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/home-theatre-installation/2026-07-11-6a522644aab5c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Karban Airzone installation",
+              "slug": "karban-airzone-installation",
+              "shortDescription": "Professional Karban Airzone installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/karban-airzone-installation/2026-07-11-6a522660ab890.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "New external wiring (per 5m)",
+              "slug": "new-external-wiring-per-5m",
+              "shortDescription": "Professional New external wiring (per 5m) by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/new-external-wiring-per-5m/2026-07-11-6a5226817ec0f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "New internal wiring (per 5m)",
+              "slug": "new-internal-wiring-per-5m",
+              "shortDescription": "Professional New internal wiring (per 5m) by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/new-internal-wiring-per-5m/2026-07-11-6a52269599b3f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "New switchbox installation",
+              "slug": "new-switchbox-installation",
+              "shortDescription": "Professional New switchbox installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/new-switchbox-installation/2026-07-11-6a5226a282243.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Plug replacement",
+              "slug": "plug-replacement",
+              "shortDescription": "Professional Plug replacement by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/plug-replacement/2026-07-11-6a5226c937b88.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Regular ceiling fan installation",
+              "slug": "regular-ceiling-fan-installation",
+              "shortDescription": "Professional Regular ceiling fan installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/regular-ceiling-fan-installation/2026-07-11-6a5226e308d73.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Regular doorbell installation",
+              "slug": "regular-doorbell-installation",
+              "shortDescription": "Professional Regular doorbell installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/regular-doorbell-installation/2026-07-11-6a522706ea7b6.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Smart/BLDC fan installation",
+              "slug": "smartbldc-fan-installation",
+              "shortDescription": "Professional Smart/BLDC fan installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/smartbldc-fan-installation/2026-07-11-6a52271be2377.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Sound bar installation",
+              "slug": "sound-bar-installation",
+              "shortDescription": "Professional Sound bar installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/sound-bar-installation/2026-07-11-6a522739cb84d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Stabiliser installation",
+              "slug": "stabiliser-installation",
+              "shortDescription": "Professional Stabiliser installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/stabiliser-installation/2026-07-11-6a5227485ce4b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Submeter installation",
+              "slug": "submeter-installation",
+              "shortDescription": "Professional Submeter installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/submeter-installation/2026-07-11-6a522756b74ff.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "TV uninstallation",
+              "slug": "tv-uninstallation",
+              "shortDescription": "Professional TV uninstallation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tv-uninstallation/2026-07-11-6a52279338c49.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Video doorbell installation",
+              "slug": "video-doorbell-installation",
+              "shortDescription": "Professional Video doorbell installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/video-doorbell-installation/2026-07-11-6a5227b846eab.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wireless CCTV installation",
+              "slug": "wireless-cctv-installation",
+              "shortDescription": "Professional Wireless CCTV installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wireless-cctv-installation/2026-07-11-6a5227cec8aa7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "repairing-services",
+          "name": "Electricity Repair Services",
+          "services": [
+            {
+              "name": "Fault Diagnosis",
+              "slug": "fault-diagnosis",
+              "shortDescription": "Reliable Fault Diagnosis by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/fault-diagnosis/2026-07-11-6a517db524546.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Lighting Repair",
+              "slug": "lighting-repair",
+              "shortDescription": "Reliable Lighting Repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/lighting-repair/2026-07-11-6a517db9d9254.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "PCB & Transformer Auto-Cut",
+              "slug": "pcb-transformer-auto-cut",
+              "shortDescription": "Reliable PCB & Transformer Auto-Cut by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/pcb-transformer-auto-cut/2026-07-11-6a517dbe94f00.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Short Circuit & Voltage Issues",
+              "slug": "short-circuit-voltage-issues",
+              "shortDescription": "Reliable Short Circuit & Voltage Issues by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/short-circuit-voltage-issues/2026-07-11-6a517dc34a1a7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Fan repair",
+              "slug": "fan-repair",
+              "shortDescription": "Reliable Fan repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/fan-repair/2026-07-11-6a5227e0b9466.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "MCB/fuse repair",
+              "slug": "mcbfuse-repair",
+              "shortDescription": "Reliable MCB/fuse repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mcbfuse-repair/2026-07-11-6a52280087e71.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "MCB/fuse replacement",
+              "slug": "mcbfuse-replacement",
+              "shortDescription": "Reliable MCB/fuse replacement by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mcbfuse-replacement/2026-07-11-6a52282679aba.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Switch/socket repair & replacement",
+              "slug": "switchsocket-repair-replacement",
+              "shortDescription": "Reliable Switch/socket repair & replacement by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/switchsocket-repair-replacement/2026-07-11-6a52284b1396b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Switchboard repair & replacement",
+              "slug": "switchboard-repair-replacement",
+              "shortDescription": "Reliable Switchboard repair & replacement by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/switchboard-repair-replacement/2026-07-11-6a52286e05cef.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Tubelight repair & Installation",
+              "slug": "tubelight-repair-installation",
+              "shortDescription": "Reliable Tubelight repair & Installation by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tubelight-repair-installation/2026-07-11-6a522890a3358.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "home-appliances": {
+      "marketingSlug": "home-appliances",
+      "adminSlug": "home-appliance",
+      "adminName": "Home Appliances",
+      "serviceCount": 49,
+      "subcategories": [
+        {
+          "slug": "air-conditioners",
+          "name": "Air Conditioners",
+          "services": [
+            {
+              "name": "AC Installation",
+              "slug": "ac-installation",
+              "shortDescription": "Professional AC installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ac-installation/2026-07-11-6a5228a02618c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "AC Repair",
+              "slug": "ac-repair",
+              "shortDescription": "Reliable AC repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ac-repair/2026-07-11-6a5228b59df74.webp",
+              "avgRating": 5,
+              "ratingCount": 1
+            },
+            {
+              "name": "AC Servicing",
+              "slug": "ac-servicing",
+              "shortDescription": "Complete AC servicing with filter cleaning, coil care, drain flushing, and performance checks for cleaner air and stronger cooling.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ac-servicing/2026-07-11-6a51531e887ab.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "AC Uninstallation",
+              "slug": "ac-uninstallation",
+              "shortDescription": "Professional AC uninstallation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ac-uninstallation/2026-07-11-6a5228d8a84b3.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Annual plan [2 times/year]",
+              "slug": "annual-plan-2-timesyear",
+              "shortDescription": "Professional Annual plan [2 times/year] by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/annual-plan-2-timesyear/2026-07-11-6a5228f397a13.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Anti-rust spray (avoid gas leak)",
+              "slug": "anti-rust-spray-avoid-gas-leak",
+              "shortDescription": "Reliable Anti-rust spray (avoid gas leak) by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/anti-rust-spray-avoid-gas-leak/2026-07-11-6a5229200ce4d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Foam-jet AC service",
+              "slug": "foam-jet-ac-service",
+              "shortDescription": "Professional Foam-jet AC service by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/foam-jet-ac-service/2026-07-11-6a52292f3ca5b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Foam-jet service (2 ACs)",
+              "slug": "foam-jet-service-2-acs",
+              "shortDescription": "Professional Foam-jet service (2 ACs) by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/foam-jet-service-2-acs/2026-07-11-6a522975cd2cb.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Foam-jet service (3 ACs)",
+              "slug": "foam-jet-service-3-acs",
+              "shortDescription": "Professional Foam-jet service (3 ACs) by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/foam-jet-service-3-acs/2026-07-11-6a5229884a07b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Foam-jet service (4 ACs)",
+              "slug": "foam-jet-service-4-acs",
+              "shortDescription": "Professional Foam-jet service (4 ACs) by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/foam-jet-service-4-acs/2026-07-11-6a5229997324b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Foam-jet service (5 ACs)",
+              "slug": "foam-jet-service-5-acs",
+              "shortDescription": "Professional Foam-jet service (5 ACs) by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/foam-jet-service-5-acs/2026-07-11-6a5229a999335.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Gas refill & check-up",
+              "slug": "gas-refill-check-up",
+              "shortDescription": "Reliable Gas refill & check-up by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/gas-refill-check-up/2026-07-11-6a5229bc28894.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "battery-inverters",
+          "name": "Battery & Inverters",
+          "services": [
+            {
+              "name": "Inverter Repair",
+              "slug": "inverter-repair",
+              "shortDescription": "Trusted inverter repair for backup failure, alarm beeps, charging faults, and output issues by verified technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/inverter-repair/2026-07-11-6a515328e13d7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Inverter/battery Installation",
+              "slug": "inverter-installation",
+              "shortDescription": "Professional Inverter installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/inverter-installation/2026-07-11-6a5229f209efa.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Inverter check-up",
+              "slug": "inverter-check-up",
+              "shortDescription": "Reliable Inverter check-up by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/inverter-check-up/2026-07-11-6a5229cc0d826.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Inverter fuse replacement",
+              "slug": "inverter-fuse-replacement",
+              "shortDescription": "Professional Inverter fuse replacement by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/inverter-fuse-replacement/2026-07-11-6a5229dc7fe16.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Inverter servicing",
+              "slug": "inverter-servicing",
+              "shortDescription": "Professional Inverter servicing by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/inverter-servicing/2026-07-11-6a522a099252c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Inverter uninstallation",
+              "slug": "inverter-uninstallation",
+              "shortDescription": "Professional Inverter uninstallation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/inverter-uninstallation/2026-07-11-6a522a1c59655.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "cctv",
+          "name": "CCTV",
+          "services": [
+            {
+              "name": "cctv repair",
+              "slug": "cctv-repair",
+              "shortDescription": "Professional CCTV repair for no video, poor recording, power faults, and signal issues across cameras and DVR systems.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/cctv-repair/2026-07-11-6a5153334a27e.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "geysers",
+          "name": "Geysers",
+          "services": [
+            {
+              "name": "Geyser Cleaning",
+              "slug": "geyser-cleaning",
+              "shortDescription": "Geyser cleaning service for sediment buildup, inner tank hygiene, and better heating efficiency by trained technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/geyser-cleaning/2026-07-11-6a5153387a54c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Geyser Installation",
+              "slug": "geyser-installation",
+              "shortDescription": "Professional Geyser installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/geyser-installation/2026-07-11-6a522a627152f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Geyser Repair",
+              "slug": "geyser-repair",
+              "shortDescription": "Reliable geyser repair for no heating, leakage, tripping, and thermostat faults by verified technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/geyser-repair/2026-07-11-6a515342716a2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Geyser check-up",
+              "slug": "geyser-check-up",
+              "shortDescription": "Reliable Geyser check-up by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/geyser-check-up/2026-07-11-6a522a38bd548.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Geyser connection leakage repair",
+              "slug": "geyser-connection-leakage-repair",
+              "shortDescription": "Reliable Geyser connection leakage repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/geyser-connection-leakage-repair/2026-07-11-6a522a4c90d95.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Geyser uninstallation",
+              "slug": "geyser-uninstallation",
+              "shortDescription": "Professional Geyser uninstallation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/geyser-uninstallation/2026-07-11-6a522a7677cd0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Heating element replacement",
+              "slug": "heating-element-replacement",
+              "shortDescription": "Professional Heating element replacement by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/heating-element-replacement/2026-07-11-6a522a8969aee.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Thermostat repair/replacement",
+              "slug": "thermostat-repairreplacement",
+              "shortDescription": "Reliable Thermostat repair/replacement by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/thermostat-repairreplacement/2026-07-11-6a522a9d49a9b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "led-smart-tv",
+          "name": "LED / Smart TV",
+          "services": [
+            {
+              "name": "TV Installation",
+              "slug": "tv-installation",
+              "shortDescription": "Professional TV installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tv-installation/2026-07-11-6a522765dc68f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "TV Repair",
+              "slug": "tv-repair",
+              "shortDescription": "Professional TV repair for no power, no display, sound faults, and signal issues by verified technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tv-repair/2026-07-11-6a51534c5afc7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "TV check-up",
+              "slug": "tv-check-up",
+              "shortDescription": "Reliable TV check-up by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tv-check-up/2026-07-11-6a522ab46c6f6.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "TV installation",
+              "slug": "led-smart-tv-tv-installation",
+              "shortDescription": "Professional TV installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/led-smart-tv-tv-installation/2026-07-11-6a522adc7741d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "TV uninstallation",
+              "slug": "led-smart-tv-tv-uninstallation",
+              "shortDescription": "Professional TV uninstallation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/led-smart-tv-tv-uninstallation/2026-07-11-6a522b10dc7bf.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "refrigerators",
+          "name": "Refrigerators",
+          "services": [
+            {
+              "name": "Refrigerator Installation",
+              "slug": "refrigerator-installation",
+              "shortDescription": "Professional Refrigerator installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/refrigerator-installation/2026-07-11-6a522b698fcba.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Refrigerator Repair",
+              "slug": "refrigerator-repair",
+              "shortDescription": "Reliable refrigerator repair for low cooling, water leakage, strange noise, and start-up faults by trained technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/refrigerator-repair/2026-07-11-6a515358c5ac4.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Gas refill & leak fix",
+              "slug": "gas-refill-leak-fix",
+              "shortDescription": "Reliable Gas refill & leak fix by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/gas-refill-leak-fix/2026-07-11-6a522b3572765.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Refrigerator check-up",
+              "slug": "refrigerator-check-up",
+              "shortDescription": "Reliable Refrigerator check-up by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/refrigerator-check-up/2026-07-11-6a522b4827d77.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Thermostat replacement",
+              "slug": "thermostat-replacement",
+              "shortDescription": "Professional Thermostat replacement by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/thermostat-replacement/2026-07-11-6a522b85d0434.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "induction-heaters",
+          "name": "Small Appliances",
+          "services": [
+            {
+              "name": "Fan",
+              "slug": "fan",
+              "shortDescription": "Fan repair for slow speed, noise, wobble, and regulator issues by verified technicians for home and small commercial spaces.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/fan/2026-07-11-6a51535df3f3b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Induction  Heaters",
+              "slug": "induction-heaters",
+              "shortDescription": "Induction heater repair for no heating, error display, control faults, and unstable power behaviour by trained technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/induction-heaters/2026-07-11-6a515362bbd12.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "oven",
+              "slug": "oven",
+              "shortDescription": "Oven repair for no heating, uneven temperature, timer faults, and electrical issues by verified technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/oven/2026-07-11-6a515367ea935.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "vacum cleaner",
+              "slug": "vacum-cleaner",
+              "shortDescription": "Vacuum cleaner repair for weak suction, motor noise, power loss, and blockage issues by trained technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/vacum-cleaner/2026-07-11-6a51536d315b2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "washing-machine",
+          "name": "Washing Machine",
+          "services": [
+            {
+              "name": "Washing Machine Installation",
+              "slug": "washing-machine-installation",
+              "shortDescription": "Washing machine installation with inlet and drain setup, machine leveling, and test cycle by verified technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/washing-machine-installation/2026-07-11-6a515372368a2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Washing Machine Repair",
+              "slug": "washing-machine-repair",
+              "shortDescription": "Washing machine repair for drain issues, no spin, vibration, leakage, and electrical faults by verified technicians.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/washing-machine-repair/2026-07-11-6a51537759256.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Automatic front load machine check-up",
+              "slug": "automatic-front-load-machine-check-up",
+              "shortDescription": "Reliable Automatic front load machine check-up by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/automatic-front-load-machine-check-up/2026-07-11-6a522b97abbad.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Automatic top load machine check-up",
+              "slug": "automatic-top-load-machine-check-up",
+              "shortDescription": "Reliable Automatic top load machine check-up by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/automatic-top-load-machine-check-up/2026-07-11-6a522bdcf3426.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Semi-automatic machine check-up",
+              "slug": "semi-automatic-machine-check-up",
+              "shortDescription": "Reliable Semi-automatic machine check-up by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/semi-automatic-machine-check-up/2026-07-11-6a522c194d38c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Washing machine installation & uninstallation",
+              "slug": "washing-machine-installation-uninstallation",
+              "shortDescription": "Professional Washing machine installation & uninstallation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/washing-machine-installation-uninstallation/2026-07-11-6a522c52b5c9f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Washing machine jet service",
+              "slug": "washing-machine-jet-service",
+              "shortDescription": "Professional Washing machine jet service by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/washing-machine-jet-service/2026-07-11-6a522c736310b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "ro-purifier",
+          "name": "Water Purifier",
+          "services": [
+            {
+              "name": "RO service",
+              "slug": "ro-service",
+              "shortDescription": "RO service with filter-stage checks, housing cleaning, flushing, and water-output testing for healthier routine performance.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ro-service/2026-07-11-6a51537c63519.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "masonry": {
+      "marketingSlug": "masonry",
+      "adminSlug": "masonry",
+      "adminName": "Masonary Services",
+      "serviceCount": 12,
+      "subcategories": [
+        {
+          "slug": "masonry-installs",
+          "name": "Masonry Installs",
+          "services": [
+            {
+              "name": "Brick Work Construction",
+              "slug": "brick-work-construction",
+              "shortDescription": "Professional Brick Work Construction by Panun Kaergar masons for planned site work, durable execution, and neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/brick-work-construction/2026-07-11-6a517dc80b1cf.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Concrete Work",
+              "slug": "concrete-work",
+              "shortDescription": "Professional Concrete Work by Panun Kaergar masons for planned site work, durable execution, and neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/concrete-work/2026-07-11-6a517dcd158e0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Drain Construction",
+              "slug": "drain-construction",
+              "shortDescription": "Professional Drain Construction by Panun Kaergar masons for planned site work, durable execution, and neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/drain-construction/2026-07-11-6a517dd1f00fe.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Floor Tiling Installation",
+              "slug": "floor-tiling-installation",
+              "shortDescription": "Professional Floor Tiling Installation by Panun Kaergar masons for planned site work, durable execution, and neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/floor-tiling-installation/2026-07-11-6a517dd70b401.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Plaster Rendering",
+              "slug": "plaster-rendering",
+              "shortDescription": "Professional Plaster Rendering by Panun Kaergar masons for planned site work, durable execution, and neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/plaster-rendering/2026-07-11-6a517ddbbfc42.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Step / Stair Construction",
+              "slug": "step-stair-construction",
+              "shortDescription": "Professional Step / Stair Construction by Panun Kaergar masons for planned site work, durable execution, and neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/step-stair-construction/2026-07-11-6a517de0523dd.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Stone Work Construction",
+              "slug": "stone-work-construction",
+              "shortDescription": "Professional Stone Work Construction by Panun Kaergar masons for planned site work, durable execution, and neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/stone-work-construction/2026-07-11-6a517de516159.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Book a Mason",
+              "slug": "book-a-mason",
+              "shortDescription": "Book a verified Panun Kaergar mason by the hour, half-day, or full day for flexible on-site help with tools and skilled hands.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/book-a-mason/2026-07-11-6a526d3145b1b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "masonry-repairs",
+          "name": "Masonry Repairs",
+          "services": [
+            {
+              "name": "Floor Tile Repair",
+              "slug": "floor-tile-repair",
+              "shortDescription": "Reliable Floor Tile Repair by Panun Kaergar masons for careful repair, improved stability, and a neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/floor-tile-repair/2026-07-11-6a517dee48440.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Plaster Repair",
+              "slug": "plaster-repair",
+              "shortDescription": "Reliable Plaster Repair by Panun Kaergar masons for careful repair, improved stability, and a neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/plaster-repair/2026-07-11-6a517df2b47f8.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Stair Repair",
+              "slug": "stair-repair",
+              "shortDescription": "Reliable Stair Repair by Panun Kaergar masons for careful repair, improved stability, and a neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/stair-repair/2026-07-11-6a517df7347bd.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wall Crack Repair",
+              "slug": "wall-crack-repair",
+              "shortDescription": "Reliable Wall Crack Repair by Panun Kaergar masons for careful repair, improved stability, and a neat handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wall-crack-repair/2026-07-11-6a517dfbe7354.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "mens-salon": {
+      "marketingSlug": "mens-salon",
+      "adminSlug": "mens-salon",
+      "adminName": "Men's Salon",
+      "serviceCount": 22,
+      "subcategories": [
+        {
+          "slug": "mens-beard-shaving",
+          "name": "Men's Beard & Shaving",
+          "services": [
+            {
+              "name": "Men Clean Shave Service",
+              "slug": "men-clean-shave-service",
+              "shortDescription": "Professional Men Clean Shave Service by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/men-clean-shave-service/2026-07-11-6a517e6fc279a.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Men's Beard Coloring",
+              "slug": "mens-beard-coloring",
+              "shortDescription": "Professional Men's Beard Coloring by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mens-beard-coloring/2026-07-11-6a517e74b9046.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Men's Beard Trim & Styling",
+              "slug": "mens-beard-trim-styling",
+              "shortDescription": "Professional Men's Beard Trim & Styling by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mens-beard-trim-styling/2026-07-11-6a517e799389d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Beard color (with product)",
+              "slug": "beard-color-with-product",
+              "shortDescription": "Professional Beard color (with product) by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/beard-color-with-product/2026-07-11-6a522ca502460.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "mens-hair-services",
+          "name": "Men's Hair Services",
+          "services": [
+            {
+              "name": "Men's Hair Coloring",
+              "slug": "mens-hair-coloring",
+              "shortDescription": "Professional Men's Hair Coloring by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mens-hair-coloring/2026-07-11-6a517e7e35716.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Men's Hair Cut",
+              "slug": "mens-hair-cut",
+              "shortDescription": "Professional Men's Hair Cut by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mens-hair-cut/2026-07-11-6a517e832f4c5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Men's Hair Treatment",
+              "slug": "mens-hair-treatment",
+              "shortDescription": "Professional Men's Hair Treatment by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mens-hair-treatment/2026-07-11-6a517e87e0eb0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Garnier hair color",
+              "slug": "garnier-hair-color",
+              "shortDescription": "Professional Garnier hair color by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/garnier-hair-color/2026-07-11-6a522d9c9b1d6.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Haircut for boys",
+              "slug": "haircut-for-boys",
+              "shortDescription": "Professional Haircut for boys by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/haircut-for-boys/2026-07-11-6a522cdd19055.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Haircut & color",
+              "slug": "haircut-color",
+              "shortDescription": "Professional Haircut & color by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/haircut-color/2026-07-11-6a522e9e275b5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Haircut & massage",
+              "slug": "haircut-massage",
+              "shortDescription": "Professional Haircut & massage by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/haircut-massage/2026-07-11-6a522eea343b1.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Make your own package",
+              "slug": "make-your-own-package",
+              "shortDescription": "Professional Make your own package by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/make-your-own-package/2026-07-11-6a522f45108ea.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "mens-skin-grooming-care",
+          "name": "Men's Skin & Grooming Care",
+          "services": [
+            {
+              "name": "Men's  Detan Treatment",
+              "slug": "mens-detan-treatment",
+              "shortDescription": "Professional Men's Detan Treatment by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mens-detan-treatment/2026-07-11-6a517e8c9de27.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Men's  Waxing Services",
+              "slug": "mens-waxing",
+              "shortDescription": "Professional Men's Waxing Services by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mens-waxing/2026-07-11-6a517e9ac0b08.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Men's Facial & Cleanup",
+              "slug": "mens-facial-cleanup",
+              "shortDescription": "Professional Men's Facial & Cleanup by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mens-facial-cleanup/2026-07-11-6a517e9187c45.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Men's Threading Services",
+              "slug": "mens-threading-services",
+              "shortDescription": "Professional Men's Threading Services by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/mens-threading-services/2026-07-11-6a517e961a2d9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Men's Pedicure",
+              "slug": "mens-pedicure",
+              "shortDescription": "Professional Brightening lemon express pedicure by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/brightening-lemon-express-pedicure/2026-07-11-6a52304d35246.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Express manicure",
+              "slug": "express-manicure",
+              "shortDescription": "Professional Express manicure by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/express-manicure/2026-07-11-6a5234b76874b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Head massage",
+              "slug": "head-massage",
+              "shortDescription": "Professional Head massage by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/head-massage/2026-07-11-6a52350e179d2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Body massage",
+              "slug": "body-massage",
+              "shortDescription": "Relax and rejuvenate with Panun Kaergar's professional full-body massage service for men. Our trained experts help relieve muscle tension, reduce stress, improve circulation, and promote overall well-being—all in the comfort of your home.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/head-neck-shoulder-massage/2026-07-11-6a523540c0bde.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Massage top-up (15 mins)",
+              "slug": "massage-top-up-15-mins",
+              "shortDescription": "Professional Massage top-up (15 mins) by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/massage-top-up-15-mins/2026-07-11-6a52358b5a39c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Men's Nail cut & file",
+              "slug": "mens-nail-cut-file",
+              "shortDescription": "Professional Nail cut & file by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/nail-cut-file-hands/2026-07-11-6a5235a3327b9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "pest-control": {
+      "marketingSlug": "pest-control",
+      "adminSlug": "pest-control",
+      "adminName": "Pest Control",
+      "serviceCount": 10,
+      "subcategories": [
+        {
+          "slug": "home-pest-control",
+          "name": "Home Pest Control",
+          "services": [
+            {
+              "name": "Apartment cockroach control",
+              "slug": "apartment-cockroach-control",
+              "shortDescription": "Professional Apartment cockroach control with a proven 2-visit spray and gel process. Safe for homes, with a 3-month warranty against recurring cockroaches.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/apartment-cockroach-control/2026-07-11-6a52332983ac3.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Bungalow cockroach control",
+              "slug": "bungalow-cockroach-control",
+              "shortDescription": "Professional Bungalow cockroach control with a proven 2-visit spray and gel process. Safe for homes, with a 3-month warranty against recurring cockroaches.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/bungalow-cockroach-control/2026-07-11-6a523356be87f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Kitchen cockroach control",
+              "slug": "kitchen-cockroach-control",
+              "shortDescription": "Professional Kitchen cockroach control with a proven 2-visit spray and gel process. Safe for homes, with a 3-month warranty against recurring cockroaches.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/kitchen-cockroach-control/2026-07-11-6a523380c5a62.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Partial home cockroach control",
+              "slug": "partial-home-cockroach-control",
+              "shortDescription": "Professional Partial home cockroach control with a proven 2-visit spray and gel process. Safe for homes, with a 3-month warranty against recurring cockroaches.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/partial-home-cockroach-control/2026-07-11-6a52339b69a3d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "office-pest-control",
+          "name": "Office Pest Control",
+          "services": [
+            {
+              "name": "Office cockroach control",
+              "slug": "office-cockroach-control",
+              "shortDescription": "Professional Office cockroach control for office workspaces. Discreet scheduling, Commercial-grade approved treatment chemicals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/office-cockroach-control/2026-07-11-6a5233bd0a396.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Office rodent control",
+              "slug": "office-rodent-control",
+              "shortDescription": "Professional Office rodent control for office premises. Discreet scheduling, Commercial-grade approved treatment chemicals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/office-rodent-control/2026-07-11-6a5233d144980.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Office ant control",
+              "slug": "office-ant-control",
+              "shortDescription": "Professional Office ant control for office spaces. Discreet scheduling, Commercial-grade approved treatment chemicals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/office-ant-control/2026-07-11-6a5233e64c48c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "restaurant-pest-control",
+          "name": "Restaurant Pest Control",
+          "services": [
+            {
+              "name": "Restaurant kitchen pest control",
+              "slug": "restaurant-kitchen-pest-control",
+              "shortDescription": "Professional Restaurant kitchen pest control for restaurant kitchens. Discreet scheduling, Food-safe approved chemicals suitable for F&B environments.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/restaurant-kitchen-pest-control/2026-07-11-6a5233fb8f5f7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Restaurant dining pest control",
+              "slug": "restaurant-dining-pest-control",
+              "shortDescription": "Professional Restaurant dining pest control for restaurant dining areas. Discreet scheduling, Food-safe approved chemicals suitable for F&B environments.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/restaurant-dining-pest-control/2026-07-11-6a52340edc371.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Restaurant cockroach control",
+              "slug": "restaurant-cockroach-control",
+              "shortDescription": "Professional Restaurant cockroach control for full restaurant premises. Discreet scheduling, Commercial-grade approved treatment chemicals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/restaurant-cockroach-control/2026-07-11-6a52342142861.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "painting": {
+      "marketingSlug": "painting",
+      "adminSlug": "painting",
+      "adminName": "Painting Services",
+      "serviceCount": 29,
+      "subcategories": [
+        {
+          "slug": "exterior-painting",
+          "name": "Exterior Painting",
+          "services": [
+            {
+              "name": "Building Painting",
+              "slug": "building-painting",
+              "shortDescription": "Professional Building Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/building-painting/2026-07-12-6a52935ed036f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Exterior Wall Painting",
+              "slug": "exterior-wall-painting",
+              "shortDescription": "Professional Exterior Wall Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/exterior-wall-painting/2026-07-12-6a529374e3f92.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Full House Exterior Painting",
+              "slug": "full-house-exterior-painting",
+              "shortDescription": "Professional Full House Exterior Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/full-house-exterior-painting/2026-07-12-6a52937f010cb.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Boundary Wall Painting",
+              "slug": "boundary-wall-painting",
+              "shortDescription": "Professional Boundary Wall Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/boundary-wall-painting/2026-07-12-6a5293889ceb0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Exterior Door & Gate Painting",
+              "slug": "exterior-door-gate-painting",
+              "shortDescription": "Professional Exterior Door & Gate Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/exterior-door-gate-painting/2026-07-12-6a529392858a2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Exterior Window & Grille Painting",
+              "slug": "exterior-window-grille-painting",
+              "shortDescription": "Professional Exterior Window & Grille Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/exterior-window-grille-painting/2026-07-12-6a52939c37777.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Exterior Primer Application",
+              "slug": "exterior-primer-application",
+              "shortDescription": "Professional Exterior Primer Application by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/exterior-primer-application/2026-07-12-6a5293a8d327b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Exterior Wall Putty & Crack Repair",
+              "slug": "exterior-wall-putty-crack-repair",
+              "shortDescription": "Professional Exterior Wall Putty & Crack Repair by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/exterior-wall-putty-crack-repair/2026-07-12-6a5293b2b8bed.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Exterior Touch-up & Patch Painting",
+              "slug": "exterior-touch-up-patch-painting",
+              "shortDescription": "Professional Exterior Touch-up & Patch Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/exterior-touch-up-patch-painting/2026-07-12-6a5293bd03f49.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Waterproof Weather Shield Coating",
+              "slug": "waterproof-weather-shield-coating",
+              "shortDescription": "Professional Waterproof Weather Shield Coating by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/waterproof-weather-shield-coating/2026-07-12-6a5293c7046a4.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "interior-painting",
+          "name": "Interior Painting",
+          "services": [
+            {
+              "name": "Door Painting",
+              "slug": "door-painting",
+              "shortDescription": "Professional Door Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/door-painting/2026-07-12-6a5292bb9041c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Full House Interior Painting",
+              "slug": "full-house-interior-painting",
+              "shortDescription": "Professional Full House Interior Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/full-house-interior-painting/2026-07-12-6a5292a4ddf3b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Full Room Painting",
+              "slug": "full-room-painting",
+              "shortDescription": "Professional Full Room Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/full-room-painting/2026-07-12-6a5292b1d38ee.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Primer Application",
+              "slug": "primer-application",
+              "shortDescription": "Professional Primer Application by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/primer-application/2026-07-12-6a5292cf101b8.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Texture Wall Painting",
+              "slug": "texture-wall-painting",
+              "shortDescription": "Professional Texture Wall Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/texture-wall-painting/2026-07-12-6a5292d8c27b9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wall Putty Application",
+              "slug": "wall-putty-application",
+              "shortDescription": "Professional Wall Putty Application by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wall-putty-application/2026-07-12-6a5292e2b92e4.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Window Painting",
+              "slug": "window-painting",
+              "shortDescription": "Professional Window Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/window-painting/2026-07-12-6a5292c55e5f9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Book a Painter",
+              "slug": "book-a-painter",
+              "shortDescription": "Book a verified Panun Kaergar painter by the hour, half-day, or full day for flexible on-site help with tools and skilled hands.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/book-a-painter/2026-07-11-6a526d3552016.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Single Wall Accent Painting",
+              "slug": "single-wall-accent-painting",
+              "shortDescription": "Professional Single Wall Accent Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/single-wall-accent-painting/2026-07-12-6a5292eea2960.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Ceiling Painting",
+              "slug": "ceiling-painting",
+              "shortDescription": "Professional Ceiling Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ceiling-painting/2026-07-12-6a5292f8f38e9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Ceiling & Trim Painting",
+              "slug": "ceiling-trim-painting",
+              "shortDescription": "Professional Ceiling & Trim Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ceiling-trim-painting/2026-07-12-6a529302bef60.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Interior Touch-up & Patch Painting",
+              "slug": "interior-touch-up-patch-painting",
+              "shortDescription": "Professional Interior Touch-up & Patch Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/interior-touch-up-patch-painting/2026-07-12-6a52930c61b4d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Interior Painting Consultation",
+              "slug": "interior-painting-consultation",
+              "shortDescription": "Professional Interior Painting Consultation by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/interior-painting-consultation/2026-07-12-6a529316480ea.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Old Paint Removal & Surface Scraping",
+              "slug": "old-paint-removal-scraping",
+              "shortDescription": "Professional Old Paint Removal & Surface Scraping by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/old-paint-removal-scraping/2026-07-12-6a5293203da76.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Bathroom & Kitchen Painting",
+              "slug": "bathroom-kitchen-painting",
+              "shortDescription": "Professional Bathroom & Kitchen Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/bathroom-kitchen-painting/2026-07-12-6a52932ca9708.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wardrobe & Almirah Painting",
+              "slug": "wardrobe-almirah-painting",
+              "shortDescription": "Professional Wardrobe & Almirah Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wardrobe-almirah-painting/2026-07-12-6a529336c3542.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "POP False Ceiling Painting",
+              "slug": "pop-false-ceiling-painting",
+              "shortDescription": "Professional POP False Ceiling Painting by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/pop-false-ceiling-painting/2026-07-12-6a5293407cb14.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Interior Crack Filling & Repair",
+              "slug": "interior-crack-filling-repair",
+              "shortDescription": "Professional Interior Crack Filling & Repair by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/interior-crack-filling-repair/2026-07-12-6a52934b3b430.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Stain & Damp Spot Treatment",
+              "slug": "stain-damp-spot-treatment",
+              "shortDescription": "Professional Stain & Damp Spot Treatment by Panun Kaergar teams for cleaner prep, even coats, and a neat finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/stain-damp-spot-treatment/2026-07-12-6a52935513849.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "plumbing": {
+      "marketingSlug": "plumbing",
+      "adminSlug": "plumbing",
+      "adminName": "Plumbing Services",
+      "serviceCount": 45,
+      "subcategories": [
+        {
+          "slug": "plumbing-fixtures",
+          "name": "Plumbing Fixtures",
+          "services": [
+            {
+              "name": "Drain Pipe Blockage Removal",
+              "slug": "drain-pipe-blockage-removal",
+              "shortDescription": "Reliable Drain Pipe Blockage Removal by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/drain-pipe-blockage-removal/2026-07-11-6a517e2bd9e86.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Low Water Pressure Repair",
+              "slug": "low-water-pressure-repair",
+              "shortDescription": "Reliable Low Water Pressure Repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/low-water-pressure-repair/2026-07-11-6a517e35a3213.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Washroom Drain Cleaning",
+              "slug": "washroom-drain-cleaning",
+              "shortDescription": "Reliable Washroom Drain Cleaning by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/washroom-drain-cleaning/2026-07-11-6a517e3ae05e1.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Water Leakage Repair",
+              "slug": "water-leakage-repair",
+              "shortDescription": "Reliable Water Leakage Repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/water-leakage-repair/2026-07-11-6a517e3fbcffc.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Water Motor Repair",
+              "slug": "water-motor-repair",
+              "shortDescription": "Reliable Water Motor Repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/water-motor-repair/2026-07-11-6a517e4477fcc.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Water Pipe Repair",
+              "slug": "water-pipe-repair",
+              "shortDescription": "Reliable Water Pipe Repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/water-pipe-repair/2026-07-11-6a517e49b16d1.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Book a consultation",
+              "slug": "plumbing-fixtures-book-a-consultation",
+              "shortDescription": "Reliable Book a consultation by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/plumbing-fixtures-book-a-consultation/2026-07-11-6a524b66516d4.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Drain blockage removal",
+              "slug": "drain-blockage-removal",
+              "shortDescription": "Reliable Drain blockage removal by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/drain-blockage-removal/2026-07-11-6a524b762b3d2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Drain cover installation",
+              "slug": "drain-cover-installation",
+              "shortDescription": "Reliable Drain cover installation by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/drain-cover-installation/2026-07-11-6a524b941fb91.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "External flush tank replacement",
+              "slug": "external-flush-tank-replacement",
+              "shortDescription": "Reliable External flush tank replacement by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/external-flush-tank-replacement/2026-07-11-6a524cb38e2e3.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Flush tank repair",
+              "slug": "flush-tank-repair",
+              "shortDescription": "Reliable Flush tank repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/flush-tank-repair/2026-07-11-6a524cc076275.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Indian toilet repair/installation",
+              "slug": "indian-toilet-repairinstallation",
+              "shortDescription": "Reliable Indian toilet repair/installation by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/indian-toilet-repairinstallation/2026-07-11-6a524cd7dcb3c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Jet spray repair/replacement",
+              "slug": "jet-spray-repairreplacement",
+              "shortDescription": "Reliable Jet spray repair/replacement by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/jet-spray-repairreplacement/2026-07-11-6a524e612b2a3.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Motor air cavity removal",
+              "slug": "motor-air-cavity-removal",
+              "shortDescription": "Reliable Motor air cavity removal by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/motor-air-cavity-removal/2026-07-11-6a524e7a308c6.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shower repair",
+              "slug": "shower-repair",
+              "shortDescription": "Reliable Shower repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shower-repair/2026-07-11-6a524e8b8a29a.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shut-off valve leakage repair",
+              "slug": "shut-off-valve-leakage-repair",
+              "shortDescription": "Reliable Shut-off valve leakage repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shut-off-valve-leakage-repair/2026-07-11-6a524e9ec56f2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Tap repair",
+              "slug": "tap-repair",
+              "shortDescription": "Reliable Tap repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tap-repair/2026-07-11-6a524f99ef9f1.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wash basin blockage removal",
+              "slug": "wash-basin-blockage-removal",
+              "shortDescription": "Reliable Wash basin blockage removal by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wash-basin-blockage-removal/2026-07-11-6a524fbfd7758.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wash basin leakage repair",
+              "slug": "wash-basin-leakage-repair",
+              "shortDescription": "Reliable Wash basin leakage repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wash-basin-leakage-repair/2026-07-11-6a524fcd6f975.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Water tank repair",
+              "slug": "water-tank-repair",
+              "shortDescription": "Reliable Water tank repair by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/water-tank-repair/2026-07-11-6a524fe299368.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Western toilet repair (floor-mounted)",
+              "slug": "western-toilet-repair-floor-mounted",
+              "shortDescription": "Reliable Western toilet repair (floor-mounted) by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/western-toilet-repair-floor-mounted/2026-07-11-6a524ffe1fecd.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Western toilet repair (wall-mounted)",
+              "slug": "western-toilet-repair-wall-mounted",
+              "shortDescription": "Reliable Western toilet repair (wall-mounted) by verified Panun Kaergar technicians for careful diagnosis, expert repair, and tested handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/western-toilet-repair-wall-mounted/2026-07-11-6a5250188179f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "plumbing-installs",
+          "name": "Plumbing Installs",
+          "services": [
+            {
+              "name": "Pipe Fitting & Replacement",
+              "slug": "pipe-fitting-replacement",
+              "shortDescription": "Professional Pipe Fitting & Replacement by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/pipe-fitting-replacement/2026-07-11-6a517e4e812db.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Tap /  Mixer tap Installation",
+              "slug": "tap-mixer-tap-installation",
+              "shortDescription": "Professional Tap / Mixer Tap Installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tap-mixer-tap-installation/2026-07-11-6a517e5335f29.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Washroom Accessories Installation",
+              "slug": "washroom-accessories-installation",
+              "shortDescription": "Professional Washroom Accessories Installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/washroom-accessories-installation/2026-07-11-6a517e57d64ea.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Water Motor Installation",
+              "slug": "water-motor-installation",
+              "shortDescription": "Professional Water Motor Installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/water-motor-installation/2026-07-11-6a517e5cbda23.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Water Pipe installation",
+              "slug": "pipe-installation",
+              "shortDescription": "Professional Water Pipe Installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/pipe-installation/2026-07-11-6a517e61a1541.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Water Tank  Installation",
+              "slug": "water-tank-installation",
+              "shortDescription": "Professional Water Tank Installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/water-tank-installation/2026-07-11-6a517e6664fe5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Window Installation",
+              "slug": "window-installation",
+              "shortDescription": "Professional Window Installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/window-installation/2026-07-11-6a517e6aeaa48.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Connection hose installation",
+              "slug": "connection-hose-installation",
+              "shortDescription": "Professional Connection hose installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/connection-hose-installation/2026-07-11-6a52502fa4005.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Motor installation",
+              "slug": "motor-installation",
+              "shortDescription": "Professional Motor installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/motor-installation/2026-07-11-6a52503c8ef84.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Overhead water tank installation",
+              "slug": "overhead-water-tank-installation",
+              "shortDescription": "Professional Overhead water tank installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/overhead-water-tank-installation/2026-07-11-6a52504a2814c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "RO water connection installation",
+              "slug": "ro-water-connection-installation",
+              "shortDescription": "Professional RO water connection installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ro-water-connection-installation/2026-07-11-6a525063985ad.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shelf installation",
+              "slug": "shelf-installation",
+              "shortDescription": "Professional Shelf installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shelf-installation/2026-07-11-6a525074428c1.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shower filter installation",
+              "slug": "shower-filter-installation",
+              "shortDescription": "Professional Shower filter installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shower-filter-installation/2026-07-11-6a52508bb4908.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shower installation",
+              "slug": "shower-installation",
+              "shortDescription": "Professional Shower installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shower-installation/2026-07-11-6a52509ba1ffe.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shower mixer tap installation",
+              "slug": "shower-mixer-tap-installation",
+              "shortDescription": "Professional Shower mixer tap installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shower-mixer-tap-installation/2026-07-11-6a5250b67b083.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Soap holder installation",
+              "slug": "soap-holder-installation",
+              "shortDescription": "Professional Soap holder installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/soap-holder-installation/2026-07-11-6a5250c6755d1.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Tap accessory installation",
+              "slug": "tap-accessory-installation",
+              "shortDescription": "Professional Tap accessory installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tap-accessory-installation/2026-07-11-6a5250d7a26ef.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Tap installation/replacement",
+              "slug": "tap-installationreplacement",
+              "shortDescription": "Professional Tap installation/replacement by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tap-installationreplacement/2026-07-11-6a5250fa4f227.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Toilet seat cover installation",
+              "slug": "toilet-seat-cover-installation",
+              "shortDescription": "Professional Toilet seat cover installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/toilet-seat-cover-installation/2026-07-11-6a52511fd295a.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Towel holder installation",
+              "slug": "towel-holder-installation",
+              "shortDescription": "Professional Towel holder installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/towel-holder-installation/2026-07-11-6a52512e5b9a6.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Wash basin installation",
+              "slug": "wash-basin-installation",
+              "shortDescription": "Professional Wash basin installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/wash-basin-installation/2026-07-11-6a52514c9ddb8.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Washing machine inlet installation",
+              "slug": "washing-machine-inlet-installation",
+              "shortDescription": "Professional Washing machine inlet installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/washing-machine-inlet-installation/2026-07-11-6a52515943930.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Waste coupling installation",
+              "slug": "waste-coupling-installation",
+              "shortDescription": "Professional Waste coupling installation by verified Panun Kaergar technicians for safe setup, secure fitting, and clean handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/waste-coupling-installation/2026-07-11-6a52516abcde2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "womens-salon": {
+      "marketingSlug": "womens-salon",
+      "adminSlug": "womens-salon",
+      "adminName": "Women’s Salon",
+      "serviceCount": 18,
+      "subcategories": [
+        {
+          "slug": "beauty-grooming",
+          "name": "Beauty & Grooming",
+          "services": [
+            {
+              "name": "Women's Manicure",
+              "slug": "womens-manicure",
+              "shortDescription": "Professional Women's Manicure by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/womens-manicure/2026-07-11-6a517ea43ac2a.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Women's Pedicure",
+              "slug": "womens-pedicure",
+              "shortDescription": "Professional Women's Pedicure by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/womens-pedicure/2026-07-11-6a517ea8ed9a5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Cut, file & polish",
+              "slug": "cut-file-polish",
+              "shortDescription": "Keep your nails clean, neat, and well-shaped with Panun Kaergar's professional nail cut & file service for women. Enjoy hygienic, precise grooming in the comfort of your home.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/cut-file-polish-hands/2026-07-11-6a5251ec185a3.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Essential Mani-Pedi Combo",
+              "slug": "essential-mani-pedi-combo",
+              "shortDescription": "Professional Essential Mani-Pedi Combo by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/essential-mani-pedi-combo/2026-07-11-6a5251ff05e99.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "hair-care-services",
+          "name": "Hair Care Services",
+          "services": [
+            {
+              "name": "Hair Cut & Styling",
+              "slug": "hair-cut-styling",
+              "shortDescription": "Professional Hair Cut & Styling by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/hair-cut-styling/2026-07-11-6a517eada36ac.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Women's Hair Coloring",
+              "slug": "womens-hair-coloring",
+              "shortDescription": "Professional Women's Hair Coloring by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/womens-hair-coloring/2026-07-11-6a517eb2601ed.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Women's Hair Spa",
+              "slug": "womens-hair-spa",
+              "shortDescription": "Professional Women's Hair Spa by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/womens-hair-spa/2026-07-11-6a517eb71d7de.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Women's Hair Wash",
+              "slug": "womens-hair-wash",
+              "shortDescription": "Professional Women's Hair Wash by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/womens-hair-wash/2026-07-11-6a517ebc0814e.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Curls & waves",
+              "slug": "curls-waves",
+              "shortDescription": "Professional Curls & waves by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/curls-waves/2026-07-11-6a5252c4b14d6.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Hair botox",
+              "slug": "hair-botox",
+              "shortDescription": "Professional Hair botox by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/hair-botox/2026-07-11-6a5252d2c7f77.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Hair keratin",
+              "slug": "hair-keratin",
+              "shortDescription": "Professional Hair keratin by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/hair-keratin/2026-07-11-6a5252f75f790.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "skin-facial-care",
+          "name": "Skin & Facial Care",
+          "services": [
+            {
+              "name": "Women's  Face Cleanup",
+              "slug": "womens-face-cleanup",
+              "shortDescription": "Professional Women's Face Cleanup by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/womens-face-cleanup/2026-07-11-6a517ec143950.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Women's Facial Services",
+              "slug": "womens-facial-services",
+              "shortDescription": "Professional Women's Facial Services by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/womens-facial-services/2026-07-11-6a517ec5eda93.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Women's Threading Services",
+              "slug": "womens-threading-services",
+              "shortDescription": "Professional Women's Threading Services by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/womens-threading-services/2026-07-11-6a517eca7c331.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Women's Waxing Services",
+              "slug": "womens-waxing-services",
+              "shortDescription": "Professional Women's Waxing Services by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/womens-waxing-services/2026-07-11-6a517ecf3b56f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Bleaching Services",
+              "slug": "bleaching-services",
+              "shortDescription": "Professional Bleach by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/bleach/2026-07-11-6a5255df700f9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Massage Services",
+              "slug": "head-massage-1",
+              "shortDescription": "Professional Head massage by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/skin-facial-care-head-massage/2026-07-14-6a55cc8ddc64e.png",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Make your own package",
+              "slug": "skin-facial-care-make-your-own-package",
+              "shortDescription": "Professional Make your own package by trained Panun Kaergar stylists for polished grooming, clean technique, and confident results.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/skin-facial-care-make-your-own-package/2026-07-14-6a55bed9095fe.png",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "gardening": {
+      "marketingSlug": "gardening",
+      "adminSlug": "gardening",
+      "adminName": "Gardening Services",
+      "serviceCount": 15,
+      "subcategories": [
+        {
+          "slug": "lawn-grass-care",
+          "name": "Lawn & Grass Care",
+          "services": [
+            {
+              "name": "Lawn Mowing & Trimming",
+              "slug": "lawn-mowing-trimming",
+              "shortDescription": "Professional Lawn Mowing & Trimming in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/lawn-mowing-trimming/2026-07-13-6a54a0ac8c9bf.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Grass Edging & Levelling",
+              "slug": "grass-edging-levelling",
+              "shortDescription": "Professional Grass Edging & Levelling in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/grass-edging-levelling/2026-07-13-6a54a0c78032a.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "planting-soil-care",
+          "name": "Planting & Soil Care",
+          "services": [
+            {
+              "name": "Planting & Repotting",
+              "slug": "planting-repotting",
+              "shortDescription": "Professional Planting & Repotting in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/planting-repotting/2026-07-13-6a54a0db8940c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Soil Preparation & Fertilizing",
+              "slug": "soil-preparation-fertilizing",
+              "shortDescription": "Professional Soil Preparation & Fertilizing in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/soil-preparation-fertilizing/2026-07-13-6a54a0e9b1de3.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Terrace & Balcony Garden Setup",
+              "slug": "terrace-balcony-garden-setup",
+              "shortDescription": "Professional Terrace & Balcony Garden Setup in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/terrace-balcony-garden-setup/2026-07-13-6a54a0f8aef6f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Drip Irrigation Setup",
+              "slug": "drip-irrigation-setup",
+              "shortDescription": "Professional Drip Irrigation Setup in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/drip-irrigation-setup/2026-07-13-6a54a111ae63d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "pruning-trimming",
+          "name": "Pruning & Trimming",
+          "services": [
+            {
+              "name": "Hedge Cutting",
+              "slug": "hedge-cutting",
+              "shortDescription": "Professional Hedge Cutting in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/hedge-cutting/2026-07-13-6a54a12000f5f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Tree & Shrub Pruning",
+              "slug": "tree-shrub-pruning",
+              "shortDescription": "Professional Tree & Shrub Pruning in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/tree-shrub-pruning/2026-07-13-6a54a12e6125d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Plant Shaping & Deadheading",
+              "slug": "plant-shaping-deadheading",
+              "shortDescription": "Professional Plant Shaping & Deadheading in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/plant-shaping-deadheading/2026-07-13-6a54a13fc05b9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "garden-cleanup-maintenance",
+          "name": "Garden Cleanup & Maintenance",
+          "services": [
+            {
+              "name": "Garden Cleanup & Weeding",
+              "slug": "garden-cleanup-weeding",
+              "shortDescription": "Professional Garden Cleanup & Weeding in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/garden-cleanup-weeding/2026-07-13-6a54a1550f4dd.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Leaf & Debris Removal",
+              "slug": "leaf-debris-removal",
+              "shortDescription": "Professional Leaf & Debris Removal in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/leaf-debris-removal/2026-07-13-6a54a1700f505.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Seasonal Garden Maintenance",
+              "slug": "seasonal-garden-maintenance",
+              "shortDescription": "Professional Seasonal Garden Maintenance in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/seasonal-garden-maintenance/2026-07-13-6a54a183442d4.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Monthly Garden Maintenance Plan",
+              "slug": "monthly-garden-maintenance-plan",
+              "shortDescription": "Professional Monthly Garden Maintenance Plan in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/monthly-garden-maintenance-plan/2026-07-13-6a54a1933aea6.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Plant Pest & Disease Treatment",
+              "slug": "plant-pest-disease-treatment",
+              "shortDescription": "Professional Plant Pest & Disease Treatment in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/plant-pest-disease-treatment/2026-07-13-6a54a1adc2963.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Book a Gardener",
+              "slug": "book-a-gardener",
+              "shortDescription": "Professional Book a Gardener in Srinagar by verified Panun Kaergar gardeners — neat finish, proper tools, and on-time visits.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/book-a-gardener/2026-07-13-6a54a1bb995f2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "aluminium-steel-works": {
+      "marketingSlug": "aluminium-steel-works",
+      "adminSlug": "aluminium-steel-works",
+      "adminName": "Aluminium & Steel Works",
+      "serviceCount": 29,
+      "subcategories": [
+        {
+          "slug": "metal-works-installation",
+          "name": "Metal Works Installation",
+          "services": [
+            {
+              "name": "ACP Cladding Installation",
+              "slug": "acp-cladding-installation",
+              "shortDescription": "Professional ACP Cladding Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/acp-cladding-installation/2026-07-12-6a52951475661.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Aluminium Window Installation",
+              "slug": "aluminium-window-installation",
+              "shortDescription": "Professional Aluminium Window Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/aluminium-window-installation/2026-07-12-6a52951b22a69.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Aluminium Door Installation",
+              "slug": "aluminium-door-installation",
+              "shortDescription": "Professional Aluminium Door Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/aluminium-door-installation/2026-07-12-6a5295210b36f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "uPVC Window Installation",
+              "slug": "upvc-window-installation",
+              "shortDescription": "Professional uPVC Window Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/upvc-window-installation/2026-07-12-6a5295288777b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "uPVC Door Installation",
+              "slug": "upvc-door-installation",
+              "shortDescription": "Professional uPVC Door Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/upvc-door-installation/2026-07-12-6a52952f34556.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Balcony Railing Installation",
+              "slug": "balcony-railing-installation",
+              "shortDescription": "Professional Balcony Railing Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/balcony-railing-installation/2026-07-12-6a52953658594.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Staircase Railing Installation",
+              "slug": "staircase-railing-installation",
+              "shortDescription": "Professional Staircase Railing Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/staircase-railing-installation/2026-07-12-6a52953ca1325.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "PVC Wall Panelling Installation",
+              "slug": "pvc-wall-panelling-installation",
+              "shortDescription": "Professional PVC Wall Panelling Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/pvc-wall-panelling-installation/2026-07-12-6a529542c0f6c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "False Ceiling Installation",
+              "slug": "false-ceiling-installation",
+              "shortDescription": "Professional False Ceiling Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/false-ceiling-installation/2026-07-12-6a529548e6d53.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "MS Gate Installation",
+              "slug": "ms-gate-installation",
+              "shortDescription": "Professional MS Gate Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ms-gate-installation/2026-07-12-6a52954f6a767.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "SS Grill Installation",
+              "slug": "ss-grill-installation",
+              "shortDescription": "Professional SS Grill Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/ss-grill-installation/2026-07-12-6a529555f0fe9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Glass Partition Installation",
+              "slug": "glass-partition-installation",
+              "shortDescription": "Professional Glass Partition Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/glass-partition-installation/2026-07-12-6a52955c9fa8f.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shop Shutter Installation",
+              "slug": "shop-shutter-installation",
+              "shortDescription": "Professional Shop Shutter Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shop-shutter-installation/2026-07-12-6a5295631e47e.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Pergola & Car Porch Installation",
+              "slug": "pergola-car-porch-installation",
+              "shortDescription": "Professional Pergola & Car Porch Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/pergola-car-porch-installation/2026-07-12-6a52956991e05.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Signage Frame Installation",
+              "slug": "signage-frame-installation",
+              "shortDescription": "Professional Signage Frame Installation with precise measurement, secure fixing, and neat finishing. Verified metal works professionals for homes, shops, and offices.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/signage-frame-installation/2026-07-12-6a5295702dbfa.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "metal-works-repairs",
+          "name": "Metal Works Repairs",
+          "services": [
+            {
+              "name": "ACP Panel Repair",
+              "slug": "acp-panel-repair",
+              "shortDescription": "Professional ACP Panel Repair for loose fittings, damaged sections, and alignment issues. Restore safety and function with verified metal works professionals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/acp-panel-repair/2026-07-12-6a529576cf3c8.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Aluminium Window Repair",
+              "slug": "aluminium-window-repair",
+              "shortDescription": "Professional Aluminium Window Repair for loose fittings, damaged sections, and alignment issues. Restore safety and function with verified metal works professionals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/aluminium-window-repair/2026-07-12-6a52957d07142.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Aluminium Door Repair",
+              "slug": "aluminium-door-repair",
+              "shortDescription": "Professional Aluminium Door Repair for loose fittings, damaged sections, and alignment issues. Restore safety and function with verified metal works professionals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/aluminium-door-repair/2026-07-12-6a5295839bd59.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "uPVC Window & Door Repair",
+              "slug": "upvc-window-door-repair",
+              "shortDescription": "Professional uPVC Window & Door Repair for loose fittings, damaged sections, and alignment issues. Restore safety and function with verified metal works professionals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/upvc-window-door-repair/2026-07-12-6a52958a19a7d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Railing Repair",
+              "slug": "railing-repair",
+              "shortDescription": "Professional Railing Repair for loose fittings, damaged sections, and alignment issues. Restore safety and function with verified metal works professionals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/railing-repair/2026-07-12-6a529590a70f0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Gate & Grill Repair",
+              "slug": "gate-grill-repair",
+              "shortDescription": "Professional Gate & Grill Repair for loose fittings, damaged sections, and alignment issues. Restore safety and function with verified metal works professionals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/gate-grill-repair/2026-07-12-6a529596f3a59.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "False Ceiling Repair",
+              "slug": "false-ceiling-repair",
+              "shortDescription": "Professional False Ceiling Repair for loose fittings, damaged sections, and alignment issues. Restore safety and function with verified metal works professionals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/false-ceiling-repair/2026-07-12-6a52959d7e6f5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "PVC Panel Repair",
+              "slug": "pvc-panel-repair",
+              "shortDescription": "Professional PVC Panel Repair for loose fittings, damaged sections, and alignment issues. Restore safety and function with verified metal works professionals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/pvc-panel-repair/2026-07-12-6a5295a3c400d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Shop Shutter Repair",
+              "slug": "shop-shutter-repair",
+              "shortDescription": "Professional Shop Shutter Repair for loose fittings, damaged sections, and alignment issues. Restore safety and function with verified metal works professionals.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/shop-shutter-repair/2026-07-12-6a5295aa20ebe.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "metal-works-fabrication",
+          "name": "Metal Works Fabrication",
+          "services": [
+            {
+              "name": "Custom MS Gate Fabrication",
+              "slug": "custom-ms-gate-fabrication",
+              "shortDescription": "Custom Custom MS Gate Fabrication with on-site measurement and workshop-quality fabrication. Built to fit your opening, design, and security needs.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/custom-ms-gate-fabrication/2026-07-12-6a5295b028a0d.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Custom SS Grill Fabrication",
+              "slug": "custom-ss-grill-fabrication",
+              "shortDescription": "Custom Custom SS Grill Fabrication with on-site measurement and workshop-quality fabrication. Built to fit your opening, design, and security needs.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/custom-ss-grill-fabrication/2026-07-12-6a5295b6a0936.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Custom Railing Fabrication",
+              "slug": "custom-railing-fabrication",
+              "shortDescription": "Custom Custom Railing Fabrication with on-site measurement and workshop-quality fabrication. Built to fit your opening, design, and security needs.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/custom-railing-fabrication/2026-07-12-6a5295bcec2a3.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Custom Aluminium Window Fabrication",
+              "slug": "custom-aluminium-window-fabrication",
+              "shortDescription": "Custom Custom Aluminium Window Fabrication with on-site measurement and workshop-quality fabrication. Built to fit your opening, design, and security needs.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/custom-aluminium-window-fabrication/2026-07-12-6a5295c365a52.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Steel Bracket Fabrication",
+              "slug": "steel-bracket-fabrication",
+              "shortDescription": "Custom Steel Bracket Fabrication with on-site measurement and workshop-quality fabrication. Built to fit your opening, design, and security needs.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/steel-bracket-fabrication/2026-07-12-6a5295cad73f7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "pet-grooming": {
+      "marketingSlug": "pet-grooming",
+      "adminSlug": "pet-grooming",
+      "adminName": "Pet Grooming",
+      "serviceCount": 23,
+      "subcategories": [
+        {
+          "slug": "dog-grooming",
+          "name": "Dog Grooming",
+          "services": [
+            {
+              "name": "Full Dog Grooming",
+              "slug": "full-dog-grooming",
+              "shortDescription": "Professional Full Dog Grooming at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/full-dog-grooming/2026-07-12-6a528bd043a5e.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Bath & Brush",
+              "slug": "dog-bath-and-brush",
+              "shortDescription": "Professional Dog Bath & Brush at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-bath-and-brush/2026-07-12-6a528bf586f32.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Haircut & Trim",
+              "slug": "dog-haircut-and-trim",
+              "shortDescription": "Professional Dog Haircut & Trim at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-haircut-and-trim/2026-07-12-6a528c1bb34ea.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Nail Clipping",
+              "slug": "dog-nail-clipping",
+              "shortDescription": "Professional Dog Nail Clipping at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-nail-clipping/2026-07-12-6a528c4034841.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Ear Cleaning",
+              "slug": "dog-ear-cleaning",
+              "shortDescription": "Professional Dog Ear Cleaning at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-ear-cleaning/2026-07-12-6a528c4f71f25.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Teeth Brushing",
+              "slug": "dog-teeth-brushing",
+              "shortDescription": "Professional Dog Teeth Brushing at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-teeth-brushing/2026-07-12-6a528c5ed97c4.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Deshedding Treatment",
+              "slug": "dog-deshedding-treatment",
+              "shortDescription": "Professional Dog Deshedding Treatment at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-deshedding-treatment/2026-07-12-6a528c6d63797.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Flea & Tick Bath",
+              "slug": "dog-flea-tick-bath",
+              "shortDescription": "Professional Dog Flea & Tick Bath at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-flea-tick-bath/2026-07-12-6a528c85cd9e5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Paw Pad Trim",
+              "slug": "dog-paw-pad-trim",
+              "shortDescription": "Professional Dog Paw Pad Trim at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-paw-pad-trim/2026-07-12-6a528ca1bf74c.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Puppy First Groom",
+              "slug": "puppy-first-groom",
+              "shortDescription": "Professional Puppy First Groom at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/puppy-first-groom/2026-07-12-6a528caf78d02.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Senior Dog Gentle Groom",
+              "slug": "senior-dog-gentle-groom",
+              "shortDescription": "Professional Senior Dog Gentle Groom at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/senior-dog-gentle-groom/2026-07-12-6a528cc0a212e.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Spa Package",
+              "slug": "dog-spa-package",
+              "shortDescription": "Professional Dog Spa Package at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-spa-package/2026-07-12-6a528cd78e5f5.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Dog Monthly Grooming Plan",
+              "slug": "dog-monthly-grooming-plan",
+              "shortDescription": "Professional Dog Monthly Grooming Plan at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/dog-monthly-grooming-plan/2026-07-12-6a528ced1850a.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "cat-grooming",
+          "name": "Cat Grooming",
+          "services": [
+            {
+              "name": "Full Cat Grooming",
+              "slug": "full-cat-grooming",
+              "shortDescription": "Professional Full Cat Grooming at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/full-cat-grooming/2026-07-12-6a528d01647dc.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Cat Bath & Brush",
+              "slug": "cat-bath-and-brush",
+              "shortDescription": "Professional Cat Bath & Brush at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/cat-bath-and-brush/2026-07-12-6a528d10d6484.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Cat Mat Removal",
+              "slug": "cat-mat-removal",
+              "shortDescription": "Professional Cat Mat Removal at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/cat-mat-removal/2026-07-12-6a528d1fca6e4.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Cat Lion Cut",
+              "slug": "cat-lion-cut",
+              "shortDescription": "Professional Cat Lion Cut at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/cat-lion-cut/2026-07-12-6a528d2e1eb59.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Cat Nail Trim",
+              "slug": "cat-nail-trim",
+              "shortDescription": "Professional Cat Nail Trim at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/cat-nail-trim/2026-07-12-6a528d3e41b33.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Cat Ear Cleaning",
+              "slug": "cat-ear-cleaning",
+              "shortDescription": "Professional Cat Ear Cleaning at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/cat-ear-cleaning/2026-07-12-6a528d4b52971.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Kitten First Groom",
+              "slug": "kitten-first-groom",
+              "shortDescription": "Professional Kitten First Groom at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/kitten-first-groom/2026-07-12-6a528d5757a71.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Senior Cat Gentle Groom",
+              "slug": "senior-cat-gentle-groom",
+              "shortDescription": "Professional Senior Cat Gentle Groom at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/senior-cat-gentle-groom/2026-07-12-6a528d61b7052.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Cat Flea & Tick Bath",
+              "slug": "cat-flea-tick-bath",
+              "shortDescription": "Professional Cat Flea & Tick Bath at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/cat-flea-tick-bath/2026-07-12-6a528d75e6b2b.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Cat Monthly Grooming Plan",
+              "slug": "cat-monthly-grooming-plan",
+              "shortDescription": "Professional Cat Monthly Grooming Plan at your home by trained Panun Kaergar pet groomers — gentle handling, hygienic tools, and a clean, comfortable finish.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/cat-monthly-grooming-plan/2026-07-12-6a528d80dd2c0.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "interior-decor": {
+      "marketingSlug": "interior-decor",
+      "adminSlug": "interior-decor",
+      "adminName": "Interior Decor",
+      "serviceCount": 4,
+      "subcategories": [
+        {
+          "slug": "home-decor-consultation",
+          "name": "Home Decor Consultation",
+          "services": [
+            {
+              "name": "Room Layout & Space Planning",
+              "slug": "room-layout-space-planning",
+              "shortDescription": "Professional Room Layout & Space Planning in Srinagar — practical advice from verified Panun Kaergar decor specialists.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/room-layout-space-planning/2026-07-13-6a549ecc07313.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Home Makeover Consultation",
+              "slug": "home-makeover-consultation",
+              "shortDescription": "Professional Home Makeover Consultation in Srinagar — practical advice from verified Panun Kaergar decor specialists.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/home-makeover-consultation/2026-07-13-6a549edd76de7.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Curtains & Soft Furnishing Advice",
+              "slug": "curtains-soft-furnishing-advice",
+              "shortDescription": "Professional Curtains & Soft Furnishing Advice in Srinagar — practical advice from verified Panun Kaergar decor specialists.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/curtains-soft-furnishing-advice/2026-07-13-6a549eecd0786.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "commercial-decor-styling",
+          "name": "Commercial Decor Styling",
+          "services": [
+            {
+              "name": "Office & Shop Interior Styling",
+              "slug": "office-shop-interior-styling",
+              "shortDescription": "Professional Office & Shop Interior Styling in Srinagar — practical advice from verified Panun Kaergar decor specialists.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/office-shop-interior-styling/2026-07-13-6a549f02506ea.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    },
+    "vehicle-services": {
+      "marketingSlug": "vehicle-services",
+      "adminSlug": "vehicle-services",
+      "adminName": "Vehicle Services",
+      "serviceCount": 13,
+      "subcategories": [
+        {
+          "slug": "car-wash-detailing",
+          "name": "Car Wash & Detailing",
+          "services": [
+            {
+              "name": "Exterior Car Wash",
+              "slug": "exterior-car-wash",
+              "shortDescription": "Professional Exterior Car Wash in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/exterior-car-wash/2026-07-13-6a54a15faf8b6.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Interior Car Cleaning",
+              "slug": "interior-car-cleaning",
+              "shortDescription": "Professional Interior Car Cleaning in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/interior-car-cleaning/2026-07-13-6a54a17aa83ef.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Full Car Detailing",
+              "slug": "full-car-detailing",
+              "shortDescription": "Professional Full Car Detailing in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/full-car-detailing/2026-07-13-6a54a19989434.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "car-repair-maintenance",
+          "name": "Car Repair & Maintenance",
+          "services": [
+            {
+              "name": "General Car Inspection",
+              "slug": "general-car-inspection",
+              "shortDescription": "Professional General Car Inspection in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/general-car-inspection/2026-07-13-6a54a1b28d617.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Periodic Car Service",
+              "slug": "periodic-car-service",
+              "shortDescription": "Professional Periodic Car Service in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/periodic-car-service/2026-07-13-6a54a1c047ab2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Car Battery Replacement",
+              "slug": "car-battery-replacement",
+              "shortDescription": "Professional Car Battery Replacement in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/car-battery-replacement/2026-07-13-6a54a1d86fd65.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Car AC Service & Gas Refill",
+              "slug": "car-ac-service-gas-refill",
+              "shortDescription": "Professional Car AC Service & Gas Refill in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/car-ac-service-gas-refill/2026-07-13-6a54a1e93088e.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Car Tyre Puncture Repair",
+              "slug": "car-tyre-puncture-repair",
+              "shortDescription": "Professional Car Tyre Puncture Repair in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/car-tyre-puncture-repair/2026-07-13-6a54a1f7074d9.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        },
+        {
+          "slug": "bike-scooter-service",
+          "name": "Bike & Scooter Service",
+          "services": [
+            {
+              "name": "Bike General Service",
+              "slug": "bike-general-service",
+              "shortDescription": "Professional Bike General Service in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/bike-general-service/2026-07-13-6a54a20a39094.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Scooter Periodic Service",
+              "slug": "scooter-periodic-service",
+              "shortDescription": "Professional Scooter Periodic Service in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/scooter-periodic-service/2026-07-13-6a54a223209c2.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Bike & Scooter Wash",
+              "slug": "bike-scooter-wash",
+              "shortDescription": "Professional Bike & Scooter Wash in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/bike-scooter-wash/2026-07-13-6a54a235ecb78.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Two-Wheeler Tyre Puncture Repair",
+              "slug": "two-wheeler-tyre-puncture-repair",
+              "shortDescription": "Professional Two-Wheeler Tyre Puncture Repair in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/two-wheeler-tyre-puncture-repair/2026-07-13-6a54a24fae6d8.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            },
+            {
+              "name": "Two-Wheeler Battery Replacement",
+              "slug": "two-wheeler-battery-replacement",
+              "shortDescription": "Professional Two-Wheeler Battery Replacement in Srinagar by verified Panun Kaergar technicians — on-time visits, proper tools, and clear handover.",
+              "image": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/service/two-wheeler-battery-replacement/2026-07-13-6a54a25f4c4c6.webp",
+              "avgRating": 0,
+              "ratingCount": 0
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

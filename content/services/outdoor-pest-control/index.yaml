@@ -1,0 +1,27 @@
+name: outdoor-pest-control
+shortName: Outdoor Pest Control
+icon: "🌿"
+description: >-
+  Book outdoor pest control across Kashmir — garden pests, outdoor mosquito concerns, and perimeter treatment for homes and lawns.
+seoTitle: Outdoor Pest Control | Panun Kaergar
+seoDescription: >-
+  Book outdoor pest control across Kashmir. Garden, lawn & perimeter pest treatment by verified Panun Kaergar partners.
+parentSlug: pest-control
+serviceList:
+  - Garden & lawn pest treatment
+  - Outdoor mosquito concern visits
+  - Perimeter spray for homes
+  - Outdoor ant & crawling insect control
+  - Yard cleanup pest support
+faqs:
+  - question: What outdoor pest jobs can I book?
+    answer: >-
+      Garden and lawn pest treatment, perimeter sprays, and related outdoor pest visits.
+  - question: Is this different from home pest control?
+    answer: >-
+      Yes — this page focuses on outdoor and garden-facing jobs. Indoor packages are under Home Pest Control.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 114

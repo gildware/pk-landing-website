@@ -1,0 +1,28 @@
+name: carpentry-repairs
+shortName: Carpentry Repairs
+icon: "🪚"
+description: >-
+  Book carpentry repairs across Kashmir — door fixes, furniture repair, hinges, alignment, and woodwork restoration.
+seoTitle: Carpentry Repairs | Panun Kaergar
+seoDescription: >-
+  Book carpentry repair services across Kashmir. Door, furniture & fitting repairs by verified Panun Kaergar carpenters.
+parentSlug: carpentry
+serviceList:
+  - Door Repair
+  - Furniture Repair
+  - Kitchen Cabinet Repair
+  - Wardrobe Repair
+  - Window Repair
+  - Wooden Panel Repair
+faqs:
+  - question: What carpentry repairs can I book?
+    answer: >-
+      Door repair, furniture repair, hinge and fitting fixes, and related woodwork restoration.
+  - question: Can I get same-day repair?
+    answer: >-
+      Yes, when a verified carpenter is available in your area and time slot.
+  - question: Are partners verified?
+    answer: >-
+      Yes — partners are onboarded and rated after jobs.
+published: true
+sortOrder: 103

@@ -1,27 +1,147 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
-import AppDownload from '@/components/AppDownload.astro';
+import StoreButton from '@/components/StoreButton.astro';
+import Icon from '@/components/Icon.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings } from '@/utils/reader';
+import { BOOK_PATH } from '@/utils/booking';
 
 const site = await getSiteSettings();
 
 const meta = buildMeta({
-  title: 'Download Panun Kaergar App | Book Home Services in Srinagar',
+  title: 'Download Panun Kaergar Apps | Customer & Partner',
   description:
-    'Download the free Panun Kaergar app for Android or iOS. Book plumbers, electricians, and AC repair in Srinagar. Or book without the app on our website.',
+    'Download the free Panun Kaergar customer app to book home services in Srinagar, or the Partner app to receive jobs and grow your business. Available on Android and iOS.',
   path: '/download',
 });
+
+const apps = [
+  {
+    id: 'customer',
+    badge: 'For customers',
+    title: 'Panun Kaergar',
+    subtitle: 'Customer app',
+    description:
+      'Book trusted plumbers, electricians, cleaners, and more across Srinagar. Track your partner, chat with support, and pay securely — all from your phone.',
+    highlights: [
+      'Book home services in minutes',
+      'Track your partner live',
+      'Chat with support when you need help',
+      'Pay securely in the app',
+    ],
+    playStoreUrl: site.userPlayStoreUrl,
+    appStoreUrl: site.userAppStoreUrl,
+    image: '/images/download/customer-app.webp',
+    imageAlt: 'Customer booking home services on the Panun Kaergar app',
+    footer: {
+      label: 'Prefer not to install?',
+      href: BOOK_PATH,
+      linkText: 'Book on our website',
+    },
+    reverse: false,
+  },
+  {
+    id: 'partner',
+    badge: 'For service partners',
+    title: 'Panun Kaergar Partner',
+    subtitle: 'Partner app',
+    description:
+      'Are you a skilled professional in Kashmir? Get verified booking requests, manage your schedule, and grow your earnings with the Partner app built for local experts.',
+    highlights: [
+      'Receive booking requests near you',
+      'Manage jobs and your schedule',
+      'Track earnings and settlements',
+      'Build reputation with customer reviews',
+    ],
+    playStoreUrl: site.providerPlayStoreUrl,
+    appStoreUrl: site.providerAppStoreUrl,
+    image: '/images/download/provider-app.webp',
+    imageAlt: 'Service partner managing jobs on the Panun Kaergar Partner app',
+    footer: {
+      label: 'Want to know more?',
+      href: '/become-a-partner',
+      linkText: 'See how to join',
+    },
+    reverse: true,
+  },
+];
 ---
 
 <PageLayout meta={meta}>
-  <section class="section-pad mx-auto max-w-6xl pb-0 text-center">
-    <h1 class="animate-fade-up text-4xl font-extrabold text-slate-900">Download the Panun Kaergar app</h1>
+  <section class="section-pad mx-auto max-w-6xl pb-8 text-center sm:pb-12">
+    <p class="animate-fade-up text-sm font-semibold uppercase tracking-wider text-brand-700">
+      Free on Android &amp; iOS
+    </p>
+    <h1 class="mt-3 animate-fade-up text-4xl font-extrabold text-slate-900 sm:text-5xl">
+      Download the Panun Kaergar apps
+    </h1>
     <p class="mx-auto mt-4 max-w-2xl animate-fade-up text-lg text-slate-600 stagger-1">
-      Get the free app to book, track, and pay for home services in Srinagar.
-      Prefer not to install? <a href="/book" class="font-medium text-brand-700 hover:underline">Book on our website</a>.
+      One app to book home services at your doorstep. Another for verified partners to accept jobs
+      and earn. Choose the app that fits you.
     </p>
   </section>
 
-  <AppDownload playStoreUrl={site.userPlayStoreUrl} appStoreUrl={site.userAppStoreUrl} bookingUrl="/book" />
+  {
+    apps.map((app, i) => (
+      <section
+        id={app.id}
+        class:list={[
+          'border-y border-slate-200',
+          i % 2 === 0 ? 'bg-gradient-to-br from-slate-50 to-white' : 'bg-white',
+        ]}
+      >
+        <div
+          class:list={[
+            'section-pad mx-auto flex max-w-6xl flex-col items-center gap-10 lg:flex-row lg:justify-between lg:gap-16',
+            app.reverse && 'lg:flex-row-reverse',
+          ]}
+        >
+          <div class="reveal max-w-lg text-center lg:text-left">
+            <span class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-700">
+              {app.badge}
+            </span>
+            <h2 class="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl">{app.title}</h2>
+            <p class="mt-1 text-base font-semibold text-slate-500">{app.subtitle}</p>
+            <p class="mt-4 text-lg text-slate-600">{app.description}</p>
+
+            <ul class="mt-6 space-y-3 text-left">
+              {app.highlights.map((item) => (
+                <li class="flex items-start gap-3 text-sm text-slate-700 sm:text-base">
+                  <Icon name="check" size={20} class="mt-0.5 shrink-0 text-brand-600" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <div class="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+              <StoreButton store="google-play" href={app.playStoreUrl} />
+              <StoreButton store="app-store" href={app.appStoreUrl} />
+            </div>
+
+            <p class="mt-5 text-sm text-slate-500">
+              {app.footer.label}{' '}
+              <a href={app.footer.href} class="font-medium text-brand-700 hover:underline">
+                {app.footer.linkText}
+              </a>
+              .
+            </p>
+          </div>
+
+          <div class="reveal-right reveal-stagger-2 w-full max-w-xl shrink-0 lg:max-w-md xl:max-w-lg">
+            <div class="overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+              <img
+                src={app.image}
+                alt={app.imageAlt}
+                width="1280"
+                height="720"
+                class="aspect-[4/3] h-full w-full object-cover"
+                loading={i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    ))
+  }
 </PageLayout>

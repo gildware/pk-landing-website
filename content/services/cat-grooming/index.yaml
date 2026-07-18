@@ -1,0 +1,32 @@
+name: cat-grooming
+shortName: Cat Grooming
+icon: "🐈"
+description: >-
+  Book cat grooming across Kashmir — baths, coat care, nail trims, and gentle grooming with verified partners.
+seoTitle: Cat Grooming | Panun Kaergar
+seoDescription: >-
+  Book cat grooming across Kashmir. Gentle coat care, baths & nail trims by verified Panun Kaergar partners.
+parentSlug: pet-grooming
+serviceList:
+  - Full Cat Grooming
+  - Cat Bath & Brush
+  - Cat Mat Removal
+  - Cat Lion Cut
+  - Cat Nail Trim
+  - Cat Ear Cleaning
+  - Kitten First Groom
+  - Senior Cat Gentle Groom
+  - Cat Flea & Tick Bath
+  - Cat Monthly Grooming Plan
+faqs:
+  - question: What cat grooming services are available?
+    answer: >-
+      Coat care, baths, nail trims, and related grooming from our live catalog.
+  - question: Are groomers experienced with cats?
+    answer: >-
+      Share your cat’s temperament and needs when you book so we match carefully.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 120

@@ -1,24 +1,21 @@
 name: professional-cleaning
 shortName: Professional Cleaning
 icon: 🧹
-description: Book professional home cleaning and office cleaning in Srinagar — deep clean, kitchen, bathroom, and commercial spaces. Call, WhatsApp, or book online.
-seoTitle: Professional Cleaning in Srinagar — Home & Office
-seoDescription: Book home cleaning and office cleaning in Srinagar. Deep clean, kitchen, bathroom, sofa cleaning & commercial spaces. Verified providers.
+description: Book professional home cleaning and office cleaning across Kashmir — deep clean, kitchen, bathroom, and commercial spaces. Call, WhatsApp, or book online.
+seoTitle: Professional Cleaning | Panun Kaergar — Home & Office
+seoDescription: Book home cleaning and office cleaning across Kashmir. Deep clean, kitchen, bathroom, sofa cleaning & commercial spaces. Verified partners.
 serviceList:
-  - Full home deep cleaning
-  - Kitchen and bathroom cleaning
-  - Office and commercial cleaning
-  - Move-in / move-out cleaning
-  - Sofa and carpet cleaning
-  - Regular housekeeping visits
+  - Home Cleaning
+  - Office & Commercial Cleaning
+  - Post-Construction Cleaning
 faqs:
   - question: Do you offer both home and office cleaning?
-    answer: Yes. Book home deep cleaning for apartments and houses, or office cleaning for shops, clinics, and workplaces in Srinagar.
+    answer: Yes. Book home deep cleaning for apartments and houses, or office cleaning for shops, clinics, and workplaces across Kashmir.
   - question: Do I need to provide cleaning supplies?
-    answer: Most providers bring their own supplies. Mention special requirements when you book.
-  - question: How do I book cleaning in Srinagar?
+    answer: Most partners bring their own supplies. Mention special requirements when you book.
+  - question: How do I book cleaning with Panun Kaergar?
     answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app.
-  - question: How much does home or office cleaning cost in Srinagar?
+  - question: How much does home or office cleaning cost with Panun Kaergar?
     answer: Pricing depends on home size and service type (deep clean, kitchen only, office, etc.). Estimates appear in the app, or our team quotes when you book by phone, WhatsApp, or form.
 published: true
-sortOrder: 5
+sortOrder: 2

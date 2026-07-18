@@ -1,5 +1,7 @@
 import type { AreaEntry, ServiceEntry } from './reader';
+import { areaPath } from './areaPaths';
 import { siteUrl } from './reader';
+import { BOOK_PATH } from './booking';
 
 interface SiteForLlms {
   businessName: string;
@@ -30,7 +32,7 @@ export function buildLlmsTxt(
     site.description,
     '',
     '## Book & contact',
-    `- [Book a service](${siteUrl('/book')}): Online booking form for home services in Srinagar.`,
+    `- [Book a service](${siteUrl(BOOK_PATH)}): Online booking form for home services in Srinagar.`,
     `- [Contact us](${siteUrl('/contact')}): Phone ${site.phone}, WhatsApp, and email ${site.email}.`,
     `- [Customer app (Android)](${site.userPlayStoreUrl}): Book, track, and pay from the Panun Kaergar app.`,
     `- [Customer app (iOS)](${site.userAppStoreUrl}): iPhone and iPad app for home service bookings.`,
@@ -44,18 +46,16 @@ export function buildLlmsTxt(
     '## Service areas',
     ...areas.map(
       (a) =>
-        `- [${a.displayName}](${siteUrl(`/areas/${a.slug}`)}): Home services in ${a.displayName}, ${a.region}.`
+        `- [${a.displayName}](${siteUrl(areaPath(a.slug))}): Home services in ${a.displayName}, ${a.region}.`
     ),
     '',
     '## Help & company',
-    `- [How it works](${siteUrl('/how-it-works')}): Book by phone, WhatsApp, website form, or app.`,
-    `- [FAQ](${siteUrl('/faq')}): Common questions about booking and providers.`,
-    `- [Become a provider](${siteUrl('/become-a-provider')}): Join as a verified service provider in Kashmir.`,
+    `- [FAQ](${siteUrl('/faq')}): Common questions about booking and partners.`,
+    `- [Become a partner](${siteUrl('/become-a-partner')}): Join as a verified service partner in Kashmir.`,
     '',
     '## Optional',
-    `- [Blog](${siteUrl('/blog')}): Guides for homeowners in Srinagar.`,
     `- [Privacy policy](${siteUrl('/privacy')}): How we handle customer data.`,
-    `- [Terms of service](${siteUrl('/terms')}): Platform terms for customers and providers.`,
+    `- [Terms of service](${siteUrl('/terms')}): Platform terms for customers and partners.`,
     `- [Extended LLM index](${siteUrl('/llms-full.txt')}): Full service-area page list for AI systems.`,
     `- [Sitemap](${siteUrl('/sitemap.xml')}): Complete URL list (${areaNames}).`,
   ];

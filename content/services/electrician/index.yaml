@@ -1,20 +1,16 @@
 name: electrician
 shortName: Electrician
 icon: ⚡
-description: Book an electrician in Srinagar for wiring, lights, fans, and switchboard repairs. Call, WhatsApp, or book online.
-seoTitle: Electrician Services in Srinagar
-seoDescription: Book a verified electrician in Srinagar. Wiring, switch repairs, fan & light installation, and safety checks.
+description: Book an electrician across Kashmir for wiring, lights, fans, and switchboard repairs. Call, WhatsApp, or book online.
+seoTitle: Electrician Services | Panun Kaergar
+seoDescription: Book a verified electrician across Kashmir. Wiring, switch repairs, fan & light installation, and safety checks.
 serviceList:
-  - Wiring and rewiring
-  - Switch and socket repair
-  - Fan and light installation
-  - MCB and fuse issues
-  - Inverter connections
-  - Electrical safety checks
+  - Electricity Installation
+  - Electricity Repair Services
 faqs:
-  - question: How much does an electrician visit cost in Srinagar?
+  - question: How much does an electrician visit cost with Panun Kaergar?
     answer: Pricing depends on the job type. You'll see estimates in the app before confirming, or our team can share guidance when you book by phone, WhatsApp, or form.
   - question: Do you provide emergency electrical repair?
-    answer: Book the earliest available slot by calling, WhatsApp, form, or app. Availability depends on providers in your zone.
+    answer: Book the earliest available slot by calling, WhatsApp, form, or app. Availability depends on partners in your zone.
 published: true
 sortOrder: 4

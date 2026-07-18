@@ -2,10 +2,10 @@
 import PageLayout from '@/layouts/PageLayout.astro';
 import FaqSection from '@/components/FaqSection.astro';
 import BookingOptions from '@/components/BookingOptions.astro';
+import CategorySidebar from '@/components/CategorySidebar.astro';
+import CategoryServiceCatalog from '@/components/CategoryServiceCatalog.astro';
 import RelatedServices from '@/components/RelatedServices.astro';
-import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import Icon from '@/components/Icon.astro';
-import { iconNameFromEmoji } from '@/utils/icons';
 import { buildMeta } from '@/utils/seo';
 import {
   getSiteSettings,
@@ -14,8 +14,24 @@ import {
   getService,
   getArea,
   getServiceAreaPages,
+  getTestimonials,
+  siteUrl,
 } from '@/utils/reader';
-import { serviceAreaPageSchema, breadcrumbSchema, faqSchema } from '@/utils/schema';
+import {
+  serviceAreaPageSchema,
+  breadcrumbSchema,
+  faqSchema,
+  itemListSchema,
+} from '@/utils/schema';
+import { enrichCategory } from '@/utils/categoryCatalog';
+import {
+  getLiveCategoryServices,
+  getCategoryHeroImage,
+  getBookingSteps,
+  getCategoryBenefits,
+} from '@/utils/liveCategoryServices';
+import { BOOK_PATH } from '@/utils/booking';
+import { areaPath } from '@/utils/areaPaths';
 
 export async function getStaticPaths() {
   const services = await getServices();
@@ -34,99 +50,468 @@ if (!service || !area) return Astro.redirect('/404');
 
 const site = await getSiteSettings();
 const allServices = await getServices();
+const allAreas = await getAreas();
+const testimonials = await getTestimonials();
 const customPages = await getServiceAreaPages();
 const custom = customPages.find(
   (p) => p.serviceSlug === service.slug && p.areaSlug === area.slug
 );
 
+const neighborhoods = area.neighborhoods || [];
+const featuredLocalities = neighborhoods.slice(0, 16);
+const localityPreview = neighborhoods.slice(0, 4).join(', ');
+
+const visual = enrichCategory(service, area.displayName);
+const live = getLiveCategoryServices(service.slug);
+const heroImage = getCategoryHeroImage(service.slug);
+const bookingSteps = getBookingSteps().map((step) => ({
+  ...step,
+  description: step.description.replace(
+    'share your address',
+    `share your ${area.displayName} locality`
+  ),
+}));
+const benefits = [
+  {
+    title: `Skilled ${visual.label} Pros in ${area.displayName}`,
+    description: `Book partners who focus on ${visual.label.toLowerCase()} across ${area.displayName} — matched to the job you describe.`,
+  },
+  ...getCategoryBenefits(visual.label).slice(1).map((b) =>
+    b.title === 'Kashmir Coverage'
+      ? {
+          title: `${area.displayName} Coverage`,
+          description: `Serving homes across ${area.displayName}${
+            localityPreview ? ` — including ${localityPreview}` : ''
+          }${neighborhoods.length > 4 ? ', and more' : ''}.`,
+        }
+      : b
+  ),
+];
+
+const labelLower = visual.label.toLowerCase();
+const shortLower = service.shortName.toLowerCase();
+const areaLower = area.displayName.toLowerCase();
+const matchedReviews = testimonials.filter((t) => {
+  const svc = (t.service || '').toLowerCase();
+  const loc = (t.location || '').toLowerCase();
+  const serviceMatch =
+    svc.includes(labelLower) ||
+    labelLower.includes(svc) ||
+    svc.includes(shortLower) ||
+    shortLower.includes(svc);
+  const areaMatch =
+    loc.includes(areaLower) || loc.includes('kashmir') || loc.includes('srinagar');
+  return serviceMatch || areaMatch;
+});
+const reviews =
+  matchedReviews.length > 0
+    ? matchedReviews.slice(0, 3)
+    : testimonials
+        .filter((t) => (t.service || '').toLowerCase() === 'home services')
+        .slice(0, 2)
+        .concat(testimonials.slice(0, 3))
+        .filter((t, i, arr) => arr.findIndex((x) => x.slug === t.slug) === i)
+        .slice(0, 3);
+
+const serviceCount = live?.serviceCount ?? service.serviceList?.length ?? 0;
+const subCount = live?.subcategories.length ?? visual.subcategories.length;
+const bookHref = BOOK_PATH;
+const districtHref = areaPath(area.slug);
+
 const pageTitle =
-  custom?.seoTitle || `${service.shortName} in ${area.displayName} | Panun Kaergar`;
+  custom?.seoTitle ||
+  `${service.shortName} in ${area.displayName} | Book Verified Pros | Panun Kaergar`;
 const pageDescription =
   custom?.seoDescription ||
-  `Book ${service.shortName.toLowerCase()} in ${area.displayName}. Verified local providers, easy scheduling. Call, WhatsApp, or book online with Panun Kaergar.`;
+  `Book ${service.shortName.toLowerCase()} in ${area.displayName}${
+    localityPreview ? ` — ${localityPreview}` : ''
+  }${neighborhoods.length > 4 ? ' & more' : ''}. Verified local partners, easy scheduling. Call, WhatsApp, or book online with Panun Kaergar.`;
 const intro =
   custom?.intro ||
-  `Need ${service.shortName.toLowerCase()} in ${area.displayName}? Panun Kaergar sends verified providers to homes across ${area.displayName}. Book by phone, WhatsApp, our website, or the app.`;
+  `Need ${service.shortName.toLowerCase()} in ${area.displayName}? ${
+    service.description ||
+    `Panun Kaergar connects you with verified ${service.shortName.toLowerCase()} partners across ${area.displayName}.`
+  } Book by phone, WhatsApp, our website, or the app.`;
+
+const defaultFaqs = [
+  {
+    question: `How do I book ${service.shortName.toLowerCase()} in ${area.displayName}?`,
+    answer: `Call us, WhatsApp us, fill the booking form at panunkaergar.com/book-a-home-service, or use the Panun Kaergar app. Share your address in ${area.displayName} and preferred time.`,
+  },
+  {
+    question: `Which areas of ${area.displayName} do you cover for ${service.shortName.toLowerCase()}?`,
+    answer:
+      neighborhoods.length > 0
+        ? `We cover localities across ${area.displayName} including ${neighborhoods.slice(0, 8).join(', ')}${
+            neighborhoods.length > 8 ? ', and more' : ''
+          }. Tell us your exact locality when you book and we confirm availability.`
+        : `We cover most neighborhoods in ${area.displayName}. Tell us your address when you book and we confirm availability.`,
+  },
+  {
+    question: `Is same-day ${service.shortName.toLowerCase()} available in ${area.displayName}?`,
+    answer: `Yes, when a verified partner is free near your locality in ${area.displayName}. Book early in the day for the best chance of a same-day slot.`,
+  },
+  ...(service.faqs || []).slice(0, 2).map((faq) => ({
+    question: faq.question.includes(area.displayName)
+      ? faq.question
+      : faq.question.replace(/\?$/, ` in ${area.displayName}?`),
+    answer: faq.answer,
+  })),
+  ...(area.faqs || [])
+    .filter((faq) => {
+      const q = faq.question.toLowerCase();
+      return q.includes('cover') || q.includes('localit') || q.includes('village') || q.includes('book');
+    })
+    .slice(0, 2),
+];
+
 const faqs =
   custom?.faqs && custom.faqs.length > 0
     ? custom.faqs
-    : [
-        {
-          question: `How do I book ${service.shortName.toLowerCase()} in ${area.displayName}?`,
-          answer: `Call us, WhatsApp us, fill the booking form at panunkaergar.com/book, or use the Panun Kaergar app. Share your address in ${area.displayName} and preferred time.`,
-        },
-        {
-          question: `Does Panun Kaergar cover all of ${area.displayName}?`,
-          answer: `We cover most neighborhoods in ${area.displayName}. Tell us your address when you book — by phone, WhatsApp, the website, or the app — and we confirm availability.`,
-        },
-      ];
+    : defaultFaqs.filter(
+        (faq, i, arr) => arr.findIndex((f) => f.question === faq.question) === i
+      ).slice(0, 8);
 
 const path = `/services/${service.slug}/${area.slug}`;
-const meta = buildMeta({ title: pageTitle, description: pageDescription, path });
+const meta = buildMeta({
+  title: pageTitle,
+  description: pageDescription,
+  path,
+  ogImage: heroImage,
+});
+
+const localityListItems = neighborhoods.map((name) => ({
+  name: `${service.shortName} in ${name}, ${area.displayName}`,
+  url: siteUrl(path),
+  description: `Book verified ${service.shortName.toLowerCase()} near ${name} in ${area.displayName}.`,
+}));
 
 const schemas = [
-  serviceAreaPageSchema(service, area, site, meta.canonical),
+  serviceAreaPageSchema(service, area, site, meta.canonical, pageDescription),
   breadcrumbSchema([
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
     { name: service.shortName, path: `/services/${service.slug}` },
-    { name: `${area.displayName}`, path },
+    { name: area.displayName, path },
   ]),
   faqSchema(faqs),
+  neighborhoods.length
+    ? itemListSchema(
+        localityListItems,
+        `${service.shortName} localities in ${area.displayName}`
+      )
+    : null,
 ].filter(Boolean);
 ---
 
 <PageLayout meta={meta} schemas={schemas}>
-  <Breadcrumbs
-    items={[
-      { name: 'Home', path: '/' },
-      { name: 'Services', path: '/services' },
-      { name: service.shortName, path: `/services/${service.slug}` },
-      { name: area.displayName },
-    ]}
-  />
-
-  <article class="mx-auto max-w-4xl px-4 py-10 sm:px-6">
-    <div class="flex items-start gap-4 animate-fade-up">
-      <span class="icon-badge shrink-0">
-        <Icon name={iconNameFromEmoji(service.icon)} size={24} class="text-brand-600" />
-      </span>
+  {/* Hero — service detail layout, localized to area */}
+  <section
+    class="relative overflow-hidden border-b border-slate-200/80"
+    style={`--cat-soft: ${visual.soft}; --cat-accent: ${visual.accent};`}
+  >
+    <div
+      class="pointer-events-none absolute inset-0 opacity-90"
+      style={`background:
+        radial-gradient(ellipse 80% 60% at 10% 20%, ${visual.soft}88, transparent 55%),
+        linear-gradient(165deg, #f8fafc 0%, #ffffff 45%, ${visual.soft}33 100%);`}
+      aria-hidden="true"
+    ></div>
+    <div class="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-14 lg:py-16">
       <div>
-        <h1 class="text-4xl font-extrabold text-slate-900">{service.shortName} in {area.displayName}</h1>
-        <p class="mt-4 text-lg leading-relaxed text-slate-600">{intro}</p>
+        <p class="text-sm font-semibold text-brand-700">
+          <a href="/services" class="hover:underline">Services</a>
+          <span class="mx-1.5 text-slate-400">/</span>
+          <a href={`/services/${service.slug}`} class="hover:underline">{service.shortName}</a>
+          <span class="mx-1.5 text-slate-400">/</span>
+          {area.displayName}
+        </p>
+        <h1 class="mt-3 font-figtree text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          {service.shortName} in {area.displayName}
+        </h1>
+        <p class="mt-4 max-w-xl text-lg leading-relaxed text-slate-600">
+          {intro}
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3 text-sm text-slate-600">
+          {
+            serviceCount > 0 && (
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 font-medium ring-1 ring-slate-200/80">
+                <span class="h-1.5 w-1.5 rounded-full" style={`background:${visual.accent}`}></span>
+                {serviceCount} services
+              </span>
+            )
+          }
+          {
+            subCount > 0 && (
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 font-medium ring-1 ring-slate-200/80">
+                {subCount} {subCount === 1 ? 'group' : 'groups'}
+              </span>
+            )
+          }
+          {
+            neighborhoods.length > 0 && (
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 font-medium ring-1 ring-slate-200/80">
+                {neighborhoods.length} localities
+              </span>
+            )
+          }
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 font-medium ring-1 ring-slate-200/80">
+            {area.displayName}
+          </span>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={bookHref} class="btn-primary">
+            Book in {area.displayName}
+          </a>
+          <a href="#services" class="btn-secondary">
+            See Services
+          </a>
+        </div>
+      </div>
+      <div class="relative">
+        <div
+          class="absolute -inset-3 rounded-[2rem] opacity-60 blur-2xl"
+          style={`background: ${visual.soft};`}
+          aria-hidden="true"
+        ></div>
+        <div class="relative overflow-hidden rounded-[1.75rem] shadow-xl shadow-slate-900/10 ring-1 ring-black/5">
+          <img
+            src={heroImage}
+            alt={`${service.shortName} in ${area.displayName} by Panun Kaergar`}
+            width="960"
+            height="720"
+            class="aspect-[4/3] w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+          <div
+            class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-5 pb-5 pt-16"
+          >
+            <p class="text-sm font-semibold text-white">
+              {visual.heading.replace(/\?$/, '')} in {area.displayName}
+            </p>
+            <p class="mt-1 text-xs text-white/80">{visual.meta} · {area.displayName}</p>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    {
-      service.serviceList && service.serviceList.length > 0 && (
-        <section class="mt-10 animate-fade-up stagger-1">
-          <h2 class="text-2xl font-bold text-slate-900">Services included</h2>
-          <ul class="mt-4 grid gap-2 sm:grid-cols-2">
-            {service.serviceList.map((item) => (
-              <li class="flex items-start gap-2 rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-700">
-                <Icon name="check" size={18} class="mt-0.5 shrink-0 text-brand-600" />
-                {item}
-              </li>
-            ))}
+  {/* Main + sidebar */}
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start xl:grid-cols-[minmax(0,1fr)_300px]">
+      <div class="min-w-0 space-y-16">
+        {
+          live && live.subcategories.length > 0 ? (
+            <CategoryServiceCatalog
+              subcategories={live.subcategories}
+              categoryLabel={visual.label}
+              accent={visual.accent}
+              subtitle={`${live.serviceCount} bookable ${visual.label.toLowerCase()} services you can schedule in ${area.displayName} — same live catalog as the Panun Kaergar app.`}
+            />
+          ) : service.serviceList && service.serviceList.length > 0 ? (
+            <section id="services" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                What We Offer
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                {service.shortName} Services in {area.displayName}
+              </h2>
+              <p class="mt-3 max-w-2xl text-base text-slate-600">
+                The same {service.shortName.toLowerCase()} catalog we offer across Kashmir — booked
+                with a verified partner near your {area.displayName} locality.
+              </p>
+              <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+                {service.serviceList.map((item) => (
+                  <li class="flex items-start gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
+                    <Icon name="check" size={18} class="mt-0.5 shrink-0 text-brand-600" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null
+        }
+
+        {
+          featuredLocalities.length > 0 && (
+            <section id="coverage" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Coverage
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                {service.shortName} across {area.displayName}
+              </h2>
+              <p class="mt-3 max-w-2xl text-base text-slate-600">
+                Mention your neighborhood when you book — we confirm a verified{' '}
+                {service.shortName.toLowerCase()} partner nearby.
+                {neighborhoods.length > featuredLocalities.length
+                  ? ` We cover ${neighborhoods.length}+ localities across the district.`
+                  : ''}
+              </p>
+              <ul class="mt-6 flex flex-wrap gap-2">
+                {featuredLocalities.map((n) => (
+                  <li class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-sm font-medium text-slate-700">
+                    <Icon name="map-pin" size={14} class="text-brand-500" />
+                    {n}
+                  </li>
+                ))}
+              </ul>
+              <p class="mt-5 text-sm text-slate-600">
+                Looking for every home service in this district?{' '}
+                <a
+                  href={districtHref}
+                  class="font-medium text-brand-700 underline-offset-2 hover:underline"
+                >
+                  Home services in {area.displayName}
+                </a>
+              </p>
+            </section>
+          )
+        }
+
+        {/* How to book */}
+        <section id="how-to-book" class="scroll-mt-28">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">Process</p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+            How to Book in {area.displayName}
+          </h2>
+          <p class="mt-3 max-w-2xl text-base text-slate-600">
+            Three simple steps to get a verified {visual.label.toLowerCase()} partner at your door
+            in {area.displayName}.
+          </p>
+          <ol class="mt-8 grid gap-6 sm:grid-cols-3">
+            {
+              bookingSteps.map((step, i) => (
+                <li class="relative">
+                  <span
+                    class="flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white"
+                    style={`background: ${visual.accent};`}
+                  >
+                    {i + 1}
+                  </span>
+                  <h3 class="mt-4 text-base font-bold text-slate-900">{step.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
+                </li>
+              ))
+            }
+          </ol>
+          <div class="mt-8">
+            <p class="text-sm text-slate-600">
+              Need {service.shortName.toLowerCase()} in another district?
+            </p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              {
+                allAreas.map((a) => (
+                  <a
+                    href={`/services/${service.slug}/${a.slug}`}
+                    class:list={[
+                      'inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition',
+                      a.slug === area.slug
+                        ? 'border-brand-600 bg-brand-600 text-white'
+                        : 'border-brand-200 bg-white text-brand-700 hover:bg-brand-50',
+                    ]}
+                    aria-current={a.slug === area.slug ? 'page' : undefined}
+                  >
+                    <Icon name="map-pin" size={16} />
+                    {a.displayName}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </section>
+
+        {/* Benefits */}
+        <section id="benefits" class="scroll-mt-28">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+            Why Panun Kaergar
+          </p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+            Benefits in {area.displayName}
+          </h2>
+          <ul class="mt-8 grid gap-5 sm:grid-cols-2">
+            {
+              benefits.map((b) => (
+                <li class="rounded-2xl border border-slate-200/90 bg-gradient-to-br from-white to-slate-50 px-5 py-5">
+                  <h3 class="font-bold text-slate-900">{b.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{b.description}</p>
+                </li>
+              ))
+            }
           </ul>
         </section>
-      )
-    }
 
-    {
-      custom?.bodyHtml && (
-        <div class="prose prose-slate mt-10 max-w-none animate-fade-up" set:html={custom.bodyHtml} />
-      )
-    }
+        {/* Reviews */}
+        {
+          reviews.length > 0 && (
+            <section id="reviews" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Reviews
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">What Customers Say</h2>
+              <ul class="mt-8 grid gap-5 sm:grid-cols-1">
+                {reviews.map((t) => (
+                  <li class="rounded-2xl border border-slate-200 bg-white px-5 py-5 shadow-sm">
+                    <div
+                      class="flex items-center gap-2 text-amber-500"
+                      aria-label={`${t.rating} out of 5`}
+                    >
+                      {Array.from({ length: t.rating || 5 }).map(() => (
+                        <span aria-hidden="true">★</span>
+                      ))}
+                    </div>
+                    <p class="mt-3 text-base leading-relaxed text-slate-700">“{t.quote}”</p>
+                    <p class="mt-4 text-sm font-semibold text-slate-900">
+                      {t.customerName}
+                      <span class="font-normal text-slate-500">
+                        {' '}
+                        · {t.location}
+                        {t.service ? ` · ${t.service}` : ''}
+                      </span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
 
-    {
-      !custom?.bodyHtml && service.bodyHtml && (
-        <div class="prose prose-slate mt-10 max-w-none animate-fade-up" set:html={service.bodyHtml} />
-      )
-    }
-  </article>
+        {
+          custom?.bodyHtml ? (
+            <section class="prose prose-slate max-w-none" set:html={custom.bodyHtml} />
+          ) : (
+            <>
+              {service.bodyHtml && (
+                <section class="prose prose-slate max-w-none" set:html={service.bodyHtml} />
+              )}
+              {area.bodyHtml && (
+                <section class="scroll-mt-28">
+                  <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                    About this area
+                  </p>
+                  <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                    Serving {area.displayName}
+                  </h2>
+                  <div class="prose prose-slate mt-6 max-w-none" set:html={area.bodyHtml} />
+                </section>
+              )}
+            </>
+          )
+        }
+      </div>
 
-  <BookingOptions site={site} variant="compact" />
+      <CategorySidebar
+        categories={allServices.map((c) => ({ slug: c.slug, shortName: c.shortName }))}
+        currentSlug={service.slug}
+        bookHref={bookHref}
+        areaSlug={area.slug}
+        areaName={area.displayName}
+      />
+    </div>
+  </section>
+
   <RelatedServices services={allServices} areaSlug={area.slug} excludeSlug={service.slug} />
   <FaqSection title={`${service.shortName} in ${area.displayName} — FAQ`} items={faqs} />
+  <BookingOptions site={site} variant="compact" />
 </PageLayout>

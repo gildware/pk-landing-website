@@ -1,0 +1,45 @@
+name: plumbing-installs
+shortName: Plumbing Installs
+icon: "🔧"
+description: >-
+  Book plumbing installs across Kashmir — new taps, showers, pipelines, washbasins, and fixture installation by verified plumbers.
+seoTitle: Plumbing Installs | Panun Kaergar
+seoDescription: >-
+  Book plumbing installation across Kashmir. Taps, showers, pipelines & fixture installs by verified Panun Kaergar plumbers.
+parentSlug: plumbing
+serviceList:
+  - Pipe Fitting & Replacement
+  - Tap /  Mixer tap Installation
+  - Washroom Accessories Installation
+  - Water Motor Installation
+  - Water Pipe installation
+  - Water Tank  Installation
+  - Window Installation
+  - Connection hose installation
+  - Motor installation
+  - Overhead water tank installation
+  - RO water connection installation
+  - Shelf installation
+  - Shower filter installation
+  - Shower installation
+  - Shower mixer tap installation
+  - Soap holder installation
+  - Tap accessory installation
+  - Tap installation/replacement
+  - Toilet seat cover installation
+  - Towel holder installation
+  - Wash basin installation
+  - Washing machine inlet installation
+  - Waste coupling installation
+faqs:
+  - question: What plumbing installs are available?
+    answer: >-
+      Taps, showers, washbasins, geysers (where offered), pipelines, and related fixture installs.
+  - question: Should I buy materials first?
+    answer: >-
+      You can supply fittings or ask the partner for guidance when you book.
+  - question: How do I book plumbing installs?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 104

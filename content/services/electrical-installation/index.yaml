@@ -1,0 +1,46 @@
+name: electrical-installation
+shortName: Electrical Installation
+icon: "⚡"
+description: >-
+  Book electrical installation across Kashmir — new points, wiring, switches, lights, fans, and fixture installs by verified electricians.
+seoTitle: Electrical Installation | Panun Kaergar
+seoDescription: >-
+  Book electrical installation across Kashmir. Wiring, switches, lights, fans & new points by verified Panun Kaergar electricians.
+parentSlug: electrician
+serviceList:
+  - Electrical Wiring
+  - Lighting Installation
+  - Switch &  Sockets
+  - Book a consultation
+  - Bulb installation/replacement
+  - Ceiling light installation
+  - Chandelier installation
+  - Decorative fan installation
+  - Exhaust/pedestal/tower fan installation
+  - Fan regulator replacement
+  - Fancy light installation/replacement
+  - Hanging light installation
+  - Home theatre installation
+  - Karban Airzone installation
+  - New external wiring (per 5m)
+  - New internal wiring (per 5m)
+  - New switchbox installation
+  - Plug replacement
+  - Regular ceiling fan installation
+  - Regular doorbell installation
+  - Smart/BLDC fan installation
+  - Sound bar installation
+  - Stabiliser installation
+  - Submeter installation
+faqs:
+  - question: What electrical installs are available?
+    answer: >-
+      New points, switches, lights, fans, wiring jobs, and related fixture installs from our live catalog.
+  - question: Is safety checked?
+    answer: >-
+      Partners follow standard electrical safety practices. Share photos of the site when you book if possible.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the Panun Kaergar app.
+published: true
+sortOrder: 106

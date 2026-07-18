@@ -1,96 +1,107 @@
 ---
 import StoreButton from '@/components/StoreButton.astro';
+import { BOOK_PATH } from '@/utils/booking';
 
 interface Props {
-  playStoreUrl: string;
-  appStoreUrl: string;
-  bookingUrl: string;
+  userPlayStoreUrl: string;
+  userAppStoreUrl: string;
+  providerPlayStoreUrl: string;
+  providerAppStoreUrl: string;
+  bookingUrl?: string;
 }
 
-const { playStoreUrl, appStoreUrl, bookingUrl } = Astro.props;
+const {
+  userPlayStoreUrl,
+  userAppStoreUrl,
+  providerPlayStoreUrl,
+  providerAppStoreUrl,
+  bookingUrl = BOOK_PATH,
+} = Astro.props;
+
+const apps = [
+  {
+    id: 'customer',
+    badge: 'For customers',
+    title: 'Customer app',
+    description:
+      'Book home services, track your provider, and pay securely from your phone.',
+    playStoreUrl: userPlayStoreUrl,
+    appStoreUrl: userAppStoreUrl,
+    image: '/images/download/home-customer.webp',
+    imageAlt: 'Customer using the Panun Kaergar app on a phone',
+    link: { href: bookingUrl, label: 'Book without the app →' },
+  },
+  {
+    id: 'partner',
+    badge: 'For partners',
+    title: 'Provider app',
+    description:
+      'Get booking requests, manage jobs, and grow your earnings as a verified partner.',
+    playStoreUrl: providerPlayStoreUrl,
+    appStoreUrl: providerAppStoreUrl,
+    image: '/images/download/home-provider.webp',
+    imageAlt: 'Partner using the Panun Kaergar Provider app on a phone',
+    link: { href: '/become-a-partner', label: 'Become a partner →' },
+  },
+];
 ---
 
 <section class="section-pad border-y border-slate-200 bg-gradient-to-br from-slate-50 to-white">
-  <div class="mx-auto flex max-w-6xl flex-col items-center gap-10 lg:flex-row lg:justify-between">
-    <div class="reveal max-w-lg text-center lg:text-left">
-      <h2 class="text-3xl font-bold text-slate-900">Download the Panun Kaergar app</h2>
-      <p class="mt-4 text-slate-600">
-        Book services, track your provider, chat with support, and pay — all from your phone.
-        No app? <a href="/book" class="font-medium text-brand-700 transition-colors hover:underline">Book on our website</a> instead.
+  <div class="mx-auto max-w-6xl">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold text-slate-900">Download the Panun Kaergar apps</h2>
+      <p class="mt-3 text-slate-600">
+        Free on Android and iOS — book as a customer, or earn as a partner.
       </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
-        <StoreButton store="google-play" href={playStoreUrl} />
-        <StoreButton store="app-store" href={appStoreUrl} />
-      </div>
-      <a href={bookingUrl} class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 transition-all duration-300 ease-smooth hover:gap-2 hover:underline">
-        Book without the app →
-      </a>
     </div>
 
-    <div class="reveal-right reveal-stagger-2 flex shrink-0 items-end gap-4 sm:gap-6">
-      {/* Android phone → Play Store */}
-      <a
-        href={playStoreUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group relative block transition-transform duration-500 ease-smooth hover:-translate-y-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-4"
-        aria-label="Download on Google Play"
-      >
-        <div class="animate-float overflow-hidden rounded-[1.75rem] border-[5px] border-slate-800 bg-slate-900 p-1.5 shadow-2xl transition-shadow duration-500 group-hover:shadow-[0_25px_50px_-12px_rgba(32,32,72,0.45)]">
-          <div class="relative h-72 w-36 overflow-hidden rounded-[1.2rem] bg-brand-900 sm:h-80 sm:w-40">
-            <img
-              src="/images/app/android.jpg"
-              alt="Panun Kaergar Android app home screen"
-              width="540"
-              height="1220"
-              class="absolute inset-0 h-full w-full object-cover object-top"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        </div>
-        <span class="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-600 transition-colors group-hover:text-brand-700">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
-            <path d="M3.6 1.8c-.3.2-.6.6-.6 1.1v18.2c0 .5.3.9.6 1.1l.1.1 10.2-10.2v-.2L3.7 1.7l-.1.1z"/>
-            <path d="M14.3 12 3.7 22.6c.2.2.5.3.8.3.3 0 .6-.1.9-.3l11.4-6.6-2.5-1.5-2.5-1.5z"/>
-            <path d="M14.3 12 3.7 1.4c.3-.2.6-.3.9-.3.3 0 .6.1.8.3l11.4 6.6-2.5 1.5z"/>
-            <path d="M16.8 13.5 14.3 12l2.5-1.5 2.5-1.5c.7.4 1.2 1.2 1.2 2.1s-.5 1.7-1.2 2.1l-2.5-1.5z"/>
-          </svg>
-          Android
-        </span>
-      </a>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2">
+      {
+        apps.map((app, i) => (
+          <article
+            class:list={[
+              'reveal card flex overflow-hidden',
+              i === 1 && 'reveal-stagger-2',
+            ]}
+          >
+            <div class="w-36 shrink-0 self-stretch sm:w-40">
+              <img
+                src={app.image}
+                alt={app.imageAlt}
+                width="320"
+                height="400"
+                class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
 
-      {/* iOS phone → App Store */}
-      <a
-        href={appStoreUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group relative mb-4 block transition-transform duration-500 ease-smooth hover:-translate-y-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-4 sm:mb-6"
-        aria-label="Download on the App Store"
-        style="animation-delay: 0.35s"
-      >
-        <div class="animate-float overflow-hidden rounded-[2.1rem] border-[5px] border-slate-900 bg-slate-950 p-1 shadow-2xl transition-shadow duration-500 group-hover:shadow-[0_25px_50px_-12px_rgba(15,23,42,0.5)]">
-          <div class="relative h-72 w-36 overflow-hidden rounded-[1.6rem] bg-white sm:h-80 sm:w-40">
-            <img
-              src="/images/app/ios.jpg"
-              alt="Panun Kaergar iOS app bookings screen"
-              width="540"
-              height="1203"
-              class="absolute inset-0 h-full w-full object-cover object-top"
-              loading="lazy"
-              decoding="async"
-            />
-            {/* Dynamic Island overlay */}
-            <div class="pointer-events-none absolute left-1/2 top-2 z-10 h-4 w-16 -translate-x-1/2 rounded-full bg-slate-900" aria-hidden="true"></div>
-          </div>
-        </div>
-        <span class="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold text-slate-600 transition-colors group-hover:text-brand-700">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
-            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-          </svg>
-          iOS
-        </span>
-      </a>
+            <div class="flex min-w-0 flex-1 flex-col justify-center p-5 text-left sm:p-6">
+              <span class="inline-flex w-fit rounded-full bg-brand-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-700">
+                {app.badge}
+              </span>
+              <h3 class="mt-2 text-lg font-bold text-slate-900">{app.title}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-slate-600">{app.description}</p>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                <StoreButton store="google-play" href={app.playStoreUrl} class="!px-3 !py-2 scale-90 origin-left" />
+                <StoreButton store="app-store" href={app.appStoreUrl} class="!px-3 !py-2 scale-90 origin-left" />
+              </div>
+
+              <a
+                href={app.link.href}
+                class="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand-700 transition-all duration-300 ease-smooth hover:gap-2 hover:underline"
+              >
+                {app.link.label}
+              </a>
+            </div>
+          </article>
+        ))
+      }
     </div>
+
+    <p class="reveal mt-8 text-center text-sm text-slate-500">
+      <a href="/download" class="font-medium text-brand-700 hover:underline">See all download options →</a>
+    </p>
   </div>
 </section>

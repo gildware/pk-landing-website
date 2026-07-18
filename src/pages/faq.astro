@@ -1,8 +1,9 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
 import FaqSection from '@/components/FaqSection.astro';
+import AskQuestionForm from '@/components/AskQuestionForm.astro';
 import BookingOptions from '@/components/BookingOptions.astro';
-import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import Icon from '@/components/Icon.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings, getFaqs } from '@/utils/reader';
 import { faqSchema } from '@/utils/schema';
@@ -17,6 +18,13 @@ const byCategory = faqs.reduce<Record<string, typeof faqs>>((acc, faq) => {
   return acc;
 }, {});
 
+const categories = Object.keys(byCategory);
+const flatFaqs = faqs.map((f) => ({
+  question: f.questionText,
+  answer: f.answer,
+  category: f.category || 'General',
+}));
+
 const meta = buildMeta({
   title: 'FAQ — Home Services in Srinagar | Panun Kaergar',
   description:
@@ -28,23 +36,247 @@ const schemas = [faqSchema(faqs.map((f) => ({ question: f.questionText, answer: 
 ---
 
 <PageLayout meta={meta} schemas={schemas}>
-  <Breadcrumbs items={[{ name: 'Home', path: '/' }, { name: 'FAQ' }]} />
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-slate-200 bg-brand-950">
+    <div class="pointer-events-none absolute inset-0">
+      <img
+        src="/images/faq/faq-hero.webp"
+        alt=""
+        width="1536"
+        height="1024"
+        class="h-full w-full object-cover opacity-40"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/90 to-brand-900/70"></div>
+    </div>
 
-  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-    <h1 class="text-4xl font-extrabold text-slate-900">Frequently asked questions</h1>
-    <p class="mt-4 text-slate-600">
-      Answers about booking home services in Srinagar — by phone, WhatsApp, our website, or the app.
-    </p>
+    <div class="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-20">
+      <div>
+        <p class="animate-fade-up text-sm font-semibold uppercase tracking-wider text-accent">Help centre</p>
+        <h1 class="animate-fade-up stagger-1 mt-3 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
+          Frequently asked questions
+        </h1>
+        <p class="animate-fade-up stagger-2 mt-4 max-w-xl text-lg text-white/80">
+          Answers about booking home services in Srinagar — by phone, WhatsApp, our website, or the app.
+        </p>
+      </div>
+
+      <div class="animate-slide-right stagger-2 relative hidden overflow-hidden rounded-3xl border border-white/15 shadow-2xl lg:block">
+        <img
+          src="/images/faq/faq-verified.webp"
+          alt="Verified Panun Kaergar partner greeting a homeowner"
+          width="1536"
+          height="1024"
+          class="aspect-[16/10] w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
   </section>
 
-  {
-    Object.entries(byCategory).map(([category, items]) => (
-      <FaqSection
-        title={category}
-        items={items.map((f) => ({ question: f.questionText, answer: f.answer }))}
-      />
-    ))
-  }
+  <!-- Main: FAQs left + Ask form right -->
+  <section class="bg-gradient-to-b from-slate-50 to-white" data-faq-page>
+    <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem] xl:gap-12">
+      <!-- Left: search + FAQs -->
+      <div class="min-w-0">
+        <div class="faq-search-bar relative">
+          <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M20 20l-3-3" stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <label for="faq-search" class="sr-only">Search questions</label>
+          <input
+            id="faq-search"
+            type="search"
+            placeholder="Search questions…"
+            autocomplete="off"
+            class="w-full rounded-2xl border border-slate-200 bg-white py-3.5 pl-12 pr-4 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
+            data-faq-search
+          />
+        </div>
+
+        {
+          categories.length > 1 && (
+            <div class="mt-4 flex flex-wrap gap-2" data-faq-filters role="group" aria-label="Filter by category">
+              <button
+                type="button"
+                class="faq-filter is-active rounded-full border border-brand-600 bg-brand-600 px-3.5 py-1.5 text-xs font-semibold text-white transition"
+                data-faq-filter="all"
+              >
+                All
+              </button>
+              {categories.map((cat) => (
+                <button
+                  type="button"
+                  class="faq-filter rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-brand-300 hover:text-brand-700"
+                  data-faq-filter={cat}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          )
+        }
+
+        <p class="mt-3 text-sm text-slate-500" data-faq-count aria-live="polite">
+          {flatFaqs.length} questions
+        </p>
+
+        <div class="mt-6 space-y-10" data-faq-list>
+          {
+            Object.entries(byCategory).map(([category, items]) => (
+              <div data-faq-category={category}>
+                <FaqSection
+                  title={category}
+                  compact
+                  items={items.map((f) => ({ question: f.questionText, answer: f.answer }))}
+                />
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="mt-8 hidden rounded-2xl border border-dashed border-slate-200 bg-white px-6 py-10 text-center" data-faq-empty>
+          <p class="text-base font-semibold text-slate-900">No matching questions</p>
+          <p class="mt-2 text-sm text-slate-600">Try another search, or ask us using the form.</p>
+          <button
+            type="button"
+            class="mt-4 text-sm font-semibold text-brand-700 hover:underline"
+            data-faq-clear
+          >
+            Clear search
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: ask form -->
+      <aside class="lg:sticky lg:top-24">
+        <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <div class="relative aspect-[16/9] overflow-hidden">
+            <img
+              src="/images/faq/faq-support.webp"
+              alt="Panun Kaergar support ready to answer your questions"
+              width="1536"
+              height="1024"
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-950/70 to-transparent"></div>
+            <p class="absolute bottom-3 left-4 right-4 text-sm font-semibold text-white">
+              Still stuck? Ask us anything.
+            </p>
+          </div>
+
+          <div class="p-5 sm:p-6">
+            <div class="flex items-start gap-3">
+              <span class="icon-badge shrink-0"><Icon name="message" size={20} /></span>
+              <div>
+                <h2 class="text-lg font-extrabold text-slate-900">Ask a question</h2>
+                <p class="mt-1 text-sm text-slate-600">
+                  Can’t find an answer? Send your question and we’ll get back to you.
+                </p>
+              </div>
+            </div>
+            <div class="mt-5">
+              <AskQuestionForm site={site} />
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
 
   <BookingOptions site={site} />
 </PageLayout>
+
+<script define:vars={{ totalCount: flatFaqs.length }}>
+  const page = document.querySelector('[data-faq-page]');
+  if (page) {
+    const searchInput = page.querySelector('[data-faq-search]');
+    const countEl = page.querySelector('[data-faq-count]');
+    const emptyEl = page.querySelector('[data-faq-empty]');
+    const clearBtn = page.querySelector('[data-faq-clear]');
+    const filterButtons = [...page.querySelectorAll('[data-faq-filter]')];
+    const categoryBlocks = [...page.querySelectorAll('[data-faq-category]')];
+
+    let activeCategory = 'all';
+
+    function normalize(text) {
+      return String(text || '').toLowerCase().trim();
+    }
+
+    function setFilterActive(value) {
+      filterButtons.forEach((btn) => {
+        const isActive = btn.getAttribute('data-faq-filter') === value;
+        btn.classList.toggle('is-active', isActive);
+        btn.classList.toggle('bg-brand-600', isActive);
+        btn.classList.toggle('border-brand-600', isActive);
+        btn.classList.toggle('text-white', isActive);
+        btn.classList.toggle('bg-white', !isActive);
+        btn.classList.toggle('border-slate-200', !isActive);
+        btn.classList.toggle('text-slate-600', !isActive);
+      });
+    }
+
+    function applyFilters() {
+      const query = normalize(searchInput?.value);
+      let visible = 0;
+
+      categoryBlocks.forEach((block) => {
+        const category = block.getAttribute('data-faq-category') || '';
+        const categoryMatch = activeCategory === 'all' || category === activeCategory;
+        const items = [...block.querySelectorAll('[data-faq-item]')];
+        let blockVisible = 0;
+
+        items.forEach((item) => {
+          const question = normalize(item.querySelector('.faq-item__question')?.textContent);
+          const answer = normalize(item.querySelector('.faq-item__panel-inner')?.textContent);
+          const textMatch = !query || question.includes(query) || answer.includes(query);
+          const show = categoryMatch && textMatch;
+          item.classList.toggle('hidden', !show);
+          if (show) {
+            blockVisible += 1;
+            visible += 1;
+          } else if (item.classList.contains('is-open')) {
+            item.classList.remove('is-open');
+            item.querySelector('[data-faq-trigger]')?.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        block.classList.toggle('hidden', blockVisible === 0);
+      });
+
+      if (countEl) {
+        countEl.textContent =
+          visible === totalCount
+            ? `${visible} questions`
+            : `${visible} of ${totalCount} questions`;
+      }
+
+      emptyEl?.classList.toggle('hidden', visible > 0);
+    }
+
+    searchInput?.addEventListener('input', applyFilters);
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeCategory = btn.getAttribute('data-faq-filter') || 'all';
+        setFilterActive(activeCategory);
+        applyFilters();
+      });
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      activeCategory = 'all';
+      setFilterActive('all');
+      applyFilters();
+      searchInput?.focus();
+    });
+  }
+</script>

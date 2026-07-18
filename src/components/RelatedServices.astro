@@ -1,6 +1,6 @@
 ---
 import Icon from '@/components/Icon.astro';
-import { iconNameFromEmoji } from '@/utils/icons';
+import { categoryIcon } from '@/utils/categoryCatalog';
 
 interface Props {
   services: { slug: string; shortName: string; icon?: string }[];
@@ -25,7 +25,15 @@ const related = services.filter((s) => s.slug !== excludeSlug).slice(0, 4);
                 class="card card-hover flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-800"
               >
                 <span class="icon-badge h-9 w-9">
-                  <Icon name={iconNameFromEmoji(s.icon)} size={18} class="text-brand-600" />
+                  <img
+                    src={categoryIcon(s.slug)}
+                    alt=""
+                    width="18"
+                    height="18"
+                    class="h-[18px] w-[18px] object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </span>
                 {s.shortName}
                 <Icon name="chevron-right" size={16} class="ml-auto text-brand-400" />

@@ -4,91 +4,183 @@ import ServiceCard from '@/components/ServiceCard.astro';
 import BookingOptions from '@/components/BookingOptions.astro';
 import Icon from '@/components/Icon.astro';
 import { buildMeta } from '@/utils/seo';
-import { getSiteSettings, getServices, getAreas, siteUrl } from '@/utils/reader';
+import { getSiteSettings, getServices, getAllServices, getAreas, siteUrl } from '@/utils/reader';
 import { breadcrumbSchema, itemListSchema } from '@/utils/schema';
 import { serviceGroupDefs } from '@/utils/serviceGroups';
+import {
+  enrichCategory,
+  categorySubcategories,
+  type SubCategoryPill,
+} from '@/utils/categoryCatalog';
+import { BOOK_PATH } from '@/utils/booking';
 
 const site = await getSiteSettings();
 const services = await getServices();
+const allServicePages = await getAllServices();
 const areas = await getAreas();
-const primaryArea = areas[0];
 
-const serviceGroups = serviceGroupDefs.map((g) => ({
-  title: g.label,
-  slugs: [...g.slugs],
-}));
+const pageBySlug = Object.fromEntries(allServicePages.map((s) => [s.slug, s]));
+const enrichedBySlug = Object.fromEntries(
+  allServicePages.map((service) => [service.slug, enrichCategory(service, 'Kashmir')])
+);
+
+interface GroupCard {
+  key: string;
+  slug: string;
+  shortName: string;
+  description: string;
+  href: string;
+  image?: string;
+  badgeIcon?: string;
+  subcategories: SubCategoryPill[];
+  featured: boolean;
+}
+
+const serviceGroups = serviceGroupDefs
+  .map((group) => {
+    const expand = new Set(group.expandSubcategories ?? []);
+    const featured = new Set(group.featured ?? []);
+    const cards: GroupCard[] = [];
+
+    for (const entry of group.entries) {
+      const { slug: parentSlug, pageSlug, displayName } = entry;
+
+      if (expand.has(parentSlug)) {
+        const subs = categorySubcategories[parentSlug] ?? [];
+        for (const sub of subs) {
+          const page = pageBySlug[sub.slug];
+          cards.push({
+            key: `${group.label}-${sub.slug}`,
+            slug: sub.slug,
+            shortName: page?.shortName ?? sub.name,
+            description:
+              page?.description ??
+              `Book ${sub.name.toLowerCase()} with verified Panun Kaergar partners across Kashmir.`,
+            href: `/services/${sub.slug}`,
+            image: `/images/categories/cards/${sub.slug}.webp`,
+            badgeIcon: sub.icon,
+            subcategories: [],
+            featured: false,
+          });
+        }
+        continue;
+      }
+
+      const page = pageBySlug[pageSlug] ?? pageBySlug[parentSlug];
+      if (!page) continue;
+      const cat = enrichedBySlug[page.slug];
+
+      cards.push({
+        key: `${group.label}-${pageSlug}`,
+        slug: page.slug,
+        shortName: displayName,
+        description: page.description,
+        href: `/services/${pageSlug}`,
+        image: `/images/categories/cards/${pageSlug}.webp`,
+        badgeIcon: cat?.icon,
+        subcategories: pageSlug === parentSlug ? (cat?.subcategories ?? []) : [],
+        featured: featured.has(pageSlug),
+      });
+    }
+
+    return {
+      title: group.label,
+      keywords: group.keywords,
+      cards,
+    };
+  })
+  .filter((g) => g.cards.length > 0);
 
 const meta = buildMeta({
-  title: `All Home Services in Srinagar — ${services.length} Categories`,
+  title: `Panun Kaergar Home Services — ${services.length} Categories Across Kashmir`,
   description:
-    'Book carpentry, plumbing, masonry, electrician, cleaning, pest control, laundry, painting, appliances, gardening, salon, tank cleaning & interior decor in Srinagar. Call, WhatsApp, or book online.',
+    'Explore Panun Kaergar home services across Kashmir — construction & renovation, repairs & maintenance, cleaning, beauty, outdoor, pet care, and vehicle services. Call, WhatsApp, or book online.',
   path: '/services',
 });
 
-const listItems = services.flatMap((service) =>
-  areas.map((area) => ({
-    name: `${service.shortName} in ${area.displayName}`,
-    url: siteUrl(`/services/${service.slug}/${area.slug}`),
-    description: service.description,
-  }))
-);
+const listItems = allServicePages.map((service) => ({
+  name: service.shortName,
+  url: siteUrl(`/services/${service.slug}`),
+  description: service.description,
+}));
 
 const schemas = [
   breadcrumbSchema([
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
   ]),
-  itemListSchema(listItems, 'Home services in Srinagar'),
+  itemListSchema(listItems, 'Panun Kaergar home services'),
 ];
 ---
 
 <PageLayout meta={meta} schemas={schemas}>
   <section class="section-pad mx-auto max-w-6xl">
-    <h1 class="animate-fade-up text-4xl font-extrabold text-slate-900">
-      Home services in {primaryArea?.displayName ?? 'Srinagar'}
+    <p class="animate-fade-up text-sm font-semibold uppercase tracking-wider text-brand-600">
+      Panun Kaergar · Kashmir
+    </p>
+    <h1 class="mt-3 animate-fade-up text-4xl font-extrabold text-slate-900 stagger-1">
+      Our home services
     </h1>
-    <p class="mt-4 max-w-3xl animate-fade-up text-lg text-slate-600 stagger-1">
-      Panun Kaergar offers <strong>{services.length} service categories</strong> across Srinagar — from carpentry and
-      plumbing to salon at home, tank cleaning, and interior decor. Every category has verified local providers.
-      Book by phone, WhatsApp, our website, or the free app.
+    <p class="mt-4 max-w-3xl animate-fade-up text-lg text-slate-600 stagger-2">
+      Panun Kaergar offers <strong>{services.length} service categories</strong> with verified local partners —
+      grouped for construction, repairs, cleaning, beauty, outdoor, pet care, and vehicle services. Book by
+      phone, WhatsApp, our website, or the free app. Looking for a specific district?{' '}
+      <a href="/service-areas" class="font-medium text-brand-700 underline-offset-2 hover:underline">
+        Browse service areas
+      </a>
+      .
     </p>
 
     {
-      serviceGroups.map((group) => {
-        const groupServices = services.filter((s) => group.slugs.includes(s.slug));
-        if (groupServices.length === 0) return null;
-        return (
-          <div class="mt-14 animate-fade-up">
-            <h2 class="text-2xl font-bold text-slate-900">{group.title}</h2>
-            <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {groupServices.map((service, i) => (
-                <ServiceCard
-                  as="article"
-                  slug={service.slug}
-                  shortName={service.shortName}
-                  description={service.description}
-                  icon={service.icon}
-                  areaSlug={primaryArea?.slug}
-                  areaName={primaryArea?.displayName}
-                  areas={areas.map((a) => ({ slug: a.slug, displayName: a.displayName }))}
-                  class={`stagger-${Math.min(i + 1, 4)}`}
-                />
-              ))}
-            </div>
+      serviceGroups.map((group) => (
+        <div class="mt-14 animate-fade-up">
+          <h2 class="text-2xl font-bold text-slate-900">{group.title}</h2>
+          {
+            group.keywords.length > 0 && (
+              <p class="mt-2 text-sm text-slate-500">
+                <span class="font-medium text-slate-600">Related searches:</span>{' '}
+                {group.keywords.join(' · ')}
+              </p>
+            )
+          }
+          <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {group.cards.map((card, i) => (
+              <ServiceCard
+                slug={card.slug}
+                shortName={card.shortName}
+                description={card.description}
+                image={card.image}
+                badgeIcon={card.badgeIcon}
+                subcategories={card.subcategories}
+                href={card.href}
+                featured={card.featured}
+                class={`stagger-${Math.min(i + 1, 4)}`}
+              />
+            ))}
           </div>
-        );
-      })
+        </div>
+      ))
     }
 
     <div class="mt-14 rounded-2xl border border-brand-100 bg-brand-50/50 p-8 animate-fade-up">
-      <h2 class="text-xl font-bold text-slate-900">Book any service in Srinagar</h2>
+      <h2 class="text-xl font-bold text-slate-900">Book with Panun Kaergar</h2>
       <p class="mt-2 text-slate-600">
-        Every service above is available in Srinagar neighborhoods including Lal Chowk, Rajbagh,
-        Hyderpora, Bemina, and Hazratbal.
+        Every category above is available through Panun Kaergar across Kashmir
+        {areas.length > 0
+          ? ` — including ${areas
+              .slice(0, 4)
+              .map((a) => a.displayName)
+              .join(', ')}${areas.length > 4 ? ', and more' : ''}`
+          : ''}
+        . For district-wise pages, visit our{' '}
+        <a href="/service-areas" class="font-medium text-brand-700 underline-offset-2 hover:underline">
+          service areas
+        </a>
+        .
       </p>
       <div class="mt-4 flex flex-wrap gap-3">
         <a
-          href="/book"
+          href={BOOK_PATH}
           class="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700"
         >
           <Icon name="form" size={16} />

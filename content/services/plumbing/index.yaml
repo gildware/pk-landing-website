@@ -1,24 +1,20 @@
 name: plumbing
 shortName: Plumbing
 icon: 🔧
-description: Book a plumber in Srinagar for leaks, pipe work, taps, and bathroom plumbing. Call, WhatsApp, or book online.
-seoTitle: Plumbing Services in Srinagar
-seoDescription: Book a verified plumber in Srinagar. Leak repair, pipe fitting, tap installation & drain clearing. Same-day visits when available.
+description: Book a plumber across Kashmir for leaks, pipe work, taps, and bathroom plumbing. Call, WhatsApp, or book online.
+seoTitle: Plumbing Services | Panun Kaergar
+seoDescription: Book a verified plumber across Kashmir. Leak repair, pipe fitting, tap installation & drain clearing. Same-day visits when available.
 serviceList:
-  - Leak detection and repair
-  - Pipe installation and replacement
-  - Tap and fixture repair
-  - Bathroom plumbing
-  - Water tank connections
-  - Blocked drain clearing
+  - Plumbing Fixtures
+  - Plumbing Installs
 faqs:
-  - question: How do I book a plumber in Srinagar?
+  - question: How do I book a plumber with Panun Kaergar?
     answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app. Share your address and preferred time — we will confirm your booking.
   - question: Can I get same-day plumbing service?
-    answer: Yes, subject to provider availability in your area and time slot.
+    answer: Yes, subject to partner availability in your area and time slot.
   - question: Are Panun Kaergar plumbers verified?
-    answer: Providers on our platform go through onboarding and are rated by customers after each job.
-  - question: How much does plumbing cost in Srinagar?
+    answer: Partners on our platform go through onboarding and are rated by customers after each job.
+  - question: How much does plumbing cost with Panun Kaergar?
     answer: Pricing depends on the job and parts needed. You see estimates in the Panun Kaergar app before confirming, or our team shares guidance when you book by phone, WhatsApp, or form.
 published: true
-sortOrder: 2
+sortOrder: 10

@@ -1,0 +1,149 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import AreaCard from '@/components/AreaCard.astro';
+import AreasMarquee from '@/components/AreasMarquee.astro';
+import Icon from '@/components/Icon.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings, getAreas, getServices, siteUrl } from '@/utils/reader';
+import { breadcrumbSchema, itemListSchema } from '@/utils/schema';
+import { AREAS_HERO_IMAGE } from '@/utils/areaVisuals';
+import { BOOK_PATH } from '@/utils/booking';
+import { SERVICE_AREAS_PATH, areaPath } from '@/utils/areaPaths';
+
+const site = await getSiteSettings();
+const areas = await getAreas();
+const services = await getServices();
+const serviceLabels = services.slice(0, 4).map((s) => s.shortName);
+
+const meta = buildMeta({
+  title: 'Home Services Across Kashmir Districts | Service Areas',
+  description:
+    'Book verified home services across Kashmir — Srinagar, Budgam, Ganderbal, Baramulla, Anantnag, and more. Carpentry, plumbing, electrician, cleaning, salon & more.',
+  path: SERVICE_AREAS_PATH,
+  ogImage: AREAS_HERO_IMAGE,
+});
+
+const listItems = areas.map((area) => ({
+  name: `Home services in ${area.displayName}`,
+  url: siteUrl(areaPath(area.slug)),
+  description: area.description,
+}));
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Service Areas', path: SERVICE_AREAS_PATH },
+  ]),
+  itemListSchema(listItems, 'Panun Kaergar service areas in Kashmir'),
+];
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-slate-200 bg-brand-950">
+    <div class="pointer-events-none absolute inset-0">
+      <img
+        src={AREAS_HERO_IMAGE}
+        alt="Srinagar Dal Lake and mountains — Panun Kaergar service areas across Kashmir"
+        width="1536"
+        height="1024"
+        class="areas-hero-img h-full w-full object-cover opacity-45"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/92 to-brand-900/65"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-950/80 via-transparent to-brand-950/40"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
+      <p class="animate-fade-up text-sm font-semibold uppercase tracking-wider text-accent">
+        Panun Kaergar · Kashmir
+      </p>
+      <h1
+        class="animate-fade-up stagger-1 mt-3 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-[3.25rem]"
+      >
+        Home services across every district
+      </h1>
+      <p class="animate-fade-up stagger-2 mt-4 max-w-xl text-lg text-white/80">
+        Choose your district to see available services and book a verified local partner — by phone,
+        WhatsApp, website, or app.
+      </p>
+      <div class="animate-fade-up stagger-3 mt-8 flex flex-wrap gap-3">
+        <a href="#districts" class="btn-primary !bg-white !text-brand-900 hover:!bg-slate-100">
+          Browse districts
+        </a>
+        <a
+          href={BOOK_PATH}
+          class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+        >
+          <Icon name="form" size={16} />
+          Book online
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="areas-marquee-strip w-full">
+    <AreasMarquee areas={areas.map((a) => ({ slug: a.slug, displayName: a.displayName }))} />
+  </div>
+
+  <!-- District grid -->
+  <section id="districts" class="section-pad bg-gradient-to-b from-slate-50 to-white">
+    <div class="mx-auto max-w-6xl">
+      <div class="reveal max-w-2xl">
+        <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+          Select your district
+        </h2>
+        <p class="mt-3 text-lg text-slate-600">
+          {areas.length} districts across Kashmir — each with local partners for carpentry, plumbing,
+          electrician work, cleaning, salon, and more.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          areas.map((area, i) => (
+            <AreaCard
+              slug={area.slug}
+              displayName={area.displayName}
+              region={area.region}
+              description={area.description}
+              neighborhoods={area.neighborhoods || []}
+              serviceLabels={serviceLabels}
+              class={`reveal-stagger-${Math.min(i + 1, 6)}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <BookingOptions site={site} variant="compact" />
+</PageLayout>
+
+<style>
+  .areas-marquee-strip :global(.areas-marquee) {
+    margin-top: 0;
+  }
+
+  .areas-hero-img {
+    animation: areas-hero-ken 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes areas-hero-ken {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.06);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .areas-hero-img {
+      animation: none;
+    }
+  }
+</style>

@@ -8,10 +8,10 @@ howItWorksSteps:
   - title: Pick a time and place
     description: >-
       Share your area in Srinagar and when you want the visit — morning, afternoon, or evening.
-      We match you with an available verified provider.
+      We match you with an available verified partner.
   - title: Get the job done
     description: >-
-      The provider comes to your home, completes the work, and you pay as agreed. Rate the
+      The partner comes to your home, completes the work, and you pay as agreed. Rate the
       service in the app and earn loyalty points on app bookings.
 whyChooseTitle: Why people choose Panun Kaergar
 whyChooseItems:
@@ -19,9 +19,9 @@ whyChooseItems:
     description: >-
       Morning, afternoon, or evening — schedule home services across Srinagar at a time
       that works for your family.
-  - title: Verified local providers
+  - title: Verified local partners
     description: >-
-      Every provider is checked before joining. Customer ratings after each job help keep
+      Every partner is checked before joining. Customer ratings after each job help keep
       quality high.
   - title: Help in the app
     description: >-
@@ -41,20 +41,21 @@ platformFeatures:
     title: All service categories
     description: >-
       Carpentry, plumbing, masonry, electrician, cleaning, pest control, laundry, painting,
-      appliances, gardening, men's & women's salon, tank cleaning, and interior decor — all in one place.
+      appliances, gardening, salon, aluminium & steel, pet grooming, vehicle services, and
+      interior decor — all in one place.
   - icon: 🎯
     title: Custom jobs
     description: >-
-      Job not listed? Post a custom request in the app. Providers can send you offers so
+      Job not listed? Post a custom request in the app. Partners can send you offers so
       you pick the best price.
   - icon: ⭐
     title: Loyalty rewards
     description: >-
       Earn points on completed app bookings. Redeem them for money off your next service.
   - icon: ✅
-    title: Trusted providers
+    title: Trusted partners
     description: >-
-      We verify providers before they go live. You can read real customer reviews.
+      We verify partners before they go live. You can read real customer reviews.
   - icon: 💬
     title: Book without the app
     description: >-

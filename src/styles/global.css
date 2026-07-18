@@ -247,7 +247,10 @@
   .pill-hover {
     @apply transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-brand-400 hover:bg-brand-50 hover:text-brand-700 hover:shadow-sm;
   }
+
 }
+
+
 
 @keyframes fade-up {
   from {

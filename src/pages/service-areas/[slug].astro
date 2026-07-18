@@ -1,0 +1,488 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import AreaSidebar from '@/components/AreaSidebar.astro';
+import Icon from '@/components/Icon.astro';
+import { buildMeta } from '@/utils/seo';
+import {
+  getSiteSettings,
+  getAreas,
+  getArea,
+  getServices,
+  getTestimonials,
+  siteUrl,
+} from '@/utils/reader';
+import {
+  breadcrumbSchema,
+  itemListSchema,
+  areaLocalBusinessSchema,
+} from '@/utils/schema';
+import { areaImage } from '@/utils/areaVisuals';
+import { BOOK_PATH, whatsappHref, generalWhatsAppMessage } from '@/utils/booking';
+import { getBookingSteps } from '@/utils/liveCategoryServices';
+import {
+  SERVICE_AREAS_PATH,
+  areaPath,
+  areaPageTitle,
+  areaPageDescription,
+  areaSeoSlug,
+  districtSlugFromSeoParam,
+} from '@/utils/areaPaths';
+
+export async function getStaticPaths() {
+  const areas = await getAreas();
+  return areas.map((area) => ({
+    params: { slug: areaSeoSlug(area.slug) },
+  }));
+}
+
+const seoSlug = Astro.params.slug!;
+const districtSlug = districtSlugFromSeoParam(seoSlug);
+if (!districtSlug) return Astro.redirect('/404');
+
+const area = await getArea(districtSlug);
+if (!area) return Astro.redirect('/404');
+
+const site = await getSiteSettings();
+const services = await getServices();
+const allAreas = await getAreas();
+const testimonials = await getTestimonials();
+const heroImage = areaImage(area.slug);
+const pagePath = areaPath(area.slug);
+const neighborhoods = area.neighborhoods || [];
+const waHref = whatsappHref(site.whatsapp, generalWhatsAppMessage());
+const bookingSteps = getBookingSteps().map((step) => ({
+  ...step,
+  description: step.description.replace(
+    'share your address',
+    `share your ${area.displayName} locality`
+  ),
+}));
+
+const benefits = [
+  {
+    title: `Verified partners in ${area.displayName}`,
+    description: `Local professionals onboarded for jobs across ${area.displayName} — rated by real customers after every visit.`,
+  },
+  {
+    title: 'Book your way',
+    description: 'Call, WhatsApp, website form, or the free Panun Kaergar app — same network either way.',
+  },
+  {
+    title: 'Same-day when available',
+    description: `Book early for the best chance of a same-day slot in your ${area.displayName} locality.`,
+  },
+  {
+    title: 'Clear next steps',
+    description: 'Know what happens before the visit — timing, partner assignment, and support if you need to reschedule.',
+  },
+];
+
+const whyChoose = [
+  {
+    title: 'One booking, local help',
+    description: `Stop hunting for technicians. Tell us the job and your locality in ${area.displayName} — we match a nearby partner.`,
+  },
+  {
+    title: 'Built for Kashmir homes',
+    description: 'From winter prep and wiring to cleaning and salon at home — services that fit how families live here.',
+  },
+  {
+    title: 'Support after you book',
+    description: 'Need to change the time or clarify the job? Reach us by phone or WhatsApp and we follow through.',
+  },
+];
+
+const reviews = testimonials
+  .filter((t) => {
+    const loc = (t.location || '').toLowerCase();
+    return loc.includes(area.displayName.toLowerCase()) || loc.includes('kashmir') || loc.includes('srinagar');
+  })
+  .slice(0, 3);
+
+const featuredLocalities = neighborhoods.slice(0, 12);
+
+const meta = buildMeta({
+  title: area.seoTitle || areaPageTitle(area.displayName),
+  description: areaPageDescription(area.displayName, area.seoDescription),
+  path: pagePath,
+  ogImage: heroImage,
+});
+
+const serviceListItems = services.map((service) => ({
+  name: `${service.shortName} in ${area.displayName}`,
+  url: siteUrl(`/services/${service.slug}/${area.slug}`),
+  description: service.description,
+}));
+
+const localityListItems = neighborhoods.map((name) => ({
+  name: `Home services in ${name}, ${area.displayName}`,
+  url: siteUrl(pagePath),
+  description: `Verified home services near ${name} in ${area.displayName}, Kashmir.`,
+}));
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Service Areas', path: SERVICE_AREAS_PATH },
+    { name: `Home services in ${area.displayName}`, path: pagePath },
+  ]),
+  areaLocalBusinessSchema(site, area, pagePath, services),
+  itemListSchema(serviceListItems, `Home services in ${area.displayName}`),
+  neighborhoods.length
+    ? itemListSchema(localityListItems, `Localities covered in ${area.displayName}`)
+    : null,
+].filter(Boolean);
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-slate-200 bg-brand-950">
+    <div class="pointer-events-none absolute inset-0">
+      <img
+        src={heroImage}
+        alt={`${area.displayName}, Kashmir — home services by Panun Kaergar`}
+        width="1536"
+        height="1024"
+        class="area-detail-hero-img h-full w-full object-cover opacity-40"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/92 to-brand-900/70"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-950/85 via-transparent to-brand-950/35"></div>
+    </div>
+
+    <div
+      class="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-20"
+    >
+      <div>
+        <h1
+          class="animate-fade-up max-w-xl text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl"
+        >
+          Home services in {area.displayName}
+        </h1>
+        <p class="animate-fade-up stagger-1 mt-4 max-w-xl text-lg text-white/80">
+          {area.description}
+        </p>
+
+        <div class="animate-fade-up stagger-2 mt-5 flex flex-wrap gap-2 text-sm text-white/75">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 ring-1 ring-white/15">
+            {services.length} service categories
+          </span>
+          {
+            neighborhoods.length > 0 && (
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 ring-1 ring-white/15">
+                {neighborhoods.length} localities
+              </span>
+            )
+          }
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 ring-1 ring-white/15">
+            Verified partners
+          </span>
+        </div>
+
+        <div class="animate-fade-up stagger-3 mt-8 flex flex-wrap gap-3">
+          <a href="#services" class="btn-primary !bg-white !text-brand-900 hover:!bg-slate-100">
+            View services
+          </a>
+          <a
+            href={BOOK_PATH}
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+          >
+            <Icon name="form" size={16} />
+            Book in {area.displayName}
+          </a>
+          <a
+            href={`tel:${site.phone}`}
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-transparent px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+          >
+            <Icon name="phone" size={16} />
+            Call now
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="animate-slide-right stagger-2 relative hidden overflow-hidden rounded-3xl border border-white/15 shadow-2xl lg:block"
+      >
+        <img
+          src={heroImage}
+          alt={`Scenic view of ${area.displayName}, Kashmir — Panun Kaergar service area`}
+          width="1536"
+          height="1024"
+          class="aspect-[16/10] w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+        <div
+          class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-950/90 via-brand-950/40 to-transparent px-5 pb-5 pt-16"
+        >
+          <p class="text-sm font-semibold text-white">Panun Kaergar in {area.displayName}</p>
+          <p class="mt-1 text-xs text-white/70">
+            Verified partners · Same-day slots · Book by call, WhatsApp, web, or app
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help booking — compact full-width strip -->
+  <section class="border-b border-brand-800/20 bg-brand-950">
+    <div
+      class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-5 sm:flex-row sm:items-center sm:px-6 sm:py-6"
+    >
+      <div class="min-w-0">
+        <p class="text-sm font-semibold text-white">Need help booking?</p>
+        <p class="mt-0.5 text-sm text-white/75">
+          Call or WhatsApp us with your locality name — we’ll confirm a nearby partner.
+        </p>
+      </div>
+      <div class="flex shrink-0 flex-wrap gap-2">
+        <a
+          href={`tel:${site.phone}`}
+          class="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-brand-900 transition hover:bg-slate-100"
+        >
+          <Icon name="phone" size={16} />
+          Call now
+        </a>
+        <a
+          href={waHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/20"
+        >
+          <Icon name="whatsapp" size={16} />
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main + sidebar -->
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start xl:grid-cols-[minmax(0,1fr)_300px]">
+      <div class="min-w-0 space-y-16">
+        {
+          area.bodyHtml && (
+            <section class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                About this area
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                Home services across {area.displayName}
+              </h2>
+              <div class="prose prose-slate mt-6 max-w-none" set:html={area.bodyHtml} />
+            </section>
+          )
+        }
+
+        {
+          featuredLocalities.length > 0 && (
+            <section class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Coverage
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                Popular localities in {area.displayName}
+              </h2>
+              <p class="mt-3 max-w-2xl text-base text-slate-600">
+                Mention your neighborhood when you book — we confirm a verified partner nearby.
+                {neighborhoods.length > featuredLocalities.length
+                  ? ` We cover ${neighborhoods.length}+ localities across the district.`
+                  : ''}
+              </p>
+              <ul class="mt-6 flex flex-wrap gap-2">
+                {featuredLocalities.map((n) => (
+                  <li class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-sm font-medium text-slate-700">
+                    <Icon name="map-pin" size={14} class="text-brand-500" />
+                    {n}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        <!-- Services -->
+        <section id="services" class="scroll-mt-28">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+            What we offer
+          </p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+            Services in {area.displayName}
+          </h2>
+          <p class="mt-3 max-w-2xl text-base text-slate-600">
+            Every category has a dedicated page for {area.displayName} — book a verified local
+            partner in a few taps.
+          </p>
+          <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+            {
+              services.map((service) => (
+                <li>
+                  <a
+                    href={`/services/${service.slug}/${area.slug}`}
+                    class="group flex h-full items-center gap-3 rounded-xl border border-slate-200/80 bg-white p-3.5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md"
+                  >
+                    <span class="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-slate-100 ring-1 ring-slate-200/80">
+                      <img
+                        src={`/images/categories/cards/${service.slug}.webp`}
+                        alt={`${service.shortName} in ${area.displayName}`}
+                        width="48"
+                        height="48"
+                        class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block font-semibold text-slate-900 transition group-hover:text-brand-700">
+                        {service.shortName}
+                      </span>
+                      <span class="mt-0.5 block text-xs text-slate-500">in {area.displayName}</span>
+                    </span>
+                    <Icon
+                      name="chevron-right"
+                      size={16}
+                      class="shrink-0 text-brand-400 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <!-- How to book -->
+        <section id="how-to-book" class="scroll-mt-28">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">Process</p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">How to book</h2>
+          <p class="mt-3 max-w-2xl text-base text-slate-600">
+            Three simple steps to get a verified partner at your door in {area.displayName}.
+          </p>
+          <ol class="mt-8 grid gap-6 sm:grid-cols-3">
+            {
+              bookingSteps.map((step, i) => (
+                <li class="relative">
+                  <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
+                    {i + 1}
+                  </span>
+                  <h3 class="mt-4 text-base font-bold text-slate-900">{step.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
+                </li>
+              ))
+            }
+          </ol>
+        </section>
+
+        <!-- Benefits -->
+        <section id="benefits" class="scroll-mt-28">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+            Why Panun Kaergar
+          </p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+            Benefits in {area.displayName}
+          </h2>
+          <ul class="mt-8 grid gap-5 sm:grid-cols-2">
+            {
+              benefits.map((b) => (
+                <li class="rounded-2xl border border-slate-200/90 bg-gradient-to-br from-white to-slate-50 px-5 py-5">
+                  <h3 class="font-bold text-slate-900">{b.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{b.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <!-- Why choose -->
+        <section id="why-choose" class="scroll-mt-28">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+            Local advantage
+          </p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+            Why book with us in {area.displayName}
+          </h2>
+          <ul class="mt-8 space-y-4">
+            {
+              whyChoose.map((item) => (
+                <li class="flex gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4">
+                  <Icon name="check" size={20} class="mt-0.5 shrink-0 text-brand-600" />
+                  <div>
+                    <h3 class="font-semibold text-slate-900">{item.title}</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <!-- Reviews -->
+        {
+          reviews.length > 0 && (
+            <section id="reviews" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Reviews
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">What customers say</h2>
+              <ul class="mt-8 grid gap-5">
+                {reviews.map((t) => (
+                  <li class="rounded-2xl border border-slate-200 bg-white px-5 py-5 shadow-sm">
+                    <div
+                      class="flex items-center gap-2 text-amber-500"
+                      aria-label={`${t.rating} out of 5`}
+                    >
+                      {Array.from({ length: t.rating || 5 }).map(() => (
+                        <span aria-hidden="true">★</span>
+                      ))}
+                    </div>
+                    <p class="mt-3 text-base leading-relaxed text-slate-700">“{t.quote}”</p>
+                    <p class="mt-4 text-sm font-semibold text-slate-900">
+                      {t.customerName}
+                      <span class="font-normal text-slate-500">
+                        {' '}
+                        · {t.location}
+                        {t.service ? ` · ${t.service}` : ''}
+                      </span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+      </div>
+
+      <AreaSidebar
+        areas={allAreas.map((a) => ({ slug: a.slug, displayName: a.displayName }))}
+        currentSlug={area.slug}
+        bookHref={BOOK_PATH}
+        districtName={area.displayName}
+      />
+    </div>
+  </section>
+
+  <BookingOptions site={site} variant="compact" />
+</PageLayout>
+
+<style>
+  .area-detail-hero-img {
+    animation: area-detail-ken 16s ease-in-out infinite alternate;
+  }
+
+  @keyframes area-detail-ken {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .area-detail-hero-img {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,28 @@
+name: painting-repairs
+shortName: Painting Repairs
+icon: "🎨"
+description: >-
+  Book painting repairs across Kashmir — touch-ups, patch painting, damp marks, and small wall refresh jobs.
+seoTitle: Painting Repairs | Panun Kaergar
+seoDescription: >-
+  Book painting repair & touch-up services across Kashmir. Patch painting, damp marks & wall refresh by verified painters.
+parentSlug: painting
+serviceList:
+  - Wall touch-ups & patch painting
+  - Damp mark cover-up
+  - Door & window frame touch-ups
+  - Ceiling patch painting
+  - Small room refresh
+  - Post-repair paint matching
+faqs:
+  - question: What painting repairs can I book?
+    answer: >-
+      Touch-ups, patch painting, damp mark cover-ups, and small refresh jobs.
+  - question: Is full-room painting available too?
+    answer: >-
+      Yes — see Renovation Painting or the main Painting category for larger jobs.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 111

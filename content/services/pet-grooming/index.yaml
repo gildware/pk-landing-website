@@ -1,0 +1,20 @@
+name: pet-grooming
+shortName: Pet Grooming
+icon: 🐾
+description: Book pet grooming across Kashmir for dogs and cats — baths, trims, and coat care at home. Call, WhatsApp, or book online.
+seoTitle: Pet Grooming Services | Panun Kaergar
+seoDescription: Book dog and cat grooming across Kashmir. Baths, trims & coat care with verified local pet care partners. Call or book online.
+serviceList:
+  - Dog Grooming
+  - Cat Grooming
+faqs:
+  - question: Do you groom dogs and cats at home?
+    answer: Yes. Book dog or cat grooming with partners who visit your home. Share breed, coat type, and any behaviour notes when you book.
+  - question: What does a grooming visit include?
+    answer: Typical visits cover bath, trim, brushing, and basic coat care. Confirm the package when you book.
+  - question: How do I book pet grooming with Panun Kaergar?
+    answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app.
+  - question: How much does pet grooming cost with Panun Kaergar?
+    answer: Pricing depends on pet size, coat, and services. Estimates appear in the app, or our team quotes when you book by phone, WhatsApp, or form.
+published: true
+sortOrder: 14

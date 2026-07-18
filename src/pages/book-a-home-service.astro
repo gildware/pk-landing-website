@@ -1,0 +1,49 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import BookServiceForm from '@/components/BookServiceForm.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings, getServices } from '@/utils/reader';
+import { BOOK_PATH } from '@/utils/booking';
+
+const site = await getSiteSettings();
+const services = await getServices();
+
+const meta = buildMeta({
+  title: 'Book a Home Service in Srinagar | Panun Kaergar',
+  description:
+    'Book a plumber, electrician, AC technician, or cleaner in Srinagar. Call +91 8899 181 555, WhatsApp us, fill our online form, or use the free app.',
+  path: BOOK_PATH,
+});
+
+const hours = (site as { businessHours?: string }).businessHours ?? 'Mon–Sun: 8:00 AM – 9:00 PM';
+---
+
+<PageLayout meta={meta}>
+  <div class="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-5">
+    <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-100 px-4 py-3 sm:px-5 sm:py-3.5 lg:px-6">
+        <h1 class="text-xl font-extrabold text-slate-900 sm:text-2xl">Book a home service in Srinagar</h1>
+        <p class="mt-1 text-sm text-slate-600">
+          Call, WhatsApp, use the app, or fill the form — we match you with a verified partner.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-[minmax(22rem,26rem)_minmax(0,1fr)] lg:items-stretch xl:grid-cols-[minmax(24rem,28rem)_minmax(0,1fr)]">
+        <aside class="border-b border-slate-100 bg-slate-50/80 p-4 lg:border-b-0 lg:border-r lg:border-slate-100 lg:p-5">
+          <BookingOptions site={site} variant="sidebar" showHeading={true} showFormLink={false} />
+          <p class="mt-2.5 text-xs text-slate-500">{hours}</p>
+        </aside>
+
+        <div class="flex min-w-0 flex-col p-4 sm:p-5 lg:p-6">
+          <BookServiceForm
+            site={site}
+            services={services}
+            heading="Book online"
+            variant="compact"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</PageLayout>

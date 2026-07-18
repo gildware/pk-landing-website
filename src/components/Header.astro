@@ -1,5 +1,7 @@
 ---
 import { getServices } from '@/utils/reader';
+import { groupServices } from '@/utils/serviceGroups';
+import { BOOK_PATH } from '@/utils/booking';
 
 interface SiteNav {
   businessName: string;
@@ -12,39 +14,42 @@ interface Props {
 
 const { site } = Astro.props;
 const services = await getServices();
+const serviceGroups = groupServices(
+  services.map((s) => ({ slug: s.slug, shortName: s.shortName })),
+);
 
-const nav = [
+type NavLink = { href: string; label: string };
+type NavItem =
+  | { label: string; href: string; kind?: 'links'; children: NavLink[] }
+  | { label: string; href: string; kind: 'service-hierarchy'; groups: typeof serviceGroups }
+  | { label: string; href: string; kind?: undefined; children?: undefined };
+
+const nav: NavItem[] = [
   {
     label: 'Services',
     href: '/services',
-    children: [
-      { href: '/services', label: 'All services' },
-      ...services.map((s) => ({ href: `/services/${s.slug}`, label: s.shortName })),
-    ],
+    kind: 'service-hierarchy',
+    groups: serviceGroups,
   },
-  { label: 'Areas', href: '/areas' },
+  { label: 'Areas', href: '/service-areas' },
   {
     label: 'Resources',
-    href: '/how-it-works',
+    href: '/faq',
     children: [
-      { href: '/how-it-works', label: 'How it works' },
       { href: '/faq', label: 'FAQ' },
-      { href: '/blog', label: 'Blog' },
-      { href: '/about', label: 'About us' },
-      { href: '/download', label: 'Download app' },
+      { href: '/about', label: 'About Us' },
+      { href: '/download', label: 'Download App' },
     ],
   },
-  { label: 'Become a provider', href: '/become-a-provider' },
+  { label: 'Become A Partner', href: '/become-a-partner' },
 ];
 
 const mobileNav = [
-  { href: '/services', label: 'Services' },
-  { href: '/areas', label: 'Areas' },
-  { href: '/how-it-works', label: 'How it works' },
+  { href: '/service-areas', label: 'Areas' },
   { href: '/faq', label: 'FAQ' },
   { href: '/about', label: 'About' },
-  { href: '/become-a-provider', label: 'Become a provider' },
-  { href: '/download', label: 'Download app' },
+  { href: '/become-a-partner', label: 'Become A Partner' },
+  { href: '/download', label: 'Download App' },
   { href: '/contact', label: 'Contact' },
 ];
 ---
@@ -72,7 +77,58 @@ const mobileNav = [
       <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
         {
           nav.map((item) =>
-            item.children ? (
+            item.kind === 'service-hierarchy' ? (
+              <div class="nav-dropdown group/services relative">
+                <a
+                  href={item.href}
+                  class="inline-flex items-center gap-1 rounded-md px-3 py-2 text-[15px] font-medium text-[#323338] transition-colors duration-200 hover:bg-slate-50 hover:text-brand-700"
+                >
+                  {item.label}
+                  <svg class="h-3.5 w-3.5 text-[#676879] transition-transform duration-200 group-hover/services:rotate-180 group-focus-within/services:rotate-180" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+                <div class="invisible absolute left-0 top-full z-50 pt-2 opacity-0 transition-all duration-200 group-hover/services:visible group-hover/services:opacity-100 group-focus-within/services:visible group-focus-within/services:opacity-100">
+                  <ul class="min-w-[260px] rounded-xl border border-slate-200/80 bg-white py-2 shadow-lg shadow-slate-900/8">
+                    <li>
+                      <a
+                        href="/services"
+                        class="block px-4 py-2.5 text-sm font-semibold text-brand-700 transition-colors hover:bg-slate-50"
+                      >
+                        All Services
+                      </a>
+                    </li>
+                    {item.groups.map((group) => (
+                      <li class="group/flyout relative">
+                        <button
+                          type="button"
+                          class="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-sm font-medium text-[#323338] transition-colors hover:bg-slate-50 hover:text-brand-700 group-hover/flyout:bg-slate-50 group-hover/flyout:text-brand-700 group-focus-within/flyout:bg-slate-50 group-focus-within/flyout:text-brand-700"
+                        >
+                          <span>{group.label}</span>
+                          <svg class="h-3.5 w-3.5 shrink-0 text-[#676879]" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </button>
+                        <div class="invisible absolute left-full top-0 z-50 pl-1.5 opacity-0 transition-all duration-150 group-hover/flyout:visible group-hover/flyout:opacity-100 group-focus-within/flyout:visible group-focus-within/flyout:opacity-100">
+                          <ul class="min-w-[220px] rounded-xl border border-slate-200/80 bg-white py-2 shadow-lg shadow-slate-900/8">
+                            {group.services.map((service) => (
+                              <li>
+                                <a
+                                  href={`/services/${service.slug}`}
+                                  class="block px-4 py-2.5 text-sm font-medium text-[#323338] transition-colors hover:bg-slate-50 hover:text-brand-700"
+                                >
+                                  {service.shortName}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : item.children ? (
               <div class="nav-dropdown group relative">
                 <a
                   href={item.href}
@@ -116,19 +172,19 @@ const mobileNav = [
         href="/download"
         class="hidden text-[15px] font-medium text-[#323338] transition-colors hover:text-brand-700 md:inline"
       >
-        Download app
+        Download App
       </a>
       <a
         href="/contact"
         class="hidden items-center justify-center rounded-full border border-brand-600 px-4 py-2 text-[14px] font-medium text-brand-600 transition-colors duration-200 hover:bg-brand-50 sm:inline-flex"
       >
-        Contact us
+        Contact Us
       </a>
       <a
-        href="/#book-form"
+        href={BOOK_PATH}
         class="inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-600 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-200 hover:bg-brand-700 sm:px-5"
       >
-        Book now
+        Book Now
         <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -150,34 +206,68 @@ const mobileNav = [
       </button>
     </div>
 
-    <ul
+    <div
       id="mobile-menu"
-      class="absolute left-0 right-0 top-full hidden border-t border-slate-200 bg-white px-5 py-4 shadow-lg sm:px-8 lg:hidden"
+      class="absolute left-0 right-0 top-full hidden max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-slate-200 bg-white px-5 py-4 shadow-lg sm:px-8 lg:hidden"
     >
-      {
-        mobileNav.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class="mobile-nav-link block rounded-lg px-3 py-2.5 text-[15px] font-medium text-[#323338] hover:bg-slate-50 hover:text-brand-700"
-            >
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-      <li class="mt-2 border-t border-slate-100 pt-3">
+      <div class="mb-3">
         <a
-          href="/#book-form"
-          class="mobile-nav-link flex items-center justify-center gap-1.5 rounded-full bg-brand-600 px-4 py-2.5 text-sm font-medium text-white"
+          href="/services"
+          class="mobile-nav-link block rounded-lg px-3 py-2 text-[15px] font-semibold text-brand-700 hover:bg-slate-50"
         >
-          Book now
-          <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          All Services
         </a>
-      </li>
-    </ul>
+        {
+          serviceGroups.map((group) => (
+            <details class="group/mobile-svc mt-1 rounded-lg">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg px-3 py-2.5 text-[15px] font-medium text-[#323338] hover:bg-slate-50 hover:text-brand-700 [&::-webkit-details-marker]:hidden">
+                <span>{group.label}</span>
+                <svg class="h-3.5 w-3.5 shrink-0 text-[#676879] transition-transform duration-200 group-open/mobile-svc:rotate-180" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </summary>
+              <ul class="mb-1 ml-2 border-l border-slate-200 pl-2">
+                {group.services.map((service) => (
+                  <li>
+                    <a
+                      href={`/services/${service.slug}`}
+                      class="mobile-nav-link block rounded-lg px-3 py-2 text-[14px] font-medium text-[#323338] hover:bg-slate-50 hover:text-brand-700"
+                    >
+                      {service.shortName}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))
+        }
+      </div>
+      <ul class="border-t border-slate-100 pt-2">
+        {
+          mobileNav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="mobile-nav-link block rounded-lg px-3 py-2.5 text-[15px] font-medium text-[#323338] hover:bg-slate-50 hover:text-brand-700"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="mt-2 border-t border-slate-100 pt-3">
+          <a
+            href={BOOK_PATH}
+            class="mobile-nav-link flex items-center justify-center gap-1.5 rounded-full bg-brand-600 px-4 py-2.5 text-sm font-medium text-white"
+          >
+            Book Now
+            <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </header>
 

@@ -1,24 +1,27 @@
 name: home-appliances
 shortName: Home Appliances
 icon: 🔌
-description: Book home appliance service and repair in Srinagar — AC, fridge, washing machine, TV, geyser, and more. Call, WhatsApp, or book online.
-seoTitle: Home Appliance Repair in Srinagar
-seoDescription: Book appliance repair in Srinagar. AC, fridge, washing machine, TV, geyser & microwave service. Verified technicians.
+description: Book home appliance service and repair across Kashmir — AC, fridge, washing machine, TV, geyser, and more. Call, WhatsApp, or book online.
+seoTitle: Home Appliance Repair | Panun Kaergar
+seoDescription: Book appliance repair across Kashmir. AC, fridge, washing machine, TV, geyser & microwave service. Verified technicians.
 serviceList:
-  - AC repair and servicing
-  - Refrigerator repair
-  - Washing machine repair
-  - TV and home entertainment repair
-  - Geyser and water heater service
-  - Microwave and kitchen appliance repair
+  - Air Conditioners
+  - Battery & Inverters
+  - CCTV
+  - Geysers
+  - LED / Smart TV
+  - Refrigerators
+  - Small Appliances
+  - Washing Machine
+  - Water Purifier
 faqs:
   - question: Which appliances can I book repair for?
-    answer: AC, fridge, washing machine, TV, geyser, microwave, and other common home appliances in Srinagar.
+    answer: AC, fridge, washing machine, TV, geyser, microwave, and other common home appliances across Kashmir.
   - question: Do you service all brands?
-    answer: Most providers handle popular brands. Mention your appliance model when you book so we match the right technician.
-  - question: How do I book appliance repair in Srinagar?
+    answer: Most partners handle popular brands. Mention your appliance model when you book so we match the right technician.
+  - question: How do I book appliance repair with Panun Kaergar?
     answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app.
-  - question: How much does appliance repair cost in Srinagar?
+  - question: How much does appliance repair cost with Panun Kaergar?
     answer: Pricing depends on appliance type, brand, and fault. Diagnosis and repair estimates appear in the app before you confirm, or our team shares guidance when you book by phone, WhatsApp, or form.
 published: true
-sortOrder: 9
+sortOrder: 5

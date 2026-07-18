@@ -1,0 +1,27 @@
+name: vehicle-repair-maintenance
+shortName: "Vehicle Repair & Maintenance"
+icon: "🚗"
+description: >-
+  Book vehicle repair and maintenance across Kashmir — car servicing, repairs, and upkeep with verified local partners.
+seoTitle: Vehicle Repair & Maintenance | Panun Kaergar
+seoDescription: >-
+  Book car repair & maintenance across Kashmir. Servicing and upkeep by verified Panun Kaergar vehicle partners.
+parentSlug: vehicle-services
+serviceList:
+  - General Car Inspection
+  - Periodic Car Service
+  - Car Battery Replacement
+  - Car AC Service & Gas Refill
+  - Car Tyre Puncture Repair
+faqs:
+  - question: What vehicle repairs can I book?
+    answer: >-
+      Car repair and maintenance jobs from our live catalog.
+  - question: Is bike service separate?
+    answer: >-
+      Yes — see Bike & Scooter Service under Vehicle Services.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 115

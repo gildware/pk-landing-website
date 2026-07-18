@@ -1,3 +1,6 @@
+/** Canonical SEO-friendly booking page path. */
+export const BOOK_PATH = '/book-a-home-service';
+
 export interface BookingSite {
   businessName: string;
   phone: string;
@@ -6,6 +9,12 @@ export interface BookingSite {
   bookingUrl: string;
   userPlayStoreUrl: string;
   userAppStoreUrl: string;
+  providerPlayStoreUrl?: string;
+  providerAppStoreUrl?: string;
+}
+
+export function partnerWhatsAppMessage() {
+  return "Hi Panun Kaergar, I'd like to join as a service partner in Srinagar. Please help me get started.";
 }
 
 export function whatsappDigits(whatsapp: string) {

@@ -1,6 +1,6 @@
 ---
 import type { BookingSite } from '@/utils/booking';
-import { whatsappHref, generalWhatsAppMessage } from '@/utils/booking';
+import { BOOK_PATH, whatsappHref, generalWhatsAppMessage } from '@/utils/booking';
 import Icon from '@/components/Icon.astro';
 
 interface Props {
@@ -33,7 +33,7 @@ const wa = whatsappHref(site.whatsapp, generalWhatsAppMessage());
       WhatsApp
     </a>
     <a
-      href="/#book-form"
+      href={BOOK_PATH}
       class="btn-primary flex-[1.2] flex-col gap-0.5 py-2 text-xs"
     >
       Book now

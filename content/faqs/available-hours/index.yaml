@@ -1,0 +1,9 @@
+question: available-hours
+questionText: What are your booking hours?
+answer: >-
+  You can request a booking any day through the website, app, phone, or WhatsApp. Our team is
+  typically available Mon–Sun from 8:00 AM to 9:00 PM. Partner visit times depend on the slot
+  you choose and local availability.
+category: General
+sortOrder: 20
+published: true

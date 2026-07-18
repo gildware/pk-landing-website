@@ -4,6 +4,7 @@
  * Floating category cards merge into a Panun Kaergar who colorizes on scroll.
  */
 import { enrichCategories, type ServiceLike } from '@/utils/categoryCatalog';
+import { BOOK_PATH } from '@/utils/booking';
 
 interface Props {
   services: ServiceLike[];
@@ -78,9 +79,17 @@ const scatterPlan: Record<string, Scatter> = {
     bottom: '8%', right: '8%', ring: 'mid',
     mobile: { bottom: '5%', right: '6%' },
   },
-  'tank-cleaning': {
+  'aluminium-steel-works': {
     bottom: '18%', right: '24%', ring: 'near',
     mobile: { bottom: '16%', right: '22%' },
+  },
+  'pet-grooming': {
+    bottom: '22%', left: '30%', ring: 'far',
+    mobile: { bottom: '18%', left: '28%' },
+  },
+  'vehicle-services': {
+    bottom: '14%', right: '34%', ring: 'mid',
+    mobile: { bottom: '12%', right: '30%' },
   },
 };
 
@@ -115,7 +124,9 @@ const shortMeta: Record<string, string> = {
   'dry-clean-laundry': 'Laundry · garments',
   'mens-salon': 'Hair · beard · care',
   'womens-salon': 'Hair · beauty · home',
-  'tank-cleaning': 'Home tank service',
+  'aluminium-steel-works': 'Install · repair · fabricate',
+  'pet-grooming': 'Dog · cat grooming',
+  'vehicle-services': 'Wash · repair · bike',
 };
 
 /** Per-card merge speeds — higher arrives sooner (monday-style stagger) */
@@ -142,7 +153,7 @@ const categories = enrichCategories(services, areaName).map((cat, i) => {
       <p class="work-context__subtitle">
         <span class="work-context__subtitle-strong">A Panun Kaergar is only as good as their skills </span>Pros have the skills they need before they act - ensuring work is being carried out confidently and accurately.
       </p>
-      <a href="/book" class="work-context__cta">
+      <a href={BOOK_PATH} class="work-context__cta">
         <span>Get Started</span>
         <span class="work-context__cta-arrow" aria-hidden="true">
           <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
@@ -183,7 +194,7 @@ const categories = enrichCategories(services, areaName).map((cat, i) => {
             <img
               class="work-context__person-img work-context__person-img--color"
               src="/images/context/kaergar-color.png?v=12"
-              alt="Panun Kaergar providers for every home service, each with their tools"
+              alt="Panun Kaergar partners for every home service, each with their tools"
               width="1536"
               height="1024"
               loading="eager"

@@ -1,0 +1,35 @@
+name: dog-grooming
+shortName: Dog Grooming
+icon: "🐕"
+description: >-
+  Book dog grooming across Kashmir — baths, trims, nail care, and coat grooming with verified pet care partners.
+seoTitle: Dog Grooming | Panun Kaergar
+seoDescription: >-
+  Book dog grooming across Kashmir. Baths, trims & coat care by verified Panun Kaergar pet grooming partners.
+parentSlug: pet-grooming
+serviceList:
+  - Full Dog Grooming
+  - Dog Bath & Brush
+  - Dog Haircut & Trim
+  - Dog Nail Clipping
+  - Dog Ear Cleaning
+  - Dog Teeth Brushing
+  - Dog Deshedding Treatment
+  - Dog Flea & Tick Bath
+  - Dog Paw Pad Trim
+  - Puppy First Groom
+  - Senior Dog Gentle Groom
+  - Dog Spa Package
+  - Dog Monthly Grooming Plan
+faqs:
+  - question: What dog grooming services are available?
+    answer: >-
+      Baths, trims, nail care, and related grooming from our live catalog.
+  - question: Do groomers visit at home?
+    answer: >-
+      Many partners offer home visits — confirm when you book.
+  - question: How do I book?
+    answer: >-
+      Call, WhatsApp, website form, or the app.
+published: true
+sortOrder: 119

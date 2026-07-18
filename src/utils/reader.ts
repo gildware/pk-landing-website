@@ -28,7 +28,7 @@ export async function getHomepageHtml() {
   return renderMarkdocHtml(() => entry.body());
 }
 
-export async function getServices() {
+async function readAllPublishedServices() {
   const slugs = await reader.collections.services.list();
   const items = await Promise.all(
     slugs.map(async (slug) => {
@@ -41,6 +41,17 @@ export async function getServices() {
   return items
     .filter((item): item is NonNullable<typeof item> => item !== null && item.published)
     .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
+}
+
+/** Top-level categories only (excludes subcategory / focused pages with parentSlug). */
+export async function getServices() {
+  const items = await readAllPublishedServices();
+  return items.filter((item) => !item.parentSlug);
+}
+
+/** All published service pages including subcategory-focused variants. */
+export async function getAllServices() {
+  return readAllPublishedServices();
 }
 
 export async function getService(slug: string) {
@@ -120,33 +131,6 @@ export async function getTestimonials() {
   return items
     .filter((item): item is NonNullable<typeof item> => item !== null && item.published)
     .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
-}
-
-export async function getBlogPosts() {
-  const slugs = await reader.collections.blogPosts.list();
-  const items = await Promise.all(
-    slugs.map(async (slug) => {
-      try {
-        const entry = await reader.collections.blogPosts.read(slug);
-        if (!entry) return null;
-        const bodyHtml = await renderMarkdocHtml(() => entry.body());
-        return { slug, ...entry, bodyHtml };
-      } catch (err) {
-        console.error('[blog] read failed:', slug, err);
-        return null;
-      }
-    })
-  );
-  return items
-    .filter((item): item is NonNullable<typeof item> => item !== null && item.published)
-    .sort((a, b) => String(b.publishedAt ?? '').localeCompare(String(a.publishedAt ?? '')));
-}
-
-export async function getBlogPost(slug: string) {
-  const entry = await reader.collections.blogPosts.read(slug);
-  if (!entry || !entry.published) return null;
-  const bodyHtml = await renderMarkdocHtml(() => entry.body());
-  return { slug, ...entry, bodyHtml };
 }
 
 export function getPrimaryArea(areas: AreaEntry[]) {

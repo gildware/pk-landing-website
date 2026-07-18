@@ -1,24 +1,20 @@
 name: masonry
 shortName: Masonry
 icon: 🧱
-description: Book a mason in Srinagar for brickwork, plastering, tile work, and wall repairs. Call, WhatsApp, or book online.
-seoTitle: Masonry Services in Srinagar
-seoDescription: Book verified masons in Srinagar. Brickwork, plastering, tile fitting, wall repair & construction support. Call or book online.
+description: Book a mason across Kashmir for brickwork, plastering, tile work, and wall repairs. Call, WhatsApp, or book online.
+seoTitle: Masonry Services | Panun Kaergar
+seoDescription: Book verified masons across Kashmir. Brickwork, plastering, tile fitting, wall repair & construction support. Call or book online.
 serviceList:
-  - Brick and block work
-  - Plastering and wall finishing
-  - Tile and floor laying
-  - Crack and wall repair
-  - Bathroom and kitchen tiling
-  - Small construction and renovation support
+  - Masonry Installs
+  - Masonry Repairs
 faqs:
-  - question: How do I book a mason in Srinagar?
+  - question: How do I book a mason with Panun Kaergar?
     answer: Call us, WhatsApp us, fill the booking form on our website, or use the Panun Kaergar app. Describe the job and share your address — we will confirm your booking.
   - question: Do you handle both repair and new work?
-    answer: Yes. Providers on Panun Kaergar handle patch repairs, tiling, plastering, and small construction jobs depending on availability.
+    answer: Yes. Partners on Panun Kaergar handle patch repairs, tiling, plastering, and small construction jobs depending on availability.
   - question: Are masons on Panun Kaergar verified?
-    answer: Providers go through onboarding and are rated by customers after each completed job.
-  - question: How much does masonry work cost in Srinagar?
+    answer: Partners go through onboarding and are rated by customers after each completed job.
+  - question: How much does masonry work cost with Panun Kaergar?
     answer: Pricing depends on the scope — tiling, plastering, or repair. You see estimates in the app before confirming, or our team shares guidance when you book by phone, WhatsApp, or form.
 published: true
-sortOrder: 3
+sortOrder: 6

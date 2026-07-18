@@ -1,31 +1,174 @@
 ---
 interface Props {
-  title: string;
+  title?: string;
   items: { question: string; answer: string }[];
+  /** Compact spacing for embedded FAQ lists (e.g. FAQ page column). */
+  compact?: boolean;
+  /** Extra class on the outer section. */
+  class?: string;
 }
 
-const { title, items } = Astro.props;
+const { title, items, compact = false, class: className = '' } = Astro.props;
 ---
 
 {
   items.length > 0 && (
-    <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      {title ? <h2 class="animate-fade-up text-2xl font-bold text-slate-900">{title}</h2> : null}
-      <div class:list={['space-y-3', title && 'mt-8']}>
+    <section
+      class:list={[
+        compact ? 'w-full' : 'mx-auto max-w-3xl px-4 py-16 sm:px-6',
+        className,
+      ]}
+      data-faq-accordion
+    >
+      {title ? (
+        <h2
+          class:list={[
+            'font-bold text-slate-900',
+            compact ? 'text-lg' : 'animate-fade-up text-2xl',
+          ]}
+        >
+          {title}
+        </h2>
+      ) : null}
+      <div class:list={['space-y-3', title && (compact ? 'mt-4' : 'mt-8')]} role="list">
         {items.map((item, i) => (
-          <details class:list={['card group animate-fade-up overflow-hidden', `stagger-${Math.min(i + 1, 4)}`]}>
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-slate-900 transition hover:text-brand-700 [&::-webkit-details-marker]:hidden">
-              {item.question}
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 transition group-open:rotate-45">
-                +
+          <div
+            class:list={[
+              'faq-item card group overflow-hidden',
+              !compact && 'animate-fade-up',
+              !compact && `stagger-${Math.min(i + 1, 4)}`,
+            ]}
+            role="listitem"
+            data-faq-item
+          >
+            <button
+              type="button"
+              class="faq-item__trigger flex w-full cursor-pointer items-center justify-between gap-4 p-5 text-left font-semibold text-slate-900 transition hover:text-brand-700"
+              aria-expanded="false"
+              data-faq-trigger
+            >
+              <span class="faq-item__question">{item.question}</span>
+              <span
+                class="faq-item__icon flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600"
+                aria-hidden="true"
+              >
+                <svg class="h-3.5 w-3.5" viewBox="0 0 14 14" fill="none">
+                  <path
+                    class="faq-item__icon-h"
+                    d="M2 7h10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    class="faq-item__icon-v"
+                    d="M7 2v10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
               </span>
-            </summary>
-            <div class="border-t border-slate-100 px-5 pb-5 pt-3 text-sm leading-relaxed text-slate-600">
-              {item.answer}
+            </button>
+            <div class="faq-item__panel" data-faq-panel>
+              <div class="faq-item__panel-clip">
+                <div class="faq-item__panel-inner border-t border-slate-100 px-5 pb-5 pt-3 text-sm leading-relaxed text-slate-600">
+                  {item.answer}
+                </div>
+              </div>
             </div>
-          </details>
+          </div>
         ))}
       </div>
     </section>
   )
 }
+
+<style>
+  .faq-item__icon {
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  }
+
+  .faq-item__icon-v {
+    transform-origin: center;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  }
+
+  .faq-item.is-open .faq-item__icon {
+    background-color: theme('colors.brand.600');
+    color: white;
+  }
+
+  .faq-item.is-open .faq-item__icon-v {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  .faq-item__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .faq-item.is-open .faq-item__panel {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-item__panel-clip {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .faq-item__panel-inner {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition:
+      opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.05s,
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .faq-item.is-open .faq-item__panel-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item__panel,
+    .faq-item__panel-inner,
+    .faq-item__icon,
+    .faq-item__icon-v {
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+
+<script>
+  function initFaqAccordion() {
+    document.querySelectorAll('[data-faq-accordion]').forEach((section) => {
+      if (!(section instanceof HTMLElement) || section.dataset.faqReady === '1') return;
+      section.dataset.faqReady = '1';
+
+      section.querySelectorAll('[data-faq-item]').forEach((item) => {
+        if (!(item instanceof HTMLElement)) return;
+        const trigger = item.querySelector('[data-faq-trigger]');
+        if (!(trigger instanceof HTMLButtonElement)) return;
+
+        trigger.addEventListener('click', () => {
+          const willOpen = !item.classList.contains('is-open');
+
+          section.querySelectorAll('[data-faq-item].is-open').forEach((openItem) => {
+            if (!(openItem instanceof HTMLElement) || openItem === item) return;
+            openItem.classList.remove('is-open');
+            openItem.querySelector('[data-faq-trigger]')?.setAttribute('aria-expanded', 'false');
+          });
+
+          item.classList.toggle('is-open', willOpen);
+          trigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        });
+      });
+    });
+  }
+
+  initFaqAccordion();
+  document.addEventListener('astro:page-load', initFaqAccordion);
+</script>

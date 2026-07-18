@@ -2,6 +2,7 @@
 import Icon from '@/components/Icon.astro';
 import BookServiceForm from '@/components/BookServiceForm.astro';
 import type { BookingSite } from '@/utils/booking';
+import { BOOK_PATH } from '@/utils/booking';
 
 interface ServiceOption {
   slug: string;
@@ -25,16 +26,16 @@ const {
   title,
   subtitle,
   badge,
-  primaryHref = '/book',
-  secondaryHref = '/become-a-provider',
-  secondaryLabel = 'Become a provider',
+  primaryHref = BOOK_PATH,
+  secondaryHref = '/become-a-partner',
+  secondaryLabel = 'Become a partner',
   areaName = 'Srinagar',
   site,
   services,
 } = Astro.props;
 
 const trustItems = [
-  { icon: 'shield-check', text: 'Verified providers' },
+  { icon: 'shield-check', text: 'Verified partners' },
   { icon: 'map-pin', text: 'Serving Srinagar' },
   { icon: 'clock', text: 'Book any time slot' },
 ];
@@ -129,7 +130,7 @@ const trustItems = [
         </p>
 
         <p class="animate-fade-up mt-4 text-center text-xs text-white/70 lg:hidden">
-          Verified providers · Srinagar · Call, WhatsApp, or online form
+          Verified partners · Srinagar · Call, WhatsApp, or online form
         </p>
       </div>
     </div>
