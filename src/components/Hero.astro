@@ -36,9 +36,12 @@ const {
 
 const trustItems = [
   { icon: 'shield-check', text: 'Verified partners' },
-  { icon: 'map-pin', text: 'Serving Srinagar' },
+  { icon: 'map-pin', text: 'Serving Kashmir' },
   { icon: 'clock', text: 'Book any time slot' },
 ];
+
+const formHeading =
+  areaName.toLowerCase() === 'kashmir' ? 'Book across Kashmir' : `Book in ${areaName}`;
 ---
 
 <section
@@ -63,12 +66,24 @@ const trustItems = [
 
   <div class="relative mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-9 lg:py-14">
     <div class="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-start lg:gap-12">
-      <h1
-        class="animate-fade-up text-xl font-extrabold leading-snug text-white sm:text-2xl lg:col-start-1 lg:row-start-1 lg:text-[2.85rem] lg:leading-[1.1]"
-        style="color: #ffffff;"
-      >
-        {title}
-      </h1>
+      <div class="lg:col-start-1 lg:row-start-1">
+        <p class="animate-fade-up text-sm font-semibold tracking-wide text-accent sm:text-base">
+          Panun Kaergar
+        </p>
+        {
+          badge && (
+            <p class="animate-fade-up stagger-1 mt-2 inline-flex items-center rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90 backdrop-blur-sm">
+              {badge}
+            </p>
+          )
+        }
+        <h1
+          class="animate-fade-up stagger-1 mt-3 text-xl font-extrabold leading-snug text-white sm:text-2xl lg:text-[2.85rem] lg:leading-[1.1]"
+          style="color: #ffffff;"
+        >
+          {title}
+        </h1>
+      </div>
 
       <div class="lg:col-start-2 lg:row-start-1 lg:row-span-2">
         <div
@@ -80,7 +95,7 @@ const trustItems = [
             site={site}
             services={services}
             formId="hero-book-form"
-            heading={`Book in ${areaName}`}
+            heading={formHeading}
             variant="compact"
           />
         </div>
@@ -88,19 +103,14 @@ const trustItems = [
 
       <div class="lg:col-start-1 lg:row-start-2">
         {
-          badge && (
-            <p class="animate-fade-up stagger-1 hidden items-center rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90 backdrop-blur-sm sm:inline-flex">
-              {badge}
+          subtitle && (
+            <p class="animate-fade-up stagger-2 mt-1 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base lg:mt-3 lg:text-lg">
+              {subtitle}
             </p>
           )
         }
-        {
-          subtitle && (
-            <p class="animate-fade-up stagger-2 mt-3 hidden max-w-xl text-lg leading-relaxed text-white/85 lg:block">{subtitle}</p>
-          )
-        }
 
-        <ul class="animate-fade-up stagger-3 mt-6 hidden flex-wrap gap-x-6 gap-y-3 text-sm text-white/80 lg:flex">
+        <ul class="animate-fade-up stagger-3 mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/85 lg:mt-6 lg:gap-x-6 lg:gap-y-3 lg:text-white/80">
           {trustItems.map((item, i) => (
             <li class:list={['flex items-center gap-2', i > 0 && 'animate-fade-in', i === 1 && 'stagger-4', i === 2 && 'stagger-5']}>
               <Icon name={item.icon} size={17} class="text-white" />
@@ -130,7 +140,7 @@ const trustItems = [
         </p>
 
         <p class="animate-fade-up mt-4 text-center text-xs text-white/70 lg:hidden">
-          Verified partners · Srinagar · Call, WhatsApp, or online form
+          Verified partners · Kashmir · Call, WhatsApp, or online form
         </p>
       </div>
     </div>
