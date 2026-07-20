@@ -32,12 +32,7 @@ const hours =
       </div>
 
       <div class="grid lg:grid-cols-[minmax(22rem,26rem)_minmax(0,1fr)] lg:items-stretch xl:grid-cols-[minmax(24rem,28rem)_minmax(0,1fr)]">
-        <aside class="border-b border-slate-100 bg-slate-50/80 p-4 lg:border-b-0 lg:border-r lg:border-slate-100 lg:p-5">
-          <BookingOptions site={site} variant="sidebar" showHeading={true} showFormLink={false} />
-          <p class="mt-2.5 text-xs text-slate-500">{hours}</p>
-        </aside>
-
-        <div class="flex min-w-0 flex-col p-4 sm:p-5 lg:p-6">
+        <div class="order-1 flex min-w-0 flex-col border-b border-slate-100 p-4 sm:p-5 lg:order-2 lg:border-b-0 lg:p-6">
           <BookServiceForm
             site={site}
             services={services}
@@ -45,6 +40,11 @@ const hours =
             variant="compact"
           />
         </div>
+
+        <aside class="order-2 bg-slate-50/80 p-4 lg:order-1 lg:border-r lg:border-slate-100 lg:p-5">
+          <BookingOptions site={site} variant="sidebar" showHeading={true} showFormLink={false} />
+          <p class="mt-2.5 text-xs text-slate-500">{hours}</p>
+        </aside>
       </div>
     </div>
   </div>

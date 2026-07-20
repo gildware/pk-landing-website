@@ -58,8 +58,8 @@ const mobileNav = [
   id="site-header"
   class="sticky top-0 z-50 bg-white font-figtree transition-shadow duration-500 ease-smooth"
 >
-  <div class="relative mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
-    <div class="flex min-w-0 items-center gap-8 lg:gap-10">
+  <div class="relative mx-auto flex h-[72px] max-w-[1400px] flex-nowrap items-center justify-between gap-3 px-5 sm:gap-4 sm:px-8 lg:px-10">
+    <div class="flex min-w-0 items-center gap-6 xl:gap-8">
       <a href="/" class="flex h-[34px] shrink-0 items-center" aria-label={site.businessName}>
         <picture>
           <source srcset="/logo-header.webp" type="image/webp" />
@@ -74,14 +74,14 @@ const mobileNav = [
         </picture>
       </a>
 
-      <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+      <nav class="hidden items-center gap-0.5 xl:flex" aria-label="Main">
         {
           nav.map((item) =>
             item.kind === 'service-hierarchy' ? (
               <div class="nav-dropdown group/services relative">
                 <a
                   href={item.href}
-                  class="inline-flex items-center gap-1 rounded-md px-3 py-2 text-[15px] font-medium text-[#323338] transition-colors duration-200 hover:bg-slate-50 hover:text-brand-700"
+                  class="inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-[15px] font-medium text-[#323338] transition-colors duration-200 hover:bg-slate-50 hover:text-brand-700 2xl:px-3"
                 >
                   {item.label}
                   <svg class="h-3.5 w-3.5 text-[#676879] transition-transform duration-200 group-hover/services:rotate-180 group-focus-within/services:rotate-180" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -132,7 +132,7 @@ const mobileNav = [
               <div class="nav-dropdown group relative">
                 <a
                   href={item.href}
-                  class="inline-flex items-center gap-1 rounded-md px-3 py-2 text-[15px] font-medium text-[#323338] transition-colors duration-200 hover:bg-slate-50 hover:text-brand-700"
+                  class="inline-flex items-center gap-1 whitespace-nowrap rounded-md px-2.5 py-2 text-[15px] font-medium text-[#323338] transition-colors duration-200 hover:bg-slate-50 hover:text-brand-700 2xl:px-3"
                 >
                   {item.label}
                   <svg class="h-3.5 w-3.5 text-[#676879] transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -157,7 +157,7 @@ const mobileNav = [
             ) : (
               <a
                 href={item.href}
-                class="rounded-md px-3 py-2 text-[15px] font-medium text-[#323338] transition-colors duration-200 hover:bg-slate-50 hover:text-brand-700"
+                class="whitespace-nowrap rounded-md px-2.5 py-2 text-[15px] font-medium text-[#323338] transition-colors duration-200 hover:bg-slate-50 hover:text-brand-700 2xl:px-3"
               >
                 {item.label}
               </a>
@@ -167,22 +167,22 @@ const mobileNav = [
       </nav>
     </div>
 
-    <div class="flex items-center gap-2 sm:gap-3">
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3">
       <a
         href="/download"
-        class="hidden text-[15px] font-medium text-[#323338] transition-colors hover:text-brand-700 md:inline"
+        class="hidden whitespace-nowrap text-[15px] font-medium text-[#323338] transition-colors hover:text-brand-700 xl:inline"
       >
         Download App
       </a>
       <a
         href="/contact"
-        class="hidden items-center justify-center rounded-full border border-brand-600 px-4 py-2 text-[14px] font-medium text-brand-600 transition-colors duration-200 hover:bg-brand-50 sm:inline-flex"
+        class="hidden items-center justify-center whitespace-nowrap rounded-full border border-brand-600 px-4 py-2 text-[14px] font-medium text-brand-600 transition-colors duration-200 hover:bg-brand-50 sm:inline-flex"
       >
         Contact Us
       </a>
       <a
         href={BOOK_PATH}
-        class="inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-600 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-200 hover:bg-brand-700 sm:px-5"
+        class="inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-brand-600 px-4 py-2 text-[14px] font-medium text-white transition-colors duration-200 hover:bg-brand-700 sm:px-5"
       >
         Book Now
         <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -192,7 +192,7 @@ const mobileNav = [
       <button
         type="button"
         id="mobile-menu-btn"
-        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[#323338] transition hover:bg-slate-100 lg:hidden"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[#323338] transition hover:bg-slate-100 xl:hidden"
         aria-expanded="false"
         aria-controls="mobile-menu"
         aria-label="Open menu"
@@ -208,7 +208,7 @@ const mobileNav = [
 
     <div
       id="mobile-menu"
-      class="absolute left-0 right-0 top-full hidden max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-slate-200 bg-white px-5 py-4 shadow-lg sm:px-8 lg:hidden"
+      class="absolute left-0 right-0 top-full hidden max-h-[calc(100dvh-72px)] overflow-y-auto border-t border-slate-200 bg-white px-5 py-4 shadow-lg sm:px-8 xl:hidden"
     >
       <div class="mb-3">
         <a
