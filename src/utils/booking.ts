@@ -1,6 +1,19 @@
 /** Canonical SEO-friendly booking page path. */
 export const BOOK_PATH = '/book-a-home-service';
 
+/** Shown after a successful online booking submit. */
+export const BOOK_THANK_YOU_PATH = '/book-a-home-service/thank-you';
+
+/** Canonical partner application page path. */
+export const PARTNER_PATH = '/become-a-partner';
+
+/** Shown after a successful partner application submit. */
+export const PARTNER_THANK_YOU_PATH = '/become-a-partner/thank-you';
+
+/** sessionStorage keys used to pass WhatsApp message text to thank-you pages. */
+export const BOOKING_WA_STORAGE_KEY = 'pk-booking-wa';
+export const PARTNER_WA_STORAGE_KEY = 'pk-partner-wa';
+
 export interface BookingSite {
   businessName: string;
   phone: string;

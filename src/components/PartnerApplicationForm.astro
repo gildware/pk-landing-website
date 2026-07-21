@@ -1,6 +1,6 @@
 ---
 import type { BookingSite } from '@/utils/booking';
-import WhatsAppButton from '@/components/WhatsAppButton.astro';
+import { PARTNER_THANK_YOU_PATH, PARTNER_WA_STORAGE_KEY } from '@/utils/booking';
 import { groupServices } from '@/utils/serviceGroups';
 
 interface ServiceOption {
@@ -63,9 +63,9 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
       <>
         <h2 class="text-2xl font-bold text-slate-900">{heading}</h2>
         <p class="mt-2 text-sm text-slate-600">
-          Share your details and our team will review your application. Prefer WhatsApp?
-          Send the same info instantly, or download the{' '}
-          <a href="/download#partner" class="font-medium text-brand-700 hover:underline">Partner app</a>.
+          Share your details and our team will review your application.
+          Prefer the{' '}
+          <a href="/download#partner" class="font-medium text-brand-700 hover:underline">Partner app</a>?
         </p>
       </>
     )
@@ -172,25 +172,12 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
       {compact && <input type="hidden" name="experience" value="" />}
     </div>
 
-    <div class="flex flex-col gap-2 sm:flex-row">
-      {
-        !heroMode && (
-          <WhatsAppButton
-            type="button"
-            label="Send on WhatsApp"
-            dataAction="whatsapp"
-            class="flex-1 py-2.5 text-sm"
-          />
-        )
-      }
+    <div class="flex flex-col gap-2">
       <button
         type="button"
         data-action="submit"
         data-submit-label="Submit application"
-        class:list={[
-          'rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-70',
-          heroMode ? 'w-full' : 'flex-1',
-        ]}
+        class="w-full rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-70"
       >
         Submit application
       </button>
@@ -204,21 +191,17 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
       )
     }
   </form>
-
-  <div id={`${formId}-success`} class="mt-4 hidden rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-900">
-    <p class="font-bold">Thanks — we received your application!</p>
-    <p class="mt-1">Our team will call or WhatsApp you shortly to continue verification.</p>
-    <div class="mt-3 flex flex-wrap gap-2">
-      <a href={`tel:${site.phone}`} class="rounded-lg bg-white px-3 py-1.5 text-sm font-semibold text-brand-700 shadow-sm">Call</a>
-      <WhatsAppButton id={`${formId}-success-wa`} href="#" label="Send on WhatsApp" class="px-3 py-1.5 text-sm" />
-    </div>
-  </div>
 </section>
 
-<script define:vars={{ formId, apiBaseUrl, whatsapp: site.whatsapp, serviceOptions }}>
+<script define:vars={{
+  formId,
+  apiBaseUrl,
+  whatsapp: site.whatsapp,
+  serviceOptions,
+  thankYouPath: PARTNER_THANK_YOU_PATH,
+  waStorageKey: PARTNER_WA_STORAGE_KEY,
+}}>
   const form = document.getElementById(formId);
-  const success = document.getElementById(`${formId}-success`);
-  const successWa = document.getElementById(`${formId}-success-wa`);
   const submitError = document.getElementById(`${formId}-submit-error`);
   const submitButton = form?.querySelector('button[data-action="submit"]');
 
@@ -236,9 +219,10 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
     return String(w).replace(/\D/g, '');
   }
 
-  function buildMessage(data) {
+  function buildMessage(data, referenceId = '') {
     return [
       "Hello Panun Kaergar, I'd like to join as a service partner.",
+      referenceId ? `Reference: ${referenceId}` : '',
       `Name: ${data.name}`,
       `Phone: ${data.phone}`,
       `Service: ${data.service}`,
@@ -499,7 +483,7 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
 
   async function submitToBackend(data) {
     if (!apiBaseUrl) {
-      throw new Error('Applications are temporarily unavailable. Please use WhatsApp or call us.');
+      throw new Error('Applications are temporarily unavailable. Please try WhatsApp or call us.');
     }
 
     const response = await fetch(`${apiBaseUrl}/api/v1/public/web-provider-request/submit`, {
@@ -537,28 +521,27 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
       return;
     }
 
+    if (btn.dataset.action !== 'submit') return;
+
     clearSubmitError();
     const data = getData(form);
-    const msg = buildMessage(data);
-    const waUrl = `https://wa.me/${digits(whatsapp)}?text=${encodeURIComponent(msg)}`;
-
-    if (btn.dataset.action === 'whatsapp') {
-      window.open(waUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
 
     setSubmitting(true);
     submitToBackend(data)
-      .then(() => showSuccess(waUrl))
+      .then((result) => {
+        const ref = result?.content?.reference_id || '';
+        const waUrl = `https://wa.me/${digits(whatsapp)}?text=${encodeURIComponent(buildMessage(data, ref))}`;
+        try {
+          sessionStorage.setItem(waStorageKey, waUrl);
+        } catch {}
+        const url = ref
+          ? `${thankYouPath}?ref=${encodeURIComponent(ref)}`
+          : thankYouPath;
+        window.location.href = url;
+      })
       .catch((error) => {
         showSubmitError(error?.message || 'Could not submit your application. Please try WhatsApp or call us.');
-      })
-      .finally(() => setSubmitting(false));
+        setSubmitting(false);
+      });
   });
-
-  function showSuccess(waUrl) {
-    form.classList.add('hidden');
-    success?.classList.remove('hidden');
-    if (successWa) successWa.href = waUrl;
-  }
 </script>

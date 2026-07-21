@@ -1,0 +1,86 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Icon from '@/components/Icon.astro';
+import WhatsAppButton from '@/components/WhatsAppButton.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings } from '@/utils/reader';
+import {
+  PARTNER_PATH,
+  PARTNER_THANK_YOU_PATH,
+  PARTNER_WA_STORAGE_KEY,
+  partnerWhatsAppMessage,
+  whatsappHref,
+} from '@/utils/booking';
+
+const site = await getSiteSettings();
+
+const meta = buildMeta({
+  title: 'Partner application received',
+  description:
+    'Thanks for applying to join Panun Kaergar. Our team will call or WhatsApp you shortly to continue verification.',
+  path: PARTNER_THANK_YOU_PATH,
+  noindex: true,
+});
+
+const fallbackWaHref = whatsappHref(site.whatsapp, partnerWhatsAppMessage());
+---
+
+<PageLayout meta={meta}>
+  <div class="mx-auto max-w-2xl px-4 py-10 sm:px-6 sm:py-14">
+    <div class="rounded-2xl border border-slate-200 bg-white px-6 py-10 text-center shadow-sm sm:px-10">
+      <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-50 text-green-700">
+        <Icon name="check" size={28} />
+      </span>
+
+      <h1 class="mt-5 text-2xl font-extrabold text-slate-900 sm:text-3xl">Thanks — we received your application!</h1>
+      <p class="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+        Our team will call or WhatsApp you shortly to continue verification and help you get started.
+      </p>
+
+      <p id="partner-ref" class="mt-4 hidden text-sm text-slate-500">
+        Reference:&nbsp;<span class="font-semibold text-slate-800"></span>
+      </p>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <a
+          href={`tel:${site.phone}`}
+          class="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-700"
+        >
+          <Icon name="phone" size={18} />
+          Call {site.phone}
+        </a>
+        <WhatsAppButton
+          id="partner-thank-you-wa"
+          href={fallbackWaHref}
+          label="Send details on WhatsApp"
+          class="px-6 py-3"
+        />
+      </div>
+
+      <p class="mt-8 text-sm text-slate-500">
+        <a href={PARTNER_PATH} class="font-medium text-brand-700 hover:underline">Submit another application</a>
+        <span class="mx-2 text-slate-300">·</span>
+        <a href="/download#partner" class="font-medium text-brand-700 hover:underline">Download Partner app</a>
+        <span class="mx-2 text-slate-300">·</span>
+        <a href="/" class="font-medium text-brand-700 hover:underline">Back to home</a>
+      </p>
+    </div>
+  </div>
+</PageLayout>
+
+<script define:vars={{ storageKey: PARTNER_WA_STORAGE_KEY }}>
+  const ref = new URLSearchParams(window.location.search).get('ref')?.trim();
+  const refEl = document.getElementById('partner-ref');
+  const refValue = refEl?.querySelector('span');
+  if (ref && refEl && refValue) {
+    refValue.textContent = ref;
+    refEl.classList.remove('hidden');
+  }
+
+  const waBtn = document.getElementById('partner-thank-you-wa');
+  const stored = sessionStorage.getItem(storageKey);
+  if (waBtn && stored) {
+    waBtn.setAttribute('href', stored);
+    sessionStorage.removeItem(storageKey);
+  }
+</script>
