@@ -24,7 +24,11 @@ export default config({
           defaultValue: "Kashmir's trusted on-demand home services platform",
         }),
         description: fields.text({
-          label: 'Short description (SEO + LLMs)',
+          label: 'Long description (schema + LLMs intro)',
+          multiline: true,
+        }),
+        metaDescription: fields.text({
+          label: 'Homepage SEO meta description (~150–160 chars)',
           multiline: true,
         }),
         phone: fields.text({ label: 'Phone' }),

@@ -32,16 +32,13 @@ export function buildLlmsTxt(
     site.description,
     '',
     '## Book & contact',
-    `- [Book a service](${siteUrl(BOOK_PATH)}): Online booking form for home services in Srinagar.`,
+    `- [Book a service](${siteUrl(BOOK_PATH)}): Online booking form for home services across Kashmir.`,
     `- [Contact us](${siteUrl('/contact')}): Phone ${site.phone}, WhatsApp, and email ${site.email}.`,
     `- [Customer app (Android)](${site.userPlayStoreUrl}): Book, track, and pay from the Panun Kaergar app.`,
     `- [Customer app (iOS)](${site.userAppStoreUrl}): iPhone and iPad app for home service bookings.`,
     '',
     '## Services',
-    ...services.map(
-      (s) =>
-        `- [${s.shortName}](${siteUrl(`/services/${s.slug}`)}): ${s.description.slice(0, 110).trim()}…`
-    ),
+    ...services.map((s) => `- [${s.shortName}](${siteUrl(`/services/${s.slug}`)}): ${s.description.trim()}`),
     '',
     '## Service areas',
     ...areas.map(

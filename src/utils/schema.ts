@@ -108,14 +108,8 @@ export function websiteSchema(site: SiteForSchema) {
 export function localBusinessSchema(
   site: SiteForSchema,
   areas: AreaEntry[],
-  services: ServiceEntry[],
-  testimonials: TestimonialForSchema[]
+  services: ServiceEntry[]
 ) {
-  const avgRating =
-    testimonials.length > 0
-      ? testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length
-      : null;
-
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'HomeAndConstructionBusiness',
@@ -159,15 +153,8 @@ export function localBusinessSchema(
     schema.hasMap = site.googleMapsUrl;
   }
 
-  if (avgRating && testimonials.length > 0) {
-    schema.aggregateRating = {
-      '@type': 'AggregateRating',
-      ratingValue: avgRating.toFixed(1),
-      reviewCount: testimonials.length,
-      bestRating: 5,
-      worstRating: 1,
-    };
-  }
+  // AggregateRating omitted until backed by a verified source (e.g. Google Business Profile).
+  // On-page testimonials remain for users; do not derive schema ratings from marketing quotes.
 
   return schema;
 }

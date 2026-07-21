@@ -42,21 +42,14 @@ const homepageAreaName = 'Kashmir';
 
 const meta = buildMeta({
   title: `${site.businessName} | Carpentry, Plumbing, Electrician & More across Kashmir`,
-  description: site.description,
+  description: site.metaDescription?.trim() || site.description,
   path: '/',
 });
-
-const testimonialSchemaItems = testimonials.map((t) => ({
-  customerName: t.customerName,
-  quote: t.quote,
-  rating: t.rating,
-  location: t.location,
-}));
 
 const schemas = [
   organizationSchema(site),
   websiteSchema(site),
-  localBusinessSchema(site, areas, services, testimonialSchemaItems),
+  localBusinessSchema(site, areas, services),
   ...mobileApplicationsSchema({ ...site, providerPlayStoreUrl: site.providerPlayStoreUrl }),
   faqSchema(faqs.slice(0, 6).map((f) => ({ question: f.questionText, answer: f.answer }))),
 ].filter(Boolean);
