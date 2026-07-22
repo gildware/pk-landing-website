@@ -45,7 +45,6 @@ const nav: NavItem[] = [
 ];
 
 const mobileNav = [
-  { href: '/near-me', label: 'Near me' },
   { href: '/service-areas', label: 'Areas' },
   { href: '/faq', label: 'FAQ' },
   { href: '/about', label: 'About' },
@@ -97,14 +96,6 @@ const mobileNav = [
                         class="block px-4 py-2.5 text-sm font-semibold text-brand-700 transition-colors hover:bg-slate-50"
                       >
                         All Services
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/near-me"
-                        class="block px-4 py-2.5 text-sm font-semibold text-brand-700 transition-colors hover:bg-slate-50"
-                      >
-                        Near me
                       </a>
                     </li>
                     {item.groups.map((group) => (
@@ -225,12 +216,6 @@ const mobileNav = [
           class="mobile-nav-link block rounded-lg px-3 py-2 text-[15px] font-semibold text-brand-700 hover:bg-slate-50"
         >
           All Services
-        </a>
-        <a
-          href="/near-me"
-          class="mobile-nav-link block rounded-lg px-3 py-2 text-[15px] font-semibold text-brand-700 hover:bg-slate-50"
-        >
-          Near me
         </a>
         {
           serviceGroups.map((group) => (
