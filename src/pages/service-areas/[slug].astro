@@ -18,7 +18,7 @@ import {
   areaLocalBusinessSchema,
 } from '@/utils/schema';
 import { areaImage } from '@/utils/areaVisuals';
-import { BOOK_PATH, whatsappHref, generalWhatsAppMessage } from '@/utils/booking';
+import { bookUrl, whatsappHref, generalWhatsAppMessage } from '@/utils/booking';
 import { getBookingSteps } from '@/utils/liveCategoryServices';
 import {
   SERVICE_AREAS_PATH,
@@ -50,6 +50,7 @@ const testimonials = await getTestimonials();
 const heroImage = areaImage(area.slug);
 const pagePath = areaPath(area.slug);
 const neighborhoods = area.neighborhoods || [];
+const bookHref = bookUrl({ area: area.slug });
 const waHref = whatsappHref(site.whatsapp, generalWhatsAppMessage());
 const bookingSteps = getBookingSteps().map((step) => ({
   ...step,
@@ -187,7 +188,7 @@ const schemas = [
             View services
           </a>
           <a
-            href={BOOK_PATH}
+            href={bookHref}
             class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
           >
             <Icon name="form" size={16} />
@@ -457,7 +458,7 @@ const schemas = [
       <AreaSidebar
         areas={allAreas.map((a) => ({ slug: a.slug, displayName: a.displayName }))}
         currentSlug={area.slug}
-        bookHref={BOOK_PATH}
+        bookHref={bookHref}
         districtName={area.displayName}
       />
     </div>

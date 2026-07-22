@@ -20,6 +20,7 @@ npm run preview  # preview production build
 | Home | `/` — hero, services, how it works, testimonials, app download |
 | Services | `/services`, `/services/[slug]` |
 | **SEO local pages** | `/services/[slug]/srinagar` × 6 (full custom copy each) |
+| **Near me pages** | `/near-me/[slug]` (prototype: `/near-me/plumber-near-me`) |
 | Areas | `/service-areas`, `/service-areas/home-services-in-srinagar` |
 | Company | `/about`, `/contact`, `/faq` |
 | Apps | `/download`, `/become-a-partner` |
@@ -56,6 +57,7 @@ For non-technical staff, deploy the admin to Vercel — see **[CMS.md](./CMS.md)
 | `content/services/*/` | Service categories |
 | `content/areas/*/` | Cities/zones |
 | `content/service-area-pages/*/` | SEO pages (e.g. plumbing in Srinagar) |
+| `content/near-me-pages/*/` | Near-me SEO landings (e.g. plumber-near-me) |
 | `content/testimonials/*/` | Customer quotes |
 | `content/faqs/*/` | Global FAQs |
 

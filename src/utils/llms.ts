@@ -1,4 +1,4 @@
-import type { AreaEntry, ServiceEntry } from './reader';
+import type { AreaEntry, NearMePage, ServiceEntry } from './reader';
 import { areaPath } from './areaPaths';
 import { siteUrl } from './reader';
 import { BOOK_PATH } from './booking';
@@ -21,7 +21,8 @@ export function buildLlmsTxt(
   site: SiteForLlms,
   services: ServiceEntry[],
   areas: AreaEntry[],
-  extended = false
+  extended = false,
+  nearMePages: NearMePage[] = []
 ): string {
   const areaNames = areas.map((a) => a.displayName).join(', ');
 
@@ -45,6 +46,20 @@ export function buildLlmsTxt(
       (a) =>
         `- [${a.displayName}](${siteUrl(areaPath(a.slug))}): Home services in ${a.displayName}, ${a.region}.`
     ),
+  ];
+
+  if (nearMePages.length > 0) {
+    lines.push(
+      '',
+      '## Near me pages',
+      ...nearMePages.map(
+        (p) =>
+          `- [${p.primaryKeyword}](${siteUrl(`/near-me/${p.slug}`)}): High-intent local booking page for ${p.primaryKeyword}.`
+      )
+    );
+  }
+
+  lines.push(
     '',
     '## Help & company',
     `- [FAQ](${siteUrl('/faq')}): Common questions about booking and partners.`,
@@ -54,8 +69,8 @@ export function buildLlmsTxt(
     `- [Privacy policy](${siteUrl('/privacy')}): How we handle customer data.`,
     `- [Terms of service](${siteUrl('/terms')}): Platform terms for customers and partners.`,
     `- [Extended LLM index](${siteUrl('/llms-full.txt')}): Full service-area page list for AI systems.`,
-    `- [Sitemap](${siteUrl('/sitemap.xml')}): Complete URL list (${areaNames}).`,
-  ];
+    `- [Sitemap](${siteUrl('/sitemap.xml')}): Complete URL list (${areaNames}).`
+  );
 
   if (extended) {
     lines.push('', '## Service × area pages');

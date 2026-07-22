@@ -2,6 +2,7 @@
 import type { BookingSite } from '@/utils/booking';
 import { BOOK_THANK_YOU_PATH, BOOKING_WA_STORAGE_KEY } from '@/utils/booking';
 import { groupServices } from '@/utils/serviceGroups';
+import { bookingSlugLabelEntries } from '@/utils/bookingPrefill';
 
 interface ServiceOption {
   slug: string;
@@ -27,12 +28,25 @@ const {
 const compact = variant === 'compact';
 const apiBaseUrl = (import.meta.env.PUBLIC_ADMIN_API_URL ?? '').replace(/\/$/, '');
 const serviceGroups = groupServices(services);
+const groupedValues = new Set(
+  serviceGroups.flatMap((group) => group.services.map((s) => s.shortName))
+);
+/** Include parent/category shortNames so “Plumbing”, “Carpentry”, etc. are selectable. */
+const extraParents = services
+  .filter((s) => s.shortName && !groupedValues.has(s.shortName))
+  .map((s) => ({ group: 'Categories', value: s.shortName }));
+
 const serviceOptions = [
   ...serviceGroups.flatMap((group) =>
     group.services.map((s) => ({ group: group.label, value: s.shortName })),
   ),
+  ...extraParents,
   { group: '', value: 'Other / Custom request' },
 ];
+
+const slugLabelEntries = bookingSlugLabelEntries();
+/** Also map CMS service slugs → shortName for subcategory pages. */
+const cmsSlugEntries = services.map((s) => ({ slug: s.slug, label: s.shortName }));
 
 const inputClass = compact
   ? 'field-input mt-1 w-full rounded-lg border border-slate-400 bg-white px-3 py-2 text-sm text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200'
@@ -213,6 +227,8 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
   apiBaseUrl,
   whatsapp: site.whatsapp,
   serviceOptions,
+  slugLabelEntries,
+  cmsSlugEntries,
   thankYouPath: BOOK_THANK_YOU_PATH,
   waStorageKey: BOOKING_WA_STORAGE_KEY,
 }}>
@@ -225,6 +241,26 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
   const serviceList = document.getElementById(`${formId}-service-list`);
 
   const validServiceValues = new Set(serviceOptions.map((opt) => opt.value));
+  const slugToLabel = new Map(
+    [...slugLabelEntries, ...cmsSlugEntries].map((e) => [String(e.slug).toLowerCase(), e.label])
+  );
+  const labelByLower = new Map(
+    [...validServiceValues].map((v) => [String(v).toLowerCase(), v])
+  );
+
+  const DISTRICT_NAMES = {
+    srinagar: 'Srinagar',
+    budgam: 'Budgam',
+    ganderbal: 'Ganderbal',
+    bandipora: 'Bandipora',
+    baramulla: 'Baramulla',
+    kupwara: 'Kupwara',
+    anantnag: 'Anantnag',
+    kulgam: 'Kulgam',
+    pulwama: 'Pulwama',
+    shopian: 'Shopian',
+  };
+
   const errorBorderClasses = ['border-red-500', 'focus:border-red-500', 'focus:ring-red-200'];
   const normalBorderClasses = ['border-slate-400', 'focus:border-brand-500', 'focus:ring-brand-200'];
 
@@ -232,6 +268,29 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
 
   function digits(w) {
     return String(w).replace(/\D/g, '');
+  }
+
+  function resolveServiceValue(raw) {
+    if (!raw) return null;
+    const trimmed = String(raw).trim();
+    if (validServiceValues.has(trimmed)) return trimmed;
+    const byLabel = labelByLower.get(trimmed.toLowerCase());
+    if (byLabel) return byLabel;
+    const fromSlug = slugToLabel.get(trimmed.toLowerCase());
+    if (fromSlug && validServiceValues.has(fromSlug)) return fromSlug;
+    if (fromSlug) {
+      const fuzzy = labelByLower.get(fromSlug.toLowerCase());
+      if (fuzzy) return fuzzy;
+    }
+    return null;
+  }
+
+  function resolveAreaPrefill(raw) {
+    if (!raw) return '';
+    const trimmed = String(raw).trim();
+    const district = DISTRICT_NAMES[trimmed.toLowerCase()];
+    if (district) return `${district}, Kashmir`;
+    return trimmed;
   }
 
   function buildMessage(data, referenceId = '') {
@@ -405,6 +464,30 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
     clearFieldError('service');
     closeServiceList();
   }
+
+  function applyUrlPrefill() {
+    const params = new URLSearchParams(window.location.search);
+    const serviceParam = params.get('service');
+    const areaParam = params.get('area');
+    const detailsParam = params.get('details');
+
+    const resolved = resolveServiceValue(serviceParam);
+    if (resolved) selectService(resolved);
+
+    const areaField = form?.elements?.namedItem?.('area') || form?.querySelector?.('[name="area"]');
+    if (areaField && areaParam) {
+      const next = resolveAreaPrefill(areaParam);
+      if (next && !areaField.value) areaField.value = next;
+    }
+
+    const messageField =
+      form?.elements?.namedItem?.('message') || form?.querySelector?.('[name="message"]');
+    if (messageField && detailsParam && !messageField.value) {
+      messageField.value = detailsParam.trim();
+    }
+  }
+
+  applyUrlPrefill();
 
   function getServiceOptionElements() {
     return serviceList ? [...serviceList.querySelectorAll('[role="option"]')] : [];

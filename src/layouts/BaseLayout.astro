@@ -9,7 +9,9 @@ interface Props {
 
 const { meta, schemas = [] } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID as string | undefined;
-const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID as string | undefined;
+/** Google Ads conversion ID — env override, with production default so builds never ship without the tag */
+const googleAdsId =
+  (import.meta.env.PUBLIC_GOOGLE_ADS_ID as string | undefined) || 'AW-17100718391';
 const gtagId = googleAdsId || gaId;
 const siteName = 'Panun Kaergar';
 ---

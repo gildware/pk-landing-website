@@ -30,8 +30,11 @@ import {
   getBookingSteps,
   getCategoryBenefits,
 } from '@/utils/liveCategoryServices';
-import { BOOK_PATH } from '@/utils/booking';
+import { bookUrl } from '@/utils/booking';
+import { bookCtaText } from '@/utils/bookingPrefill';
 import { areaPath } from '@/utils/areaPaths';
+import { nearMeLinksForService } from '@/utils/nearMeLinks';
+import NearMeLinks from '@/components/NearMeLinks.astro';
 
 export async function getStaticPaths() {
   const services = await getServices();
@@ -115,8 +118,14 @@ const reviews =
 
 const serviceCount = live?.serviceCount ?? service.serviceList?.length ?? 0;
 const subCount = live?.subcategories.length ?? visual.subcategories.length;
-const bookHref = BOOK_PATH;
+const bookHref = bookUrl({ service: service.slug, area: area.slug });
+const bookButtonText = bookCtaText(service.slug, {
+  fallback: service.shortName,
+  areaName: area.displayName,
+});
 const districtHref = areaPath(area.slug);
+const relatedNearMe = nearMeLinksForService(service.slug);
+const primaryNearMe = relatedNearMe[0] ?? null;
 
 const pageTitle =
   custom?.seoTitle ||
@@ -261,12 +270,24 @@ const schemas = [
         </div>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href={bookHref} class="btn-primary">
-            Book in {area.displayName}
+            {bookButtonText}
           </a>
           <a href="#services" class="btn-secondary">
             See Services
           </a>
         </div>
+        {
+          primaryNearMe && (
+            <p class="mt-5 text-sm text-slate-600">
+              <a
+                href={primaryNearMe.href}
+                class="font-semibold text-brand-700 underline-offset-2 hover:underline"
+              >
+                Looking for {primaryNearMe.label.replace(/\s+near me$/i, '').toLowerCase()} near you? →
+              </a>
+            </p>
+          )
+        }
       </div>
       <div class="relative">
         <div
@@ -367,6 +388,16 @@ const schemas = [
                 </a>
               </p>
             </section>
+          )
+        }
+
+        {
+          relatedNearMe.length > 0 && (
+            <NearMeLinks
+              links={relatedNearMe}
+              title={`${service.shortName} near you`}
+              compact
+            />
           )
         }
 
@@ -505,6 +536,7 @@ const schemas = [
         categories={allServices.map((c) => ({ slug: c.slug, shortName: c.shortName }))}
         currentSlug={service.slug}
         bookHref={bookHref}
+        bookButtonText={bookButtonText}
         areaSlug={area.slug}
         areaName={area.displayName}
       />

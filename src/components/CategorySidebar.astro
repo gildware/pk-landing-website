@@ -5,12 +5,21 @@ interface Props {
   categories: { slug: string; shortName: string }[];
   currentSlug: string;
   bookHref: string;
+  /** CTA label, e.g. “Book Carpenter in Budgam” or “Book Men's Salon Services”. Defaults to “Book Now”. */
+  bookButtonText?: string;
   /** When set, category links go to /services/{slug}/{areaSlug} for local SEO. */
   areaSlug?: string;
   areaName?: string;
 }
 
-const { categories, currentSlug, bookHref, areaSlug, areaName } = Astro.props;
+const {
+  categories,
+  currentSlug,
+  bookHref,
+  bookButtonText = 'Book Now',
+  areaSlug,
+  areaName,
+} = Astro.props;
 const others = categories.filter((c) => c.slug !== currentSlug);
 const hrefFor = (slug: string) =>
   areaSlug ? `/services/${slug}/${areaSlug}` : `/services/${slug}`;
@@ -67,7 +76,7 @@ const hrefFor = (slug: string) =>
       href={bookHref}
       class="mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-[#202048] transition hover:bg-slate-100"
     >
-      Book Now
+      {bookButtonText}
     </a>
   </div>
 </aside>

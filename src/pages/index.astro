@@ -10,6 +10,7 @@ import CategoryMarquee from '@/components/CategoryMarquee.astro';
 import CategoryStack from '@/components/CategoryStack.astro';
 import WorkInContext from '@/components/WorkInContext.astro';
 import AreasMarquee from '@/components/AreasMarquee.astro';
+import NearMeLinks from '@/components/NearMeLinks.astro';
 import { buildMeta } from '@/utils/seo';
 import {
   getSiteSettings,
@@ -28,6 +29,7 @@ import {
   mobileApplicationsSchema,
 } from '@/utils/schema';
 import { BOOK_PATH } from '@/utils/booking';
+import { featuredNearMeLinks } from '@/utils/nearMeLinks';
 
 const site = await getSiteSettings();
 const homepage = await getHomepage();
@@ -39,6 +41,7 @@ const testimonials = await getTestimonials();
 
 /** Homepage story is Kashmir-wide; Srinagar remains HQ in address and about content. */
 const homepageAreaName = 'Kashmir';
+const nearMeFeatured = featuredNearMeLinks();
 
 const meta = buildMeta({
   title: `${site.businessName} | Carpentry, Plumbing, Electrician & More across Kashmir`,
@@ -77,6 +80,8 @@ const schemas = [
     services={services.map((s) => ({ slug: s.slug, shortName: s.shortName, description: s.description }))}
     areaName={homepageAreaName}
   />
+
+  <NearMeLinks links={nearMeFeatured} />
 
   <WorkInContext
     services={services.map((s) => ({ slug: s.slug, shortName: s.shortName, description: s.description }))}

@@ -215,6 +215,75 @@ export default config({
         published: fields.checkbox({ label: 'Published', defaultValue: true }),
       },
     }),
+    nearMePages: collection({
+      label: 'Near Me Pages (SEO)',
+      slugField: 'title',
+      path: 'content/near-me-pages/*/',
+      schema: {
+        title: fields.slug({
+          name: { label: 'Page slug (e.g. plumber-near-me)' },
+        }),
+        h1: fields.text({ label: 'H1 headline' }),
+        primaryKeyword: fields.text({ label: 'Primary keyword' }),
+        bookLabel: fields.text({
+          label: 'Book CTA label (person / service name)',
+          description:
+            'Used as “Book {label}” — e.g. Plumber, Carpenter, Men\'s Salon Services (not “Men\'s Salon” alone).',
+        }),
+        seoTitle: fields.text({ label: 'SEO title' }),
+        seoDescription: fields.text({ label: 'SEO meta description', multiline: true }),
+        intro: fields.text({ label: 'Intro paragraph', multiline: true }),
+        parentServiceSlug: fields.text({
+          label: 'Parent service slug',
+          description: 'Must match a services collection slug (e.g. plumbing).',
+        }),
+        catalogSubSlugs: fields.array(fields.text({ label: 'Subcategory slug' }), {
+          label: 'Catalog subcategory filter (optional)',
+          description: 'If set, only these live catalog subcategories are shown (e.g. air-conditioners).',
+        }),
+        trustLine: fields.text({
+          label: 'Hero trust line',
+          defaultValue: 'Verified partners · Across Kashmir · Same-day when available',
+        }),
+        whoFor: fields.array(fields.text({ label: 'Situation' }), {
+          label: 'Who this page is for',
+        }),
+        commonProblems: fields.array(fields.text({ label: 'Problem' }), {
+          label: 'Common problems we handle',
+        }),
+        diyVsPro: fields.text({ label: 'DIY vs call a pro', multiline: true }),
+        costFactors: fields.array(fields.text({ label: 'Cost factor' }), {
+          label: 'What affects cost',
+        }),
+        seasonalNotes: fields.text({ label: 'Kashmir / seasonal notes', multiline: true }),
+        coverageNote: fields.text({ label: 'Coverage note', multiline: true }),
+        prepareList: fields.array(fields.text({ label: 'Item' }), {
+          label: 'What to prepare before booking',
+        }),
+        relatedNearMeSlugs: fields.array(fields.text({ label: 'Related near-me slug' }), {
+          label: 'Related near-me pages (optional)',
+        }),
+        faqs: fields.array(
+          fields.object({
+            question: fields.text({ label: 'Question' }),
+            answer: fields.text({ label: 'Answer', multiline: true }),
+          }),
+          { label: 'FAQs', itemLabel: (props) => props.fields.question.value }
+        ),
+        body: fields.markdoc({
+          label: 'Additional content',
+          extension: 'mdoc',
+          options: {
+            image: {
+              directory: 'public/images/near-me/',
+              publicPath: '/images/near-me/',
+            },
+          },
+        }),
+        published: fields.checkbox({ label: 'Published', defaultValue: true }),
+        sortOrder: fields.integer({ label: 'Sort order', defaultValue: 0 }),
+      },
+    }),
     faqs: collection({
       label: 'Global FAQs',
       slugField: 'question',

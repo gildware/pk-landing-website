@@ -16,8 +16,11 @@ import {
   getBookingSteps,
   getCategoryBenefits,
 } from '@/utils/liveCategoryServices';
+import { bookUrl } from '@/utils/booking';
+import { bookCtaText } from '@/utils/bookingPrefill';
 import { getServicePageMeta } from '@/utils/servicePageMeta';
-import { BOOK_PATH } from '@/utils/booking';
+import { nearMeLinksForService } from '@/utils/nearMeLinks';
+import NearMeLinks from '@/components/NearMeLinks.astro';
 
 export async function getStaticPaths() {
   const { getAllServices } = await import('@/utils/reader');
@@ -52,8 +55,14 @@ const heroImage = getCategoryHeroImage(
 );
 const bookingSteps = getBookingSteps();
 const benefits = getCategoryBenefits(visual.label);
-const bookHref = BOOK_PATH;
+const bookHref = bookUrl({ service: service.slug });
+const bookButtonText = bookCtaText(service.slug, { fallback: service.shortName });
 const areaServiceSlug = parentSlug;
+const relatedNearMe = [
+  ...nearMeLinksForService(service.slug),
+  ...(parentSlug !== service.slug ? nearMeLinksForService(parentSlug) : []),
+].filter((link, i, arr) => arr.findIndex((x) => x.slug === link.slug) === i);
+const primaryNearMe = relatedNearMe[0] ?? null;
 
 const labelLower = visual.label.toLowerCase();
 const shortLower = service.shortName.toLowerCase();
@@ -162,12 +171,24 @@ const showSubCount = !pageMeta || (live?.subcategories.length ?? 0) > 1;
         </div>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href={bookHref} class="btn-primary">
-            Book {service.shortName}
+            {bookButtonText}
           </a>
           <a href="#services" class="btn-secondary">
             See Services
           </a>
         </div>
+        {
+          primaryNearMe && (
+            <p class="mt-5 text-sm text-slate-600">
+              <a
+                href={primaryNearMe.href}
+                class="font-semibold text-brand-700 underline-offset-2 hover:underline"
+              >
+                Looking for {primaryNearMe.label.replace(/\s+near me$/i, '').toLowerCase()} near you? →
+              </a>
+            </p>
+          )
+        }
       </div>
       <div class="relative">
         <div
@@ -270,6 +291,16 @@ const showSubCount = !pageMeta || (live?.subcategories.length ?? 0) > 1;
           </div>
         </section>
 
+        {
+          relatedNearMe.length > 0 && (
+            <NearMeLinks
+              links={relatedNearMe}
+              title={`${service.shortName} near you`}
+              compact
+            />
+          )
+        }
+
         {/* Benefits */}
         <section id="benefits" class="scroll-mt-28">
           <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">Why Panun Kaergar</p>
@@ -327,6 +358,7 @@ const showSubCount = !pageMeta || (live?.subcategories.length ?? 0) > 1;
         categories={allCategories.map((c) => ({ slug: c.slug, shortName: c.shortName }))}
         currentSlug={service.slug}
         bookHref={bookHref}
+        bookButtonText={bookButtonText}
       />
     </div>
   </section>

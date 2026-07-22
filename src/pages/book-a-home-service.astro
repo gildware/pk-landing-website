@@ -3,29 +3,43 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import BookServiceForm from '@/components/BookServiceForm.astro';
 import BookingOptions from '@/components/BookingOptions.astro';
 import { buildMeta } from '@/utils/seo';
-import { getSiteSettings, getServices } from '@/utils/reader';
+import { getSiteSettings, getAllServices } from '@/utils/reader';
 import { BOOK_PATH } from '@/utils/booking';
+import { bookingSlugLabelEntries, bookCtaLabel } from '@/utils/bookingPrefill';
 
 const site = await getSiteSettings();
-const services = await getServices();
+const services = await getAllServices();
 
 const meta = buildMeta({
-  title: 'Book a Home Service in Srinagar | Panun Kaergar',
+  title: 'Book a Home Service in Kashmir | Panun Kaergar',
   description:
-    'Book a plumber, electrician, AC technician, or cleaner in Srinagar. Call +91 8899 181 555, WhatsApp us, fill our online form, or use the free app.',
+    'Book a plumber, electrician, AC technician, carpenter, or cleaner across Kashmir. Call +91 8899 181 555, WhatsApp us, fill our online form, or use the free app.',
   path: BOOK_PATH,
 });
 
 const hours =
   (site as { businessHours?: string }).businessHours ??
   'Office: Mon–Sat 10:00 AM – 6:00 PM · Call support: 10:00 AM – 10:00 PM';
+
+const slugLabelEntries = bookingSlugLabelEntries();
+const cmsSlugEntries = services.map((s) => ({ slug: s.slug, label: s.shortName }));
+const ctaLabelEntries = services.map((s) => ({
+  slug: s.slug,
+  label: bookCtaLabel(s.slug, s.shortName),
+}));
 ---
 
 <PageLayout meta={meta}>
   <div class="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-5">
     <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
       <div class="border-b border-slate-100 px-4 py-3 sm:px-5 sm:py-3.5 lg:px-6">
-        <h1 class="text-xl font-extrabold text-slate-900 sm:text-2xl">Book a home service in Srinagar</h1>
+        <h1
+          id="book-page-title"
+          class="text-xl font-extrabold text-slate-900 sm:text-2xl"
+          data-default-title="Book a home service in Kashmir"
+        >
+          Book a home service in Kashmir
+        </h1>
         <p class="mt-1 text-sm text-slate-600">
           Call, WhatsApp, use the app, or fill the form — we match you with a verified partner.
         </p>
@@ -49,3 +63,55 @@ const hours =
     </div>
   </div>
 </PageLayout>
+
+<script define:vars={{ slugLabelEntries, cmsSlugEntries, ctaLabelEntries }}>
+  const titleEl = document.getElementById('book-page-title');
+  if (titleEl) {
+    const params = new URLSearchParams(window.location.search);
+    const serviceParam = (params.get('service') || '').trim();
+    const areaParam = (params.get('area') || '').trim();
+
+    const DISTRICT_NAMES = {
+      srinagar: 'Srinagar',
+      budgam: 'Budgam',
+      ganderbal: 'Ganderbal',
+      bandipora: 'Bandipora',
+      baramulla: 'Baramulla',
+      kupwara: 'Kupwara',
+      anantnag: 'Anantnag',
+      kulgam: 'Kulgam',
+      pulwama: 'Pulwama',
+      shopian: 'Shopian',
+    };
+
+    // Prefer clear CTA nouns (Carpenter / Men's Salon Services) over category shortNames
+    const slugMap = new Map(
+      [...slugLabelEntries, ...cmsSlugEntries, ...ctaLabelEntries].map((e) => [
+        String(e.slug).toLowerCase(),
+        e.label,
+      ])
+    );
+
+    function serviceLabel(raw) {
+      if (!raw) return null;
+      return slugMap.get(raw.toLowerCase()) || null;
+    }
+
+    function placeLabel(raw) {
+      if (!raw) return 'Kashmir';
+      return DISTRICT_NAMES[raw.toLowerCase()] || raw;
+    }
+
+    const svc = serviceLabel(serviceParam);
+    const place = placeLabel(areaParam || '');
+    let next = titleEl.dataset.defaultTitle || 'Book a home service in Kashmir';
+    if (svc && areaParam) next = `Book ${svc} in ${place}`;
+    else if (svc) next = `Book ${svc} in Kashmir`;
+    else if (areaParam) next = `Book a home service in ${place}`;
+
+    titleEl.textContent = next;
+    if (document.title) {
+      document.title = `${next} | Panun Kaergar`;
+    }
+  }
+</script>

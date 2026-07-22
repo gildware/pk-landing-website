@@ -1,0 +1,99 @@
+---
+/**
+ * Compact “near you” link strip for homepage / service pages.
+ */
+import type { NearMeLink } from '@/utils/nearMeLinks';
+import { NEAR_ME_HUB_PATH } from '@/utils/nearMeLinks';
+import Icon from '@/components/Icon.astro';
+
+interface Props {
+  links: NearMeLink[];
+  title?: string;
+  subtitle?: string;
+  showHubLink?: boolean;
+  /** Tighter layout for embedding inside service pages */
+  compact?: boolean;
+}
+
+const {
+  links,
+  title = 'Popular near you',
+  subtitle = 'Fast booking pages for common “near me” searches across Kashmir.',
+  showHubLink = true,
+  compact = false,
+} = Astro.props;
+---
+
+{
+  links.length > 0 && (
+    <section
+      class:list={[
+        compact ? 'scroll-mt-28' : 'border-y border-slate-200/80 bg-slate-50/80',
+      ]}
+      id="near-me"
+    >
+      <div
+        class:list={[
+          compact ? '' : 'mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-14',
+        ]}
+      >
+        <div class:list={[!compact && 'flex flex-wrap items-end justify-between gap-4']}>
+          <div>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+              Near me
+            </p>
+            <h2
+              class:list={[
+                'mt-2 font-bold text-slate-900',
+                compact ? 'text-2xl sm:text-3xl' : 'font-figtree text-2xl tracking-tight sm:text-3xl',
+              ]}
+            >
+              {title}
+            </h2>
+            {!compact && subtitle && (
+              <p class="mt-2 max-w-2xl text-base text-slate-600">{subtitle}</p>
+            )}
+          </div>
+          {showHubLink && !compact && (
+            <a
+              href={NEAR_ME_HUB_PATH}
+              class="text-sm font-semibold text-brand-700 underline-offset-2 hover:underline"
+            >
+              View all near-me pages →
+            </a>
+          )}
+        </div>
+
+        <ul
+          class:list={[
+            'grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4',
+            compact ? 'mt-6' : 'mt-8',
+          ]}
+        >
+          {links.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-sm font-semibold text-slate-800 transition hover:border-brand-200 hover:bg-brand-50 hover:text-brand-800"
+              >
+                <Icon name="map-pin" size={16} class="shrink-0 text-brand-600" />
+                <span class="capitalize">{link.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {showHubLink && compact && (
+          <p class="mt-4 text-sm text-slate-600">
+            <a
+              href={NEAR_ME_HUB_PATH}
+              class="font-medium text-brand-700 underline-offset-2 hover:underline"
+            >
+              See all near-me pages
+            </a>
+          </p>
+        )}
+      </div>
+    </section>
+  )
+}

@@ -26,6 +26,25 @@ export interface BookingSite {
   providerAppStoreUrl?: string;
 }
 
+export interface BookUrlParams {
+  /** Service page slug or parent category slug (e.g. carpentry-installation, plumbing). */
+  service?: string;
+  /** District slug (e.g. budgam) or free-text area hint. */
+  area?: string;
+  /** Optional details prefill for the message field. */
+  details?: string;
+}
+
+/** Build `/book-a-home-service` with optional service / area / details query params. */
+export function bookUrl(params: BookUrlParams = {}): string {
+  const q = new URLSearchParams();
+  if (params.service?.trim()) q.set('service', params.service.trim());
+  if (params.area?.trim()) q.set('area', params.area.trim());
+  if (params.details?.trim()) q.set('details', params.details.trim());
+  const qs = q.toString();
+  return qs ? `${BOOK_PATH}?${qs}` : BOOK_PATH;
+}
+
 export function partnerWhatsAppMessage() {
   return "Hi Panun Kaergar, I'd like to join as a service partner in Srinagar. Please help me get started.";
 }
@@ -61,5 +80,5 @@ export function buildBookingWhatsAppMessage(data: {
 }
 
 export function generalWhatsAppMessage() {
-  return "Hi Panun Kaergar, I'd like to book a home service in Srinagar. Please help.";
+  return "Hi Panun Kaergar, I'd like to book a home service in Kashmir. Please help.";
 }

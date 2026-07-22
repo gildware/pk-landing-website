@@ -1,0 +1,532 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import CategorySidebar from '@/components/CategorySidebar.astro';
+import CategoryServiceCatalog from '@/components/CategoryServiceCatalog.astro';
+import Icon from '@/components/Icon.astro';
+import { buildMeta } from '@/utils/seo';
+import {
+  getSiteSettings,
+  getServices,
+  getAreas,
+  getService,
+  getNearMePage,
+  getNearMePages,
+  getTestimonials,
+  siteUrl,
+} from '@/utils/reader';
+import { nearMeServiceSchema, breadcrumbSchema, faqSchema } from '@/utils/schema';
+import { enrichCategory } from '@/utils/categoryCatalog';
+import {
+  getLiveCategoryServices,
+  getLiveSubcategoryBundle,
+  getCategoryHeroImage,
+  getBookingSteps,
+  getCategoryBenefits,
+} from '@/utils/liveCategoryServices';
+import { bookUrl } from '@/utils/booking';
+import { bookCtaLabel, bookCtaText } from '@/utils/bookingPrefill';
+import { areaPath } from '@/utils/areaPaths';
+
+/** Map near-me pages to the best booking-form service slug. */
+const NEAR_ME_BOOK_SERVICE: Record<string, string> = {
+  'plumber-near-me': 'plumbing',
+  'carpenter-near-me': 'carpentry',
+  'electrician-near-me': 'electrician',
+  'ac-repair-near-me': 'appliance-repair',
+  'cctv-installation-near-me': 'appliance-repair',
+  'washing-machine-repair-near-me': 'appliance-repair',
+  'fridge-repair-near-me': 'appliance-repair',
+  'painter-near-me': 'painting',
+  'mason-near-me': 'masonry',
+  'pest-control-near-me': 'home-pest-control',
+  'emergency-plumber-near-me': 'plumbing-repairs',
+  'emergency-electrician-near-me': 'electrical-repairs',
+  'geyser-repair-near-me': 'appliance-repair',
+  'tv-repair-near-me': 'appliance-repair',
+  'ro-service-near-me': 'appliance-repair',
+  'home-cleaning-near-me': 'professional-cleaning',
+  'sofa-cleaning-near-me': 'professional-cleaning',
+  'dry-cleaning-near-me': 'dry-clean-laundry',
+  'car-wash-near-me': 'car-wash-detailing',
+  'door-repair-near-me': 'carpentry-repairs',
+};
+
+export async function getStaticPaths() {
+  const pages = await getNearMePages();
+  return pages.map((page) => ({ params: { slug: page.slug } }));
+}
+
+const { slug } = Astro.params;
+const page = await getNearMePage(slug!);
+if (!page) return Astro.redirect('/404');
+
+const service = await getService(page.parentServiceSlug);
+if (!service) return Astro.redirect('/404');
+
+const site = await getSiteSettings();
+const areas = await getAreas();
+const allCategories = await getServices();
+const allNearMe = await getNearMePages();
+const testimonials = await getTestimonials();
+
+const visual = enrichCategory(service, 'Kashmir');
+const catalogSubs = page.catalogSubSlugs?.filter(Boolean) ?? [];
+const live =
+  catalogSubs.length > 0
+    ? getLiveSubcategoryBundle(service.slug, catalogSubs)
+    : getLiveCategoryServices(service.slug);
+const heroImage = getCategoryHeroImage(
+  service.slug,
+  catalogSubs.length > 0 ? catalogSubs : undefined
+);
+const bookingSteps = getBookingSteps();
+const benefits = getCategoryBenefits(visual.label);
+const bookLabel =
+  page.bookLabel?.trim() ||
+  bookCtaLabel(page.slug, bookCtaLabel(page.parentServiceSlug, service.shortName));
+const bookServiceSlug =
+  NEAR_ME_BOOK_SERVICE[page.slug] ||
+  page.parentServiceSlug ||
+  service.slug;
+const bookHref = bookUrl({
+  service: bookServiceSlug,
+  details: page.primaryKeyword,
+});
+const bookButtonText = bookCtaText(null, { fallback: bookLabel });
+const path = `/near-me/${page.slug}`;
+const srinagarHref = `/services/${service.slug}/srinagar`;
+
+const labelLower = visual.label.toLowerCase();
+const shortLower = service.shortName.toLowerCase();
+const keywordLower = page.primaryKeyword.toLowerCase();
+const matchedReviews = testimonials.filter((t) => {
+  const svc = (t.service || '').toLowerCase();
+  return (
+    svc.includes(labelLower) ||
+    labelLower.includes(svc) ||
+    svc.includes(shortLower) ||
+    shortLower.includes(svc) ||
+    keywordLower.includes(svc)
+  );
+});
+const reviews =
+  matchedReviews.length > 0
+    ? matchedReviews.slice(0, 3)
+    : testimonials
+        .filter((t) => (t.service || '').toLowerCase() === 'home services')
+        .slice(0, 2)
+        .concat(testimonials.slice(0, 3))
+        .filter((t, i, arr) => arr.findIndex((x) => x.slug === t.slug) === i)
+        .slice(0, 3);
+
+const relatedPages = (page.relatedNearMeSlugs || [])
+  .map((relatedSlug) => allNearMe.find((p) => p.slug === relatedSlug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const siblingNearMe = allNearMe.filter((p) => p.slug !== page.slug).slice(0, 4);
+
+const meta = buildMeta({
+  title: page.seoTitle || `${page.h1} | Panun Kaergar`,
+  description: page.seoDescription || page.intro,
+  path,
+});
+
+const crumb = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: '/services' },
+  { name: service.shortName, path: `/services/${service.slug}` },
+  { name: page.primaryKeyword, path },
+];
+
+const schemas = [
+  nearMeServiceSchema(page, service, site, areas, siteUrl(path)),
+  breadcrumbSchema(crumb),
+  faqSchema(page.faqs || []),
+].filter(Boolean);
+
+const whatsappHref = site.whatsapp
+  ? `https://wa.me/${site.whatsapp.replace(/\D/g, '')}`
+  : undefined;
+
+const heroBtnBase =
+  'inline-flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-xl px-2.5 py-2.5 text-[11px] font-bold leading-tight shadow-sm transition active:scale-[0.98] sm:flex-none sm:gap-2 sm:px-5 sm:py-3 sm:text-sm';
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <section
+    class="relative overflow-hidden border-b border-slate-200/80"
+    style={`--cat-soft: ${visual.soft}; --cat-accent: ${visual.accent};`}
+  >
+    <div
+      class="pointer-events-none absolute inset-0 opacity-90"
+      style={`background:
+        radial-gradient(ellipse 80% 60% at 10% 20%, ${visual.soft}88, transparent 55%),
+        linear-gradient(165deg, #f8fafc 0%, #ffffff 45%, ${visual.soft}33 100%);`}
+      aria-hidden="true"
+    ></div>
+    <div class="relative mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-14 lg:py-16">
+      <div>
+        <p class="text-sm font-semibold text-brand-700">
+          <a href="/services" class="hover:underline">Services</a>
+          <span class="mx-1.5 text-slate-400">/</span>
+          <a href={`/services/${service.slug}`} class="hover:underline">{service.shortName}</a>
+          <span class="mx-1.5 text-slate-400">/</span>
+          Near me
+        </p>
+        <h1 class="mt-3 font-figtree text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          {page.h1}
+        </h1>
+        <p class="mt-4 max-w-xl text-lg leading-relaxed text-slate-600">
+          {page.intro}
+        </p>
+        <p class="mt-4 text-sm font-medium text-slate-700">{page.trustLine}</p>
+        <div class="mt-8 flex w-full flex-nowrap items-stretch gap-2 sm:w-auto sm:flex-wrap sm:gap-3">
+          <a
+            href={bookHref}
+            class={`${heroBtnBase} bg-brand-600 text-white hover:bg-brand-700`}
+          >
+            <Icon name="calendar" size={16} class="shrink-0 opacity-95" />
+            <span class="truncate">Book {bookLabel}</span>
+          </a>
+          {
+            site.phone && (
+              <a
+                href={`tel:${site.phone.replace(/\s/g, '')}`}
+                class={`${heroBtnBase} bg-sky-600 text-white hover:bg-sky-700`}
+              >
+                <Icon name="phone" size={16} class="shrink-0 opacity-95" />
+                <span class="truncate">Call us</span>
+              </a>
+            )
+          }
+          {
+            whatsappHref && (
+              <a
+                href={whatsappHref}
+                class={`${heroBtnBase} bg-whatsapp-dark text-white hover:bg-[#0e6b5f]`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon name="whatsapp" size={16} class="shrink-0 opacity-95" />
+                <span class="truncate">WhatsApp Us</span>
+              </a>
+            )
+          }
+        </div>
+        <p class="mt-5 text-sm text-slate-600">
+          Prefer a district page?{' '}
+          <a href={srinagarHref} class="font-medium text-brand-700 underline-offset-2 hover:underline">
+            {service.shortName} in Srinagar
+          </a>
+          {' · '}
+          <a href="/service-areas" class="font-medium text-brand-700 underline-offset-2 hover:underline">
+            All service areas
+          </a>
+        </p>
+      </div>
+      <div class="relative">
+        <div
+          class="absolute -inset-3 rounded-[2rem] opacity-60 blur-2xl"
+          style={`background: ${visual.soft};`}
+          aria-hidden="true"
+        ></div>
+        <div class="relative overflow-hidden rounded-[1.75rem] shadow-xl shadow-slate-900/10 ring-1 ring-black/5">
+          <img
+            src={heroImage}
+            alt={`${page.primaryKeyword} — ${service.shortName} by Panun Kaergar in Kashmir`}
+            width="960"
+            height="720"
+            class="aspect-[4/3] w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-5 pb-5 pt-16">
+            <p class="text-sm font-semibold text-white">{page.primaryKeyword}</p>
+            <p class="mt-1 text-xs text-white/80">{visual.meta} · Kashmir</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start xl:grid-cols-[minmax(0,1fr)_300px]">
+      <div class="min-w-0 space-y-16">
+        {
+          page.whoFor?.length > 0 && (
+            <section id="who-for" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Intent
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                Who this page is for
+              </h2>
+              <ul class="mt-6 space-y-3">
+                {page.whoFor.map((item) => (
+                  <li class="flex items-start gap-3 text-base leading-relaxed text-slate-700">
+                    <Icon name="check" size={18} class="mt-1 shrink-0 text-brand-600" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          live && live.subcategories.length > 0 ? (
+            <CategoryServiceCatalog
+              subcategories={live.subcategories}
+              categoryLabel={visual.label}
+              accent={visual.accent}
+              subtitle={`Bookable ${visual.label.toLowerCase()} services near you — same live catalog as the Panun Kaergar app.`}
+            />
+          ) : null
+        }
+
+        {
+          page.commonProblems?.length > 0 && (
+            <section id="problems" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Common jobs
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                Problems we handle
+              </h2>
+              <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+                {page.commonProblems.map((item) => (
+                  <li class="flex items-start gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
+                    <Icon name="check" size={18} class="mt-0.5 shrink-0 text-brand-600" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-8">
+                <a href={bookHref} class="btn-primary inline-flex items-center gap-2">
+                  <Icon name="calendar" size={18} />
+                  Book {bookLabel}
+                </a>
+              </div>
+            </section>
+          )
+        }
+
+        <section id="how-to-book" class="scroll-mt-28">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">Process</p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">How to book near you</h2>
+          <p class="mt-3 max-w-2xl text-base text-slate-600">
+            Three steps to get a verified {visual.label.toLowerCase()} partner at your door in Kashmir.
+          </p>
+          <ol class="mt-8 grid gap-6 sm:grid-cols-3">
+            {
+              bookingSteps.map((step, i) => (
+                <li class="relative">
+                  <span
+                    class="flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold text-white"
+                    style={`background: ${visual.accent};`}
+                  >
+                    {i + 1}
+                  </span>
+                  <h3 class="mt-4 text-base font-bold text-slate-900">{step.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{step.description}</p>
+                </li>
+              ))
+            }
+          </ol>
+          {
+            page.prepareList?.length > 0 && (
+              <div class="mt-10">
+                <h3 class="text-lg font-bold text-slate-900">What to prepare</h3>
+                <ul class="mt-4 space-y-2">
+                  {page.prepareList.map((item) => (
+                    <li class="flex items-start gap-2 text-sm text-slate-700">
+                      <Icon name="check" size={16} class="mt-0.5 shrink-0 text-brand-600" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+        </section>
+
+        {
+          page.diyVsPro && (
+            <section id="diy-vs-pro" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Safety
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">DIY vs call a pro</h2>
+              <p class="mt-4 max-w-3xl text-base leading-relaxed text-slate-700 whitespace-pre-line">
+                {page.diyVsPro}
+              </p>
+            </section>
+          )
+        }
+
+        {
+          page.costFactors?.length > 0 && (
+            <section id="cost" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Pricing
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">What affects cost</h2>
+              <ul class="mt-6 space-y-3">
+                {page.costFactors.map((item) => (
+                  <li class="flex items-start gap-3 text-base leading-relaxed text-slate-700">
+                    <Icon name="check" size={18} class="mt-1 shrink-0 text-brand-600" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p class="mt-4 text-sm text-slate-600">
+                You’ll get guidance before you confirm — no invented fixed prices for every job type.
+              </p>
+            </section>
+          )
+        }
+
+        {
+          (page.coverageNote || page.seasonalNotes) && (
+            <section id="coverage" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Local
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                Coverage in Kashmir
+              </h2>
+              {
+                page.coverageNote && (
+                  <p class="mt-4 max-w-3xl text-base leading-relaxed text-slate-700 whitespace-pre-line">
+                    {page.coverageNote}
+                  </p>
+                )
+              }
+              {
+                page.seasonalNotes && (
+                  <div class="mt-6 max-w-3xl">
+                    <h3 class="text-lg font-bold text-slate-900">Seasonal notes</h3>
+                    <p class="mt-2 text-base leading-relaxed text-slate-700 whitespace-pre-line">
+                      {page.seasonalNotes}
+                    </p>
+                  </div>
+                )
+              }
+              <div class="mt-6 flex flex-wrap gap-3">
+                {areas.slice(0, 6).map((area) => (
+                  <a
+                    href={`/services/${service.slug}/${area.slug}`}
+                    class="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-700 transition hover:bg-brand-50"
+                  >
+                    <Icon name="map-pin" size={16} />
+                    {area.displayName}
+                  </a>
+                ))}
+                <a
+                  href={areaPath('srinagar')}
+                  class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                >
+                  Home services in Srinagar
+                </a>
+              </div>
+            </section>
+          )
+        }
+
+        <section id="benefits" class="scroll-mt-28">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+            Why Panun Kaergar
+          </p>
+          <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Benefits</h2>
+          <ul class="mt-8 grid gap-5 sm:grid-cols-2">
+            {
+              benefits.map((b) => (
+                <li class="rounded-2xl border border-slate-200/90 bg-gradient-to-br from-white to-slate-50 px-5 py-5">
+                  <h3 class="font-bold text-slate-900">{b.title}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{b.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        {
+          reviews.length > 0 && (
+            <section id="reviews" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Reviews
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">What customers say</h2>
+              <ul class="mt-8 grid gap-5">
+                {reviews.map((t) => (
+                  <li class="rounded-2xl border border-slate-200 bg-white px-5 py-5 shadow-sm">
+                    <div
+                      class="flex items-center gap-2 text-amber-500"
+                      aria-label={`${t.rating} out of 5`}
+                    >
+                      {Array.from({ length: t.rating || 5 }).map(() => (
+                        <span aria-hidden="true">★</span>
+                      ))}
+                    </div>
+                    <p class="mt-3 text-base leading-relaxed text-slate-700">“{t.quote}”</p>
+                    <p class="mt-4 text-sm font-semibold text-slate-900">
+                      {t.customerName}
+                      <span class="font-normal text-slate-500">
+                        {' '}
+                        · {t.location}
+                        {t.service ? ` · ${t.service}` : ''}
+                      </span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+
+        {
+          page.bodyHtml && (
+            <section class="prose prose-slate max-w-none" set:html={page.bodyHtml} />
+          )
+        }
+
+        {
+          (relatedPages.length > 0 || siblingNearMe.length > 0) && (
+            <section id="related" class="scroll-mt-28">
+              <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                Related
+              </p>
+              <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                Related near-me pages
+              </h2>
+              <ul class="mt-6 flex flex-wrap gap-3">
+                {(relatedPages.length > 0 ? relatedPages : siblingNearMe).map((p) => (
+                  <li>
+                    <a
+                      href={`/near-me/${p.slug}`}
+                      class="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-800 transition hover:border-brand-200 hover:bg-brand-50 hover:text-brand-800"
+                    >
+                      {p.primaryKeyword}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )
+        }
+      </div>
+
+      <CategorySidebar
+        categories={allCategories.map((c) => ({ slug: c.slug, shortName: c.shortName }))}
+        currentSlug={service.slug}
+        bookHref={bookHref}
+        bookButtonText={bookButtonText}
+      />
+    </div>
+  </section>
+
+  <FaqSection title={`${page.primaryKeyword} — FAQ`} items={page.faqs || []} />
+  <BookingOptions site={site} variant="compact" />
+</PageLayout>

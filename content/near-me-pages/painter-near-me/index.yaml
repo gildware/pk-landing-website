@@ -1,0 +1,63 @@
+title: painter-near-me
+h1: Painter Near Me in Kashmir
+primaryKeyword: painter near me
+bookLabel: Painter
+seoTitle: Painter Near Me | Interior & Exterior | Panun Kaergar Kashmir
+seoDescription: >-
+  Painter near you in Kashmir — book verified partners for interior, exterior, and painting repairs. Call, WhatsApp, or book online.
+intro: >-
+  Need a painter near you? Panun Kaergar matches verified painting partners across Kashmir for interior walls, exterior work, and touch-up repairs. Share rooms, scope, and locality — we confirm a nearby partner when available.
+parentServiceSlug: painting
+catalogSubSlugs: []
+trustLine: Verified partners · Across Kashmir · Same-day when available
+whoFor:
+  - Fresh interior paint for rooms
+  - Exterior touch-ups after weather damage
+  - Peeling paint or damp-related repaint needs
+  - You want a verified painter near your area
+commonProblems:
+  - Interior painting
+  - Exterior painting
+  - Peel and patch repairs
+  - Wall prep guidance during visits
+  - Catalog painting jobs
+diyVsPro: >-
+  Small touch-ups on dry walls are fine. Skip ladders on fragile exteriors and don’t paint over active damp — fix moisture sources first with the right trade.
+costFactors:
+  - Area (sq ft / rooms)
+  - Paint type and coats
+  - Surface prep needed
+  - Height and exterior access
+  - Season and availability
+seasonalNotes: >-
+  Dry spells are best for exterior coats. Avoid painting just before heavy rain or freeze. Winter interiors need ventilation planning.
+coverageNote: >-
+  We cover districts across Kashmir including Srinagar, Budgam, Ganderbal, Baramulla, Anantnag, Pulwama, and more. Availability is confirmed by your address when you book. See Painting in Srinagar for district details.
+prepareList:
+  - Short description of what you need
+  - Photos or a short video if safe to take
+  - Your district, locality, and landmark
+  - Preferred time window (and whether same-day is needed)
+  - Approx rooms/walls and interior vs exterior
+relatedNearMeSlugs:
+  - carpenter-near-me
+  - mason-near-me
+  - home-cleaning-near-me
+faqs:
+  - question: How do I book a painter near me?
+    answer: >-
+      Call, WhatsApp, book online, or use the app with scope and locality.
+  - question: Do you bring paint?
+    answer: >-
+      Ask when booking — some jobs use customer-supplied paint; partners can advise.
+  - question: Same-day painting?
+    answer: >-
+      Small touch-ups sometimes; full rooms usually need a planned slot.
+  - question: Interior and exterior both?
+    answer: >-
+      Yes when listed in catalog and a suitable partner is available.
+  - question: Pricing factors?
+    answer: >-
+      Area, coats, prep, and access. Guidance before confirm.
+published: true
+sortOrder: 8

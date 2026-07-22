@@ -1,0 +1,61 @@
+title: car-wash-near-me
+h1: Car Wash Near Me in Kashmir
+primaryKeyword: car wash near me
+bookLabel: Car Wash
+seoTitle: Car Wash Near Me | Detailing | Panun Kaergar Kashmir
+seoDescription: >-
+  Car wash near you in Kashmir — book verified car wash and detailing partners. Call, WhatsApp, or book online.
+intro: >-
+  Need a car wash near you? Panun Kaergar matches verified vehicle-service partners for car wash and detailing jobs from our catalog across Kashmir.
+parentServiceSlug: vehicle-services
+catalogSubSlugs:
+  - car-wash-detailing
+trustLine: Verified partners · Across Kashmir · Same-day when available
+whoFor:
+  - Exterior wash after muddy roads
+  - Interior clean / detailing
+  - You want verified car wash help nearby
+commonProblems:
+  - Car wash
+  - Detailing jobs from catalog
+  - Interior cleaning options when listed
+diyVsPro: >-
+  Rinse loose mud carefully if you have space. Avoid harsh brushes on dry dust that scratch paint.
+costFactors:
+  - Wash vs detailing package
+  - Vehicle size
+  - Interior add-ons
+  - Location access
+  - Availability
+seasonalNotes: >-
+  Muddy wet spells and spring pollen increase wash demand. Share SUV vs sedan when booking.
+coverageNote: >-
+  We cover districts across Kashmir including Srinagar, Budgam, Ganderbal, Baramulla, Anantnag, Pulwama, and more. Availability is confirmed by your address when you book.
+prepareList:
+  - Short description of what you need
+  - Photos or a short video if safe to take
+  - Your district, locality, and landmark
+  - Preferred time window (and whether same-day is needed)
+  - Car type (sedan/SUV) and exterior vs interior focus
+relatedNearMeSlugs:
+  - dry-cleaning-near-me
+  - home-cleaning-near-me
+  - door-repair-near-me
+faqs:
+  - question: How do I book car wash near me?
+    answer: >-
+      Call, WhatsApp, book online, or use the app.
+  - question: At-home wash?
+    answer: >-
+      Share your locality — availability depends on partner coverage.
+  - question: Same-day car wash?
+    answer: >-
+      Often possible when partners are free nearby.
+  - question: Detailing vs basic wash?
+    answer: >-
+      Choose the catalog option that matches your need when booking.
+  - question: Pricing?
+    answer: >-
+      Based on package and vehicle size. Guidance before confirm.
+published: true
+sortOrder: 19

@@ -225,6 +225,49 @@ export function serviceSchema(service: ServiceEntry, site: SiteForSchema, areas?
   };
 }
 
+export function nearMeServiceSchema(
+  page: {
+    h1: string;
+    intro: string;
+    primaryKeyword: string;
+    parentServiceSlug: string;
+  },
+  service: ServiceEntry,
+  site: SiteForSchema,
+  areas: AreaEntry[],
+  pageUrl: string
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: page.h1,
+    alternateName: page.primaryKeyword,
+    description: page.intro,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: site.businessName,
+      telephone: site.phone,
+      url: siteUrl('/'),
+    },
+    serviceType: service.shortName,
+    areaServed: areas.length
+      ? areas.map((area) => ({
+          '@type': 'AdministrativeArea',
+          name: area.displayName,
+        }))
+      : {
+          '@type': 'AdministrativeArea',
+          name: 'Kashmir',
+        },
+    url: pageUrl,
+    isRelatedTo: {
+      '@type': 'Service',
+      name: service.shortName,
+      url: siteUrl(`/services/${service.slug}`),
+    },
+  };
+}
+
 export function serviceAreaPageSchema(
   service: ServiceEntry,
   area: AreaEntry,

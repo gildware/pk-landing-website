@@ -8,6 +8,7 @@ export type SiteSettings = Awaited<ReturnType<typeof getSiteSettings>>;
 export type ServiceEntry = Awaited<ReturnType<typeof getServices>>[number];
 export type AreaEntry = Awaited<ReturnType<typeof getAreas>>[number];
 export type ServiceAreaPage = Awaited<ReturnType<typeof getServiceAreaPages>>[number];
+export type NearMePage = Awaited<ReturnType<typeof getNearMePages>>[number];
 export type FaqEntry = Awaited<ReturnType<typeof getFaqs>>[number];
 
 export async function getSiteSettings() {
@@ -100,6 +101,28 @@ export async function getServiceAreaPages() {
 
 export async function getServiceAreaPage(slug: string) {
   const entry = await reader.collections.serviceAreaPages.read(slug);
+  if (!entry || !entry.published) return null;
+  const bodyHtml = await renderMarkdocHtml(() => entry.body());
+  return { slug, ...entry, bodyHtml };
+}
+
+export async function getNearMePages() {
+  const slugs = await reader.collections.nearMePages.list();
+  const items = await Promise.all(
+    slugs.map(async (slug) => {
+      const entry = await reader.collections.nearMePages.read(slug);
+      if (!entry) return null;
+      const bodyHtml = await renderMarkdocHtml(() => entry.body());
+      return { slug, ...entry, bodyHtml };
+    })
+  );
+  return items
+    .filter((item): item is NonNullable<typeof item> => item !== null && item.published)
+    .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
+}
+
+export async function getNearMePage(slug: string) {
+  const entry = await reader.collections.nearMePages.read(slug);
   if (!entry || !entry.published) return null;
   const bodyHtml = await renderMarkdocHtml(() => entry.body());
   return { slug, ...entry, bodyHtml };

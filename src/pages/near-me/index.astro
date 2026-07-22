@@ -1,0 +1,103 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { buildMeta } from '@/utils/seo';
+import { getNearMePages, siteUrl } from '@/utils/reader';
+import { breadcrumbSchema, itemListSchema } from '@/utils/schema';
+import { bookCtaLabel } from '@/utils/bookingPrefill';
+import { NEAR_ME_HUB_PATH, featuredNearMeLinks } from '@/utils/nearMeLinks';
+import { BOOK_PATH } from '@/utils/booking';
+import Icon from '@/components/Icon.astro';
+
+const pages = await getNearMePages();
+const featured = featuredNearMeLinks();
+
+const meta = buildMeta({
+  title: 'Services Near Me in Kashmir | Panun Kaergar',
+  description:
+    'Find plumber, carpenter, electrician, AC repair, and more near you in Kashmir. Book verified Panun Kaergar partners — call, WhatsApp, or book online.',
+  path: NEAR_ME_HUB_PATH,
+});
+
+const listItems = pages.map((p) => ({
+  name: p.primaryKeyword,
+  url: siteUrl(`/near-me/${p.slug}`),
+  description: p.intro,
+}));
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Near me', path: NEAR_ME_HUB_PATH },
+  ]),
+  itemListSchema(listItems, 'Panun Kaergar near-me service pages'),
+].filter(Boolean);
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <section class="border-b border-slate-200/80 bg-gradient-to-b from-slate-50 to-white">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+      <p class="text-sm font-semibold text-brand-700">
+        <a href="/services" class="hover:underline">Services</a>
+        <span class="mx-1.5 text-slate-400">/</span>
+        Near me
+      </p>
+      <h1 class="mt-3 font-figtree text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+        Services near me in Kashmir
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">
+        High-intent local pages for common “near me” searches — book a verified partner by phone,
+        WhatsApp, website, or app.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={BOOK_PATH} class="btn-primary">Book a home service</a>
+        <a href="/services" class="btn-secondary">Browse all services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
+    <p class="text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">Popular</p>
+    <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Most searched near you</h2>
+    <ul class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        featured.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="flex h-full items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm font-semibold text-slate-800 transition hover:border-brand-200 hover:bg-brand-50 hover:text-brand-800"
+            >
+              <Icon name="map-pin" size={18} class="shrink-0 text-brand-600" />
+              <span class="capitalize">{link.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-14 text-[11px] font-semibold uppercase tracking-[0.08em] text-slate-500">All near-me pages</p>
+    <h2 class="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Full list</h2>
+    <ul class="mt-8 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
+      {
+        pages.map((page) => {
+          const cta = bookCtaLabel(page.parentServiceSlug, page.bookLabel || page.primaryKeyword);
+          return (
+            <li>
+              <a
+                href={`/near-me/${page.slug}`}
+                class="flex flex-col gap-1 px-5 py-4 transition hover:bg-slate-50 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <span>
+                  <span class="block font-semibold text-slate-900 capitalize">{page.primaryKeyword}</span>
+                  <span class="mt-0.5 block text-sm text-slate-500 line-clamp-1">{page.intro}</span>
+                </span>
+                <span class="mt-2 shrink-0 text-sm font-semibold text-brand-700 sm:mt-0">
+                  Book {cta} →
+                </span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+</PageLayout>

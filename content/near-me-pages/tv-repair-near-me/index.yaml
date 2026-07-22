@@ -1,0 +1,63 @@
+title: tv-repair-near-me
+h1: TV Repair Near Me in Kashmir
+primaryKeyword: tv repair near me
+bookLabel: TV Repair
+seoTitle: TV Repair Near Me | LED / Smart TV | Panun Kaergar
+seoDescription: >-
+  TV repair near you in Kashmir — LED/smart TV issues. Book verified appliance partners via call, WhatsApp, or online.
+intro: >-
+  TV won’t turn on, has no display, or sound issues? Panun Kaergar connects you with verified appliance partners near your Kashmir locality for LED/smart TV jobs listed in our catalog.
+parentServiceSlug: home-appliances
+catalogSubSlugs:
+  - led-smart-tv
+trustLine: Verified partners · Across Kashmir · Same-day when available
+whoFor:
+  - No power or no display
+  - Sound but no picture (or reverse)
+  - Smart TV app/network issues needing visit support
+  - Verified TV help near you
+commonProblems:
+  - Power and display faults
+  - Sound issues
+  - Mount/uninstallation related catalog jobs
+  - Diagnosis visits
+diyVsPro: >-
+  Check power, HDMI source, and remote batteries. Don’t open the panel. Unplug during storms if advised for your setup.
+costFactors:
+  - Fault and parts
+  - Screen vs board level complexity
+  - Brand/model
+  - Visit urgency
+  - Availability
+seasonalNotes: >-
+  Demand rises around events and winter indoor time. Share model and symptoms clearly.
+coverageNote: >-
+  We cover districts across Kashmir including Srinagar, Budgam, Ganderbal, Baramulla, Anantnag, Pulwama, and more. Availability is confirmed by your address when you book.
+prepareList:
+  - Short description of what you need
+  - Photos or a short video if safe to take
+  - Your district, locality, and landmark
+  - Preferred time window (and whether same-day is needed)
+  - Brand/model and exact symptom (no power / no display / no sound)
+relatedNearMeSlugs:
+  - cctv-installation-near-me
+  - electrician-near-me
+  - ac-repair-near-me
+faqs:
+  - question: How do I book TV repair near me?
+    answer: >-
+      Call, WhatsApp, book online, or use the app with model and symptom.
+  - question: Do you repair all LED brands?
+    answer: >-
+      Common residential sets — confirm brand/model when booking.
+  - question: Same-day?
+    answer: >-
+      When partners are free nearby.
+  - question: Panel replacement cost?
+    answer: >-
+      Depends on model; sometimes replacement isn’t economical — partner will advise honestly.
+  - question: Pricing?
+    answer: >-
+      Diagnosis-led. Guidance before confirm.
+published: true
+sortOrder: 14
