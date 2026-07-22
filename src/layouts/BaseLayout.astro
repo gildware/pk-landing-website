@@ -8,13 +8,31 @@ interface Props {
 }
 
 const { meta, schemas = [] } = Astro.props;
-const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID as string | undefined;
+const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID as string | undefined;
+const gtagId = googleAdsId || gaId;
 const siteName = 'Panun Kaergar';
 ---
 
 <!doctype html>
 <html lang="en-IN">
   <head>
+    {
+      gtagId && (
+        <>
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${gtagId}`}></script>
+          <script is:inline define:vars={{ gaId, googleAdsId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            if (googleAdsId) gtag('config', googleAdsId);
+            if (gaId) gtag('config', gaId);
+          </script>
+        </>
+      )
+    }
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{meta.title}</title>
@@ -94,19 +112,6 @@ const siteName = 'Panun Kaergar';
     {
       schemas.length > 0 && (
         <script type="application/ld+json" set:html={JSON.stringify(schemas.length === 1 ? schemas[0] : schemas)} />
-      )
-    }
-    {
-      gaId && (
-        <>
-          <script defer src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-          <script is:inline define:vars={{ gaId }}>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', gaId);
-          </script>
-        </>
       )
     }
   </body>
