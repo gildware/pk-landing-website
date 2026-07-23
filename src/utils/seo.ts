@@ -1,9 +1,10 @@
 import { siteUrl } from './reader';
 
 const SITE_NAME = 'Panun Kaergar';
-const DEFAULT_OG_IMAGE = '/logo-square.png';
-const DEFAULT_OG_IMAGE_WIDTH = 1024;
-const DEFAULT_OG_IMAGE_HEIGHT = 1024;
+/** Share card: navy+gold gear mark on white */
+const DEFAULT_OG_IMAGE = '/og-image.png';
+const DEFAULT_OG_IMAGE_WIDTH = 1200;
+const DEFAULT_OG_IMAGE_HEIGHT = 630;
 
 export interface PageMeta {
   title: string;
@@ -42,7 +43,10 @@ export function buildMeta({
 }: PageMeta): BuiltPageMeta {
   const url = siteUrl(path);
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
-  const isDefaultOg = ogImage === DEFAULT_OG_IMAGE || ogImage === '/og-image.svg';
+  const isDefaultOg =
+    ogImage === DEFAULT_OG_IMAGE ||
+    ogImage === '/og-image.svg' ||
+    ogImage === '/logo-square.png';
 
   return {
     title: fullTitle,

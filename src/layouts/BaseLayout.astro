@@ -69,13 +69,11 @@ const siteName = 'Panun Kaergar';
     <meta name="twitter:description" content={meta.description} />
     <meta name="twitter:image" content={meta.ogImage} />
     <meta name="twitter:image:alt" content={meta.ogImageAlt} />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon-light-32x32.png"
-      media="(prefers-color-scheme: light)"
-    />
+    {/* Google Search: first icon ≥48×48, no media query */}
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    {/* Browsers: dark UI → white logo; light UI → navy logo */}
     <link
       rel="icon"
       type="image/png"
@@ -86,8 +84,8 @@ const siteName = 'Panun Kaergar';
     <link
       rel="icon"
       type="image/png"
-      sizes="500x500"
-      href="/favicon-light.png"
+      sizes="32x32"
+      href="/favicon-light-32x32.png"
       media="(prefers-color-scheme: light)"
     />
     <link
@@ -97,9 +95,16 @@ const siteName = 'Panun Kaergar';
       href="/favicon-dark.png"
       media="(prefers-color-scheme: dark)"
     />
-    <link rel="icon" type="image/png" href="/favicon-light.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="500x500"
+      href="/favicon-light.png"
+      media="(prefers-color-scheme: light)"
+    />
+    <link rel="icon" type="image/png" sizes="500x500" href="/favicon-light.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="shortcut icon" href="/favicon-light.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="preload" href="/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin media="(min-width: 768px)" />
   </head>

@@ -87,6 +87,8 @@ export function organizationSchema(site: SiteForSchema) {
     name: site.businessName,
     url: siteUrl('/'),
     description: site.description,
+    logo: siteUrl('/logo-square.png'),
+    image: siteUrl('/logo-square.png'),
     telephone: site.phone,
     email: site.email,
     address: postalAddress(site),
