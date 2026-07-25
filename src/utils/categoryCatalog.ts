@@ -45,17 +45,20 @@ function sub(slug: string, name: string, file: string): SubCategoryPill {
 /** Subcategories from live panun-admin DB, keyed by marketing slug */
 export const categorySubcategories: Record<string, SubCategoryPill[]> = {
   carpentry: [
-    sub('carpentry-installation', 'Carpentry Installation', 'carpentry-installation/2026-07-08-6a4e20e363690.webp'),
-    sub('carpentry-repairs', 'Carpentry Repairs', 'carpentry-repairs/2026-07-08-6a4e20ebdfb4c.webp'),
-    sub('roofing-works', 'Roofing Works', 'roofing-works/2026-07-17-6a59b0fa66e93.webp'),
+    sub('carpentry-installation', 'Carpentry Installation', 'carpentry-installation/2026-07-23-6a617fcd90ccb.webp'),
+    sub('carpentry-making', 'Carpentry Making', 'carpentry-making/2026-07-23-6a617fd0738ca.webp'),
+    sub('carpentry-repairs', 'Carpentry Repairs', 'carpentry-repairs/2026-07-23-6a617fd61088f.webp'),
+    sub('roofing-works', 'Roofing Works', 'roofing-works/2026-07-23-6a617fd9e7327.webp'),
   ],
   plumbing: [
-    sub('plumbing-fixtures', 'Plumbing Fixtures', 'plumbing-fixtures/2026-07-08-6a4e2c3455733.webp'),
-    sub('plumbing-installs', 'Plumbing Installs', 'plumbing-installs/2026-07-08-6a4e2c3a3a5ab.webp'),
+    sub('plumbing-installation', 'Plumbing Installation', 'plumbing-installation/2026-07-24-6a6269ed3bcd2.webp'),
+    sub('plumbing-repair', 'Plumbing Repair', 'plumbing-repair/2026-07-24-6a6269f058788.webp'),
+    sub('plumbing-inspection', 'Plumbing Inspection', 'plumbing-inspection/2026-07-24-6a6269ea112eb.webp'),
   ],
   masonry: [
-    sub('masonry-installs', 'Masonry Installs', 'masonry-installs/2026-07-08-6a4e2c0dd2475.webp'),
-    sub('masonry-repairs', 'Masonry Repairs', 'masonry-repairs/2026-07-08-6a4e2c1434738.webp'),
+    sub('masonry-installation', 'Masonry Installation', 'masonry-installs/2026-07-08-6a4e2c0dd2475.webp'),
+    sub('masonry-repair', 'Masonry Repair', 'masonry-repairs/2026-07-08-6a4e2c1434738.webp'),
+    sub('masonry-inspection', 'Masonry Inspection', 'masonry-repairs/2026-07-08-6a4e2c1434738.webp'),
   ],
   electrician: [
     sub('installation-services', 'Electricity Installation', 'installation-services/2026-07-08-6a4e2bd98ecb0.webp'),
@@ -123,6 +126,12 @@ export const categorySubcategories: Record<string, SubCategoryPill[]> = {
     sub('car-wash-detailing', 'Car Wash & Detailing', 'car-wash-detailing/2026-07-13-6a54a29fda874.webp'),
     sub('car-repair-maintenance', 'Car Repair & Maintenance', 'car-repair-maintenance/2026-07-13-6a54a2992013a.webp'),
     sub('bike-scooter-service', 'Bike & Scooter Service', 'bike-scooter-service/2026-07-13-6a54a29233240.webp'),
+  ],
+  'book-kaergar': [
+    sub('home-trades', 'Home Trades', 'home-trades/2026-07-23-6a61fc00195ed.webp'),
+    sub('building-site', 'Building & Site', 'building-site/2026-07-23-6a61fbeebac93.webp'),
+    sub('home-care', 'Home Care', 'home-care/2026-07-23-6a61fbf67d0b7.webp'),
+    sub('beauty-artists', 'Beauty Artists', 'beauty-artists/2026-07-23-6a61fbe667b92.webp'),
   ],
 };
 
@@ -383,6 +392,22 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     mid: '#60a5fa',
     accent: '#1d4ed8',
     scatter: { bottom: '14%', right: '34%' },
+  },
+  'book-kaergar': {
+    slug: 'book-kaergar',
+    adminSlug: 'book-kaergar',
+    label: 'Book Kaergar',
+    heading: 'Need a pro by the hour?',
+    blurb:
+      'Hire verified Panun Kaergar professionals by the hour, half day, or full day — trades, site help, home care, and beauty artists across Kashmir.',
+    title: 'Hour · half day · full day',
+    meta: 'Time-hire verified pros',
+    prompt: 'Book a carpenter, electrician, plumber, mason, gardener, and more by time.',
+    icon: '/images/categories/icons/book-kaergar.webp',
+    soft: '#e2e8f0',
+    mid: '#64748b',
+    accent: '#1A233A',
+    scatter: { top: '10%', right: '8%' },
   },
 };
 

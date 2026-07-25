@@ -1,0 +1,364 @@
+{
+    "exportedAt": "2026-07-24T15:18:32+05:30",
+    "source": "live",
+    "zoneId": "41f21d2e-0d0a-4f93-a84a-2ccb871c2179",
+    "categories": [
+        {
+            "slug": "book-kaergar",
+            "name": "Book Kaergar",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/book-kaergar/2026-07-24-6a6333b21c4f4.webp",
+            "sortOrder": 1,
+            "subcategories": [
+                {
+                    "slug": "home-trades",
+                    "name": "Home Trades",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/home-trades/2026-07-24-6a633350526bd.webp"
+                },
+                {
+                    "slug": "building-site",
+                    "name": "Building & Site",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/building-site/2026-07-24-6a63331697f2b.webp"
+                },
+                {
+                    "slug": "home-care",
+                    "name": "Home Care",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/home-care/2026-07-24-6a633347dc9f2.webp"
+                },
+                {
+                    "slug": "beauty-artists",
+                    "name": "Beauty Artists",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/beauty-artists/2026-07-24-6a6333100a856.webp"
+                }
+            ]
+        },
+        {
+            "slug": "cleaning",
+            "name": "Cleaning Services",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/cleaning/2026-07-24-6a6333bd67e1d.webp",
+            "sortOrder": 1,
+            "subcategories": [
+                {
+                    "slug": "home-commercial-cleaning",
+                    "name": "Home & Commercial Cleaning",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/home-commercial-cleaning/2026-07-24-6a633340c267c.webp"
+                },
+                {
+                    "slug": "furniture-fabric-cleaning",
+                    "name": "Furniture & Fabric Cleaning",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/furniture-fabric-cleaning/2026-07-24-6a63333997dbe.webp"
+                },
+                {
+                    "slug": "appliance-utility-cleaning",
+                    "name": "Appliance & Utility Cleaning",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/appliance-utility-cleaning/2026-07-24-6a6333098a74a.webp"
+                },
+                {
+                    "slug": "post-construction-cleaning",
+                    "name": "Post-Construction Cleaning",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/post-construction-cleaning/2026-07-24-6a63338ab8ec7.webp"
+                }
+            ]
+        },
+        {
+            "slug": "laundry",
+            "name": "Dry Cleaning & Laundry",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/laundry/2026-07-24-6a6333c26bb90.webp",
+            "sortOrder": 1,
+            "subcategories": [
+                {
+                    "slug": "wash-laundry",
+                    "name": "Laundry",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/wash-laundry/2026-07-24-6a633357c25ce.webp"
+                },
+                {
+                    "slug": "dry-clean",
+                    "name": "Dry Cleaning",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/dry-clean/2026-07-24-6a6333cfe44d2.webp"
+                }
+            ]
+        },
+        {
+            "slug": "masonry",
+            "name": "Masonary Services",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/masonry/2026-07-24-6a6333c6a25bc.webp",
+            "sortOrder": 1,
+            "subcategories": [
+                {
+                    "slug": "masonry-installation",
+                    "name": "Masonry Installation",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/masonry-installation/2026-07-24-6a63336593750.webp"
+                },
+                {
+                    "slug": "masonry-repair",
+                    "name": "Masonry Repair",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/masonry-repair/2026-07-24-6a63336c19219.webp"
+                },
+                {
+                    "slug": "masonry-inspection",
+                    "name": "Masonry Inspection",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/masonry-inspection/2026-07-24-6a63335f45007.webp"
+                }
+            ]
+        },
+        {
+            "slug": "plumbing",
+            "name": "Plumbing Services",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/plumbing/2026-07-24-6a6269e63cfe2.webp",
+            "sortOrder": 1,
+            "subcategories": [
+                {
+                    "slug": "plumbing-installation",
+                    "name": "Plumbing Installation",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/plumbing-installation/2026-07-24-6a6269ed3bcd2.webp"
+                },
+                {
+                    "slug": "plumbing-repair",
+                    "name": "Plumbing Repair",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/plumbing-repair/2026-07-24-6a6269f058788.webp"
+                },
+                {
+                    "slug": "plumbing-inspection",
+                    "name": "Plumbing Inspection",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/plumbing-inspection/2026-07-24-6a6269ea112eb.webp"
+                }
+            ]
+        },
+        {
+            "slug": "electrical",
+            "name": "Electrician Services",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/electrical/2026-07-24-6a62698c9c688.webp",
+            "sortOrder": 2,
+            "subcategories": [
+                {
+                    "slug": "electric-installation",
+                    "name": "Electric Installation",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/electric-installation/2026-07-24-6a626993e4ed7.webp"
+                },
+                {
+                    "slug": "electric-repair",
+                    "name": "Electric Repair",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/electric-repair/2026-07-24-6a626996c9b4b.webp"
+                },
+                {
+                    "slug": "electric-inspection",
+                    "name": "Electric Inspection",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/electric-inspection/2026-07-24-6a626990e8fc2.webp"
+                }
+            ]
+        },
+        {
+            "slug": "home-appliance",
+            "name": "Home Appliances",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/home-appliance/2026-07-23-6a62560654119.webp",
+            "sortOrder": 2,
+            "subcategories": [
+                {
+                    "slug": "air-conditioners",
+                    "name": "Air Conditioners",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/air-conditioners/2026-07-23-6a62561453a1a.webp"
+                },
+                {
+                    "slug": "battery-inverters",
+                    "name": "Battery & Inverters",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/battery-inverters/2026-07-23-6a62561fb3f84.webp"
+                },
+                {
+                    "slug": "cctv",
+                    "name": "CCTV",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/cctv/2026-07-23-6a62562bc2ae3.webp"
+                },
+                {
+                    "slug": "geysers",
+                    "name": "Geysers",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/geysers/2026-07-23-6a625637d0f31.webp"
+                },
+                {
+                    "slug": "led-smart-tv",
+                    "name": "LED / Smart TV",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/led-smart-tv/2026-07-23-6a625642b6dd3.webp"
+                },
+                {
+                    "slug": "refrigerators",
+                    "name": "Refrigerators",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/refrigerators/2026-07-23-6a62564d35987.webp"
+                },
+                {
+                    "slug": "washing-machine",
+                    "name": "Washing Machine",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/washing-machine/2026-07-23-6a6256646c332.webp"
+                },
+                {
+                    "slug": "ro-purifier",
+                    "name": "Water Purifier",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/ro-purifier/2026-07-23-6a62567100d0e.webp"
+                },
+                {
+                    "slug": "induction-heaters",
+                    "name": "Small Appliances",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/induction-heaters/2026-07-23-6a6256592ea3e.webp"
+                }
+            ]
+        },
+        {
+            "slug": "carpentary",
+            "name": "Carpentry Services",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/carpentary/2026-07-24-6a63349c29e60.webp",
+            "sortOrder": 5,
+            "subcategories": [
+                {
+                    "slug": "carpentry-installation",
+                    "name": "Carpentry Installation",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/carpentry-installation/2026-07-24-6a63331cde57c.webp"
+                },
+                {
+                    "slug": "carpentry-making",
+                    "name": "Carpentry Making",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/carpentry-making/2026-07-24-6a6333241e976.webp"
+                },
+                {
+                    "slug": "carpentry-repairs",
+                    "name": "Carpentry Repairs",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/carpentry-repairs/2026-07-24-6a63332a3337a.webp"
+                },
+                {
+                    "slug": "roofing-works",
+                    "name": "Roofing Works",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/roofing-works/2026-07-24-6a6333919a523.webp"
+                }
+            ]
+        },
+        {
+            "slug": "mens-salon",
+            "name": "Men's Salon",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/mens-salon/2026-07-24-6a6334a5a4508.webp",
+            "sortOrder": 6,
+            "subcategories": [
+                {
+                    "slug": "mens-hair-services",
+                    "name": "Men's Hair Services",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/mens-hair-services/2026-07-24-6a63337b81fa6.webp"
+                },
+                {
+                    "slug": "mens-beard-shaving",
+                    "name": "Men's Beard & Shaving",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/mens-beard-shaving/2026-07-24-6a633372db089.webp"
+                },
+                {
+                    "slug": "mens-skin-grooming-care",
+                    "name": "Men's Skin & Grooming",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/mens-skin-grooming-care/2026-07-24-6a63338305968.webp"
+                }
+            ]
+        },
+        {
+            "slug": "pest-control",
+            "name": "Pest Control",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/pest-control/2026-07-11-6a5233148ba99.webp",
+            "sortOrder": 6,
+            "subcategories": [
+                {
+                    "slug": "home-pest-control",
+                    "name": "Home Pest Control",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/home-pest-control/2026-07-11-6a52331934e04.webp"
+                },
+                {
+                    "slug": "office-pest-control",
+                    "name": "Office Pest Control",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/office-pest-control/2026-07-11-6a52331dc0094.webp"
+                },
+                {
+                    "slug": "restaurant-pest-control",
+                    "name": "Restaurant Pest Control",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/restaurant-pest-control/2026-07-11-6a523322b9e01.webp"
+                }
+            ]
+        },
+        {
+            "slug": "painting",
+            "name": "Painting Services",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/painting/2026-07-08-6a4e2bbc2f720.webp",
+            "sortOrder": 7,
+            "subcategories": [
+                {
+                    "slug": "exterior-painting",
+                    "name": "Exterior Painting",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/exterior-painting/2026-07-08-6a4e2be6bdabd.webp"
+                },
+                {
+                    "slug": "interior-painting",
+                    "name": "Interior Painting",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/interior-painting/2026-07-08-6a4e2c0718699.webp"
+                }
+            ]
+        },
+        {
+            "slug": "womens-salon",
+            "name": "Women’s Salon",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/womens-salon/2026-07-08-6a4e2bca83690.webp",
+            "sortOrder": 9,
+            "subcategories": [
+                {
+                    "slug": "beauty-grooming",
+                    "name": "Beauty & Grooming",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/beauty-grooming/2026-07-08-6a4e2bd193c90.webp"
+                },
+                {
+                    "slug": "hair-care-services",
+                    "name": "Hair Care Services",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/hair-care-services/2026-07-08-6a4e2bf40f2dd.webp"
+                },
+                {
+                    "slug": "skin-facial-care",
+                    "name": "Skin & Facial Care",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/skin-facial-care/2026-07-08-6a4e2c4cd1cc9.webp"
+                }
+            ]
+        },
+        {
+            "slug": "gardening",
+            "name": "Gardening Services",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/gardening-services/2026-07-13-6a54a3974c6a8.webp",
+            "sortOrder": 10,
+            "subcategories": [
+                {
+                    "slug": "lawn-grass-care",
+                    "name": "Lawn & Grass Care",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/lawn-grass-care/2026-07-13-6a54a2fbe537d.webp"
+                },
+                {
+                    "slug": "planting-soil-care",
+                    "name": "Planting & Soil Care",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/planting-soil-care/2026-07-13-6a54a303ba776.webp"
+                },
+                {
+                    "slug": "pruning-trimming",
+                    "name": "Pruning & Trimming",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/pruning-trimming/2026-07-13-6a54a30b0555b.webp"
+                },
+                {
+                    "slug": "garden-cleanup-maintenance",
+                    "name": "Garden Cleanup & Maintenance",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/garden-cleanup-maintenance/2026-07-13-6a54a2f40d8c0.webp"
+                }
+            ]
+        },
+        {
+            "slug": "pet-grooming",
+            "name": "Pet Grooming",
+            "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/category/pet-grooming/2026-07-24-6a62d9e558538.webp",
+            "sortOrder": 13,
+            "subcategories": [
+                {
+                    "slug": "dog-grooming",
+                    "name": "Dog Grooming",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/dog-grooming/2026-07-24-6a62d9ed2620e.webp"
+                },
+                {
+                    "slug": "cat-grooming",
+                    "name": "Cat Grooming",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/cat-grooming/2026-07-24-6a62d9e950045.webp"
+                }
+            ]
+        }
+    ]
+}

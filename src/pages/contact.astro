@@ -1,6 +1,7 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
 import Icon from '@/components/Icon.astro';
+import EmailLink from '@/components/EmailLink.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings } from '@/utils/reader';
 
@@ -52,7 +53,7 @@ const meta = buildMeta({
         <div>
           <dt class="text-sm font-semibold text-slate-500">Email</dt>
           <dd class="mt-1">
-            <a href={`mailto:${site.email}`} class="text-lg font-medium text-brand-700 hover:underline">{site.email}</a>
+            <EmailLink email={site.email} class="text-lg font-medium text-brand-700 hover:underline" />
           </dd>
         </div>
       </div>

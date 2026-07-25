@@ -23,7 +23,7 @@ export function districtSlugFromSeoParam(seoSlug: string): string | null {
 }
 
 export function areaPageTitle(displayName: string): string {
-  return `Home Services in ${displayName}, Kashmir | Book Online`;
+  return `Home Services in ${displayName}`;
 }
 
 export function areaPageDescription(displayName: string, fallback?: string): string {

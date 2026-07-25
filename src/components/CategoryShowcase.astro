@@ -57,6 +57,11 @@ const showcasePhotos: Record<string, [string, string, string]> = {
     card('vehicle-services'),
     card('bike-scooter-service'),
   ],
+  'book-kaergar': [
+    card('home-trades'),
+    card('book-kaergar'),
+    card('building-site'),
+  ],
 };
 
 const categories = enrichCategories(services, areaName).map((cat) => {
@@ -778,6 +783,7 @@ const initial = categories[0] ?? {
       'interior-decor': { accent: '#202048', soft: '#fde68a' },
       'pet-grooming': { accent: '#b45309', soft: '#fde68a' },
       'vehicle-services': { accent: '#1d4ed8', soft: '#bfdbfe' },
+      'book-kaergar': { accent: '#1A233A', soft: '#e2e8f0' },
     };
 
     // Keep original cycle order for autoplay; DOM order is rotated around active.

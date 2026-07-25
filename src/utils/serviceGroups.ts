@@ -36,13 +36,13 @@ export const serviceGroupDefs: readonly ServiceGroupDef[] = [
       'home improvement',
     ],
     entries: [
-      { slug: 'masonry', pageSlug: 'masonry-installs', displayName: 'Masonry Installs' },
+      { slug: 'masonry', pageSlug: 'masonry-installation', displayName: 'Masonry Installation' },
       {
         slug: 'carpentry',
         pageSlug: 'carpentry-installation',
         displayName: 'Carpentry Installation',
       },
-      { slug: 'plumbing', pageSlug: 'plumbing-installs', displayName: 'Plumbing Installs' },
+      { slug: 'plumbing', pageSlug: 'plumbing-installs', displayName: 'Plumbing Installation' },
       {
         slug: 'electrician',
         pageSlug: 'electrical-installation',
@@ -68,7 +68,7 @@ export const serviceGroupDefs: readonly ServiceGroupDef[] = [
       'appliance repair',
     ],
     entries: [
-      { slug: 'plumbing', pageSlug: 'plumbing-repairs', displayName: 'Plumbing Repairs' },
+      { slug: 'plumbing', pageSlug: 'plumbing-repairs', displayName: 'Plumbing Repair' },
       {
         slug: 'electrician',
         pageSlug: 'electrical-repairs',
@@ -81,7 +81,7 @@ export const serviceGroupDefs: readonly ServiceGroupDef[] = [
         displayName: 'Appliance Repair',
       },
       { slug: 'painting', pageSlug: 'painting-repairs', displayName: 'Painting Repairs' },
-      { slug: 'masonry', pageSlug: 'masonry-repairs', displayName: 'Masonry Repairs' },
+      { slug: 'masonry', pageSlug: 'masonry-repair', displayName: 'Masonry Repair' },
       {
         slug: 'aluminium-steel-works',
         pageSlug: 'metal-works-repairs',
@@ -98,7 +98,7 @@ export const serviceGroupDefs: readonly ServiceGroupDef[] = [
       'electrical-repairs',
       'carpentry-repairs',
       'painting-repairs',
-      'masonry-repairs',
+      'masonry-repair',
       'metal-works-repairs',
     ],
   },
@@ -164,6 +164,26 @@ export const serviceGroupDefs: readonly ServiceGroupDef[] = [
       { slug: 'vehicle-services', pageSlug: 'vehicle-services', displayName: 'Vehicle Services' },
     ],
     expandSubcategories: ['vehicle-services'],
+  },
+  {
+    label: 'Book Kaergar',
+    keywords: [
+      'book kaergar',
+      'hire by hour',
+      'book carpenter',
+      'book electrician',
+      'book plumber',
+      'half day labour',
+    ],
+    entries: [
+      { slug: 'book-kaergar', pageSlug: 'book-kaergar', displayName: 'Book Kaergar' },
+      { slug: 'book-kaergar', pageSlug: 'home-trades', displayName: 'Home Trades' },
+      { slug: 'book-kaergar', pageSlug: 'building-site', displayName: 'Building & Site' },
+      { slug: 'book-kaergar', pageSlug: 'home-care', displayName: 'Home Care' },
+      { slug: 'book-kaergar', pageSlug: 'beauty-artists', displayName: 'Beauty Artists' },
+    ],
+    featured: ['book-kaergar', 'home-trades'],
+    expandSubcategories: ['book-kaergar'],
   },
 ] as const;
 

@@ -1,0 +1,546 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { buildMeta } from '@/utils/seo';
+import { getGuides, siteUrl } from '@/utils/reader';
+import { breadcrumbSchema, itemListSchema } from '@/utils/schema';
+
+const guides = await getGuides();
+
+/** Preferred topic order (matches Keystatic options). */
+const CATEGORY_ORDER = [
+  'Plumbing',
+  'Electrical',
+  'Home Appliances',
+  'Pest Control',
+  'Cleaning',
+  'Painting',
+  'Carpentry',
+  'Masonry',
+  'Dry Cleaning',
+  "Men's Grooming",
+  "Women's Salon",
+  'Gardening',
+  'Aluminium & Glass',
+  'Interior Repair',
+  'Pet Care',
+  'Vehicle Care',
+  'Hiring',
+  'General',
+] as const;
+
+const present = new Set(guides.map((g) => g.category).filter(Boolean) as string[]);
+const trendingCats = new Set(
+  guides.filter((g) => g.isTrending && g.category).map((g) => g.category as string)
+);
+
+/** Trending topics first, then preferred order — only categories that have guides. */
+const categories = [
+  ...CATEGORY_ORDER.filter((c) => present.has(c) && trendingCats.has(c)),
+  ...CATEGORY_ORDER.filter((c) => present.has(c) && !trendingCats.has(c)),
+  ...[...present].filter((c) => !(CATEGORY_ORDER as readonly string[]).includes(c)),
+];
+
+function catTone(cat: string) {
+  return cat
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+const meta = buildMeta({
+  title: 'Guides & Tips | Panun Kaergar',
+  description:
+    'Practical Kashmir home-service advice — plumbing, cleaning, hiring, and more. Search, browse by topic, or catch what’s new and trending.',
+  path: '/guides',
+});
+
+const listItems = guides.map((g) => ({
+  name: g.headline,
+  url: siteUrl(`/guides/${g.slug}`),
+  description: g.excerpt,
+}));
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Guides & tips', path: '/guides' },
+  ]),
+  itemListSchema(listItems, 'Panun Kaergar guides and tips'),
+].filter(Boolean);
+
+function coverSrc(coverImage: string | null | undefined) {
+  if (!coverImage) return null;
+  return coverImage.startsWith('/') ? coverImage : `/images/guides/${coverImage}`;
+}
+
+function formatDate(iso: string | null | undefined) {
+  if (!iso) return '';
+  try {
+    return new Date(iso).toLocaleDateString('en-IN', {
+      month: 'short',
+      year: 'numeric',
+    });
+  } catch {
+    return iso;
+  }
+}
+
+const postsJson = JSON.stringify(
+  guides.map((g) => ({
+    slug: g.slug,
+    title: g.headline,
+    excerpt: g.excerpt,
+    category: g.category,
+    minutes: g.readingMinutes ?? 5,
+    date: formatDate(g.publishedAt),
+    dateKey: g.publishedAt || '',
+    isNew: !!g.isNew,
+    isTrending: !!g.isTrending,
+    thumb:
+      coverSrc((g as { titleImage?: string | null }).titleImage) ||
+      coverSrc(g.coverImage),
+  }))
+);
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <section class="border-b border-slate-200/80 bg-gradient-to-b from-slate-50 to-white">
+    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:py-14">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-700">
+        Panun Kaergar · Kashmir
+      </p>
+      <h1 class="mt-3 font-figtree text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+        Guides <span class="font-semibold italic text-slate-500">&amp; tips</span>
+      </h1>
+      <p class="mt-4 max-w-xl text-lg leading-relaxed text-slate-600">
+        Practical answers before you book — story-led checks for the things that go wrong at home, not fluff.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:py-10">
+    <div class="relative w-full">
+      <svg
+        class="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="M20 20l-3.5-3.5" stroke-linecap="round"></path>
+      </svg>
+      <input
+        id="guide-search"
+        type="search"
+        placeholder="Search guides… drain, plumber, winter"
+        autocomplete="off"
+        aria-label="Search guides"
+        class="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand-300 focus:ring-2 focus:ring-brand-100"
+      />
+    </div>
+
+    <div class="mt-6 flex flex-col gap-3 border-b border-slate-200 pb-3">
+      <div class="cat-scroller min-w-0 w-full" id="cat-tabs">
+        <span class="cat-scroller-label">Topic</span>
+        <button type="button" class="cat-scroll-btn" id="cat-scroll-left" aria-label="Scroll topics left" disabled>
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12.5 4.5L7 10l5.5 5.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <div class="cat-scroller-track" id="cat-scroll-track" role="group" aria-label="Filter by category">
+          <button type="button" data-cat="all" class="guide-pill cat-all is-active">All</button>
+          {categories.map((cat) => (
+            <button type="button" data-cat={cat} class={`guide-pill cat-${catTone(cat)}`}>
+              {cat}
+            </button>
+          ))}
+        </div>
+        <button type="button" class="cat-scroll-btn" id="cat-scroll-right" aria-label="Scroll topics right">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M7.5 4.5L13 10l-5.5 5.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-wrap items-center gap-1" role="group" aria-label="Sort guides" id="sort-tabs">
+        <span class="mr-2 text-[11px] font-semibold uppercase tracking-[0.1em] text-slate-500">Show</span>
+        <button type="button" data-sort="all" class="guide-tab is-active">All</button>
+        <button type="button" data-sort="new" class="guide-tab">New</button>
+        <button type="button" data-sort="trending" class="guide-tab">Trending</button>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-wrap items-baseline justify-between gap-2">
+      <h2 id="list-heading" class="font-figtree text-xl font-bold text-slate-900">All guides</h2>
+      <p id="count-label" class="text-sm font-semibold text-slate-500">{guides.length} guides</p>
+    </div>
+
+    <div id="guide-sections" class="mt-4"></div>
+    <p id="guide-empty" class="mt-8 hidden rounded-xl border border-dashed border-slate-200 bg-slate-50 px-6 py-12 text-center text-slate-500">
+      <strong class="mb-1 block text-slate-900">No guides match</strong>
+      Try another search, topic, or sort.
+    </p>
+  </section>
+</PageLayout>
+
+<style>
+  .guide-tab {
+    position: relative;
+    flex: 0 0 auto;
+    border: 0;
+    background: transparent;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .guide-tab:hover {
+    color: #202048;
+  }
+  .guide-tab.is-active {
+    color: #202048;
+  }
+  .guide-tab.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: 0;
+    height: 2px;
+    background: #e8b818;
+  }
+  /* Global: cards are rendered via JS and lack Astro scope attrs */
+  :global(.guide-pill) {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    padding: 0.125rem 0.375rem;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.25;
+    white-space: nowrap;
+    cursor: default;
+  }
+  :global(button.guide-pill) {
+    cursor: pointer;
+  }
+  :global(button.guide-pill.is-active) {
+    box-shadow: inset 0 0 0 1px currentColor;
+  }
+  :global(.guide-pill.cat-all) {
+    border-color: rgb(226 232 240 / 0.9);
+    background: #f8fafc;
+    color: #334155;
+  }
+  :global(.guide-pill.cat-plumbing) {
+    border-color: rgb(125 211 252 / 0.7);
+    background: #f0f9ff;
+    color: #0369a1;
+  }
+  :global(.guide-pill.cat-electrical) {
+    border-color: rgb(252 211 77 / 0.7);
+    background: #fffbeb;
+    color: #b45309;
+  }
+  :global(.guide-pill.cat-home-appliances) {
+    border-color: rgb(165 180 252 / 0.7);
+    background: #eef2ff;
+    color: #4338ca;
+  }
+  :global(.guide-pill.cat-pest-control) {
+    border-color: rgb(190 242 100 / 0.7);
+    background: #f7fee7;
+    color: #4d7c0f;
+  }
+  :global(.guide-pill.cat-cleaning) {
+    border-color: rgb(94 234 212 / 0.7);
+    background: #f0fdfa;
+    color: #0f766e;
+  }
+  :global(.guide-pill.cat-painting) {
+    border-color: rgb(249 168 212 / 0.7);
+    background: #fdf2f8;
+    color: #be185d;
+  }
+  :global(.guide-pill.cat-carpentry) {
+    border-color: rgb(253 186 116 / 0.7);
+    background: #fff7ed;
+    color: #c2410c;
+  }
+  :global(.guide-pill.cat-masonry) {
+    border-color: rgb(214 211 209 / 0.9);
+    background: #fafaf9;
+    color: #57534e;
+  }
+  :global(.guide-pill.cat-dry-cleaning) {
+    border-color: rgb(196 181 253 / 0.7);
+    background: #f5f3ff;
+    color: #6d28d9;
+  }
+  :global(.guide-pill.cat-men-s-grooming) {
+    border-color: rgb(148 163 184 / 0.8);
+    background: #f1f5f9;
+    color: #1e293b;
+  }
+  :global(.guide-pill.cat-women-s-salon) {
+    border-color: rgb(240 171 252 / 0.7);
+    background: #fdf4ff;
+    color: #a21caf;
+  }
+  :global(.guide-pill.cat-gardening) {
+    border-color: rgb(134 239 172 / 0.7);
+    background: #f0fdf4;
+    color: #15803d;
+  }
+  :global(.guide-pill.cat-aluminium-and-glass) {
+    border-color: rgb(103 232 249 / 0.7);
+    background: #ecfeff;
+    color: #0e7490;
+  }
+  :global(.guide-pill.cat-interior-repair) {
+    border-color: rgb(253 186 116 / 0.75);
+    background: #fffbeb;
+    color: #9a3412;
+  }
+  :global(.guide-pill.cat-pet-care) {
+    border-color: rgb(252 165 165 / 0.7);
+    background: #fef2f2;
+    color: #b91c1c;
+  }
+  :global(.guide-pill.cat-vehicle-care) {
+    border-color: rgb(147 197 253 / 0.7);
+    background: #eff6ff;
+    color: #1d4ed8;
+  }
+  :global(.guide-pill.cat-hiring) {
+    border-color: rgb(252 211 77 / 0.75);
+    background: #fffbeb;
+    color: #92400e;
+  }
+  :global(.guide-pill.cat-general) {
+    border-color: rgb(203 213 225 / 0.9);
+    background: #f8fafc;
+    color: #475569;
+  }
+  .cat-scroller {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+  .cat-scroller-label {
+    flex: 0 0 auto;
+    margin-right: 0.15rem;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+  .cat-scroller-track {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    padding: 0.1rem 0;
+  }
+  .cat-scroller-track::-webkit-scrollbar {
+    display: none;
+  }
+  .cat-scroll-btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
+    background: #fff;
+    color: #202048;
+    cursor: pointer;
+  }
+  .cat-scroll-btn svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  .cat-scroll-btn:hover:not(:disabled) {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+  }
+  .cat-scroll-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+  .cat-scroller:not(.is-scrollable) .cat-scroll-btn {
+    display: none;
+  }
+</style>
+
+<script define:vars={{ postsJson, categoryOrder: categories }}>
+  const posts = JSON.parse(postsJson);
+  const state = { sort: 'all', category: 'all', q: '' };
+  const sectionsEl = document.getElementById('guide-sections');
+  const emptyEl = document.getElementById('guide-empty');
+  const countLabel = document.getElementById('count-label');
+  const listHeading = document.getElementById('list-heading');
+
+  function catTone(cat) {
+    return String(cat || '')
+      .toLowerCase()
+      .replace(/&/g, 'and')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '') || 'general';
+  }
+
+  function matchesQuery(p, q) {
+    if (!q) return true;
+    return `${p.title} ${p.excerpt} ${p.category}`.toLowerCase().includes(q);
+  }
+
+  function filtered() {
+    let list = posts.filter((p) => matchesQuery(p, state.q));
+    if (state.category !== 'all') list = list.filter((p) => p.category === state.category);
+    if (state.sort === 'new') {
+      list = list.filter((p) => p.isNew).sort((a, b) => b.dateKey.localeCompare(a.dateKey));
+    } else if (state.sort === 'trending') {
+      list = list.filter((p) => p.isTrending);
+    } else {
+      list = [...list].sort((a, b) => b.dateKey.localeCompare(a.dateKey));
+    }
+    return list;
+  }
+
+  function badges(p) {
+    let html = '';
+    if (p.category) {
+      html += `<span class="guide-pill cat-${catTone(p.category)}">${p.category}</span>`;
+    }
+    if (p.isNew) {
+      html +=
+        '<span class="rounded border border-amber-300/60 bg-amber-50 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-amber-800">New</span>';
+    }
+    if (p.isTrending) {
+      html +=
+        '<span class="rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-700">Trending</span>';
+    }
+    return html;
+  }
+
+  function rowHTML(p) {
+    const thumb = p.thumb
+      ? `<img src="${p.thumb}" width="96" height="96" alt="" class="h-24 w-24 object-cover bg-[#faf8f4]" loading="lazy" />`
+      : `<div class="flex h-24 w-24 items-center justify-center bg-brand-950 text-xs font-semibold text-white/70">${p.category || ''}</div>`;
+    return `<a href="/guides/${p.slug}" class="guide-row grid grid-cols-[96px_1fr] items-center gap-3.5 border-b border-slate-200 py-4 no-underline transition hover:bg-slate-50/80 sm:grid-cols-[96px_1fr_auto] sm:gap-5">
+      ${thumb}
+      <div class="min-w-0">
+        <div class="mb-1.5 flex flex-wrap items-center gap-1.5">${badges(p)}</div>
+        <h3 class="font-figtree text-base font-bold tracking-tight text-slate-900 sm:text-lg">${p.title}</h3>
+        <p class="mt-1 line-clamp-2 text-sm text-slate-500">${p.excerpt}</p>
+      </div>
+      <div class="col-start-2 text-left text-xs font-semibold text-slate-500 sm:col-start-auto sm:text-right">
+        ${p.date}<span class="mt-0 sm:mt-1 sm:block"> · ${p.minutes} min</span>
+      </div>
+    </a>`;
+  }
+
+  function headingText() {
+    const sortLabel = { all: 'All guides', new: 'New guides', trending: 'Trending guides' }[state.sort];
+    if (state.category !== 'all') return `${sortLabel} · ${state.category}`;
+    if (state.q) return `Results for “${state.q}”`;
+    return sortLabel;
+  }
+
+  function render() {
+    const list = filtered();
+    listHeading.textContent = headingText();
+    countLabel.textContent = `${list.length} guide${list.length === 1 ? '' : 's'}`;
+    emptyEl.classList.toggle('hidden', list.length > 0);
+    sectionsEl.innerHTML = '';
+    if (!list.length) return;
+
+    if (state.category === 'all' && state.sort === 'all' && !state.q) {
+      categoryOrder.forEach((cat) => {
+        const items = list.filter((p) => p.category === cat);
+        if (!items.length) return;
+        const block = document.createElement('section');
+        block.className = 'mb-8';
+        block.innerHTML = `
+          <div class="mb-1 flex items-baseline justify-between gap-3 border-b border-slate-200 pb-2.5">
+            <h3 class="font-figtree text-lg font-bold text-slate-900">${cat}</h3>
+            <span class="text-xs font-semibold text-slate-500">${items.length} guide${items.length === 1 ? '' : 's'}</span>
+          </div>
+          <div>${items.map(rowHTML).join('')}</div>`;
+        sectionsEl.appendChild(block);
+      });
+      return;
+    }
+
+    const block = document.createElement('section');
+    block.innerHTML = `<div>${list.map(rowHTML).join('')}</div>`;
+    sectionsEl.appendChild(block);
+  }
+
+  document.querySelectorAll('#sort-tabs .guide-tab').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#sort-tabs .guide-tab').forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      state.sort = btn.dataset.sort;
+      render();
+    });
+  });
+
+  document.querySelectorAll('#cat-tabs .guide-pill[data-cat]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#cat-tabs .guide-pill[data-cat]').forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      state.category = btn.dataset.cat;
+      btn.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'smooth' });
+      render();
+    });
+  });
+
+  const catScroller = document.getElementById('cat-tabs');
+  const catTrack = document.getElementById('cat-scroll-track');
+  const catLeft = document.getElementById('cat-scroll-left');
+  const catRight = document.getElementById('cat-scroll-right');
+
+  function updateCatScroll() {
+    if (!catScroller || !catTrack || !catLeft || !catRight) return;
+    const max = catTrack.scrollWidth - catTrack.clientWidth;
+    const scrollable = max > 2;
+    catScroller.classList.toggle('is-scrollable', scrollable);
+    catLeft.disabled = !scrollable || catTrack.scrollLeft <= 2;
+    catRight.disabled = !scrollable || catTrack.scrollLeft >= max - 2;
+  }
+
+  if (catTrack && catLeft && catRight) {
+    const step = () => Math.max(160, Math.floor(catTrack.clientWidth * 0.7));
+    catLeft.addEventListener('click', () => {
+      catTrack.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+    catRight.addEventListener('click', () => {
+      catTrack.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+    catTrack.addEventListener('scroll', updateCatScroll, { passive: true });
+    window.addEventListener('resize', updateCatScroll);
+    updateCatScroll();
+  }
+
+  document.getElementById('guide-search').addEventListener('input', (e) => {
+    state.q = e.target.value.trim().toLowerCase();
+    render();
+  });
+
+  render();
+</script>

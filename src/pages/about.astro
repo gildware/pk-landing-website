@@ -3,6 +3,7 @@ import PageLayout from '@/layouts/PageLayout.astro';
 import CategoryMarquee from '@/components/CategoryMarquee.astro';
 import BookingOptions from '@/components/BookingOptions.astro';
 import Icon from '@/components/Icon.astro';
+import EmailLink from '@/components/EmailLink.astro';
 import CtaBanner from '@/components/CtaBanner.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings, getServices } from '@/utils/reader';
@@ -646,10 +647,10 @@ const meta = buildMeta({
           <p class="text-sm font-semibold text-slate-500">Support team</p>
           <p class="mt-1 font-bold text-slate-900">Panun Kaergar</p>
         </div>
-        <a href={`mailto:${site.email}`} class="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-brand-300">
+        <EmailLink email={site.email} class="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-brand-300">
           <p class="text-sm font-semibold text-slate-500">Email</p>
           <p class="mt-1 font-bold text-brand-700">{site.email}</p>
-        </a>
+        </EmailLink>
         <a href={`tel:${site.phone}`} class="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-brand-300">
           <p class="text-sm font-semibold text-slate-500">Phone</p>
           <p class="mt-1 font-bold text-brand-700">{site.phone}</p>

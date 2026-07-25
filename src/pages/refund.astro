@@ -1,5 +1,6 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import EmailLink from '@/components/EmailLink.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings } from '@/utils/reader';
 
@@ -28,7 +29,7 @@ const meta = buildMeta({
     <h2>How to request a refund</h2>
     <p>
       Contact us with your booking details by phone at <a href={`tel:${site.phone}`}>{site.phone}</a>,
-      WhatsApp, or email at <a href={`mailto:${site.email}`}>{site.email}</a>. Our team will review
+      WhatsApp, or email at <EmailLink email={site.email} />. Our team will review
       your case and respond as soon as possible.
     </p>
     <h2>Processing time</h2>

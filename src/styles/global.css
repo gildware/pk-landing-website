@@ -295,3 +295,644 @@
     transform: translate(-12px, 12px) scale(0.94);
   }
 }
+
+/* Practical guides — matches blog-demo-blocked-drain article chrome */
+.guide-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: min(62vh, 560px);
+  display: grid;
+  align-items: end;
+  color: #fff;
+  background-color: #161632;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.guide-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(920px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 64px 0 48px;
+}
+.guide-eyebrow {
+  display: inline-block;
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ff9900;
+  margin-bottom: 16px;
+}
+.guide-hero h1 {
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(1.85rem, 4.4vw, 2.85rem);
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+  margin: 0 0 12px;
+  color: #fff;
+}
+.guide-hero-sub {
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 14px;
+  max-width: 34ch;
+}
+.guide-hero-lead {
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: clamp(0.98rem, 2vw, 1.1rem);
+  max-width: 42ch;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 24px;
+  line-height: 1.55;
+}
+.guide-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.68);
+}
+.guide-hero-meta strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.guide-wrap {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 32px 0 80px;
+  background:
+    radial-gradient(ellipse 90% 60% at 10% -10%, rgba(255, 153, 0, 0.08), transparent 55%),
+    linear-gradient(180deg, #ebe8e1 0%, #f3f1ec 28%, #faf8f4 100%);
+  max-width: none;
+  width: 100%;
+}
+.guide-wrap > .guide-breadcrumb,
+.guide-wrap > .guide-layout {
+  width: min(1100px, calc(100% - 40px));
+  margin-left: auto;
+  margin-right: auto;
+}
+.guide-breadcrumb {
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: 0.88rem;
+  color: #5c5f72;
+  margin-bottom: 22px;
+}
+.guide-breadcrumb a {
+  color: #202048;
+  font-weight: 600;
+  text-decoration: none;
+}
+.guide-breadcrumb a:hover {
+  color: #ff9900;
+}
+.guide-breadcrumb span {
+  margin: 0 0.4rem;
+  opacity: 0.5;
+}
+
+.guide-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 40px;
+  align-items: start;
+}
+.guide-main {
+  min-width: 0;
+  max-width: 720px;
+}
+
+.guide-cover-card {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 14px;
+  align-items: center;
+  margin: 0 0 1.6rem;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid rgba(32, 32, 72, 0.12);
+}
+.guide-cover-card img {
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  display: block;
+}
+.guide-cover-card p {
+  margin: 0;
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: #5c5f72;
+  line-height: 1.45;
+}
+.guide-cover-card strong {
+  display: block;
+  color: #202048;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.guide-article,
+.guide-body {
+  font-family: Manrope, system-ui, sans-serif;
+  color: #2a2c38;
+  line-height: 1.65;
+}
+.guide-article .scene,
+.guide-body .scene {
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  line-height: 1.45;
+  color: #202048;
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.015em;
+}
+.guide-article p,
+.guide-body p {
+  font-size: 1.05rem;
+  margin: 0 0 1.1rem;
+}
+.guide-article h2,
+.guide-body h2 {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: #202048;
+  margin: 2.3rem 0 0.85rem;
+  line-height: 1.25;
+  scroll-margin-top: 88px;
+}
+.guide-article h3,
+.guide-body h3 {
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #202048;
+  margin: 1.5rem 0 0.5rem;
+  scroll-margin-top: 88px;
+}
+.guide-article ul,
+.guide-article ol,
+.guide-body ul,
+.guide-body ol {
+  margin: 0 0 1.2rem 1.15rem;
+}
+.guide-article li,
+.guide-body li {
+  margin-bottom: 0.4rem;
+  font-size: 1.02rem;
+}
+
+.guide-article .answer-box,
+.guide-body .answer-box {
+  margin: 0 0 1.6rem;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+  border: 1px solid rgba(32, 32, 72, 0.12);
+  border-left: 3px solid #202048;
+}
+.guide-article .answer-box .label,
+.guide-body .answer-box .label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #202048;
+  margin-bottom: 0.4rem;
+}
+.guide-article .answer-box p,
+.guide-body .answer-box p {
+  margin-bottom: 0;
+  font-size: 1.02rem;
+}
+
+.guide-article .toc,
+.guide-body .toc {
+  margin: 0 0 1.8rem;
+  padding: 1.1rem 1.2rem;
+  background: rgba(32, 32, 72, 0.04);
+  border: 1px solid rgba(32, 32, 72, 0.12);
+}
+.guide-article .toc .label,
+.guide-body .toc .label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #5c5f72;
+  margin-bottom: 0.65rem;
+}
+.guide-article .toc ol,
+.guide-body .toc ol {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+.guide-article .toc a,
+.guide-body .toc a {
+  color: #202048;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.guide-article .toc a:hover,
+.guide-body .toc a:hover {
+  color: #ff9900;
+}
+.guide-article .toc li,
+.guide-body .toc li {
+  margin-bottom: 0.35rem;
+}
+
+.guide-article .table-wrap,
+.guide-body .table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0 0 1.4rem;
+  border: 1px solid rgba(32, 32, 72, 0.12);
+  background: #fff;
+}
+.guide-article table,
+.guide-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  min-width: 520px;
+}
+.guide-article th,
+.guide-article td,
+.guide-body th,
+.guide-body td {
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+  border-bottom: 1px solid rgba(32, 32, 72, 0.12);
+  vertical-align: top;
+}
+.guide-article th,
+.guide-body th {
+  background: #202048;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.guide-article tr:last-child td,
+.guide-body tr:last-child td {
+  border-bottom: 0;
+}
+
+.guide-article .callout,
+.guide-body .callout {
+  margin: 1.45rem 0;
+  padding: 1.05rem 1.15rem;
+  border-radius: 4px;
+  background: #fff;
+  border: 1px solid rgba(32, 32, 72, 0.12);
+}
+.guide-article .callout.warning,
+.guide-body .callout.warning {
+  border-color: rgba(139, 58, 26, 0.25);
+  background: linear-gradient(135deg, #fff8f3, #fff);
+}
+.guide-article .callout.pro,
+.guide-body .callout.pro {
+  border-color: rgba(31, 92, 69, 0.22);
+  background: linear-gradient(135deg, #f3faf6, #fff);
+}
+.guide-article .callout .label,
+.guide-body .callout .label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+.guide-article .callout.warning .label,
+.guide-body .callout.warning .label {
+  color: #8b3a1a;
+}
+.guide-article .callout.pro .label,
+.guide-body .callout.pro .label {
+  color: #1f5c45;
+}
+.guide-article .callout p:last-child,
+.guide-body .callout p:last-child {
+  margin-bottom: 0;
+}
+
+.guide-article .method,
+.guide-body .method {
+  margin: 0 0 1.35rem;
+  padding: 1.15rem 1.2rem 1rem;
+  background: #fff;
+  border: 1px solid rgba(32, 32, 72, 0.12);
+  border-top: 3px solid #202048;
+}
+.guide-article .method .method-num,
+.guide-body .method .method-num {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ff9900;
+  margin-bottom: 0.35rem;
+}
+.guide-article .method.dont,
+.guide-body .method.dont {
+  border-top-color: #8b3a1a;
+}
+.guide-article .method.dont .method-num,
+.guide-body .method.dont .method-num {
+  color: #8b3a1a;
+}
+.guide-article .method h3,
+.guide-body .method h3 {
+  margin-top: 0;
+}
+.guide-article .method .best-for,
+.guide-body .method .best-for {
+  font-size: 0.9rem;
+  color: #5c5f72;
+  margin-bottom: 0.7rem;
+}
+
+.guide-article .figure,
+.guide-body .figure {
+  margin: 1.35rem 0 1.55rem;
+  background: #fff;
+  border: 1px solid rgba(32, 32, 72, 0.12);
+  overflow: hidden;
+}
+.guide-article .figure img,
+.guide-body .figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.guide-article .figure figcaption,
+.guide-body .figure figcaption {
+  padding: 0.7rem 0.95rem 0.85rem;
+  font-size: 0.86rem;
+  color: #5c5f72;
+  border-top: 1px solid rgba(32, 32, 72, 0.12);
+  line-height: 1.45;
+}
+.guide-article .figure figcaption strong,
+.guide-body .figure figcaption strong {
+  color: #202048;
+  font-weight: 600;
+}
+
+.guide-article .faq details,
+.guide-body .faq details {
+  border-bottom: 1px solid rgba(32, 32, 72, 0.12);
+  padding: 0.85rem 0;
+}
+.guide-article .faq details:first-child,
+.guide-body .faq details:first-child {
+  border-top: 1px solid rgba(32, 32, 72, 0.12);
+}
+.guide-article .faq summary,
+.guide-body .faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #202048;
+  list-style: none;
+  font-size: 1.02rem;
+}
+.guide-article .faq summary::-webkit-details-marker,
+.guide-body .faq summary::-webkit-details-marker {
+  display: none;
+}
+.guide-article .faq summary::before,
+.guide-body .faq summary::before {
+  content: '+';
+  display: inline-block;
+  width: 1.2rem;
+  color: #ff9900;
+  font-weight: 700;
+}
+.guide-article .faq details[open] summary::before,
+.guide-body .faq details[open] summary::before {
+  content: '–';
+}
+.guide-article .faq details p,
+.guide-body .faq details p {
+  margin: 0.65rem 0 0.2rem;
+  padding-left: 1.2rem;
+}
+.guide-article .review,
+.guide-body .review {
+  margin: 1.4rem 0;
+  padding: 1.1rem 1.2rem;
+  background: #fff;
+  border: 1px solid rgba(32, 32, 72, 0.12);
+  border-left: 3px solid #ff9900;
+  font-size: 1.02rem;
+}
+.guide-article .review cite,
+.guide-body .review cite {
+  display: block;
+  margin-top: 0.55rem;
+  font-style: normal;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #5c5f72;
+  letter-spacing: 0.02em;
+}
+
+.guide-sidebar {
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.guide-cta {
+  padding: 1.25rem 1.15rem;
+  background: linear-gradient(145deg, #202048 0%, #161632 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.guide-cta::before {
+  content: '';
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  right: -36px;
+  top: -48px;
+  border-radius: 50%;
+  background: rgba(255, 153, 0, 0.18);
+}
+.guide-cta h2 {
+  position: relative;
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.15rem;
+  margin: 0 0 0.45rem;
+  color: #fff;
+}
+.guide-cta p {
+  position: relative;
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+.guide-cta-actions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.guide-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1rem;
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.guide-btn-primary {
+  background: #ff9900;
+  color: #161632;
+}
+.guide-btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+.guide-side-block {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(32, 32, 72, 0.12);
+  padding: 1.1rem 1rem;
+}
+.guide-side-block h2 {
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.1rem;
+  color: #202048;
+  margin: 0 0 0.35rem;
+}
+.guide-side-block .side-lead {
+  color: #5c5f72;
+  font-size: 0.82rem;
+  margin: 0 0 0.9rem;
+  line-height: 1.45;
+}
+.guide-related {
+  display: grid;
+  gap: 4px;
+}
+.guide-related a {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 0.45rem;
+  margin: 0 -0.45rem;
+  text-decoration: none;
+  color: #202048;
+}
+.guide-related a:hover {
+  background: rgba(255, 153, 0, 0.08);
+}
+.guide-related img,
+.guide-related .ph {
+  width: 56px;
+  height: 42px;
+  object-fit: cover;
+  display: block;
+  background: #161632;
+}
+.guide-related .ph {
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.guide-related .cat {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #ff9900;
+}
+.guide-related .ttl {
+  display: block;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 1px;
+  font-size: 0.84rem;
+}
+
+.guide-pager {
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(32, 32, 72, 0.12);
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+}
+.guide-pager a {
+  display: block;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(32, 32, 72, 0.12);
+  background: #fff;
+  text-decoration: none;
+  color: #202048;
+}
+.guide-pager a.next {
+  text-align: right;
+}
+.guide-pager .lbl {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #5c5f72;
+}
+.guide-pager .ttl {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: Fraunces, Georgia, serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .guide-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .guide-sidebar {
+    position: static;
+  }
+  .guide-main {
+    max-width: none;
+  }
+  .guide-pager {
+    grid-template-columns: 1fr;
+  }
+  .guide-pager a.next {
+    text-align: left;
+  }
+}

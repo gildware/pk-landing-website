@@ -16,13 +16,13 @@ export const NEAR_ME_LINKS: readonly NearMeLink[] = [
     slug: 'plumber-near-me',
     href: '/near-me/plumber-near-me',
     label: 'Plumber near me',
-    serviceSlugs: ['plumbing', 'plumbing-installs', 'plumbing-repairs'],
+    serviceSlugs: ['plumbing', 'plumbing-installs', 'plumbing-repairs', 'plumbing-inspection'],
   },
   {
     slug: 'carpenter-near-me',
     href: '/near-me/carpenter-near-me',
     label: 'Carpenter near me',
-    serviceSlugs: ['carpentry', 'carpentry-installation', 'carpentry-repairs'],
+    serviceSlugs: ['carpentry', 'carpentry-installation', 'carpentry-making', 'carpentry-repairs', 'roofing-works'],
   },
   {
     slug: 'electrician-near-me',

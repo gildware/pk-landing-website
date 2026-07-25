@@ -1,0 +1,22 @@
+name: book-kaergar
+shortName: Book Kaergar
+icon: ⏱️
+description: Hire verified Panun Kaergar professionals by the hour, half day, or full day — home trades, building & site help, home care, and beauty artists across Kashmir.
+seoTitle: Book Kaergar | Hire Pros by the Hour | Panun Kaergar
+seoDescription: Book carpenters, electricians, plumbers, painters, masons, labour, welders, gardeners, cleaners, makeup and mehndi artists by time across Kashmir.
+serviceList:
+  - Home Trades
+  - Building & Site
+  - Home Care
+  - Beauty Artists
+faqs:
+  - question: What is Book Kaergar?
+    answer: Book Kaergar lets you hire a verified professional for a fixed time package — 1 hour, half day (about 4 hours), or full day (about 8 hours) — instead of only booking a single named job.
+  - question: Are materials included?
+    answer: No. Time packages cover professional labour. Materials, spare parts, and consumables are quoted separately if needed.
+  - question: How do I book?
+    answer: Call us, WhatsApp us, use the website booking form, or book in the Panun Kaergar app. Support details are also in the app profile and contact sections.
+  - question: Which professionals can I book?
+    answer: Home Trades (carpenter, electrician, plumber, painter), Building & Site (mason, labour, welder/fabricator), Home Care (gardener, cleaner), and Beauty Artists (makeup, mehndi).
+published: true
+sortOrder: 1

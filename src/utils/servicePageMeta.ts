@@ -20,35 +20,66 @@ function subIcon(slug: string, file: string) {
 }
 
 export const servicePageMeta: Record<string, ServicePageMeta> = {
+  'masonry-installation': {
+    parentSlug: 'masonry',
+    liveSubSlugs: ['masonry-installation'],
+    icon: subIcon('masonry-installs', '2026-07-08-6a4e2c0dd2475.webp'),
+  },
+  'masonry-repair': {
+    parentSlug: 'masonry',
+    liveSubSlugs: ['masonry-repair'],
+    icon: subIcon('masonry-repairs', '2026-07-08-6a4e2c1434738.webp'),
+  },
+  'masonry-inspection': {
+    parentSlug: 'masonry',
+    liveSubSlugs: ['masonry-inspection'],
+    icon: subIcon('masonry-repairs', '2026-07-08-6a4e2c1434738.webp'),
+  },
+  // Legacy page slugs kept as aliases until redirects are wired
   'masonry-installs': {
     parentSlug: 'masonry',
-    liveSubSlugs: ['masonry-installs'],
+    liveSubSlugs: ['masonry-installation'],
     icon: subIcon('masonry-installs', '2026-07-08-6a4e2c0dd2475.webp'),
   },
   'masonry-repairs': {
     parentSlug: 'masonry',
-    liveSubSlugs: ['masonry-repairs'],
+    liveSubSlugs: ['masonry-repair'],
     icon: subIcon('masonry-repairs', '2026-07-08-6a4e2c1434738.webp'),
   },
   'carpentry-installation': {
     parentSlug: 'carpentry',
     liveSubSlugs: ['carpentry-installation'],
-    icon: subIcon('carpentry-installation', '2026-07-08-6a4e20e363690.webp'),
+    icon: subIcon('carpentry-installation', '2026-07-23-6a617fcd90ccb.webp'),
+  },
+  'carpentry-making': {
+    parentSlug: 'carpentry',
+    liveSubSlugs: ['carpentry-making'],
+    icon: subIcon('carpentry-making', '2026-07-23-6a617fd0738ca.webp'),
   },
   'carpentry-repairs': {
     parentSlug: 'carpentry',
     liveSubSlugs: ['carpentry-repairs'],
-    icon: subIcon('carpentry-repairs', '2026-07-08-6a4e20ebdfb4c.webp'),
+    icon: subIcon('carpentry-repairs', '2026-07-23-6a617fd61088f.webp'),
+  },
+  'roofing-works': {
+    parentSlug: 'carpentry',
+    liveSubSlugs: ['roofing-works'],
+    icon: subIcon('roofing-works', '2026-07-23-6a617fd9e7327.webp'),
   },
   'plumbing-installs': {
     parentSlug: 'plumbing',
-    liveSubSlugs: ['plumbing-installs'],
-    icon: subIcon('plumbing-installs', '2026-07-08-6a4e2c3a3a5ab.webp'),
+    liveSubSlugs: ['plumbing-installation'],
+    icon: subIcon('plumbing-installation', '2026-07-24-6a6269ed3bcd2.webp'),
   },
   'plumbing-repairs': {
     parentSlug: 'plumbing',
-    // No dedicated admin sub — curated repair-focused page
-    icon: subIcon('plumbing-fixtures', '2026-07-08-6a4e2c3455733.webp'),
+    liveSubSlugs: ['plumbing-repair'],
+    icon: subIcon('plumbing-repair', '2026-07-24-6a6269f058788.webp'),
+  },
+  'plumbing-inspection': {
+    parentSlug: 'plumbing',
+    liveSubSlugs: ['plumbing-inspection'],
+    icon: subIcon('plumbing-inspection', '2026-07-24-6a6269ea112eb.webp'),
   },
   'electrical-installation': {
     parentSlug: 'electrician',
@@ -122,6 +153,26 @@ export const servicePageMeta: Record<string, ServicePageMeta> = {
     parentSlug: 'pet-grooming',
     liveSubSlugs: ['cat-grooming'],
     icon: subIcon('cat-grooming', '2026-07-12-6a528e21de347.webp'),
+  },
+  'home-trades': {
+    parentSlug: 'book-kaergar',
+    liveSubSlugs: ['home-trades'],
+    icon: subIcon('home-trades', '2026-07-23-6a61fc00195ed.webp'),
+  },
+  'building-site': {
+    parentSlug: 'book-kaergar',
+    liveSubSlugs: ['building-site'],
+    icon: subIcon('building-site', '2026-07-23-6a61fbeebac93.webp'),
+  },
+  'home-care': {
+    parentSlug: 'book-kaergar',
+    liveSubSlugs: ['home-care'],
+    icon: subIcon('home-care', '2026-07-23-6a61fbf67d0b7.webp'),
+  },
+  'beauty-artists': {
+    parentSlug: 'book-kaergar',
+    liveSubSlugs: ['beauty-artists'],
+    icon: subIcon('beauty-artists', '2026-07-23-6a61fbe667b92.webp'),
   },
 };
 

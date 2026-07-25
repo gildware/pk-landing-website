@@ -358,6 +358,56 @@ export function itemListSchema(
   };
 }
 
+export function blogPostingSchema(guide: {
+  headline: string;
+  excerpt: string;
+  slug: string;
+  publishedAt?: string | null;
+  category?: string;
+  coverImage?: string | null;
+  readingMinutes?: number | null;
+}) {
+  const image = guide.coverImage
+    ? siteUrl(
+        guide.coverImage.startsWith('/')
+          ? guide.coverImage
+          : `/images/guides/${guide.coverImage}`
+      )
+    : undefined;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: guide.headline,
+    description: guide.excerpt,
+    url: siteUrl(`/guides/${guide.slug}`),
+    datePublished: guide.publishedAt || undefined,
+    articleSection: guide.category || undefined,
+    ...(image ? { image } : {}),
+    ...(guide.readingMinutes
+      ? { timeRequired: `PT${guide.readingMinutes}M` }
+      : {}),
+    author: {
+      '@type': 'Organization',
+      name: 'Panun Kaergar',
+      url: siteUrl('/'),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Panun Kaergar',
+      url: siteUrl('/'),
+      logo: {
+        '@type': 'ImageObject',
+        url: siteUrl('/logo.webp'),
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': siteUrl(`/guides/${guide.slug}`),
+    },
+  };
+}
+
 /** LocalBusiness + Place markup for a district service-area page. */
 export function areaLocalBusinessSchema(
   site: SiteForSchema,

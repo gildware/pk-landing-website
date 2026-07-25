@@ -1,5 +1,6 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import EmailLink from '@/components/EmailLink.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings } from '@/utils/reader';
 
@@ -24,7 +25,7 @@ const meta = buildMeta({
       <li>Open your booking in the Panun Kaergar customer app, or</li>
       <li>
         Call us at <a href={`tel:${site.phone}`}>{site.phone}</a>, WhatsApp us, or email
-        <a href={`mailto:${site.email}`}>{site.email}</a> with your booking reference
+        <EmailLink email={site.email} /> with your booking reference
       </li>
     </ul>
     <h2>Partner arrival</h2>

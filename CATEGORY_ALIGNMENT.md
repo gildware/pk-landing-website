@@ -22,6 +22,7 @@ Live admin parents (queried from production MySQL):
 | Pet Grooming | `pet-grooming` | `pet-grooming` |
 | Interior Decor | `interior-decor` | `interior-decor` |
 | Vehicle Services | `vehicle-services` | `vehicle-services` |
+| Book Kaergar | `book-kaergar` | `book-kaergar` |
 
 Subcategory pills (admin `position = 2`) live in `src/utils/categoryCatalog.ts` → `categorySubcategories`. Keep them in sync with live admin only.
 

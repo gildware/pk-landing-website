@@ -35,13 +35,12 @@ const loop = [...items, ...items];
           <a href={`/services/${cat.slug}`} class="category-marquee__item" tabindex="-1">
             <img
               src={cat.icon}
-              alt=""
+              alt={`${cat.shortName} icon`}
               width="96"
               height="96"
               class="category-marquee__icon"
               loading="lazy"
               decoding="async"
-              aria-hidden="true"
             />
             <span>{cat.shortName}</span>
           </a>

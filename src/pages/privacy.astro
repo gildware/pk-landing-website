@@ -1,5 +1,6 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import EmailLink from '@/components/EmailLink.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings } from '@/utils/reader';
 
@@ -49,7 +50,7 @@ const meta = buildMeta({
     </p>
     <h2>Contact</h2>
     <p>
-      For privacy-related questions, email <a href={`mailto:${site.email}`}>{site.email}</a> or
+      For privacy-related questions, email <EmailLink email={site.email} /> or
       <a href="/contact">contact our support team</a>.
     </p>
   </section>

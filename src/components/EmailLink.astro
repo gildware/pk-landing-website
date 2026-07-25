@@ -1,0 +1,15 @@
+---
+/**
+ * Mailto link wrapped so Cloudflare Email Obfuscation does not rewrite the href
+ * to /cdn-cgi/l/email-protection (that path 404s for crawlers like Bing).
+ * @see https://developers.cloudflare.com/waf/tools/scrape-shield/email-address-obfuscation/
+ */
+interface Props {
+  email: string;
+  class?: string;
+}
+
+const { email, class: className } = Astro.props;
+---
+
+<!--email_off--><a href={`mailto:${email}`} class={className}><slot>{email}</slot></a><!--/email_off-->

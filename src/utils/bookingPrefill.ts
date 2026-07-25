@@ -30,9 +30,9 @@ const BOOK_CTA_NOUN: Record<string, string> = {
   'appliance-repair': 'Appliance Repair',
   'vehicle-services': 'Vehicle Services',
   'car-wash-detailing': 'Car Wash',
-  'car-repair-maintenance': 'Car Repair',
-  'bike-scooter-service': 'Bike Service',
-  'vehicle-repair-maintenance': 'Vehicle Repair',
+  'car-repair-maintenance': 'Mechanic',
+  'bike-scooter-service': 'Bike Mechanic',
+  'vehicle-repair-maintenance': 'Mechanic',
 
   // Venue / category names — add “Services” so CTAs aren’t ambiguous
   'mens-salon': "Men's Salon Services",
@@ -45,9 +45,12 @@ const BOOK_CTA_NOUN: Record<string, string> = {
 
   // Focused subcategory pages — already service phrases
   'carpentry-installation': 'Carpentry Installation',
+  'carpentry-making': 'Carpentry Making',
   'carpentry-repairs': 'Carpentry Repairs',
-  'plumbing-installs': 'Plumbing Installs',
-  'plumbing-repairs': 'Plumbing Repairs',
+  'roofing-works': 'Roofing Works',
+  'plumbing-installs': 'Plumbing Installation',
+  'plumbing-repairs': 'Plumbing Repair',
+  'plumbing-inspection': 'Plumbing Inspection',
   'electrical-installation': 'Electrical Installation',
   'electrical-repairs': 'Electrical Repairs',
   'masonry-installs': 'Masonry Installs',
@@ -82,9 +85,12 @@ const PARENT_FALLBACK: Record<string, string> = {
 const SPECIALTY_MAP: Record<string, string> = {
   'appliance-repair': 'Appliance Repair',
   'carpentry-installation': 'Carpentry Installation',
+  'carpentry-making': 'Carpentry Making',
   'carpentry-repairs': 'Carpentry Repairs',
-  'plumbing-installs': 'Plumbing Installs',
-  'plumbing-repairs': 'Plumbing Repairs',
+  'roofing-works': 'Roofing Works',
+  'plumbing-installs': 'Plumbing Installation',
+  'plumbing-repairs': 'Plumbing Repair',
+  'plumbing-inspection': 'Plumbing Inspection',
   'electrical-installation': 'Electrical Installation',
   'electrical-repairs': 'Electrical Repairs',
   'masonry-installs': 'Masonry Installs',

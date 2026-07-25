@@ -128,8 +128,7 @@ const relatedNearMe = nearMeLinksForService(service.slug);
 const primaryNearMe = relatedNearMe[0] ?? null;
 
 const pageTitle =
-  custom?.seoTitle ||
-  `${service.shortName} in ${area.displayName} | Book Verified Pros | Panun Kaergar`;
+  custom?.seoTitle || `${service.shortName} in ${area.displayName} | Panun Kaergar`;
 const pageDescription =
   custom?.seoDescription ||
   `Book ${service.shortName.toLowerCase()} in ${area.displayName}${

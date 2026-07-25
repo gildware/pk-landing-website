@@ -62,6 +62,7 @@ export function buildLlmsTxt(
   lines.push(
     '',
     '## Help & company',
+    `- [Guides & tips](${siteUrl('/guides')}): Practical home-service advice for Kashmir homes.`,
     `- [FAQ](${siteUrl('/faq')}): Common questions about booking and partners.`,
     `- [Become a partner](${siteUrl('/become-a-partner')}): Join as a verified service partner in Kashmir.`,
     '',

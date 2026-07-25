@@ -71,12 +71,11 @@ const count = Math.max(categories.length, 1);
                       <span class="category-stack__icon" aria-hidden="true">
                         <img
                           src={cat.icon}
-                          alt=""
+                          alt={`${cat.label} icon`}
                           width="96"
                           height="96"
                           loading="lazy"
                           decoding="async"
-                          aria-hidden="true"
                         />
                       </span>
                       <p class="category-stack__card-meta">{cat.meta}</p>
@@ -106,12 +105,11 @@ const count = Math.max(categories.length, 1);
                               <img
                                 class="category-stack__sub-icon"
                                 src={cat.icon}
-                                alt=""
+                                alt={`${sub.name} icon`}
                                 width="96"
                                 height="96"
                                 loading="lazy"
                                 decoding="async"
-                                aria-hidden="true"
                               />
                               <span>{sub.name}</span>
                             </li>

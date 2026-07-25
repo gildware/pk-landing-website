@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { siteUrl, getServices, getAllServices, getAreas, getNearMePages } from '@/utils/reader';
+import { siteUrl, getServices, getAllServices, getAreas, getNearMePages, getGuides } from '@/utils/reader';
 import { SERVICE_AREAS_PATH, areaPath } from '@/utils/areaPaths';
 
 const staticPaths = [
@@ -7,6 +7,7 @@ const staticPaths = [
   '/book-a-home-service',
   '/services',
   '/near-me',
+  '/guides',
   SERVICE_AREAS_PATH,
   '/about',
   '/contact',
@@ -26,6 +27,7 @@ export const GET: APIRoute = async () => {
   const allServicePages = await getAllServices();
   const areas = await getAreas();
   const nearMePages = await getNearMePages();
+  const guides = await getGuides();
 
   const urls = [
     ...staticPaths,
@@ -33,6 +35,7 @@ export const GET: APIRoute = async () => {
     ...areas.map((a) => areaPath(a.slug)),
     ...services.flatMap((s) => areas.map((a) => `/services/${s.slug}/${a.slug}`)),
     ...nearMePages.map((p) => `/near-me/${p.slug}`),
+    ...guides.map((g) => `/guides/${g.slug}`),
   ];
 
   const today = new Date().toISOString().slice(0, 10);
@@ -43,7 +46,7 @@ ${urls
     (path) => `  <url>
     <loc>${siteUrl(path)}</loc>
     <lastmod>${today}</lastmod>
-    <changefreq>${path.includes('/services/') || path.includes('/near-me/') ? 'weekly' : 'monthly'}</changefreq>
+    <changefreq>${path.includes('/services/') || path.includes('/near-me/') || path.includes('/guides/') ? 'weekly' : 'monthly'}</changefreq>
     <priority>${path === '/' ? '1.0' : path.split('/').length <= 2 ? '0.8' : '0.7'}</priority>
   </url>`
   )

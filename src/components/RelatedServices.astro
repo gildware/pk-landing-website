@@ -27,13 +27,12 @@ const related = services.filter((s) => s.slug !== excludeSlug).slice(0, 4);
                 <span class="icon-badge h-9 w-9">
                   <img
                     src={categoryIcon(s.slug)}
-                    alt=""
+                    alt={`${s.shortName} icon`}
                     width="96"
                     height="96"
                     class="h-[18px] w-[18px] object-contain"
                     loading="lazy"
                     decoding="async"
-                    aria-hidden="true"
                   />
                 </span>
                 {s.shortName}

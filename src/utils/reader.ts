@@ -1,14 +1,28 @@
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../keystatic.config';
 import { renderMarkdocHtml } from './markdoc';
 
 export const reader = createReader(process.cwd(), keystaticConfig);
 
+/** Prefer crafted article.html (demo-matching markup) over Markdoc when present. */
+async function loadGuideArticleHtml(slug: string): Promise<string | null> {
+  const filePath = path.join(process.cwd(), 'content/guides', slug, 'article.html');
+  try {
+    const html = await readFile(filePath, 'utf8');
+    return html.trim() || null;
+  } catch {
+    return null;
+  }
+}
+
 export type SiteSettings = Awaited<ReturnType<typeof getSiteSettings>>;
 export type ServiceEntry = Awaited<ReturnType<typeof getServices>>[number];
 export type AreaEntry = Awaited<ReturnType<typeof getAreas>>[number];
 export type ServiceAreaPage = Awaited<ReturnType<typeof getServiceAreaPages>>[number];
 export type NearMePage = Awaited<ReturnType<typeof getNearMePages>>[number];
+export type GuideEntry = Awaited<ReturnType<typeof getGuides>>[number];
 export type FaqEntry = Awaited<ReturnType<typeof getFaqs>>[number];
 
 export async function getSiteSettings() {
@@ -125,6 +139,35 @@ export async function getNearMePage(slug: string) {
   const entry = await reader.collections.nearMePages.read(slug);
   if (!entry || !entry.published) return null;
   const bodyHtml = await renderMarkdocHtml(() => entry.body());
+  return { slug, ...entry, bodyHtml };
+}
+
+export async function getGuides() {
+  const slugs = await reader.collections.guides.list();
+  const items = await Promise.all(
+    slugs.map(async (slug) => {
+      const entry = await reader.collections.guides.read(slug);
+      if (!entry) return null;
+      const articleHtml = await loadGuideArticleHtml(slug);
+      const bodyHtml = articleHtml ?? (await renderMarkdocHtml(() => entry.body()));
+      return { slug, ...entry, bodyHtml };
+    })
+  );
+  return items
+    .filter((item): item is NonNullable<typeof item> => item !== null && item.published)
+    .sort((a, b) => {
+      const dateA = a.publishedAt || '';
+      const dateB = b.publishedAt || '';
+      if (dateA !== dateB) return dateB.localeCompare(dateA);
+      return (a.sortOrder ?? 0) - (b.sortOrder ?? 0);
+    });
+}
+
+export async function getGuide(slug: string) {
+  const entry = await reader.collections.guides.read(slug);
+  if (!entry || !entry.published) return null;
+  const articleHtml = await loadGuideArticleHtml(slug);
+  const bodyHtml = articleHtml ?? (await renderMarkdocHtml(() => entry.body()));
   return { slug, ...entry, bodyHtml };
 }
 

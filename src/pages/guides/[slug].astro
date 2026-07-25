@@ -1,0 +1,212 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { buildMeta } from '@/utils/seo';
+import { getGuide, getGuides, siteUrl } from '@/utils/reader';
+import { blogPostingSchema, breadcrumbSchema } from '@/utils/schema';
+import { bookUrl, BOOK_PATH } from '@/utils/booking';
+import { bookCtaLabel, bookCtaText } from '@/utils/bookingPrefill';
+
+export async function getStaticPaths() {
+  const guides = await getGuides();
+  return guides.map((guide) => ({ params: { slug: guide.slug } }));
+}
+
+const { slug } = Astro.params;
+const guide = await getGuide(slug!);
+if (!guide) return Astro.redirect('/404');
+
+const allGuides = await getGuides();
+const idx = allGuides.findIndex((g) => g.slug === guide.slug);
+const prev = idx > 0 ? allGuides[idx - 1] : null;
+const next = idx >= 0 && idx < allGuides.length - 1 ? allGuides[idx + 1] : null;
+
+const relatedExplicit = (guide.relatedGuideSlugs || [])
+  .map((s) => allGuides.find((g) => g.slug === s))
+  .filter((g): g is (typeof allGuides)[number] => Boolean(g));
+const same = allGuides.filter((g) => g.slug !== guide.slug && g.category === guide.category);
+const other = allGuides.filter((g) => g.slug !== guide.slug && g.category !== guide.category);
+const related =
+  relatedExplicit.length > 0
+    ? relatedExplicit.slice(0, 4)
+    : [...same, ...other].slice(0, 4);
+
+const path = `/guides/${guide.slug}`;
+const meta = buildMeta({
+  title: guide.seoTitle || `${guide.headline} | Panun Kaergar`,
+  description: guide.seoDescription || guide.excerpt,
+  path,
+});
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Guides & tips', path: '/guides' },
+    { name: guide.headline, path },
+  ]),
+  blogPostingSchema({
+    headline: guide.headline,
+    excerpt: guide.excerpt,
+    slug: guide.slug,
+    publishedAt: guide.publishedAt,
+    category: guide.category,
+    coverImage: guide.coverImage,
+    readingMinutes: guide.readingMinutes,
+  }),
+].filter(Boolean);
+
+function mediaSrc(src: string | null | undefined) {
+  if (!src) return null;
+  return src.startsWith('/') ? src : `/images/guides/${src}`;
+}
+
+function formatDate(iso: string | null | undefined) {
+  if (!iso) return '';
+  try {
+    return new Date(iso).toLocaleDateString('en-IN', {
+      month: 'short',
+      year: 'numeric',
+    });
+  } catch {
+    return iso;
+  }
+}
+
+const cover = mediaSrc(guide.coverImage);
+const heroCover = cover;
+const serviceSlug = guide.relatedServiceSlug || null;
+const bookHref = serviceSlug
+  ? bookUrl({ service: serviceSlug, details: guide.headline })
+  : BOOK_PATH;
+const bookLabel = `${bookCtaText(serviceSlug)} Now`;
+const bookNoun = bookCtaLabel(serviceSlug);
+const bookNounIsServicePhrase = /\b(services?|control|cleaning|repair|grooming|laundry)\b/i.test(
+  bookNoun
+);
+const ctaHeading = bookNounIsServicePhrase
+  ? `Need verified ${bookNoun}?`
+  : `Need a verified ${bookNoun}?`;
+const ctaLead = bookNounIsServicePhrase
+  ? `Book verified ${bookNoun} on Panun Kaergar across Kashmir when DIY has done its part.`
+  : `Book a verified ${bookNoun} on Panun Kaergar across Kashmir when DIY has done its part.`;
+const scene = (guide as { scene?: string | null }).scene;
+const quickAnswer = (guide as { quickAnswer?: string | null }).quickAnswer;
+const heroSub = (guide as { heroSub?: string | null }).heroSub;
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <section
+    class="guide-hero"
+    style={heroCover
+      ? `background-image: linear-gradient(105deg, rgba(22,22,50,0.78) 0%, rgba(22,22,50,0.45) 42%, rgba(22,22,50,0.22) 100%), url('${heroCover}');`
+      : undefined}
+    aria-label="Article header"
+  >
+    <div class="guide-hero-inner">
+      <p class="guide-eyebrow">{guide.category} · Kashmir homes</p>
+      <h1>{guide.headline}</h1>
+      {heroSub && <p class="guide-hero-sub">{heroSub}</p>}
+      <p class="guide-hero-lead">{guide.excerpt}</p>
+      <div class="guide-hero-meta">
+        <span>
+          <strong>{guide.readingMinutes ?? 5} min</strong> read
+        </span>
+        {guide.publishedAt && <span>Updated {formatDate(guide.publishedAt)}</span>}
+        <span>Panun Kaergar guides</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="guide-wrap">
+    <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+      <a href="/guides">Guides</a>
+      <span>/</span>
+      <span>{guide.category}</span>
+    </nav>
+
+    <div class="guide-layout">
+      <div class="guide-main">
+        <article class="guide-article">
+          {
+            !guide.bodyHtml?.includes('answer-box') && scene && (
+              <p class="scene" set:html={scene} />
+            )
+          }
+          {
+            !guide.bodyHtml?.includes('answer-box') && quickAnswer && (
+              <div class="answer-box">
+                <span class="label">Quick answer</span>
+                <p set:html={quickAnswer} />
+              </div>
+            )
+          }
+          {guide.bodyHtml && <div class="guide-body" set:html={guide.bodyHtml} />}
+        </article>
+
+        <nav class="guide-pager" aria-label="Previous and next guides">
+          {
+            prev ? (
+              <a href={`/guides/${prev.slug}`}>
+                <span class="lbl">← Previous</span>
+                <span class="ttl">{prev.headline}</span>
+              </a>
+            ) : (
+              <div />
+            )
+          }
+          {
+            next ? (
+              <a href={`/guides/${next.slug}`} class="next">
+                <span class="lbl">Next →</span>
+                <span class="ttl">{next.headline}</span>
+              </a>
+            ) : null
+          }
+        </nav>
+      </div>
+
+      <aside class="guide-sidebar" aria-label="Booking and related guides">
+        <div class="guide-cta">
+          <h2>{ctaHeading}</h2>
+          <p>{ctaLead}</p>
+          <div class="guide-cta-actions">
+            <a class="guide-btn guide-btn-primary" href={bookHref}>{bookLabel}</a>
+            <a class="guide-btn guide-btn-ghost" href="/guides">Browse all guides</a>
+          </div>
+        </div>
+
+        {
+          related.length > 0 && (
+            <div class="guide-side-block">
+              <h2>More guides</h2>
+              <p class="side-lead">Same topic first, then other useful reads.</p>
+              <div class="guide-related">
+                {related.map((r) => {
+                  const thumb =
+                    mediaSrc((r as { titleImage?: string | null }).titleImage) || mediaSrc(r.coverImage);
+                  return (
+                    <a href={`/guides/${r.slug}`}>
+                      {thumb ? (
+                        <img src={thumb} width="56" height="42" alt="" loading="lazy" />
+                      ) : (
+                        <span class="ph">{r.category?.slice(0, 3)}</span>
+                      )}
+                      <span>
+                        <span class="cat">{r.category}</span>
+                        <span class="ttl">{r.headline}</span>
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )
+        }
+      </aside>
+    </div>
+  </div>
+</PageLayout>
