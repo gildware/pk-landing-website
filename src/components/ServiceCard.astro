@@ -34,7 +34,8 @@ const {
 } = Astro.props;
 
 const link = href ?? `/services/${slug}`;
-const categoryImage = badgeIcon ?? categoryIcon(slug);
+const fallbackIcon = categoryIcon(slug);
+const categoryImage = badgeIcon ?? fallbackIcon;
 const cardImage = image ?? `/images/categories/cards/${slug}.webp`;
 const visibleSubs = subcategories.slice(0, 4);
 const extraCount = Math.max(0, subcategories.length - visibleSubs.length);
@@ -67,7 +68,16 @@ const extraCount = Math.max(0, subcategories.length - visibleSubs.length);
     <span
       class="absolute bottom-3 left-3 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/95 shadow-md ring-1 ring-black/5 backdrop-blur-sm transition duration-300 group-hover:scale-105"
     >
-      <img src={categoryImage} alt={`${shortName} icon`} width="96" height="96" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
+      <img
+        src={categoryImage}
+        alt={`${shortName} icon`}
+        width="96"
+        height="96"
+        class="h-6 w-6 object-contain"
+        loading="lazy"
+        decoding="async"
+        onerror={`this.onerror=null;this.src='${fallbackIcon}'`}
+      />
     </span>
   </div>
 

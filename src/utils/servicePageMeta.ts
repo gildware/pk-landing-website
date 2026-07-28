@@ -19,52 +19,57 @@ function subIcon(slug: string, file: string) {
   return `${CDN}/subcategory/${slug}/${file}`;
 }
 
+/** Local parent icon when CDN subcategory art is unavailable */
+function parentIcon(path: string) {
+  return path;
+}
+
 export const servicePageMeta: Record<string, ServicePageMeta> = {
   'masonry-installation': {
     parentSlug: 'masonry',
     liveSubSlugs: ['masonry-installation'],
-    icon: subIcon('masonry-installs', '2026-07-08-6a4e2c0dd2475.webp'),
+    icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
   'masonry-repair': {
     parentSlug: 'masonry',
     liveSubSlugs: ['masonry-repair'],
-    icon: subIcon('masonry-repairs', '2026-07-08-6a4e2c1434738.webp'),
+    icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
   'masonry-inspection': {
     parentSlug: 'masonry',
     liveSubSlugs: ['masonry-inspection'],
-    icon: subIcon('masonry-repairs', '2026-07-08-6a4e2c1434738.webp'),
+    icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
   // Legacy page slugs kept as aliases until redirects are wired
   'masonry-installs': {
     parentSlug: 'masonry',
     liveSubSlugs: ['masonry-installation'],
-    icon: subIcon('masonry-installs', '2026-07-08-6a4e2c0dd2475.webp'),
+    icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
   'masonry-repairs': {
     parentSlug: 'masonry',
     liveSubSlugs: ['masonry-repair'],
-    icon: subIcon('masonry-repairs', '2026-07-08-6a4e2c1434738.webp'),
+    icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
   'carpentry-installation': {
     parentSlug: 'carpentry',
     liveSubSlugs: ['carpentry-installation'],
-    icon: subIcon('carpentry-installation', '2026-07-23-6a617fcd90ccb.webp'),
+    icon: parentIcon('/images/categories/icons/carpentry.webp'),
   },
   'carpentry-making': {
     parentSlug: 'carpentry',
     liveSubSlugs: ['carpentry-making'],
-    icon: subIcon('carpentry-making', '2026-07-23-6a617fd0738ca.webp'),
+    icon: parentIcon('/images/categories/icons/carpentry.webp'),
   },
   'carpentry-repairs': {
     parentSlug: 'carpentry',
     liveSubSlugs: ['carpentry-repairs'],
-    icon: subIcon('carpentry-repairs', '2026-07-23-6a617fd61088f.webp'),
+    icon: parentIcon('/images/categories/icons/carpentry.webp'),
   },
   'roofing-works': {
     parentSlug: 'carpentry',
     liveSubSlugs: ['roofing-works'],
-    icon: subIcon('roofing-works', '2026-07-23-6a617fd9e7327.webp'),
+    icon: parentIcon('/images/categories/icons/carpentry.webp'),
   },
   'plumbing-installs': {
     parentSlug: 'plumbing',
@@ -147,32 +152,32 @@ export const servicePageMeta: Record<string, ServicePageMeta> = {
   'dog-grooming': {
     parentSlug: 'pet-grooming',
     liveSubSlugs: ['dog-grooming'],
-    icon: subIcon('dog-grooming', '2026-07-12-6a528e24df4d0.webp'),
+    icon: parentIcon('/images/categories/icons/pet-grooming.webp'),
   },
   'cat-grooming': {
     parentSlug: 'pet-grooming',
     liveSubSlugs: ['cat-grooming'],
-    icon: subIcon('cat-grooming', '2026-07-12-6a528e21de347.webp'),
+    icon: parentIcon('/images/categories/icons/pet-grooming.webp'),
   },
   'home-trades': {
     parentSlug: 'book-kaergar',
     liveSubSlugs: ['home-trades'],
-    icon: subIcon('home-trades', '2026-07-23-6a61fc00195ed.webp'),
+    icon: parentIcon('/images/categories/icons/book-kaergar.webp'),
   },
   'building-site': {
     parentSlug: 'book-kaergar',
     liveSubSlugs: ['building-site'],
-    icon: subIcon('building-site', '2026-07-23-6a61fbeebac93.webp'),
+    icon: parentIcon('/images/categories/icons/book-kaergar.webp'),
   },
   'home-care': {
     parentSlug: 'book-kaergar',
     liveSubSlugs: ['home-care'],
-    icon: subIcon('home-care', '2026-07-23-6a61fbf67d0b7.webp'),
+    icon: parentIcon('/images/categories/icons/book-kaergar.webp'),
   },
   'beauty-artists': {
     parentSlug: 'book-kaergar',
     liveSubSlugs: ['beauty-artists'],
-    icon: subIcon('beauty-artists', '2026-07-23-6a61fbe667b92.webp'),
+    icon: parentIcon('/images/categories/icons/book-kaergar.webp'),
   },
 };
 

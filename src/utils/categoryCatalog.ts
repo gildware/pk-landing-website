@@ -42,13 +42,17 @@ function sub(slug: string, name: string, file: string): SubCategoryPill {
   return { slug, name, icon: `${CDN}/subcategory/${file}` };
 }
 
+function localSub(slug: string, name: string, icon: string): SubCategoryPill {
+  return { slug, name, icon };
+}
+
 /** Subcategories from live panun-admin DB, keyed by marketing slug */
 export const categorySubcategories: Record<string, SubCategoryPill[]> = {
   carpentry: [
-    sub('carpentry-installation', 'Carpentry Installation', 'carpentry-installation/2026-07-23-6a617fcd90ccb.webp'),
-    sub('carpentry-making', 'Carpentry Making', 'carpentry-making/2026-07-23-6a617fd0738ca.webp'),
-    sub('carpentry-repairs', 'Carpentry Repairs', 'carpentry-repairs/2026-07-23-6a617fd61088f.webp'),
-    sub('roofing-works', 'Roofing Works', 'roofing-works/2026-07-23-6a617fd9e7327.webp'),
+    localSub('carpentry-installation', 'Carpentry Installation', '/images/categories/icons/carpentry.webp'),
+    localSub('carpentry-making', 'Carpentry Making', '/images/categories/icons/carpentry.webp'),
+    localSub('carpentry-repairs', 'Carpentry Repairs', '/images/categories/icons/carpentry.webp'),
+    localSub('roofing-works', 'Roofing Works', '/images/categories/icons/carpentry.webp'),
   ],
   plumbing: [
     sub('plumbing-installation', 'Plumbing Installation', 'plumbing-installation/2026-07-24-6a6269ed3bcd2.webp'),
@@ -119,8 +123,8 @@ export const categorySubcategories: Record<string, SubCategoryPill[]> = {
     sub('commercial-decor-styling', 'Commercial Decor Styling', 'commercial-decor-styling/2026-07-13-6a549f7628491.webp'),
   ],
   'pet-grooming': [
-    sub('dog-grooming', 'Dog Grooming', 'dog-grooming/2026-07-12-6a528e24df4d0.webp'),
-    sub('cat-grooming', 'Cat Grooming', 'cat-grooming/2026-07-12-6a528e21de347.webp'),
+    localSub('dog-grooming', 'Dog Grooming', '/images/categories/icons/pet-grooming.webp'),
+    localSub('cat-grooming', 'Cat Grooming', '/images/categories/icons/pet-grooming.webp'),
   ],
   'vehicle-services': [
     sub('car-wash-detailing', 'Car Wash & Detailing', 'car-wash-detailing/2026-07-13-6a54a29fda874.webp'),
@@ -128,10 +132,10 @@ export const categorySubcategories: Record<string, SubCategoryPill[]> = {
     sub('bike-scooter-service', 'Bike & Scooter Service', 'bike-scooter-service/2026-07-13-6a54a29233240.webp'),
   ],
   'book-kaergar': [
-    sub('home-trades', 'Home Trades', 'home-trades/2026-07-23-6a61fc00195ed.webp'),
-    sub('building-site', 'Building & Site', 'building-site/2026-07-23-6a61fbeebac93.webp'),
-    sub('home-care', 'Home Care', 'home-care/2026-07-23-6a61fbf67d0b7.webp'),
-    sub('beauty-artists', 'Beauty Artists', 'beauty-artists/2026-07-23-6a61fbe667b92.webp'),
+    localSub('home-trades', 'Home Trades', '/images/categories/icons/book-kaergar.webp'),
+    localSub('building-site', 'Building & Site', '/images/categories/icons/book-kaergar.webp'),
+    localSub('home-care', 'Home Care', '/images/categories/icons/book-kaergar.webp'),
+    localSub('beauty-artists', 'Beauty Artists', '/images/categories/icons/book-kaergar.webp'),
   ],
 };
 
