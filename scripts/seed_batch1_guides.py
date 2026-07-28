@@ -11,6 +11,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 from batch1_guide_content import GUIDES, TITLE_SUBJECTS
+from guide_image_utils import prepare_step_images
 
 ROOT = Path(__file__).resolve().parents[2]
 MKT = ROOT / "panun-marketing"
@@ -312,6 +313,8 @@ def prepare_images(g: dict):
         ("Small habits win", "A five-minute check done early usually beats an emergency visit later."),
     )
     draw_tip(IMG / f"{slug}-tip.webp", tip_title, tip_body)
+
+    prepare_step_images(g, IMG, subject)
 
     # plumbing demo extras if available
     if slug.startswith("how-to-unblock"):
