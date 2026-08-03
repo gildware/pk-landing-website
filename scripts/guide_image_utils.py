@@ -20,6 +20,7 @@ BRAND_DIR = ROOT / "public" / "images" / "brand"
 # Official Panun Kaergar logos only — full wordmarks, never small marks or AI-drawn logos.
 LOGO_WHITE = BRAND_DIR / "logo-white.png"
 LOGO_COLOR = BRAND_DIR / "logo-color.png"
+LOGO_SQUARE = ROOT / "public" / "logo-square.png"
 OFFICIAL_LOGOS = (LOGO_WHITE, LOGO_COLOR)
 
 GUIDE_IMAGE_ROLES = (
@@ -28,7 +29,7 @@ GUIDE_IMAGE_ROLES = (
     "methods",
     "diagram",
     "tip",
-    *(f"method-{n}" for n in range(1, 6)),
+    *(f"method-{n}" for n in range(1, 7)),
     *(f"dont-{n}" for n in range(1, 4)),
 )
 
@@ -230,13 +231,17 @@ def pick_logo_wordmark(
         sample = img.convert("RGB").crop((0, 0, fw, fh))
     pixels = sample.getdata()
     mean = sum(sum(px) / 3 for px in pixels) / max(len(pixels), 1)
-    return LOGO_COLOR if mean >= 165 else LOGO_WHITE
+    return LOGO_COLOR if LOGO_COLOR.exists() and mean >= 165 else (
+        LOGO_WHITE if LOGO_WHITE.exists() else LOGO_SQUARE
+    )
 
 
 def load_logo(path: Path) -> Image.Image:
-    if not path.exists():
-        raise FileNotFoundError(f"Official logo missing: {path}")
-    return Image.open(path).convert("RGBA")
+    if path.exists():
+        return Image.open(path).convert("RGBA")
+    if LOGO_SQUARE.exists():
+        return Image.open(LOGO_SQUARE).convert("RGBA")
+    raise FileNotFoundError(f"Official logo missing: {path}")
 
 
 def composite_brand_mark(
@@ -247,10 +252,12 @@ def composite_brand_mark(
 ) -> Image.Image:
     """Overlay official Panun Kaergar wordmark (Logo White or Logo Color only)."""
     for logo_path in OFFICIAL_LOGOS:
-        if not logo_path.exists():
+        if logo_path.exists():
+            break
+    else:
+        if not LOGO_SQUARE.exists():
             raise FileNotFoundError(
-                f"Missing official logo at {logo_path}. "
-                "Copy Logo White.png and Logo_Color (1).png into panun-marketing/public/images/brand/."
+                f"Missing official logo in {BRAND_DIR} or {LOGO_SQUARE}."
             )
 
     img = base.convert("RGBA")
@@ -390,11 +397,12 @@ def enrich_guide_images(guide: dict, subject: str | None = None) -> dict:
     subject = subject or guide.get("title", "").split("?")[0].lower()
     category = guide.get("category", "Home")
 
+    overrides = guide.get("image_prompt_overrides", {})
     method_images = []
     for i, (heading, best_for, detail) in enumerate(guide.get("methods", []), 1):
         alt = method_alt(heading, detail, subject)
         cap = heading
-        prompt = method_prompt(heading, detail, subject, category, i)
+        prompt = overrides.get(f"method-{i}") or method_prompt(heading, detail, subject, category, i)
         method_images.append(
             {"num": i, "alt": alt, "caption": cap, "prompt": prompt, "best_for": best_for}
         )
@@ -416,6 +424,7 @@ def collect_image_jobs(guide: dict, subject: str | None = None) -> list[dict]:
     """All per-step image jobs for a guide (methods + donts)."""
     enrich_guide_images(guide, subject)
     slug = guide["slug"]
+    overrides = guide.get("image_prompt_overrides", {})
     jobs: list[dict] = []
 
     for m in guide["method_images"]:
@@ -436,7 +445,9 @@ def collect_image_jobs(guide: dict, subject: str | None = None) -> list[dict]:
             title, _sub, body, alt, cap, prompt = block[:6]
         else:
             title, _sub, body, alt, cap = block[:5]
-            prompt = dont_prompt(title, body, subject or slug, guide.get("category", "Home"), i)
+            prompt = overrides.get(f"dont-{i}") or dont_prompt(
+                title, body, subject or slug, guide.get("category", "Home"), i
+            )
         jobs.append(
             {
                 "slug": slug,

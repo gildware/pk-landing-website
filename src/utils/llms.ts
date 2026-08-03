@@ -64,6 +64,8 @@ export function buildLlmsTxt(
     '## Help & company',
     `- [Guides & tips](${siteUrl('/guides')}): Practical home-service advice for Kashmir homes.`,
     `- [FAQ](${siteUrl('/faq')}): Common questions about booking and partners.`,
+    `- [Why choose Panun Kaergar](${siteUrl('/why-choose-panun-kaergar')}): Verified partners, transparent pricing, booking process, and Kashmir local expertise.`,
+    `- [Why choose Panun Kaergar — guide](${siteUrl('/guides/why-choose-panun-kaergar-kashmir')}): In-depth blog on booking home and commercial services from small repairs to large projects in Kashmir.`,
     `- [Become a partner](${siteUrl('/become-a-partner')}): Join as a verified service partner in Kashmir.`,
     '',
     '## Optional',

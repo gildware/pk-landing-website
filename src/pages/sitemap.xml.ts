@@ -10,6 +10,7 @@ const staticPaths = [
   '/guides',
   SERVICE_AREAS_PATH,
   '/about',
+  '/why-choose-panun-kaergar',
   '/contact',
   '/download',
   '/become-a-partner',

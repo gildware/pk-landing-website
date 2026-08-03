@@ -1,0 +1,766 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import CtaBanner from '@/components/CtaBanner.astro';
+import Icon from '@/components/Icon.astro';
+import { buildMeta } from '@/utils/seo';
+import { getSiteSettings, getServices, getAreas } from '@/utils/reader';
+import { breadcrumbSchema, faqSchema } from '@/utils/schema';
+import { BOOK_PATH } from '@/utils/booking';
+import { areaPath } from '@/utils/areaPaths';
+
+const site = await getSiteSettings();
+const services = await getServices();
+const areas = await getAreas();
+
+const PAGE_PATH = '/why-choose-panun-kaergar';
+
+const meta = buildMeta({
+  title: 'Why Choose Panun Kaergar | Home Services Kashmir',
+  description:
+    'Why choose Panun Kaergar for home services in Kashmir? Verified local professionals, transparent pricing, and simple booking by phone, WhatsApp, website, or app — with real support in Srinagar.',
+  path: PAGE_PATH,
+});
+
+const whyChoosePillars = [
+  {
+    icon: 'shield-check',
+    title: 'Verified local professionals',
+    description:
+      'Every partner on Panun Kaergar goes through identity and skill checks before taking jobs. You book someone who has been reviewed by our team — not a random name from a contact list.',
+  },
+  {
+    icon: 'target',
+    title: 'Transparent pricing',
+    description:
+      'You know the expected cost before work begins. For most services, we share a clear estimate or rate range upfront so there are fewer surprises when the job is done.',
+  },
+  {
+    icon: 'smartphone',
+    title: 'Book your way',
+    description:
+      'Call, WhatsApp, fill the online form, or use the free Panun Kaergar app. Pick the channel that suits you — the same verified network handles every booking.',
+  },
+  {
+    icon: 'map-pin',
+    title: 'Built for Kashmir',
+    description:
+      'We understand Srinagar neighbourhoods, seasonal needs, and how homes here are built. Partners are matched by area so someone nearby can reach you faster.',
+  },
+  {
+    icon: 'message',
+    title: 'Real customer support',
+    description:
+      'If something goes wrong — a no-show, a reschedule, or a question about your bill — our Srinagar-based team is reachable by phone and WhatsApp during support hours.',
+  },
+  {
+    icon: 'star',
+    title: 'Quality you can track',
+    description:
+      'Completed jobs can be rated. Partners who consistently deliver good work build a visible reputation, which helps the next customer book with confidence.',
+  },
+];
+
+const verificationSteps = [
+  {
+    title: 'Identity and contact verification',
+    description:
+      'Partners submit valid ID and contact details. We confirm they are reachable before activating their profile.',
+  },
+  {
+    title: 'Trade and experience review',
+    description:
+      'We check the services they claim — plumbing, electrical, cleaning, salon, appliances, and more — against their experience and the areas they want to cover.',
+  },
+  {
+    title: 'Onboarding and guidelines',
+    description:
+      'New partners are walked through how bookings work, customer communication expectations, and our quality standards before they receive live requests.',
+  },
+  {
+    title: 'Ongoing performance checks',
+    description:
+      'Customer ratings, completion rates, and support tickets feed into how we manage partners. Poor experiences are investigated; repeat issues can lead to suspension.',
+  },
+];
+
+const pricingPoints = [
+  {
+    title: 'Estimates before work starts',
+    description:
+      'For most jobs, you receive a price estimate or rate guidance when you book or when the partner confirms the visit. Complex work may need an on-site inspection first — that is explained upfront.',
+  },
+  {
+    title: 'No hidden platform booking fee for customers',
+    description:
+      'Panun Kaergar does not add a separate “booking fee” on top of the service charge for standard home-service requests. You pay for the work agreed with your partner.',
+  },
+  {
+    title: 'Clear breakdown when materials are involved',
+    description:
+      'If parts, consumables, or extra labour are needed, the partner should explain the additional cost before proceeding — not after the job is finished.',
+  },
+  {
+    title: 'Written record in the app',
+    description:
+      'App bookings keep a history of your requests, assigned partner, and job status. That record helps if you need to follow up or book the same service again.',
+  },
+];
+
+const qualityStandards = [
+  {
+    icon: 'check',
+    title: 'Arrive prepared',
+    description: 'Partners are expected to bring the right tools and materials for the job category they accepted.',
+  },
+  {
+    icon: 'clock',
+    title: 'Respect your time',
+    description: 'Confirmed appointment windows should be honoured. Delays are communicated to you and to our support team when possible.',
+  },
+  {
+    icon: 'home',
+    title: 'Care for your home',
+    description: 'Work areas should be left tidy. Partners treat your property with the same care they would expect in their own home.',
+  },
+  {
+    icon: 'shield-check',
+    title: 'Honest recommendations',
+    description: 'If a repair is not worth doing or a cheaper fix exists, partners should say so — not push unnecessary work.',
+  },
+];
+
+const bookingSteps = [
+  {
+    n: '01',
+    title: 'Tell us what you need',
+    desc: 'Share the service type, your area in Kashmir, and a preferred date or time. Use phone, WhatsApp, the booking form, or the Panun Kaergar app.',
+  },
+  {
+    n: '02',
+    title: 'Get matched to a verified partner',
+    desc: 'We assign a local professional based on the job, their skills, and availability in your neighbourhood.',
+  },
+  {
+    n: '03',
+    title: 'Confirm details and pricing',
+    desc: 'The partner or our team confirms the visit window and expected cost. You can ask questions before anyone comes to your door.',
+  },
+  {
+    n: '04',
+    title: 'Service completed — support if needed',
+    desc: 'After the job, you can rate the experience. If anything was unsatisfactory, contact us and we will help resolve it.',
+  },
+];
+
+const supportChannels = [
+  {
+    icon: 'phone',
+    title: 'Phone support',
+    description: `Call ${site.phone} during business hours for booking help, reschedules, or urgent questions about an active job.`,
+  },
+  {
+    icon: 'whatsapp',
+    title: 'WhatsApp',
+    description:
+      'Message us on WhatsApp with your service need, area, and photos if relevant. Most customers get a reply within minutes during support hours.',
+  },
+  {
+    icon: 'mail',
+    title: 'Email',
+    description: `Write to ${site.email} for non-urgent queries, feedback, or documentation you need after a completed service.`,
+  },
+  {
+    icon: 'smartphone',
+    title: 'In-app help',
+    description:
+      'App users can track booking status, view assigned partner details, and reach support without searching for a phone number.',
+  },
+];
+
+const comparisonRows = [
+  {
+    aspect: 'Finding a service provider',
+    traditional:
+      'Ask neighbours, search social media groups, or call numbers saved from past jobs — often trial and error.',
+    panun:
+      'One request through Panun Kaergar; we match you to a verified partner for your area and service type.',
+  },
+  {
+    aspect: 'Knowing if someone is trustworthy',
+    traditional:
+      'Relies on word of mouth. No standard check unless you verify yourself.',
+    panun:
+      'Partners pass identity and trade review before going live. Ratings from past customers are visible.',
+  },
+  {
+    aspect: 'Price clarity',
+    traditional:
+      'Often discussed only on arrival. Extra charges may appear after work starts.',
+    panun:
+      'Estimate or rate guidance shared before the visit. Material and labour additions should be explained upfront.',
+  },
+  {
+    aspect: 'Booking channels',
+    traditional:
+      'Usually a single phone call. No central record if the person does not answer.',
+    panun:
+      'Phone, WhatsApp, website form, and mobile app — all tied to the same booking system and support team.',
+  },
+  {
+    aspect: 'If something goes wrong',
+    traditional:
+      'You resolve it directly with the worker. No platform to escalate to.',
+    panun:
+      'Panun Kaergar support investigates complaints, helps with reschedules, and can act on repeat partner issues.',
+  },
+  {
+    aspect: 'Repeat bookings',
+    traditional:
+      'You find and save the contact again. Availability is uncertain.',
+    panun:
+      'Rebook the same category — or a rated partner when available — through one familiar process.',
+  },
+  {
+    aspect: 'Service coverage',
+    traditional:
+      'Limited to whoever you already know in your circle.',
+    panun: `${services.length}+ service categories across ${areas.length} districts and neighbourhoods in Kashmir.`,
+  },
+];
+
+const pageFaqs = [
+  {
+    question: 'Why should I choose Panun Kaergar over calling a local technician directly?',
+    answer:
+      'Panun Kaergar gives you a verified partner, a clear booking record, upfront pricing guidance, and a support team you can reach if the job does not go as planned. You still get local skilled professionals — with accountability built in.',
+  },
+  {
+    question: 'How are Panun Kaergar service providers verified?',
+    answer:
+      'Partners submit identity documents and details about their trade. Our team reviews their experience, service categories, and work areas before activating their profile. Ongoing customer ratings and support feedback help us maintain quality.',
+  },
+  {
+    question: 'Is pricing transparent on Panun Kaergar?',
+    answer:
+      'Yes. For most services you receive an estimate or rate range before the partner visits. If extra materials or labour are needed, that should be explained and agreed before work continues. App bookings also keep a record of your request.',
+  },
+  {
+    question: 'How does booking work?',
+    answer:
+      'Tell us the service, your area, and preferred time via phone, WhatsApp, the website booking form, or the Panun Kaergar app. We match a verified local partner, confirm the visit and expected cost, and they complete the job at your home.',
+  },
+  {
+    question: 'Can I trust Panun Kaergar with my home?',
+    answer:
+      'Panun Kaergar is built for Kashmir households by a local technology team. Partners are vetted, jobs are tracked, and our Srinagar support line is available when you need help. Thousands of homes across Srinagar and nearby districts already book through the platform.',
+  },
+  {
+    question: 'What areas in Kashmir does Panun Kaergar cover?',
+    answer: `We serve homes across Kashmir including ${areas
+      .slice(0, 5)
+      .map((a) => a.displayName)
+      .join(', ')}, and more. Check our service areas page for your district, or mention your neighbourhood when you book.`,
+  },
+  {
+    question: 'What if I am not satisfied with the service?',
+    answer:
+      'Contact our support team by phone or WhatsApp with your booking details. We review the complaint, speak with the partner when needed, and work toward a fair resolution — which may include a revisit, partial adjustment, or partner follow-up depending on the situation.',
+  },
+  {
+    question: 'Do I need the app to book?',
+    answer:
+      'No. You can book by calling, WhatsApp, or the website form. The free Panun Kaergar app is optional but useful for tracking status, viewing history, and rebooking quickly.',
+  },
+];
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Why Choose Panun Kaergar', path: PAGE_PATH },
+  ]),
+  faqSchema(pageFaqs),
+].filter(Boolean);
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-brand-900 text-white">
+    <div
+      class="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-900 via-brand-700 to-brand-600"
+      aria-hidden="true"
+    ></div>
+    <div class="hero-blob -left-24 top-0 h-72 w-72 bg-brand-500/30" style="animation-delay: 0s;" aria-hidden="true"></div>
+    <div class="hero-blob -right-16 bottom-0 h-96 w-96 bg-accent/20" style="animation-delay: -5s;" aria-hidden="true"></div>
+
+    <div class="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-20">
+      <div>
+        <p class="animate-fade-up text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+          Why choose us
+        </p>
+        <h1 class="animate-fade-up stagger-1 mt-3 font-extrabold leading-[1.08] tracking-tight text-white text-[clamp(2rem,5.5vw,3.5rem)]">
+          Trusted home services for every household in Kashmir
+        </h1>
+        <p class="animate-fade-up stagger-2 mt-5 max-w-xl text-lg leading-relaxed text-white/85">
+          Panun Kaergar connects you with verified local professionals for plumbing, electrical,
+          cleaning, salon, appliances, and more — with clear pricing, simple booking, and real
+          support when you need it.
+        </p>
+        <div class="animate-fade-up stagger-3 mt-8 flex flex-wrap gap-3">
+          <a href={BOOK_PATH} class="btn-primary bg-white text-brand-700 hover:bg-brand-50">Book a service</a>
+          <a href="/services" class="btn-secondary border-white/25 bg-white/10 text-white hover:border-white/40 hover:bg-white/15">
+            Browse services
+          </a>
+        </div>
+      </div>
+
+      <div class="animate-slide-right stagger-2 relative hidden overflow-hidden rounded-3xl border border-white/15 shadow-2xl lg:block">
+        <img
+          src="/images/why-choose/why-choose-hero.webp"
+          alt="Trusted home services in Kashmir — verified Panun Kaergar partner with a happy family after a household repair"
+          width="1920"
+          height="1280"
+          class="aspect-[16/10] w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <div class="border-b border-slate-200 bg-white">
+    <nav class="page-breadcrumb mx-auto max-w-6xl px-4 py-4 sm:px-6" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Why Choose Panun Kaergar</span>
+    </nav>
+  </div>
+
+  <!-- Why Choose overview -->
+  <section class="border-b border-slate-200 bg-white" id="why-choose">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Why choose Panun Kaergar?</p>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          One platform for reliable home help in Kashmir
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-slate-600">
+          Finding a plumber, electrician, or cleaner in Srinagar often means calling several numbers,
+          waiting for callbacks, and hoping the person who shows up is skilled and fair. Panun Kaergar
+          replaces that uncertainty with a structured process: verified partners, agreed pricing, and a
+          team you can reach if anything goes wrong.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          whyChoosePillars.map((item, i) => (
+            <article
+              class:list={[
+                'reveal-scale card card-hover p-6 sm:p-7',
+                `reveal-stagger-${Math.min(i + 1, 6)}`,
+              ]}
+            >
+              <span class="icon-badge">
+                <Icon name={item.icon} size={22} class="text-brand-600" />
+              </span>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Trusted & verified -->
+  <section class="bg-slate-50" id="verified-providers">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal-left overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+          <img
+            src="/images/why-choose/why-choose-verified.webp"
+            alt="Verified Panun Kaergar partner showing ID credentials to a homeowner in Kashmir before a home visit"
+            width="1920"
+            height="1280"
+            class="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="reveal">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            Trusted &amp; verified service providers
+          </p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Every partner is checked before they take your booking
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            “Verified” on Panun Kaergar is not a label we hand out casually. Before a partner receives
+            live booking requests, they complete an onboarding process that covers who they are, what
+            they do, and where they work. That matters when you are letting someone into your home.
+          </p>
+
+          <ol class="mt-8 space-y-5">
+            {
+              verificationSteps.map((step, i) => (
+                <li
+                  class:list={[
+                    'reveal border-l-2 border-brand-600 pl-4',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <h3 class="font-bold text-slate-900">{step.title}</h3>
+                  <p class="mt-1 text-sm leading-relaxed text-slate-600 sm:text-base">
+                    {step.description}
+                  </p>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Transparent pricing -->
+  <section class="border-y border-slate-200 bg-white" id="transparent-pricing">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-start gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div class="reveal">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Transparent pricing</p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Know what to expect before work begins
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            Unclear pricing is one of the biggest frustrations with home services. Panun Kaergar is
+            designed so you understand the expected cost early — not after a job is half finished.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-slate-600">
+            Exact amounts depend on the service: a fixed-rate salon visit differs from a plumbing
+            repair that needs parts. In every case, the goal is the same — no surprises on your bill.
+          </p>
+        </div>
+
+        <ul class="reveal-right space-y-4">
+          {
+            pricingPoints.map((point, i) => (
+              <li
+                class:list={[
+                  'reveal rounded-2xl border border-slate-200 bg-slate-50/80 p-5 sm:p-6',
+                  `reveal-stagger-${Math.min(i + 1, 6)}`,
+                ]}
+              >
+                <h3 class="font-bold text-slate-900">{point.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-600">{point.description}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quality standards -->
+  <section class="bg-gradient-to-b from-slate-50 to-white" id="quality-standards">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Quality standards</p>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          What we expect from every visit
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-slate-600">
+          Verification gets partners onto the platform. These standards define how they should behave
+          on every job — and give you a clear basis to rate or report if they do not.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          qualityStandards.map((item, i) => (
+            <article
+              class:list={[
+                'reveal-scale rounded-3xl border border-slate-200 bg-white p-6 shadow-sm',
+                `reveal-stagger-${Math.min(i + 1, 6)}`,
+              ]}
+            >
+              <span class="icon-badge">
+                <Icon name={item.icon} size={22} class="text-brand-600" />
+              </span>
+              <h3 class="mt-4 text-base font-bold text-slate-900">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Easy booking -->
+  <section class="border-y border-slate-200 bg-white" id="booking-process">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+        <div class="reveal-left overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+          <img
+            src="/images/why-choose/why-choose-booking.webp"
+            alt="Booking a home service on smartphone in Kashmir while a verified Panun Kaergar partner arrives at the door"
+            width="1920"
+            height="1280"
+            class="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="reveal">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Easy booking process</p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            From request to completed job in four steps
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            You do not need to understand how the platform works behind the scenes. Describe what you
+            need — we handle partner matching, confirmation, and follow-up.
+          </p>
+
+          <ol class="mt-8 space-y-4">
+            {
+              bookingSteps.map((step, i) => (
+                <li
+                  class:list={[
+                    'reveal flex gap-4 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 sm:p-5',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
+                    {step.n}
+                  </span>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900">{step.title}</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-slate-600">{step.desc}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+
+          <div class="reveal mt-8">
+            <a href={BOOK_PATH} class="btn-primary">
+              Start a booking
+              <Icon name="chevron-right" size={18} class="ml-1 inline" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer support -->
+  <section class="bg-brand-900 text-white" id="customer-support">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Customer support</p>
+        <h2 class="mt-2 text-3xl font-extrabold sm:text-4xl">A real team behind every booking</h2>
+        <p class="mt-4 text-lg leading-relaxed text-white/85">
+          Panun Kaergar is not a faceless listing site. When you book through us, you have a support
+          channel for reschedules, questions, and complaints — not just the individual worker’s phone
+          number.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          supportChannels.map((channel, i) => (
+            <article
+              class:list={[
+                'reveal-scale rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-sm',
+                `reveal-stagger-${Math.min(i + 1, 6)}`,
+              ]}
+            >
+              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/15">
+                <Icon name={channel.icon} size={22} class="text-accent" />
+              </span>
+              <h3 class="mt-4 text-base font-bold">{channel.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-white/80">{channel.description}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="reveal mt-10 text-center text-sm text-white/70">
+        Office hours: Monday–Saturday, 10:00–18:00 · Call centre support: daily 10:00–22:00
+      </p>
+    </div>
+  </section>
+
+  <!-- Local expertise -->
+  <section class="border-b border-slate-200 bg-white" id="local-expertise">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal order-2 lg:order-1">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">
+            Local expertise in Kashmir
+          </p>
+          <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Partners who know how homes work here
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            Kashmir’s climate, building styles, and neighbourhood layouts are different from other
+            cities. A platform built here understands that geysers fail differently in winter, that
+            drainage issues vary by area, and that customers in Rajbagh and Bemina expect partners who
+            know the locality.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-slate-600">
+            Panun Kaergar matches bookings by district and neighbourhood so the professional assigned
+            to you is realistically able to reach your home — not someone based hours away.
+          </p>
+
+          <div class="reveal mt-8 flex flex-wrap gap-2">
+            {
+              areas.slice(0, 10).map((area) => (
+                <a
+                  href={areaPath(area.slug)}
+                  class="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700"
+                >
+                  {area.displayName}
+                </a>
+              ))
+            }
+            {
+              areas.length > 10 && (
+                <a
+                  href="/service-areas"
+                  class="rounded-full border border-brand-600 bg-brand-600 px-3.5 py-1.5 text-xs font-semibold text-white transition hover:bg-brand-700"
+                >
+                  All areas →
+                </a>
+              )
+            }
+          </div>
+        </div>
+
+        <div class="reveal-right order-1 lg:order-2 overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+          <img
+            src="/images/why-choose/why-choose-local.webp"
+            alt="Local Kashmir home service expert repairing a geyser in a traditional Srinagar household"
+            width="1920"
+            height="1280"
+            class="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="bg-slate-50" id="comparison">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">How we compare</p>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          Panun Kaergar vs traditional local booking
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-slate-600">
+          Many families in Kashmir still book through personal contacts — and that can work well when
+          you already trust someone. This table shows what changes when you book through a
+          structured platform built for home services.
+        </p>
+      </div>
+
+      <div class="reveal mt-10 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <table class="w-full min-w-[640px] border-collapse text-left text-sm">
+          <thead>
+            <tr class="border-b border-slate-200 bg-slate-50">
+              <th scope="col" class="px-5 py-4 font-bold text-slate-900">Aspect</th>
+              <th scope="col" class="px-5 py-4 font-bold text-slate-600">Traditional local booking</th>
+              <th scope="col" class="px-5 py-4 font-bold text-brand-700">Panun Kaergar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              comparisonRows.map((row, i) => (
+                <tr class:list={['border-b border-slate-100', i % 2 === 1 && 'bg-slate-50/50']}>
+                  <th scope="row" class="px-5 py-4 font-semibold text-slate-900">
+                    {row.aspect}
+                  </th>
+                  <td class="px-5 py-4 leading-relaxed text-slate-600">{row.traditional}</td>
+                  <td class="px-5 py-4 leading-relaxed text-slate-800">
+                    <span class="inline-flex items-start gap-2">
+                      <Icon name="check" size={16} class="mt-0.5 shrink-0 text-brand-600" />
+                      <span>{row.panun}</span>
+                    </span>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="border-t border-slate-200 bg-white" id="faqs">
+    <div class="section-pad mx-auto max-w-6xl pb-4">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">FAQs</p>
+        <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          Common questions about choosing Panun Kaergar
+        </h2>
+        <p class="mt-3 text-lg text-slate-600">
+          Straight answers to what customers ask before their first booking.
+        </p>
+      </div>
+    </div>
+
+    <FaqSection items={pageFaqs} class="!py-0 !pb-16" />
+
+    <p class="reveal mx-auto max-w-3xl px-4 pb-16 text-center text-sm text-slate-600 sm:px-6">
+      More questions? Visit our{' '}
+      <a href="/faq" class="font-semibold text-brand-700 underline-offset-2 hover:underline">full FAQ</a>
+      {' '}or{' '}
+      <a href="/contact" class="font-semibold text-brand-700 underline-offset-2 hover:underline">contact us</a>.
+    </p>
+  </section>
+
+  <BookingOptions site={site} />
+
+  <CtaBanner
+    title="Ready to book with confidence?"
+    description="Tell us what you need — we connect you with a verified local professional at a time that suits you."
+    primaryHref={BOOK_PATH}
+    primaryLabel="Book a home service"
+  />
+</PageLayout>
+
+<style>
+  .page-breadcrumb {
+    font-size: 0.88rem;
+    color: #5c5f72;
+  }
+
+  .page-breadcrumb a {
+    color: #202048;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .page-breadcrumb a:hover {
+    color: theme('colors.brand.700');
+  }
+
+  .page-breadcrumb span {
+    margin: 0 0.4rem;
+    opacity: 0.5;
+  }
+
+  .page-breadcrumb span[aria-current='page'] {
+    opacity: 1;
+    font-weight: 600;
+    color: #323338;
+  }
+</style>
