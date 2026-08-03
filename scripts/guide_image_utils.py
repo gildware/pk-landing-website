@@ -8,13 +8,14 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageStat
 
-ROOT = Path(__file__).resolve().parents[2]
-PROMPTS_DIR = ROOT / "blog-batch-1" / "assets" / "prompts"
-ASSETS_GEN = Path("/Users/kamran/.cursor/projects/Users-kamran-Desktop-panun-kaergar/assets")
+ROOT = Path(__file__).resolve().parents[1]
+PROMPTS_DIR = ROOT / "blog-batch-3" / "assets" / "prompts"
+ASSETS_GEN = ROOT / "blog-batch-3" / "assets" / "generated"
 BATCH_ASSETS = ROOT / "blog-batch-1" / "assets"
 BATCH2_ASSETS = ROOT / "blog-batch-2" / "assets"
+BATCH3_ASSETS = ROOT / "blog-batch-3" / "assets"
 DEMO_ASSETS = ROOT / "blog-demo-assets"
-BRAND_DIR = ROOT / "panun-marketing" / "public" / "images" / "brand"
+BRAND_DIR = ROOT / "public" / "images" / "brand"
 
 # Official Panun Kaergar logos only — full wordmarks, never small marks or AI-drawn logos.
 LOGO_WHITE = BRAND_DIR / "logo-white.png"
