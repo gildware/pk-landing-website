@@ -342,6 +342,7 @@ export default config({
             { label: 'Pet Care', value: 'Pet Care' },
             { label: 'Vehicle Care', value: 'Vehicle Care' },
             { label: 'Hiring', value: 'Hiring' },
+            { label: 'Home services', value: 'Home services' },
             { label: 'General', value: 'General' },
           ],
           defaultValue: 'General',
