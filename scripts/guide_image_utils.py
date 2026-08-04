@@ -350,16 +350,20 @@ def apply_brand_to_guide(
 
 def _split_dont(dont: str) -> tuple[str, str]:
     """Split a dont line into (title, body)."""
-    if ";" in dont:
-        title, body = dont.split(";", 1)
-        return title.strip(), body.strip()
-    if "." in dont:
-        title, body = dont.split(".", 1)
-        return title.strip(), body.strip()
-    words = dont.split()
+    text = dont.strip()
+    if ";" in text:
+        title, body = text.split(";", 1)
+        title, body = title.strip(), body.strip()
+        return title, body or title
+    if "." in text:
+        title, body = text.split(".", 1)
+        title, body = title.strip(), body.strip()
+        # Single-sentence myths leave an empty body after the period — reuse the title.
+        return title, body or title
+    words = text.split()
     if len(words) <= 8:
-        return dont.strip(), dont.strip()
-    return " ".join(words[:6]).strip(), dont.strip()
+        return text, text
+    return " ".join(words[:6]).strip(), text
 
 
 def method_alt(heading: str, detail: str, subject: str) -> str:

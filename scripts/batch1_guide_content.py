@@ -104,6 +104,35 @@ _SPECS.extend([
 
 
 
+SERVICE_HINTS = {
+    "plumbing": "a plumber",
+    "electrician": "an electrician",
+    "home-appliances": "appliance repair",
+    "pest-control": "pest control",
+    "professional-cleaning": "a cleaning professional",
+    "dry-clean-laundry": "professional cleaning",
+    "carpentry": "a carpenter",
+    "aluminium-steel-works": "an aluminium professional",
+    "gardening": "a gardener",
+    "mens-salon": "a barber or grooming professional",
+    "womens-salon": "a salon professional",
+    "dog-grooming": "a pet grooming professional",
+    "vehicle-care": "vehicle care",
+    "painting": "a painter",
+    "masonry": "a mason",
+    "interior-decor": "an interior repair professional",
+}
+
+
+def _seo_from_compact(title: str, service: str, first_move: str) -> str:
+    service_label = SERVICE_HINTS.get(service, "professional help")
+    lead = title.strip().rstrip("?")
+    step = first_move.split(".")[0].strip()
+    return (
+        f"{lead} in Kashmir? {step}. Learn the safest first checks, the usual causes, "
+        f"and when to book {service_label}."
+    )
+
 
 def _compact(
     ident, slug, title, category, service, scene, answer, symptom, diagnosis,
@@ -116,7 +145,7 @@ def _compact(
         id=ident, slug=slug, title=title, heroSub=hero or (answer.split(".")[0] + "."),
         excerpt=excerpt or f"{scene.split('.')[0]}. {answer.split('.')[0]}.",
         seoTitle=f"{title} | Panun Kaergar",
-        seoDescription=f"Practical Kashmir guide: diagnose {subject}, try safe first steps, and know when to book a verified professional.",
+        seoDescription=_seo_from_compact(title, service, method_rows[0][2]),
         category=category, relatedServiceSlug=service, readingMinutes=9,
         scene=scene, quickAnswer=answer, symptom=symptom, diagnosis=diagnosis,
         first_move=method_rows[0][2], worse_cause="An underlying fault or hidden damage",

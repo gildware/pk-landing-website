@@ -2,7 +2,7 @@
 import PageLayout from '@/layouts/PageLayout.astro';
 import { buildMeta } from '@/utils/seo';
 import { getGuide, getGuides, siteUrl } from '@/utils/reader';
-import { blogPostingSchema, breadcrumbSchema } from '@/utils/schema';
+import { blogPostingSchema, breadcrumbSchema, extractFaqsFromHtml, faqSchema } from '@/utils/schema';
 import { bookUrl, BOOK_PATH } from '@/utils/booking';
 import { bookCtaLabel, bookCtaText } from '@/utils/bookingPrefill';
 
@@ -37,6 +37,8 @@ const meta = buildMeta({
   path,
 });
 
+const guideFaqs = extractFaqsFromHtml(guide.bodyHtml);
+
 const schemas = [
   breadcrumbSchema([
     { name: 'Home', path: '/' },
@@ -52,6 +54,7 @@ const schemas = [
     coverImage: guide.coverImage,
     readingMinutes: guide.readingMinutes,
   }),
+  faqSchema(guideFaqs),
 ].filter(Boolean);
 
 function mediaSrc(src: string | null | undefined) {

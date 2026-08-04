@@ -326,6 +326,34 @@ export function faqSchema(faqs: FaqItem[]) {
   };
 }
 
+/** Pull FAQ pairs from guide article.html `<details>/<summary>/<p>` blocks. */
+export function extractFaqsFromHtml(html: string | null | undefined): FaqItem[] {
+  if (!html) return [];
+  const faqs: FaqItem[] = [];
+  const re = /<details[^>]*>\s*<summary[^>]*>([\s\S]*?)<\/summary>\s*<p[^>]*>([\s\S]*?)<\/p>\s*<\/details>/gi;
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(html)) !== null) {
+    const question = stripHtml(match[1]);
+    const answer = stripHtml(match[2]);
+    if (question && answer) faqs.push({ question, answer });
+  }
+  return faqs;
+}
+
+function stripHtml(value: string): string {
+  return value
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#x27;/g, "'")
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export function breadcrumbSchema(items: { name: string; path: string }[]) {
   return {
     '@context': 'https://schema.org',

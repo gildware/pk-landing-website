@@ -122,15 +122,115 @@ WHY_CHOOSE_IMAGE_PROMPTS = {
     ),
 }
 
+VERIFIED_PROVIDERS_HERO_PROMPTS = {
+    "cover": (
+        _STYLE_LAND
+        + "Hero cover for Kashmir home-services platform: row of skilled professionals — plumber with wrench, "
+        "electrician with tester, cleaner with supplies, carpenter with tools — each with gold verified-badge callout circle. "
+        "Calm trustworthy mood."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "title": (
+        _STYLE_SQ
+        + "Square title card icon: shield with checkmark above crossed wrench and screwdriver, symbolising verified "
+        "trained home-service professionals. Professional calm mood."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "methods": (
+        _STYLE_LAND
+        + "Infographic showing 5 numbered points for verified trained qualified home-service providers: experience, "
+        "training, trade matching, ID verification, customer ratings. Icons connected by gold arrows."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "diagram": (
+        _STYLE_LAND
+        + "Flow diagram: skilled local tradesperson through verification training and ratings to confident customer "
+        "home visit. Gold arrows and callout circles."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "tip": (
+        _STYLE_LAND
+        + "Practical tip scene: homeowner checking provider ID badge and uniform at front door before letting electrician in. "
+        "Calm professional mood with gold callout on badge."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+}
+
+VERIFIED_PROVIDERS_IMAGE_PROMPTS = {
+    "method-1": (
+        _STYLE_LAND
+        + "Method 1: experienced plumber and electrician with professional tool bags working confidently in Kashmir home — "
+        "years of hands-on trade skill shown through neat organised tools and calm posture. Gold callout on tool kit."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "method-2": (
+        _STYLE_LAND
+        + "Method 2: home-service partner in classroom-style onboarding session learning customer communication safety "
+        "and quality standards on a presentation board. Training scene with gold callout."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "method-3": (
+        _STYLE_LAND
+        + "Method 3: booking system matching electrician icon to electrical job and plumber icon to plumbing job — "
+        "right trade for right task. Gold arrows connecting skill categories to home problems."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "method-4": (
+        _STYLE_LAND
+        + "Method 4: verified provider in navy uniform showing government ID card to homeowner at doorstep before entering. "
+        "Professional respectful visit with gold callout on ID badge."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "method-5": (
+        _STYLE_LAND
+        + "Method 5: happy customer on phone giving five-star rating after completed home repair while partner packs tools "
+        "neatly. Ongoing quality feedback loop with gold star callout."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "dont-1": (
+        _STYLE_LAND
+        + "'What not to do' step 1: unskilled person with wrong tools attempting electrical repair — platform workers "
+        "are unskilled myth debunked. Subtle warning feeling."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "dont-2": (
+        _STYLE_LAND
+        + "'What not to do' step 2: one generic handyman trying to fix geyser plumbing and wiring at once — any handyman "
+        "can do every job myth. Subtle warning feeling."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "dont-3": (
+        _STYLE_LAND
+        + "'What not to do' step 3: contrast — rushed untrained quick fix vs careful experienced professional repair "
+        "on same switch. Experience does not matter for small jobs myth debunked."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+}
+
+
 _ALL_SLUGS = [
     "why-choose-panun-kaergar-kashmir",
-    "home-services-panun-kaergar-handles-kashmir",
+    "what-jobs-can-you-book-panun-kaergar-kashmir",
     "verified-home-service-partners-kashmir",
     "transparent-pricing-home-services-kashmir",
     "home-service-quality-standards-panun-kaergar",
     "how-to-book-home-services-panun-kaergar-kashmir",
     "panun-kaergar-customer-support-kashmir",
     "panun-kaergar-vs-traditional-booking-kashmir",
+    "panun-kaergar-verified-providers-kashmir",
 ]
 
 
@@ -273,19 +373,32 @@ def _spec(
     related_service: str = "",
     reading_minutes: int = 11,
     seo_desc: str = "",
+    seo_title: str = "",
+    category: str = "Home services",
+    methods_alt: str = "",
+    diagram_alt: str = "",
+    tip_alt: str = "",
 ) -> dict:
-    subject = title.split("?")[0].lower()
+    # Prefer a short topical subject for alts — avoid repeating the full headline.
+    subject = (seo_title or title).split("|")[0].split("?")[0].strip().lower()
+    if subject.startswith("how ") or subject.startswith("what ") or subject.startswith("are "):
+        alt_subject = subject
+    else:
+        alt_subject = subject
+    seo_title_final = seo_title or f"{title} | Panun Kaergar"
+    if " | Panun Kaergar" not in seo_title_final:
+        seo_title_final = f"{seo_title_final} | Panun Kaergar"
     return dict(
         id=ident,
         slug=slug,
         title=title,
         heroSub=answer.split(".")[0] + ".",
         excerpt=f"{scene.split('.')[0]}. {answer.split('.')[0]}.",
-        seoTitle=f"{title} | Panun Kaergar",
+        seoTitle=seo_title_final,
         seoDescription=seo_desc or (
             f"{answer.split('.')[0]}. Practical guide for Kashmir households booking verified home services through Panun Kaergar."
         ),
-        category="General",
+        category=category,
         relatedServiceSlug=related_service,
         readingMinutes=reading_minutes,
         scene=scene,
@@ -298,9 +411,9 @@ def _spec(
         how_heading=how_heading,
         causes=causes,
         methods=methods,
-        methods_alt=f"Panun Kaergar guide illustration for {subject}",
+        methods_alt=methods_alt or f"Overview illustration for {alt_subject}",
         methods_caption="What Panun Kaergar does differently for customers in Kashmir.",
-        diagram_alt=f"How {subject} works with Panun Kaergar",
+        diagram_alt=diagram_alt or f"Process diagram: {alt_subject}",
         diagram_caption="From your request to a verified partner at your door.",
         pro_tip=(
             "Panun Kaergar is built in Kashmir for Kashmir — not a generic listing copied from another city. "
@@ -324,7 +437,7 @@ def _spec(
         prevention_caption="Keep one trusted booking path for every job size.",
         book=book,
         faqs=faqs,
-        tip_alt=f"Practical tip for {subject} in Kashmir",
+        tip_alt=tip_alt or f"Practical tip for {alt_subject} in Kashmir",
         overview_rows=overview_rows or [],
         comparison_rows=comparison_rows,
         comparison_intro=comparison_intro,
@@ -337,8 +450,8 @@ _SPECS = [
     _spec(
         "PK-G00",
         "why-choose-panun-kaergar-kashmir",
-        "Why choose Panun Kaergar for home and commercial services in Kashmir?",
-        "A shop owner in Srinagar gets three contractors to quote for a full storefront renovation. The same week, a family cannot find anyone to fix a bathroom tap that has dripped for ten days. Big work attracts proposals; small domestic jobs are left waiting. That imbalance is exactly why Panun Kaergar exists.",
+        "Why Panun Kaergar works for small repairs and large projects in Kashmir",
+        "A shop owner gets three contractors to quote for a full storefront renovation. The same week, a family cannot find anyone to fix a bathroom tap that has dripped for ten days. Big work attracts proposals; small domestic jobs are left waiting. That imbalance is exactly why Panun Kaergar exists.",
         "Choose Panun Kaergar for verified local professionals, transparent pricing, and simple booking across every home and commercial domestic need in Kashmir — from a twenty-minute tap repair or switch install to multi-day painting, renovation, salon, cleaning, pest control, and appliance work. Small jobs get the same respect as large projects.",
         "Panun Kaergar is Kashmir's trusted home-services platform — built for households, rented flats, guesthouses, small offices, and commercial spaces that need reliable help without chasing contacts. One booking path covers plumbing, electrical, cleaning, salon, appliances, carpentry, masonry, painting, pest control, gardening, pet care, vehicle help, and more.",
         "Kashmir's informal service market rewards size. Renovation contractors, painters, and builders compete to send proposals for work worth lakhs. But when a geyser stops heating, a drain blocks, a salon appointment is needed at home, or a shop needs a quick electrical fix — the same network often goes silent. Families and business owners are left calling numbers that do not answer, waiting days for a five-minute job, or paying emergency rates because they had no alternative.",
@@ -379,11 +492,11 @@ _SPECS = [
             (
                 "Real support when it matters",
                 "no-shows, complaints, reschedules",
-                "Our Srinagar-based support team — men and women handling calls and messages — helps with reschedules, billing questions, and complaints.",
+                "Our support team — men and women handling calls and messages — helps with reschedules, billing questions, and complaints.",
             ),
         ],
         "We had given up on the tap. Panun Kaergar sent someone the same evening — for a job every plumber we knew called 'too small.'",
-        "Nighat, Rajbagh",
+        "Nighat",
         "Kashmir mixes old timber homes, modern apartments, guesthouses, and small commercial units — often in the same neighbourhood. A platform built here understands that a geyser failure in winter, a shop wiring check before Eid rush, and a salon visit at home are all real daily needs, not 'small enough to ignore.'",
         "Do not delay small repairs until they become expensive emergencies. A drip, a spark, or a pest sign today is cheaper to fix than a flooded cabinet, a short circuit, or an infestation next month.",
         "Choose Panun Kaergar for your next home or commercial domestic service in Kashmir — especially when local contacts have stopped responding to small requests. Call, WhatsApp, book online, or use the app.",
@@ -414,7 +527,7 @@ _SPECS = [
             ),
             (
                 "What areas do you cover?",
-                "Srinagar and multiple districts across Kashmir. Mention your neighbourhood when booking.",
+                "Across Kashmir. Mention your area when booking.",
             ),
             (
                 "What if I am not satisfied?",
@@ -453,7 +566,8 @@ _SPECS = [
         is_trending=True,
         related_service="plumbing",
         reading_minutes=13,
-        seo_desc="Why choose Panun Kaergar for home and commercial services in Kashmir? Verified partners, transparent pricing, and booking for every job size — from small tap repairs to full renovation projects.",
+        seo_title="Why Panun Kaergar for every job size",
+        seo_desc="Why Panun Kaergar works for small repairs and large projects in Kashmir — verified partners, structured booking, and support across job sizes.",
         dont_blocks=[
             (
                 "Small jobs are not worth booking",
@@ -479,183 +593,9 @@ _SPECS = [
         ],
     ),
     _spec(
-        "PK-G01",
-        "home-services-panun-kaergar-handles-kashmir",
-        "What home services does Panun Kaergar handle in Kashmir? From small repairs to full projects",
-        "A contractor quotes happily for a full kitchen renovation. The same person does not answer when you need a leaking tap fixed on a Tuesday evening. In Kashmir, that gap between big-project interest and small-job silence is painfully familiar.",
-        "Panun Kaergar handles home services of every size in Kashmir — from a single switch replacement or tap repair to full-room painting, pest treatment, salon visits, appliance service, and larger renovation work. Big projects can receive detailed proposals; small repairs and installs get the same booking path, verified partners, and support team behind them.",
-        "Panun Kaergar is Kashmir's home-services platform — one place to book verified local professionals across plumbing, electrical, cleaning, salon, appliances, carpentry, masonry, pest control, gardening, pet care, vehicle help, and more. Whether the job takes twenty minutes or twenty days, you describe it once and we route it to a partner who can actually do the work.",
-        "In Kashmir's informal service market, large jobs attract attention because they promise bigger earnings. Contractors compete to send proposals for renovations, full painting contracts, and major builds. Small repairs — a loose door hinge, a blocked drain, a geyser that stopped heating, a salon appointment at home — often get ignored because the trip and negotiation do not feel worth it to many workers.",
-        [
-            "Technicians say a small job is 'not worth the visit' and never call back.",
-            "Families keep a list of numbers that worked once — until they do not.",
-            "Urgent small fixes get delayed until they become expensive damage.",
-            "Big-project contractors are available; everyday household help is not.",
-        ],
-        "Panun Kaergar was built to close that gap. Small jobs are not afterthoughts — they are why most households need help in the first place. The platform aggregates demand across Srinagar and Kashmir so partners receive steady booking requests, including work that would otherwise be too small for someone to chase individually.",
-        [
-            (
-                "Small repairs and quick installs",
-                "a dripping tap, loose handle, or single switch",
-                "Book plumbing, electrical, carpentry, or appliance help for jobs that take under an hour. Panun Kaergar matches a verified partner in your area instead of you calling five numbers.",
-            ),
-            (
-                "Routine home maintenance",
-                "seasonal checks and preventive work",
-                "Geyser descaling before winter, AC filter cleaning before summer, drain checks, and minor masonry touch-ups — maintenance that prevents bigger bills later.",
-            ),
-            (
-                "Medium household services",
-                "half-day or full-day jobs",
-                "Bathroom leak repair, room painting, deep kitchen cleaning, pest treatment, sofa cleaning, salon at home, and multi-point electrical checks.",
-            ),
-            (
-                "Larger projects with proposals",
-                "renovation and multi-room work",
-                "For bigger scopes — full flat painting, carpentry packages, masonry repairs, aluminium work — partners can assess on site and share a detailed proposal before work begins.",
-            ),
-            (
-                "Lifestyle and vehicle services",
-                "beyond walls and wires",
-                "Men's and women's salon, pet grooming, dry cleaning pickup, garden care, and car AC or battery help — everyday services Kashmir households book through the same platform.",
-            ),
-        ],
-        "I finally got someone for a tap that had dripped for three weeks. Every plumber I knew was 'busy with a big site.'",
-        "Nighat, Rajbagh",
-        "Kashmir homes mix old timber construction, modern fittings, harsh winters, and busy festival seasons. A platform that only chases large contracts misses what most families actually need on a random Wednesday — someone reliable for the small thing that is ruining the week.",
-        "Do not assume a small job is too minor to book properly. Delaying a drip, spark, or pest sign often turns a ₹500 fix into a ₹5,000 repair.",
-        "Book through Panun Kaergar for any home, garden, salon, pet, or vehicle service in Kashmir — especially when local contacts have stopped responding to small requests. Call, WhatsApp, use the website form, or the free app.",
-        [
-            (
-                "What types of home services does Panun Kaergar offer in Kashmir?",
-                "Panun Kaergar covers plumbing, electrical, cleaning, salon (men's and women's), home appliances, carpentry, masonry, painting, pest control, gardening, interior repair, aluminium and glass work, dry cleaning, pet care, vehicle care, and hiring help — across Srinagar and districts in Kashmir.",
-            ),
-            (
-                "Does Panun Kaergar handle small repairs?",
-                "Yes. Small repairs and quick installs are a core reason the platform exists. Jobs like tap fixes, switch replacement, door adjustment, and single-appliance checks are booked every day — not treated as too small to matter.",
-            ),
-            (
-                "Can I book large renovation projects through Panun Kaergar?",
-                "Yes. For larger scopes, a verified partner can visit, assess the work, and share a proposal. You get the same support and verification whether the job is small or spans multiple rooms.",
-            ),
-            (
-                "Why is it hard to find help for small jobs in Kashmir?",
-                "Many skilled workers prioritise larger contracts with higher payouts. Without a platform aggregating small requests, individual households struggle to make a twenty-minute job worth a technician's trip.",
-            ),
-            (
-                "Is Panun Kaergar only for Srinagar?",
-                "Panun Kaergar serves Srinagar and multiple districts across Kashmir. Mention your area when booking — partners are matched by neighbourhood and service type.",
-            ),
-            (
-                "How do I book?",
-                "Call, WhatsApp, fill the form at panunkaergar.com/book-a-home-service, or use the free Panun Kaergar app. Describe the job size honestly — small or large — and we route it appropriately.",
-            ),
-        ],
-        overview_rows=[
-            (
-                "Small (under 1 hour)",
-                "Tap drip, switch replacement, door adjustment, AC filter, single socket, minor leak",
-                "Same booking path as any job — verified partner, estimate, and support",
-            ),
-            (
-                "Medium (half to full day)",
-                "Room painting, bathroom repair, deep clean, pest treatment, geyser service",
-                "Matched specialist with clear scope and pricing guidance",
-            ),
-            (
-                "Large (multi-day / proposal)",
-                "Full flat painting, renovation packages, major masonry, aluminium fitting",
-                "Site visit, written proposal, and tracked project support",
-            ),
-        ],
-        is_trending=True,
-        related_service="plumbing",
-        seo_desc="Panun Kaergar handles every home service in Kashmir — small tap repairs, installs, cleaning, salon, appliances, and large renovation projects. Book verified local partners for jobs others ignore.",
-        dont_blocks=[
-            (
-                "Small jobs are not worth booking",
-                "They become big problems",
-                "A ignored drip damages cabinets; a loose wire risks a short. Panun Kaergar exists so you do not wait until the job grows.",
-                "Small dripping kitchen tap with water pooling under sink",
-                "Book early",
-            ),
-            (
-                "Only contractors handle real work",
-                "Everyday help matters more",
-                "Most households need reliable small-job partners more often than a renovation crew.",
-                "Homeowner comparing large renovation quote with ignored small repair call list",
-                "All sizes welcome",
-            ),
-            (
-                "You must know the right contact",
-                "One platform replaces the hunt",
-                "Panun Kaergar routes your request to a verified partner — you do not need the 'right uncle's number.'",
-                "Phone contact list with many unanswered service numbers",
-                "One booking path",
-            ),
-        ],
-    ),
-    _spec(
-        "PK-G02",
-        "verified-home-service-partners-kashmir",
-        "How does Panun Kaergar verify home service partners in Kashmir?",
-        "A stranger arrives to fix the geyser. The family asks who sent him; he says a neighbour recommended him. That answer was enough for generations — until it was not.",
-        "Panun Kaergar verifies every service partner before they receive live bookings: identity and contact checks, trade and experience review, onboarding on quality standards, and ongoing monitoring through customer ratings and support feedback.",
-        "Verification on Panun Kaergar means more than a profile photo. Partners complete a structured onboarding process before they are assigned customer jobs. You book someone our team has checked — not a random name from a forwarded contact.",
-        "In Kashmir, trust in home services has traditionally depended on family recommendations. That works until you move neighbourhoods, need a new trade, or the recommended person is unavailable. Unverified workers create real risk: incomplete work, no accountability, and no one to call when something goes wrong.",
-        [
-            "No standard check on who enters your home.",
-            "Skills claimed on a card may not match actual experience.",
-            "No record if the same worker causes problems at multiple homes.",
-            "Customers have no platform to escalate complaints.",
-        ],
-        "Panun Kaergar's verification process is designed for households that want local skilled workers with accountability attached. Partners are onboarded, monitored, and managed — so verification is not a one-time stamp but an ongoing standard.",
-        [
-            (
-                "Identity and contact verification",
-                "before any live booking",
-                "Partners submit valid ID and reachable phone numbers. Our team confirms details before activating a profile.",
-            ),
-            (
-                "Trade and experience review",
-                "matching skills to categories",
-                "We review which services a partner claims — plumbing, electrical, cleaning, salon, and more — against their experience and chosen work areas.",
-            ),
-            (
-                "Onboarding and guidelines",
-                "setting expectations early",
-                "New partners learn how bookings work, how to communicate with customers, and what quality standards apply before receiving requests.",
-            ),
-            (
-                "Customer ratings and reviews",
-                "after every completed job",
-                "Completed jobs can be rated. Strong performance builds reputation; repeated poor experiences trigger investigation.",
-            ),
-            (
-                "Ongoing performance management",
-                "keeping standards high",
-                "Support tickets, completion rates, and complaint patterns feed into partner management. Serious or repeat issues can lead to suspension.",
-            ),
-        ],
-        "Knowing he was verified made a difference — we let him in without the usual twenty questions.",
-        "Sajad, Bemina",
-        "Kashmir has deep networks of skilled tradespeople. Panun Kaergar does not replace that talent — it makes it visible, checkable, and accountable to customers who may not have a family connection to every trade.",
-        "Verification reduces risk; it does not remove the need for clear communication. Always confirm the job scope and estimate before work begins.",
-        "Book through Panun Kaergar when you want a verified local partner for any home service in Kashmir — especially when you do not have a trusted personal contact for that trade.",
-        [
-            ("How are Panun Kaergar partners verified?", "Through identity checks, trade review, onboarding, and ongoing rating and complaint monitoring."),
-            ("Can anyone join as a partner?", "Partners apply and are reviewed before going live. Not every application is approved."),
-            ("What if a verified partner does poor work?", "Contact Panun Kaergar support. We investigate complaints and can take action on repeat issues."),
-            ("Are partners employees of Panun Kaergar?", "Partners are independent skilled professionals who use the platform to receive bookings. Panun Kaergar verifies and manages them."),
-            ("Why does verification matter for small jobs?", "Small jobs still let someone into your home. Verification matters regardless of job size."),
-        ],
-        related_service="electrician",
-        seo_desc="How Panun Kaergar verifies home service partners in Kashmir — identity checks, trade review, onboarding, ratings, and ongoing quality monitoring before they enter your home.",
-    ),
-    _spec(
         "PK-G03",
         "transparent-pricing-home-services-kashmir",
-        "Are Panun Kaergar home service prices transparent? What to expect before you pay",
+        "How Panun Kaergar handles pricing before work starts",
         "The plumber finishes in forty minutes. The bill is twice what was discussed on the phone — because 'parts were extra' and 'it was more complicated.' The family pays, annoyed, and tells everyone the story.",
         "Panun Kaergar aims for transparent pricing: estimates or rate guidance before work begins, no hidden platform booking fee for standard requests, clear explanation of material costs, and a booking record in the app.",
         "Transparent pricing means you understand what a job is likely to cost before a partner starts — not only when the work is finished. Panun Kaergar shares estimates or rate ranges upfront for most services.",
@@ -695,7 +635,7 @@ _SPECS = [
             ),
         ],
         "They told me the part cost before fitting it. That alone felt new.",
-        "Imtiyaz, Hyderpora",
+        "Imtiyaz",
         "Winter repairs often need extra parts — geyser elements, pipe insulation, heating components. In Kashmir, a clear parts breakdown before installation prevents the arguments that happen when a bill arrives in the cold.",
         "An estimate is guidance, not a guarantee for every unforeseen fault found on site. Honest partners explain new findings before expanding scope.",
         "Book through Panun Kaergar when you want pricing discussed clearly before work begins — for taps, wiring, cleaning, salon, appliances, and every other service category.",
@@ -707,12 +647,128 @@ _SPECS = [
             ("Can I get a written estimate?", "For larger jobs, partners can provide a detailed proposal after assessment."),
         ],
         related_service="plumbing",
-        seo_desc="Transparent home service pricing in Kashmir — estimates before work, no hidden booking fees, clear material costs, and support if your bill does not match what was agreed.",
+        reading_minutes=8,
+        seo_title="Transparent pricing before work starts",
+        seo_desc="How Panun Kaergar handles pricing before work starts — estimates, material-cost explanations, booking records, and billing support.",
+        methods_alt="Five ways Panun Kaergar keeps home-service pricing clear before work starts",
+        diagram_alt="Flow from estimate to completed job with clear pricing on Panun Kaergar",
+        tip_alt="Tip: ask for material costs before parts are fitted",
+        dont_blocks=[
+            (
+                "The phone quote is the final bill",
+                "Scope can change — it should be explained",
+                "If the job grows on site, the partner should explain extra labour or parts before continuing, not only when presenting the bill.",
+                "Technician explaining extra part cost on phone before installing",
+                "Confirm changes early",
+            ),
+            (
+                "Material costs do not need discussion",
+                "Parts should be priced upfront",
+                "Switches, pipes, filters, and consumables should be explained before they are fitted so the final charge does not surprise you.",
+                "Partner showing spare part and price before fitting in a Kashmir home",
+                "Parts priced first",
+            ),
+            (
+                "No record means no recourse",
+                "Keep the booking history",
+                "App and platform booking records help when a charge does not match what was discussed — contact support with those details.",
+                "Customer checking booking estimate history on phone after a visit",
+                "Use your booking record",
+            ),
+        ],
+    ),
+    _spec(
+        "PK-G02",
+        "verified-home-service-partners-kashmir",
+        "How Panun Kaergar verifies home service partners before they visit",
+        "A stranger arrives to fix the geyser. The family asks who sent him; he says a neighbour recommended him. That answer was enough for generations — until it was not.",
+        "Panun Kaergar verifies every service partner before they receive live bookings: identity and contact checks, trade and experience review, onboarding on quality standards, and ongoing monitoring through customer ratings and support feedback.",
+        "Verification on Panun Kaergar means more than a profile photo. Partners complete a structured onboarding process before they are assigned customer jobs. You book someone our team has checked — not a random name from a forwarded contact.",
+        "In Kashmir, trust in home services has traditionally depended on family recommendations. That works until you move neighbourhoods, need a new trade, or the recommended person is unavailable. Unverified workers create real risk: incomplete work, no accountability, and no one to call when something goes wrong.",
+        [
+            "No standard check on who enters your home.",
+            "Skills claimed on a card may not match actual experience.",
+            "No record if the same worker causes problems at multiple homes.",
+            "Customers have no platform to escalate complaints.",
+        ],
+        "Panun Kaergar's verification process is designed for households that want local skilled workers with accountability attached. Partners are onboarded, monitored, and managed — so verification is not a one-time stamp but an ongoing standard.",
+        [
+            (
+                "Identity and contact verification",
+                "before any live booking",
+                "Partners submit valid ID and reachable phone numbers. Our team confirms details before activating a profile.",
+            ),
+            (
+                "Trade and experience review",
+                "matching skills to categories",
+                "We review which services a partner claims — plumbing, electrical, cleaning, salon, and more — against their experience and chosen work areas.",
+            ),
+            (
+                "Onboarding and guidelines",
+                "setting expectations early",
+                "New partners learn how bookings work, how to communicate with customers, and what quality standards apply before receiving requests.",
+            ),
+            (
+                "Customer ratings and reviews",
+                "after every completed job",
+                "Completed jobs can be rated. Strong performance builds reputation; repeated poor experiences trigger investigation.",
+            ),
+            (
+                "Ongoing performance management",
+                "keeping standards high",
+                "Support tickets, completion rates, and complaint patterns feed into partner management. Serious or repeat issues can lead to suspension.",
+            ),
+        ],
+        "Knowing he was verified made a difference — we let him in without the usual twenty questions.",
+        "Sajad",
+        "Kashmir has deep networks of skilled tradespeople. Panun Kaergar does not replace that talent — it makes it visible, checkable, and accountable to customers who may not have a family connection to every trade.",
+        "Verification reduces risk; it does not remove the need for clear communication. Always confirm the job scope and estimate before work begins.",
+        "Book through Panun Kaergar when you want a verified local partner for any home service in Kashmir — especially when you do not have a trusted personal contact for that trade.",
+        [
+            ("How are Panun Kaergar partners verified?", "Through identity checks, trade review, onboarding, and ongoing rating and complaint monitoring."),
+            ("Can anyone join as a partner?", "Partners apply and are reviewed before going live. Not every application is approved."),
+            ("What if a verified partner does poor work?", "Contact Panun Kaergar support. We investigate complaints and can take action on repeat issues."),
+            ("Are partners employees of Panun Kaergar?", "Partners are independent skilled professionals who use the platform to receive bookings. Panun Kaergar verifies and manages them."),
+            ("Why does verification matter for small jobs?", "Small jobs still let someone into your home. Verification matters regardless of job size."),
+        ],
+        overview_heading="What verification means for you",
+        problem_heading="Why unverified home visits are risky in Kashmir",
+        how_heading="How Panun Kaergar verifies partners before they visit",
+        related_service="electrician",
+        reading_minutes=9,
+        seo_title="How Panun Kaergar verifies service partners",
+        seo_desc="How Panun Kaergar verifies home service partners before they visit — ID checks, trade review, onboarding, ratings, and complaint monitoring.",
+        methods_alt="Five-step overview of how Panun Kaergar verifies home service partners",
+        diagram_alt="Flow from partner application to verified live bookings on Panun Kaergar",
+        tip_alt="Tip: save Panun Kaergar booking channels before you need a verified partner",
+        dont_blocks=[
+            (
+                "A neighbour's recommendation is enough",
+                "Recommendations help — verification adds a check",
+                "Word of mouth is valuable, but it does not confirm ID, trade skill, or what happens if the job goes wrong. Verification fills that gap.",
+                "Neighbour recommending an unknown worker at a Kashmir home door",
+                "Verify before entry",
+            ),
+            (
+                "Verification is only a profile photo",
+                "It is an ongoing process",
+                "Panun Kaergar verification includes identity checks, trade review, onboarding, ratings, and complaint monitoring — not a one-time stamp.",
+                "Checklist of identity trade onboarding and rating steps for a service partner",
+                "More than a photo",
+            ),
+            (
+                "Small jobs do not need verified partners",
+                "Anyone entering your home matters",
+                "A tap fix or switch replacement still lets someone into your house. Verification matters for every job size.",
+                "Verified partner ID card shown before starting a small home repair",
+                "Size does not change trust",
+            ),
+        ],
     ),
     _spec(
         "PK-G04",
         "home-service-quality-standards-panun-kaergar",
-        "What quality standards does Panun Kaergar expect from every home service visit?",
+        "What standards should you expect from a Panun Kaergar home service visit?",
         "The electrician leaves the switch plate loose. The cleaner misses the corner behind the fridge. Small slips add up — and customers wonder whether anyone actually cares.",
         "Panun Kaergar expects every partner to arrive prepared, respect appointment times, care for your home, give honest recommendations, and complete work to a professional standard — with ratings and support backing those expectations.",
         "Quality on Panun Kaergar is not abstract. We define what a good visit looks like — and customers can rate partners so standards are visible to the next household booking.",
@@ -752,7 +808,7 @@ _SPECS = [
             ),
         ],
         "The partner cleaned up after the repair — that sounds basic, but it is rare.",
-        "Farah, Lal Chowk",
+        "Farah",
         "In Kashmir's winter, wet boots, tool bags, and work materials cross clean floors daily. Partners who protect surfaces and clean up stand out — and earn repeat bookings.",
         "Quality standards apply to every job size. A small switch fix deserves the same professionalism as a full-day renovation visit.",
         "Book through Panun Kaergar when you want accountable, rated professionals — and rate your experience so the platform stays trustworthy for everyone.",
@@ -762,13 +818,44 @@ _SPECS = [
             ("Do ratings matter?", "Yes. They help future customers and inform partner management."),
             ("What if a partner no-shows?", "Contact support immediately. We help reschedule or assign another partner."),
         ],
+        overview_heading="What Panun Kaergar quality standards mean",
+        problem_heading="Why service quality standards matter at home",
+        how_heading="What to expect on every Panun Kaergar visit",
         related_service="professional-cleaning",
-        seo_desc="Panun Kaergar quality standards for every home service visit — prepared arrival, punctuality, home care, honest advice, and customer ratings that keep partners accountable.",
+        reading_minutes=9,
+        seo_title="What to expect on every Panun Kaergar visit",
+        seo_desc="What to expect on a Panun Kaergar visit: prepared arrival, punctuality, home care, honest advice, cleanup, and ratings-backed accountability.",
+        methods_alt="Five quality standards customers should expect on a Panun Kaergar visit",
+        diagram_alt="How Panun Kaergar quality standards connect booking, visit, and ratings",
+        tip_alt="Tip: rate your Panun Kaergar visit so quality stays visible for the next customer",
+        dont_blocks=[
+            (
+                "Any available worker is good enough",
+                "Preparation matters before work starts",
+                "A quality visit starts with the right tools, the right trade, and a partner who arrives ready for the job accepted.",
+                "Prepared home-service partner arriving with correct tools for the assigned job",
+                "Prepared from the start",
+            ),
+            (
+                "If the repair works, cleanup does not matter",
+                "Professional standards include home care",
+                "A proper visit protects your space, keeps the work area tidy, and does not leave dust, screws, or packaging behind.",
+                "Technician cleaning the work area after completing a home repair",
+                "Clean work matters",
+            ),
+            (
+                "Punctuality and communication are optional",
+                "Respect for time is part of quality",
+                "Customers should not be left guessing. Delays, scope changes, and revisit needs should be communicated clearly before they become frustration.",
+                "Customer receiving clear timing update from service partner before arrival",
+                "Communication is part of service",
+            ),
+        ],
     ),
     _spec(
         "PK-G05",
         "how-to-book-home-services-panun-kaergar-kashmir",
-        "How to book home services through Panun Kaergar in Kashmir",
+        "How to book a Panun Kaergar home service in Kashmir",
         "The geyser fails on a Sunday. The family's contact list has three plumbers — one does not answer, one is out of town, one says 'call tomorrow.' They need a path that works today.",
         "Book Panun Kaergar home services by phone, WhatsApp, the website booking form, or the free mobile app. Describe the service, your area, and preferred time — we match a verified local partner and confirm details before the visit.",
         "Booking through Panun Kaergar takes minutes. You do not need to know which specific technician is free — you describe the job and the platform handles matching.",
@@ -808,7 +895,7 @@ _SPECS = [
             ),
         ],
         "I booked on WhatsApp during lunch break. Someone confirmed by evening.",
-        "Aqsa, Zakura",
+        "Aqsa",
         "Winter evenings are when geysers, heaters, and electrical loads fail together. Having one booking number — instead of five silent contacts — matters most when it is cold and dark.",
         "Describe the job accurately when booking. A small tap drip and a major pipe burst need different partners and pricing — honesty upfront saves time.",
         "Book now for any home service in Kashmir — especially when your usual contacts are not responding.",
@@ -820,15 +907,43 @@ _SPECS = [
             ("What information should I provide?", "Service type, location, preferred time, and a short description of the problem."),
         ],
         related_service="home-appliances",
-        seo_desc="How to book home services in Kashmir through Panun Kaergar — by phone, WhatsApp, website form, or free app. One path for every service from small repairs to large projects.",
+        reading_minutes=8,
+        seo_title="How to book a Panun Kaergar home service",
+        seo_desc="How to book a Panun Kaergar home service in Kashmir — by phone, WhatsApp, website form, or app, with one booking path for small repairs and larger jobs.",
+        methods_alt="Four booking channels plus confirmation for Panun Kaergar home services",
+        diagram_alt="Booking flow from request to confirmed Panun Kaergar home visit",
+        tip_alt="Tip: save Panun Kaergar phone WhatsApp and app before your next home repair",
+        dont_blocks=[
+            (
+                "You must know a technician personally to get help",
+                "One booking path replaces the contact hunt",
+                "Describe the job once through phone, WhatsApp, web, or app — Panun Kaergar matches a verified partner without you chasing numbers.",
+                "Customer booking a home service on phone instead of scrolling an unanswered contact list",
+                "Book without contacts",
+            ),
+            (
+                "Only the mobile app can book a visit",
+                "Phone, WhatsApp, and web also work",
+                "The app is convenient for tracking and rebooking, but call, WhatsApp, and the website form create the same booking path.",
+                "Phone WhatsApp website form and app icons as equal booking options",
+                "Any channel works",
+            ),
+            (
+                "Vague booking details are fine",
+                "Clear details get a better match",
+                "Share the service type, area, preferred time, and a short problem description so the right partner arrives prepared.",
+                "Customer sending clear service area and problem details when booking",
+                "Details speed matching",
+            ),
+        ],
     ),
     _spec(
         "PK-G06",
         "panun-kaergar-customer-support-kashmir",
-        "Panun Kaergar customer support: who helps when a home service goes wrong?",
+        "What happens if a Panun Kaergar home service goes wrong?",
         "The technician never showed. The family called his personal number twice; it went to voicemail. With no office to call, the afternoon was wasted.",
         "Panun Kaergar provides real customer support by phone, WhatsApp, and email — for reschedules, billing questions, complaints, and follow-up when a job does not go as planned.",
-        "When you book through Panun Kaergar, you are not alone with a worker's personal number. Our Srinagar-based support team helps when something goes wrong.",
+        "When you book through Panun Kaergar, you are not alone with a worker's personal number. Our support team helps when something goes wrong.",
         "Informal booking means informal resolution. If a worker no-shows or overcharges, the customer often has no one to escalate to. That is the problem a platform with support is designed to solve.",
         [
             "No-shows with no one to call except the worker.",
@@ -865,8 +980,8 @@ _SPECS = [
             ),
         ],
         "Support called the partner when he was late. They rescheduled within the hour.",
-        "Rukhsar, Nowgam",
-        "Snow, curfews, and traffic in Srinagar affect appointment timing. A support team that knows the city can reschedule realistically — not just promise 'soon.'",
+        "Rukhsar",
+        "Snow, curfews, and traffic in Kashmir affect appointment timing. A support team that knows local conditions can reschedule realistically — not just promise 'soon.'",
         "Support helps resolve issues — it does not do the technical repair itself. For the actual fix, a qualified partner still completes the work.",
         "Book through Panun Kaergar when you want backup behind every booking — not just a phone number that may not answer.",
         [
@@ -875,13 +990,41 @@ _SPECS = [
             ("What are support hours?", "Office Monday–Saturday 10:00–18:00; call centre daily 10:00–22:00."),
             ("What if I am not satisfied with the service?", "Contact support with booking details. We investigate and work toward resolution."),
         ],
-        related_service="carpentry",
-        seo_desc="Panun Kaergar customer support in Kashmir — phone, WhatsApp, and email help for reschedules, billing questions, no-shows, and complaints when a home service does not go as planned.",
+        related_service="plumbing",
+        reading_minutes=8,
+        seo_title="If a Panun Kaergar home service goes wrong",
+        seo_desc="What happens if a Panun Kaergar home service goes wrong? Support helps with reschedules, billing questions, no-shows, and complaints.",
+        methods_alt="Panun Kaergar support options for reschedules billing questions and complaints",
+        diagram_alt="How Panun Kaergar support steps in when a home service goes wrong",
+        tip_alt="Tip: keep your booking details ready when contacting Panun Kaergar support",
+        dont_blocks=[
+            (
+                "There is no one to call except the worker",
+                "Support sits behind every booking",
+                "If a partner is late, no-shows, or the work is unsatisfactory, Panun Kaergar support can help by phone, WhatsApp, or email.",
+                "Customer calling support after a missed home-service appointment",
+                "Support is reachable",
+            ),
+            (
+                "Complaints never change anything",
+                "Complaints are investigated",
+                "Support reviews the issue, speaks with the partner when needed, and works toward a fair resolution — including reschedule or reassignment.",
+                "Support team reviewing a booking complaint with partner and customer notes",
+                "Complaints are reviewed",
+            ),
+            (
+                "Billing disputes have to be settled alone",
+                "Bring the booking record to support",
+                "When the final charge does not match what was discussed, contact support with your booking details so the team can follow up.",
+                "Customer sharing booking estimate and final bill with support on WhatsApp",
+                "Use the booking record",
+            ),
+        ],
     ),
     _spec(
         "PK-G08",
         "panun-kaergar-vs-traditional-booking-kashmir",
-        "Panun Kaergar vs traditional local booking: what actually changes for customers?",
+        "Panun Kaergar vs calling a local technician: what changes for customers?",
         "Two neighbours need a plumber. One calls a cousin's contact; the other books through Panun Kaergar. Same city, same week — very different experiences when something goes wrong.",
         "Compared to traditional local booking, Panun Kaergar offers verified partners, transparent pricing guidance, multiple booking channels, a support team for complaints, and a record of every request — without replacing Kashmir's skilled local workforce.",
         "Traditional booking relies on personal contacts. Panun Kaergar adds verification, pricing clarity, structured booking, and accountability — while still using local skilled partners.",
@@ -921,7 +1064,7 @@ _SPECS = [
             ),
         ],
         "I still get local workers — but now there is someone to call if they do not show.",
-        "Feroz, Batamaloo",
+        "Feroz",
         "Kashmir's skilled trades are a strength. Panun Kaergar's role is to make that strength reachable for every household — especially for small jobs that contacts often ignore.",
         "A platform does not guarantee perfection on every visit. It guarantees a process, a record, and someone to call — which traditional booking often lacks.",
         "Try Panun Kaergar for your next home service — especially a small repair your usual contacts have been ignoring.",
@@ -941,8 +1084,163 @@ _SPECS = [
             ("Record", "No central history", "App and platform keep booking records"),
         ],
         comparison_intro="This table compares the experience of booking home services the traditional way in Kashmir versus through Panun Kaergar. No competitor names — just what changes for you as a customer.",
-        related_service="painting",
-        seo_desc="Panun Kaergar vs traditional local booking in Kashmir — verified partners, transparent pricing, multiple booking channels, support for complaints, and a record of every request.",
+        related_service="plumbing",
+        reading_minutes=9,
+        seo_title="Panun Kaergar vs calling a local technician",
+        seo_desc="Panun Kaergar vs calling a local technician in Kashmir — what changes in verification, pricing clarity, booking records, and support if a job goes wrong.",
+        methods_alt="Side-by-side differences between traditional booking and Panun Kaergar",
+        diagram_alt="Comparison flow of traditional local booking versus Panun Kaergar",
+        tip_alt="Tip: try Panun Kaergar for the small jobs contacts often ignore",
+        dont_blocks=[
+            (
+                "Platforms replace local workers",
+                "Panun Kaergar connects local skilled partners",
+                "You still get Kashmir tradespeople — with verification, pricing guidance, and support added around the visit.",
+                "Local verified technician arriving at a Kashmir home through a platform booking",
+                "Local skill, structured booking",
+            ),
+            (
+                "Traditional booking is always simpler",
+                "It fails when contacts go silent",
+                "Asking around works until nobody answers. One booking request with a matched partner is often faster for small urgent jobs.",
+                "Unanswered contact list beside a confirmed Panun Kaergar booking screen",
+                "Structure beats silence",
+            ),
+            (
+                "Accountability only matters for big jobs",
+                "Small jobs need backup too",
+                "A no-show for a tap repair still wastes your day. Support and booking records help whether the job is small or large.",
+                "Customer contacting support after a missed small plumbing appointment",
+                "Accountability at every size",
+            ),
+        ],
+    ),
+    _spec(
+        "PK-G09",
+        "panun-kaergar-verified-providers-kashmir",
+        "Are Panun Kaergar providers trained and experienced? What verified means",
+        "A family needs an electrician for a tripping bedroom circuit. Three people offer help — one arrives with no tools, one cannot explain the fault, and one comes in uniform with ID, tests the MCB calmly, and fixes the loose connection in twenty minutes. That last visit is what verified means.",
+        "Panun Kaergar verified providers are locally skilled, experienced professionals — not random names from a contact list. They pass identity checks, trade and experience review, service training on quality standards, and ongoing monitoring through customer ratings before and after every booking.",
+        "When you book through Panun Kaergar, you are hiring a trained professional who knows the trade — plumber, electrician, cleaner, carpenter, appliance technician, or salon specialist — with verification and accountability behind the visit.",
+        "Kashmir has no shortage of skilled tradespeople. The gap is knowing who is qualified, who will show up, and who will treat your home with care. Unverified workers create risk: wrong diagnosis, damaged fittings, no one to call when something goes wrong, and repeat visits that cost more than the first fix.",
+        [
+            "No way to confirm trade experience before someone enters your home.",
+            "Workers who take jobs outside their actual skill set.",
+            "No training on how to communicate, protect your space, or explain the work.",
+            "No record if the same person causes problems at multiple homes.",
+            "Customers left guessing whether 'verified' is just a marketing word.",
+        ],
+        "Panun Kaergar builds verification around real professional standards — not just a profile photo. Partners are experienced local tradespeople who complete onboarding, are matched to jobs they can actually do, arrive identifiable and prepared, and are rated after every visit so quality stays visible.",
+        [
+            (
+                "Experienced local tradespeople",
+                "any home repair or service",
+                "Panun Kaergar partners are skilled professionals with hands-on experience in Kashmir homes — plumbing, electrical, cleaning, appliances, carpentry, salon, pest control, and more. Experience is reviewed before they receive live bookings.",
+            ),
+            (
+                "Trained on service standards",
+                "every new partner",
+                "Before going live, partners learn how bookings work, how to communicate with customers, how to care for your home during work, and what safety and quality standards apply on every visit.",
+            ),
+            (
+                "Right skill for the right job",
+                "matching by trade",
+                "An electrician is sent for wiring faults, a plumber for leaks, a cleaner for deep cleans — not a generic handyman for everything. Panun Kaergar routes requests to partners qualified in that category.",
+            ),
+            (
+                "Verified and identifiable visits",
+                "before entering your home",
+                "Partners wear a Panun Kaergar uniform and ID card, pass identity and contact checks, and can be reached through the platform — so you know who is at your door and who sent them.",
+            ),
+            (
+                "Rated after every completed job",
+                "keeping standards high",
+                "Customers rate completed visits. Strong performance builds reputation; repeated poor experiences trigger investigation. Your rating helps the next household book with confidence.",
+            ),
+        ],
+        "He explained what was wrong before touching anything. That alone told us he was the real deal.",
+        "Sajad",
+        "Kashmir homes mix old wiring, modern geysers, timber construction, and harsh winters. A trained electrician who has worked in local flats understands tripped MCBs and heater loads; a trained plumber knows hard-water scaling — general labour cannot substitute for that experience.",
+        "Verification and training reduce risk; they do not remove the need for clear communication. Always confirm the job scope and estimate before work begins.",
+        "Book through Panun Kaergar when you want a trained, verified local professional for any home service in Kashmir — especially when you do not have a trusted personal contact for that trade.",
+        [
+            (
+                "What makes a Panun Kaergar provider 'verified'?",
+                "Identity and contact checks, trade and experience review, onboarding on service standards, uniform and ID on visits, and ongoing customer ratings and complaint monitoring.",
+            ),
+            (
+                "Are Panun Kaergar providers trained?",
+                "Yes. New partners complete onboarding that covers booking procedures, customer communication, home care, safety, and quality expectations before receiving live jobs.",
+            ),
+            (
+                "Are they qualified for the job I book?",
+                "Requests are matched by service category — electrical work goes to electricians, plumbing to plumbers, and so on. Partners are reviewed for the trades they claim.",
+            ),
+            (
+                "Are Panun Kaergar providers experienced?",
+                "Partners are locally skilled professionals with hands-on trade experience. Panun Kaergar reviews experience during onboarding — it is not an open directory for anyone with a phone number.",
+            ),
+            (
+                "How is this different from calling a local technician?",
+                "You still get local skilled workers — plus verification, training standards, trade matching, identifiable visits, ratings, and a support team if something goes wrong.",
+            ),
+            (
+                "Can I see ratings before booking?",
+                "Partner performance is tracked through completed job ratings. Strong partners build visible reputations over time.",
+            ),
+            (
+                "What if a verified provider does poor work?",
+                "Contact Panun Kaergar support by phone or WhatsApp. We investigate complaints and can take action on repeat issues.",
+            ),
+        ],
+        overview_rows=[
+            (
+                "Trade skill",
+                "Plumbing, electrical, cleaning, appliances, carpentry, salon, pest control",
+                "Partners reviewed for the categories they work in — not a one-size-fits-all handyman list",
+            ),
+            (
+                "Training",
+                "Onboarding, communication, home care, safety",
+                "Every new partner learns service standards before live bookings",
+            ),
+            (
+                "Accountability",
+                "Uniform, ID, ratings, support",
+                "Identifiable visits with feedback after every job and a team to escalate issues",
+            ),
+        ],
+        overview_heading="What verified provider means",
+        problem_heading="Why qualification matters at home",
+        how_heading="How Panun Kaergar builds professional standards",
+        is_trending=True,
+        related_service="electrician",
+        reading_minutes=12,
+        seo_title="Are Panun Kaergar providers trained?",
+        seo_desc=("Are Panun Kaergar providers trained and experienced? Learn what 'verified' means, from trade review and onboarding to ratings after each visit."),
+        dont_blocks=[
+            (
+                "Platform workers are unskilled",
+                "They are local tradespeople",
+                "Panun Kaergar partners are experienced plumbers, electricians, cleaners, and specialists — not untrained casual labour assigned at random.",
+                "Skilled plumber and electrician with professional tool kits beside unskilled person with wrong tools",
+                "Skilled and verified",
+            ),
+            (
+                "Any handyman can do every job",
+                "Trade matching matters",
+                "Electrical faults need electricians; leaks need plumbers. Panun Kaergar matches the right qualified partner to each request.",
+                "One generic handyman attempting plumbing electrical and appliance repair at once",
+                "Right skill matched",
+            ),
+            (
+                "Experience does not matter for small jobs",
+                "Small jobs still need skill",
+                "A loose wire, dripping tap, or blocked filter can become expensive damage when handled by someone without trade experience.",
+                "Contrast rushed untrained switch fix versus careful experienced electrician repair",
+                "Experience counts",
+            ),
+        ],
     ),
 ]
 
@@ -961,6 +1259,17 @@ for index, spec in enumerate(_SPECS, 1):
             "Big renovations get quotes fast — small repairs often wait weeks. "
             "Panun Kaergar gives both the same attention."
         )
+    elif guide["slug"] == "panun-kaergar-verified-providers-kashmir":
+        guide["sortOrder"] = 51
+        guide["hero_prompt_overrides"] = VERIFIED_PROVIDERS_HERO_PROMPTS
+        guide["image_prompt_overrides"] = VERIFIED_PROVIDERS_IMAGE_PROMPTS
+        guide["heroSub"] = (
+            "Trained, qualified, experienced local professionals — verified before they reach your door."
+        )
+        guide["excerpt"] = (
+            "Panun Kaergar verified providers are skilled Kashmir tradespeople with identity checks, "
+            "trade review, service training, and ratings behind every visit."
+        )
     else:
         guide["sortOrder"] = 40 + index
     siblings = [s for s in _ALL_SLUGS if s != guide["slug"]]
@@ -970,11 +1279,12 @@ for index, spec in enumerate(_SPECS, 1):
 
 TITLE_SUBJECTS = {
     "why-choose-panun-kaergar-kashmir": "why choose Panun Kaergar for home and commercial services small to large jobs Kashmir",
-    "home-services-panun-kaergar-handles-kashmir": "Kashmir home services from small tap repair to large renovation project",
+    "what-jobs-can-you-book-panun-kaergar-kashmir": "Kashmir home services from small tap repair to large renovation project",
     "verified-home-service-partners-kashmir": "verified home service partner ID check and onboarding",
     "transparent-pricing-home-services-kashmir": "transparent home service pricing estimate before work",
     "home-service-quality-standards-panun-kaergar": "home service quality standards checklist for partner visit",
     "how-to-book-home-services-panun-kaergar-kashmir": "booking home services by phone WhatsApp app and website",
     "panun-kaergar-customer-support-kashmir": "customer support team helping with home service booking issue",
     "panun-kaergar-vs-traditional-booking-kashmir": "comparison traditional local booking vs structured home service platform",
+    "panun-kaergar-verified-providers-kashmir": "verified trained qualified experienced home-service professionals Kashmir",
 }

@@ -39,6 +39,8 @@ export default defineConfig({
   redirects: {
     '/become-a-provider': '/become-a-partner',
     '/book': '/book-a-home-service',
+    '/guides/home-services-panun-kaergar-handles-kashmir':
+      '/guides/what-jobs-can-you-book-panun-kaergar-kashmir',
     '/areas': '/service-areas',
     '/areas/srinagar': '/service-areas/home-services-in-srinagar',
     '/areas/budgam': '/service-areas/home-services-in-budgam',
