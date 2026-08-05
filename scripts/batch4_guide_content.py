@@ -161,6 +161,103 @@ VERIFIED_PROVIDERS_HERO_PROMPTS = {
     ),
 }
 
+SERVICE_AREAS_HERO_PROMPTS = {
+    "cover": (
+        _STYLE_LAND
+        + "Hero cover for Kashmir home-services area coverage: stylised map of Kashmir Valley with ten district markers "
+        "connected by gold lines to a home with wrench icon. Calm trustworthy mood showing wide regional reach."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "title": (
+        _STYLE_SQ
+        + "Square title card icon: Kashmir Valley outline with pin markers and a house symbol, representing home-service "
+        "coverage across districts. Professional calm mood."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "methods": (
+        _STYLE_LAND
+        + "Infographic showing 5 numbered points for home-service coverage: ten districts, many localities, zone confirm, "
+        "district pages, one booking path. Icons connected by gold arrows."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "diagram": (
+        _STYLE_LAND
+        + "Flow diagram: customer shares address, platform checks district zone, matches verified local partner, visit confirmed. "
+        "Gold arrows and callout circles."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "tip": (
+        _STYLE_LAND
+        + "Practical tip scene: homeowner on phone sharing exact neighbourhood while booking a plumber — map pin beside house. "
+        "Calm professional mood with gold callout on location."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+}
+
+SERVICE_AREAS_IMAGE_PROMPTS = {
+    "method-1": (
+        _STYLE_LAND
+        + "Method 1: stylised Kashmir Valley map with ten gold district pins around a central home-services house icon. "
+        "Wide coverage scene, calm and clear."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "method-2": (
+        _STYLE_LAND
+        + "Method 2: neighbourhood street with several homes and small market shops, gold pin markers on multiple doors — "
+        "many localities covered. Helpful calm mood."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "method-3": (
+        _STYLE_LAND
+        + "Method 3: booking confirmation on smartphone showing address check and verified partner match nearby. "
+        "Zone confirmation scene with gold callout on phone."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "method-4": (
+        _STYLE_LAND
+        + "Method 4: person browsing district cards on a laptop — Srinagar-style city and mountain town silhouettes on cards. "
+        "Service area pages scene with gold arrows."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "method-5": (
+        _STYLE_LAND
+        + "Method 5: four booking channels — phone, WhatsApp, website, app — with a map pin linking all to one home visit. "
+        "Same booking path everywhere."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "dont-1": (
+        _STYLE_LAND
+        + "'What not to do' myth 1: only one city highlighted while rest of valley is greyed out — only capital covered myth. "
+        "Subtle warning feeling."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "dont-2": (
+        _STYLE_LAND
+        + "'What not to do' myth 2: village house outside town with crossed-out pin vs town house with pin — villages excluded myth. "
+        "Subtle warning feeling."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+    "dont-3": (
+        _STYLE_LAND
+        + "'What not to do' myth 3: empty contact list on phone vs structured booking with local verified partner arriving. "
+        "Must know someone locally myth debunked."
+        + _STYLE_REF
+        + _NO_LOGO
+    ),
+}
+
 VERIFIED_PROVIDERS_IMAGE_PROMPTS = {
     "method-1": (
         _STYLE_LAND
@@ -230,6 +327,7 @@ _ALL_SLUGS = [
     "panun-kaergar-customer-support-kashmir",
     "panun-kaergar-vs-traditional-booking-kashmir",
     "panun-kaergar-verified-providers-kashmir",
+    "panun-kaergar-service-areas-kashmir",
 ]
 
 
@@ -299,7 +397,12 @@ def _platform_article(item: dict) -> str:
     overview_rows = item.get("overview_rows", [])
     overview_table = ""
     if overview_rows:
-        overview_table = "<div class=\"table-wrap\"><table><thead><tr><th>Job size</th><th>Examples</th><th>How Panun Kaergar helps</th></tr></thead><tbody>"
+        oh = item.get("overview_headers") or ("Job size", "Examples", "How Panun Kaergar helps")
+        overview_table = (
+            "<div class=\"table-wrap\"><table><thead><tr>"
+            f"<th>{escape(oh[0])}</th><th>{escape(oh[1])}</th><th>{escape(oh[2])}</th>"
+            "</tr></thead><tbody>"
+        )
         overview_table += "".join(
             f"<tr><td><strong>{escape(r[0])}</strong></td><td>{escape(r[1])}</td><td>{escape(r[2])}</td></tr>"
             for r in overview_rows
@@ -339,7 +442,7 @@ def _platform_article(item: dict) -> str:
 <figure class="figure"><img src="/images/guides/{slug}-tip.webp" alt="{escape(item['tip_alt'])}" loading="lazy" /><figcaption><strong>Practical tip:</strong> {escape(item["prevention_caption"])}</figcaption></figure>
 <p>{escape(item["prevention"])}</p>
 <h2 id="book">When to book through Panun Kaergar</h2><p>{escape(item["book"])}</p>
-<p>Ready now? <a href="/book-a-home-service">Book a home service</a> · <a href="/why-choose-panun-kaergar">Why choose Panun Kaergar</a> · <a href="/services">Browse all services</a></p>
+<p>Ready now? <a href="/book-a-home-service">Book a home service</a> · <a href="/service-areas">Browse service areas</a> · <a href="/why-choose-panun-kaergar">Why choose Panun Kaergar</a> · <a href="/services">Browse all services</a></p>
 <h2 id="faq">FAQs</h2><div class="faq">{faqs}</div>"""
 
 
@@ -362,6 +465,7 @@ def _spec(
     faqs: list[tuple[str, str]],
     *,
     overview_rows: list[tuple[str, str, str]] | None = None,
+    overview_headers: tuple[str, str, str] | None = None,
     comparison_rows: list[tuple[str, str, str]] | None = None,
     comparison_intro: str = "",
     dont_blocks: list[tuple[str, str, str, str, str]] | None = None,
@@ -377,6 +481,11 @@ def _spec(
     methods_alt: str = "",
     diagram_alt: str = "",
     tip_alt: str = "",
+    hero_sub: str = "",
+    excerpt: str = "",
+    prevention: str = "",
+    prevention_caption: str = "",
+    pro_tip: str = "",
 ) -> dict:
     # Prefer a short topical subject for alts — avoid repeating the full headline.
     subject = (seo_title or title).split("|")[0].split("?")[0].strip().lower()
@@ -391,8 +500,8 @@ def _spec(
         id=ident,
         slug=slug,
         title=title,
-        heroSub=answer.split(".")[0] + ".",
-        excerpt=f"{scene.split('.')[0]}. {answer.split('.')[0]}.",
+        heroSub=hero_sub or (answer.split(".")[0] + "."),
+        excerpt=excerpt or f"{scene.split('.')[0]}. {answer.split('.')[0]}.",
         seoTitle=seo_title_final,
         seoDescription=seo_desc or (
             f"{answer.split('.')[0]}. Practical guide for Kashmir households booking verified home services through Panun Kaergar."
@@ -414,7 +523,7 @@ def _spec(
         methods_caption="What Panun Kaergar does differently for customers in Kashmir.",
         diagram_alt=diagram_alt or f"Process diagram: {alt_subject}",
         diagram_caption="From your request to a verified partner at your door.",
-        pro_tip=(
+        pro_tip=pro_tip or (
             "Panun Kaergar is built in Kashmir for Kashmir — not a generic listing copied from another city. "
             "That local focus is why small jobs get attention here."
         ),
@@ -429,15 +538,16 @@ def _spec(
             "Waiting until a small repair becomes an expensive emergency.",
             "Booking without asking for a clear estimate when the job allows it.",
         ],
-        prevention=(
+        prevention=prevention or (
             "Save Panun Kaergar's booking channels before you need them. "
             "When a tap drips or a switch fails, one message is faster than searching contacts at midnight."
         ),
-        prevention_caption="Keep one trusted booking path for every job size.",
+        prevention_caption=prevention_caption or "Keep one trusted booking path for every job size.",
         book=book,
         faqs=faqs,
         tip_alt=tip_alt or f"Practical tip for {alt_subject} in Kashmir",
         overview_rows=overview_rows or [],
+        overview_headers=overview_headers,
         comparison_rows=comparison_rows,
         comparison_intro=comparison_intro,
         dont_blocks=dont_blocks,
@@ -1154,6 +1264,160 @@ _SPECS = [
             ),
         ],
     ),
+    _spec(
+        "PK-G08",
+        "panun-kaergar-service-areas-kashmir",
+        "Which areas does Panun Kaergar cover in Kashmir?",
+        "A family in Kulgam needs a plumber. A shop in Sopore needs an electrician the same afternoon. A guesthouse near Pahalgam wants deep cleaning before guests arrive. The question is the same everywhere: does Panun Kaergar actually cover my area?",
+        "Yes. Panun Kaergar provides verified home services across all 10 Kashmir Valley districts — Srinagar, Budgam, Ganderbal, Bandipora, Baramulla, Kupwara, Anantnag, Kulgam, Pulwama, and Shopian — with 289 named localities on our service-area pages. Share your address when you book so we can confirm a partner in your zone.",
+        "Panun Kaergar is built for Kashmir-wide coverage, not a single-city listing. From Srinagar mohallas to district towns and surrounding villages, you book the same way — phone, WhatsApp, website, or app — and we match a verified local partner for plumbing, electrical, cleaning, salon, appliances, carpentry, and more.",
+        "Many Kashmir households assume platforms only serve Srinagar. Others think remote towns or villages are automatically excluded. That uncertainty delays repairs: people wait, chase old contacts, or pay emergency rates because they never checked whether structured booking reaches their district. Clear coverage information removes that friction.",
+        [
+            "Uncertainty about whether a platform serves districts beyond Srinagar.",
+            "Village and peri-urban addresses treated as 'too far' by informal contacts.",
+            "No single place to see districts, localities, and available services together.",
+            "Booking delayed because households do not know how zone confirmation works.",
+            "Different trades hunted separately with no shared coverage map.",
+        ],
+        "Coverage at Panun Kaergar is district-wide across the Kashmir Valley, with named localities listed for each district and final confirmation against partner availability in your zone. You name your area once; we handle matching.",
+        [
+            (
+                "All 10 Kashmir Valley districts",
+                "Srinagar through Shopian",
+                "Panun Kaergar covers Srinagar, Budgam, Ganderbal, Bandipora, Baramulla, Kupwara, Anantnag, Kulgam, Pulwama, and Shopian — the full valley district set, not a capital-only network.",
+            ),
+            (
+                "289 named localities listed",
+                "towns, mohallas, and market belts",
+                "Our service-area pages list 289 neighbourhoods and localities — from Lal Chowk and Hyderpora to Sopore, Pattan, Handwara, Bijbehara, Tral, and Shopian town — so you can recognise your zone quickly.",
+            ),
+            (
+                "Zone confirmation when you book",
+                "share your exact address",
+                "Partner availability is zone-based. When you book, share your district and locality so we confirm a verified professional for your address before the visit.",
+            ),
+            (
+                "Browse by district",
+                "service-area pages",
+                "Open the Panun Kaergar service areas page to pick your district, see flagged towns and services, then book with your area already in mind.",
+            ),
+            (
+                "One booking path everywhere",
+                "phone, WhatsApp, web, or app",
+                "Whether you are in Bemina, Beerwah, Bandipora Town, or Kokernag, the booking channels stay the same — describe the job and your area once.",
+            ),
+        ],
+        "I thought only Srinagar was covered. I booked from Pulwama on WhatsApp — they confirmed a partner the same day.",
+        "Faisal, Pulwama",
+        "Kashmir coverage is not only city centres. Winter access, mountain-road belts like Pahalgam and Tangmarg, and busy market towns such as Sopore or Anantnag Main Market all need reliable home help. A valley-wide platform with local partners is built for that reality.",
+        "Always share your exact neighbourhood when booking. 'Near Anantnag' is less useful than 'Dialgam' or 'Khanabal' — precise locality helps us confirm the right zone faster.",
+        "Book through Panun Kaergar whenever you need a verified home service in any Kashmir Valley district. Check the service areas page for your district list, then call, WhatsApp, use the website form, or the app with your address ready.",
+        [
+            (
+                "Which districts does Panun Kaergar cover in Kashmir?",
+                "All ten Kashmir Valley districts: Srinagar, Budgam, Ganderbal, Bandipora, Baramulla, Kupwara, Anantnag, Kulgam, Pulwama, and Shopian.",
+            ),
+            (
+                "How many areas does Panun Kaergar serve?",
+                "We list 289 named localities across those ten districts on our service-area pages, and we also serve many surrounding villages and mohallas through zone confirmation at booking.",
+            ),
+            (
+                "Does Panun Kaergar cover Srinagar?",
+                "Yes. Srinagar is fully covered, including major localities such as Lal Chowk, Rajbagh, Hyderpora, Bemina, Hazratbal, Nowgam, Chanapora, and many more.",
+            ),
+            (
+                "Do you serve Anantnag, Baramulla, and Pulwama?",
+                "Yes. Anantnag (including Bijbehara, Mattan, Pahalgam belt), Baramulla (including Sopore, Pattan, Tangmarg), and Pulwama (including Awantipora, Tral, Pampore) are all covered districts.",
+            ),
+            (
+                "Are villages outside the main town covered?",
+                "District coverage includes major towns, mohallas, and many villages. Availability is confirmed by zone when you share your address — so always mention your exact locality when you book.",
+            ),
+            (
+                "How do I check if my area is covered?",
+                "Browse panunkaergar.com/service-areas for your district and locality list, then book with your address. Our team confirms a partner in your zone before the visit.",
+            ),
+            (
+                "What services can I book in my district?",
+                "Core home services such as plumbing, electrician, and professional cleaning are available across districts. Srinagar also offers an expanded set including carpentry, painting, pest control, salon, appliances, and more — check your district page for details.",
+            ),
+            (
+                "Does coverage mean a partner is always free today?",
+                "Coverage means we serve your district and match verified partners there. Exact timing depends on partner availability in your zone, which we confirm when you book.",
+            ),
+        ],
+        overview_heading="Panun Kaergar coverage at a glance",
+        problem_heading="Why area coverage confuses Kashmir households",
+        how_heading="How Panun Kaergar coverage works",
+        overview_headers=("District", "Flagship localities", "Named areas listed"),
+        overview_rows=[
+            ("Srinagar", "Lal Chowk, Rajbagh, Hyderpora, Bemina, Hazratbal, Nowgam", "50 localities"),
+            ("Budgam", "Budgam Town, Chadoora, Beerwah, Magam, Charari Sharief", "30 localities"),
+            ("Ganderbal", "Ganderbal Town, Kangan, Tullamulla, Manigam, Safapora", "28 localities"),
+            ("Bandipora", "Bandipora Town, Sumbal, Hajin, Aloosa, Quil", "25 localities"),
+            ("Baramulla", "Baramulla Town, Sopore, Pattan, Uri, Tangmarg", "30 localities"),
+            ("Kupwara", "Kupwara Town, Handwara, Trehgam, Langate, Lolab", "25 localities"),
+            ("Anantnag", "Anantnag Town, Bijbehara, Mattan, Pahalgam, Achabal", "28 localities"),
+            ("Kulgam", "Kulgam Town, Yaripora, Frisal, Devsar, Qaimoh", "24 localities"),
+            ("Pulwama", "Pulwama Town, Awantipora, Tral, Pampore, Kakapora", "25 localities"),
+            ("Shopian", "Shopian Town, Keller, Zainapora, Imam Sahib, Hermain", "24 localities"),
+        ],
+        comparison_intro="Seeing coverage clearly makes booking faster than guessing from a phone contact list.",
+        comparison_rows=[
+            ("Districts served", "Often unclear — capital bias", "All 10 Kashmir Valley districts named"),
+            ("Locality clarity", "Verbal 'near town' only", "289 named localities + zone confirm"),
+            ("How to check", "Ask around or hope", "Service-area pages + booking confirmation"),
+            ("Booking path", "Different number per trade", "One path: phone, WhatsApp, web, or app"),
+        ],
+        is_trending=True,
+        related_service="plumbing",
+        reading_minutes=10,
+        seo_title="Panun Kaergar service areas — 10 Kashmir districts",
+        seo_desc=(
+            "Panun Kaergar covers all 10 Kashmir Valley districts and 289 localities — "
+            "Srinagar to Kupwara, Anantnag to Baramulla. Confirm your zone when you book."
+        ),
+        methods_alt="Overview of Panun Kaergar home-service coverage across Kashmir districts",
+        diagram_alt="Flow from sharing your address to a confirmed local Panun Kaergar partner visit",
+        tip_alt="Share your exact Kashmir neighbourhood when booking a Panun Kaergar home service",
+        hero_sub="All 10 Kashmir Valley districts and 289 named localities — confirmed by zone when you book.",
+        excerpt=(
+            "Panun Kaergar covers all 10 Kashmir Valley districts and 289 named localities. "
+            "See where we serve and how to confirm your zone."
+        ),
+        prevention=(
+            "Before you need an urgent repair, open the service areas page, find your district, and save Panun Kaergar's "
+            "booking channels. When something breaks, you already know coverage is not the blocker."
+        ),
+        prevention_caption="Know your district page before the next emergency.",
+        pro_tip=(
+            "Coverage is valley-wide, but the fastest bookings still name a precise locality — "
+            "not just the district. That detail helps us match the right zone partner."
+        ),
+        dont_blocks=[
+            (
+                "Only Srinagar is covered",
+                "All ten valley districts",
+                "Panun Kaergar serves every Kashmir Valley district — including Budgam, Ganderbal, Bandipora, Baramulla, Kupwara, Anantnag, Kulgam, Pulwama, and Shopian — not Srinagar alone.",
+                "Only capital city highlighted while rest of valley greyed out",
+                "Valley-wide coverage",
+            ),
+            (
+                "Villages outside town are excluded",
+                "Zone confirmation includes more",
+                "Listed localities are a guide, not a hard wall. Many villages and mohallas are served after we confirm a partner in your zone — so share your exact address when you book.",
+                "Village house without pin versus town house with service pin",
+                "Towns and villages",
+            ),
+            (
+                "You must already know a local technician",
+                "We match verified local partners",
+                "You do not need a personal contact in every district. Describe the job and area — Panun Kaergar matches a verified professional who serves your zone.",
+                "Empty contact list versus structured booking with local partner arriving",
+                "Matched locally",
+            ),
+        ],
+    ),
 ]
 
 
@@ -1182,6 +1446,10 @@ for index, spec in enumerate(_SPECS, 1):
             "Panun Kaergar verified providers are skilled Kashmir tradespeople with identity checks, "
             "trade review, service training, and ratings behind every visit."
         )
+    elif guide["slug"] == "panun-kaergar-service-areas-kashmir":
+        guide["sortOrder"] = 52
+        guide["hero_prompt_overrides"] = SERVICE_AREAS_HERO_PROMPTS
+        guide["image_prompt_overrides"] = SERVICE_AREAS_IMAGE_PROMPTS
     else:
         guide["sortOrder"] = 40 + index
     siblings = [s for s in _ALL_SLUGS if s != guide["slug"]]
@@ -1198,4 +1466,5 @@ TITLE_SUBJECTS = {
     "panun-kaergar-customer-support-kashmir": "customer support team helping with home service booking issue",
     "panun-kaergar-vs-traditional-booking-kashmir": "comparison traditional local booking vs structured home service platform",
     "panun-kaergar-verified-providers-kashmir": "verified trained qualified experienced home-service professionals Kashmir",
+    "panun-kaergar-service-areas-kashmir": "Panun Kaergar service areas coverage across ten Kashmir Valley districts",
 }
