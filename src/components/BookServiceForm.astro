@@ -1,5 +1,6 @@
 ---
 import type { BookingSite } from '@/utils/booking';
+import { ADMIN_API_BASE_URL } from '@/utils/adminApi';
 import { BOOK_THANK_YOU_PATH, BOOKING_WA_STORAGE_KEY } from '@/utils/booking';
 import { groupServices } from '@/utils/serviceGroups';
 import { bookingSlugLabelEntries } from '@/utils/bookingPrefill';
@@ -26,7 +27,7 @@ const {
 } = Astro.props;
 
 const compact = variant === 'compact';
-const apiBaseUrl = (import.meta.env.PUBLIC_ADMIN_API_URL ?? '').replace(/\/$/, '');
+const apiBaseUrl = ADMIN_API_BASE_URL;
 const serviceGroups = groupServices(services);
 const groupedValues = new Set(
   serviceGroups.flatMap((group) => group.services.map((s) => s.shortName))

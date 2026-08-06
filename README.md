@@ -82,7 +82,9 @@ Legal:
 See deploy steps in previous plan:
 1. Push to GitHub
 2. Cloudflare Pages → build `npm run build` → output `dist`
-3. Env: `PUBLIC_SITE_URL=https://panunkaergar.com`
+3. Env (Cloudflare Pages → Settings → Environment variables):
+   - `PUBLIC_SITE_URL=https://panunkaergar.com`
+   - `PUBLIC_ADMIN_API_URL=https://live.panunkaergar.com` (booking + partner forms; optional if using production default)
 4. Point DNS
 
 ## Project structure

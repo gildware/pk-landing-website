@@ -1,5 +1,6 @@
 ---
 import type { BookingSite } from '@/utils/booking';
+import { ADMIN_API_BASE_URL } from '@/utils/adminApi';
 import { PARTNER_THANK_YOU_PATH, PARTNER_WA_STORAGE_KEY } from '@/utils/booking';
 import { groupServices } from '@/utils/serviceGroups';
 
@@ -28,7 +29,7 @@ const {
 } = Astro.props;
 
 const compact = variant === 'compact';
-const apiBaseUrl = (import.meta.env.PUBLIC_ADMIN_API_URL ?? '').replace(/\/$/, '');
+const apiBaseUrl = ADMIN_API_BASE_URL;
 const serviceGroups = groupServices(services);
 const serviceOptions = [
   ...serviceGroups.flatMap((group) =>
