@@ -139,9 +139,13 @@ def main() -> None:
 
     jobs = [
         ("why-choose-hero-v4.png", "why-choose-hero.webp"),
-        ("why-choose-verified-v5.png", "why-choose-verified.webp"),
+        ("why-choose-verified-v6.png", "why-choose-verified.webp"),
         ("why-choose-booking-v4.png", "why-choose-booking.webp"),
         ("why-choose-local-v4.png", "why-choose-local.webp"),
+        ("features-hero-src.png", "features-hero.webp"),
+        ("features-app-src.png", "features-app.webp"),
+        ("features-booking-src.png", "features-booking.webp"),
+        ("features-custom-jobs-src.png", "features-custom-jobs.webp"),
     ]
 
     for src_name, dst_name in jobs:

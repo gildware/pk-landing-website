@@ -35,6 +35,8 @@ LINE = (32, 32, 72, 40)
 
 def font(size: int, bold: bool = False):
     candidates = [
+        r"C:\Windows\Fonts\arialbd.ttf" if bold else r"C:\Windows\Fonts\arial.ttf",
+        r"C:\Windows\Fonts\segoeuib.ttf" if bold else r"C:\Windows\Fonts\segoeui.ttf",
         "/System/Library/Fonts/Supplemental/Arial Bold.ttf" if bold else "/System/Library/Fonts/Supplemental/Arial.ttf",
         "/Library/Fonts/Arial.ttf",
         "/System/Library/Fonts/Helvetica.ttc",

@@ -1,0 +1,565 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import BookingOptions from '@/components/BookingOptions.astro';
+import CtaBanner from '@/components/CtaBanner.astro';
+import Icon from '@/components/Icon.astro';
+import { buildMeta, truncate } from '@/utils/seo';
+import { getSiteSettings, getServices, getAreas, siteUrl } from '@/utils/reader';
+import {
+  breadcrumbSchema,
+  faqSchema,
+  itemListSchema,
+  mobileApplicationsSchema,
+} from '@/utils/schema';
+import { BOOK_PATH } from '@/utils/booking';
+
+const site = await getSiteSettings();
+const services = await getServices();
+const areas = await getAreas();
+
+const PAGE_PATH = '/features';
+
+const meta = buildMeta({
+  title: 'Home Service App Features Kashmir | Panun Kaergar',
+  description: truncate(
+    'Panun Kaergar app features for Kashmir: book by phone, WhatsApp, web or app, chat support, custom jobs, loyalty points, job tracking, and verified local partners.',
+  ),
+  path: PAGE_PATH,
+  ogImage: '/images/features/features-hero.webp',
+  ogImageAlt:
+    'Kashmir customer booking home services on the Panun Kaergar app in a Srinagar living room',
+  ogImageWidth: 1920,
+  ogImageHeight: 1280,
+});
+
+const coreFeatures = [
+  {
+    icon: 'cpu',
+    title: 'App chat support',
+    description:
+      'Ask questions and book services inside the Panun Kaergar app. Get quick help before a technician visits — without hunting for a phone number.',
+    href: '#app-features',
+    listUrl: siteUrl(PAGE_PATH),
+  },
+  {
+    icon: 'home',
+    title: 'All service categories',
+    description: `Carpentry, plumbing, masonry, electrician, cleaning, pest control, laundry, painting, appliances, gardening, salon, and more — ${services.length}+ categories across Kashmir.`,
+    href: '/services',
+    listUrl: siteUrl('/services'),
+  },
+  {
+    icon: 'target',
+    title: 'Custom jobs',
+    description:
+      'Job not listed? Post a custom request in the app. Partners can send you offers so you compare options and pick what works for your home.',
+    href: '#custom-jobs',
+    listUrl: siteUrl(PAGE_PATH),
+  },
+  {
+    icon: 'star-badge',
+    title: 'Loyalty rewards',
+    description:
+      'Earn points on completed app bookings. Redeem them for money off your next home service — so regular customers save more over time.',
+    href: '#loyalty',
+    listUrl: siteUrl(PAGE_PATH),
+  },
+  {
+    icon: 'shield-check',
+    title: 'Trusted partners',
+    description:
+      'Every partner is verified before going live. Read real customer reviews and book with confidence that someone has been checked by our team.',
+    href: '/why-choose-panun-kaergar',
+    listUrl: siteUrl('/why-choose-panun-kaergar'),
+  },
+  {
+    icon: 'message',
+    title: 'Book without the app',
+    description: `Prefer a call or message? Dial ${site.phone}, WhatsApp us, or fill the website form. The same verified network handles every booking.`,
+    href: '#booking-channels',
+    listUrl: siteUrl(PAGE_PATH),
+  },
+];
+
+const bookingChannels = [
+  {
+    icon: 'smartphone',
+    title: 'Mobile app',
+    description:
+      'Full booking flow on Android and iOS — choose a service, set your area and time, track status, and rebook from your history.',
+  },
+  {
+    icon: 'phone',
+    title: 'Phone',
+    description: `Call ${site.phone} and tell us what you need. Our team creates the booking and matches a verified partner for your area.`,
+  },
+  {
+    icon: 'whatsapp',
+    title: 'WhatsApp',
+    description:
+      'Send your service type, neighbourhood, and preferred time. Photos help for repairs — most customers get a reply during support hours.',
+  },
+  {
+    icon: 'form',
+    title: 'Website form',
+    description:
+      'Book from any browser on the Panun Kaergar website. Ideal if you are on a laptop or do not want to install another app.',
+  },
+];
+
+const appHighlights = [
+  {
+    title: 'Track every booking',
+    description:
+      'See request status, assigned partner details, and visit windows in one place — so you always know what is next.',
+  },
+  {
+    title: 'Chat when you need help',
+    description:
+      'Use in-app chat for booking questions, reschedules, or tips before a visit. Support stays linked to your job.',
+  },
+  {
+    title: 'Rate and build trust',
+    description:
+      'After a job, leave a rating. Honest reviews help the next household choose well and keep partner quality high.',
+  },
+  {
+    title: 'Earn loyalty points',
+    description:
+      'Completed app bookings add points you can redeem later. The more you book through the app, the more you save.',
+  },
+];
+
+const customJobSteps = [
+  {
+    n: '01',
+    title: 'Describe the work',
+    desc: 'Share what you need done, your area in Kashmir, and any photos or constraints that matter.',
+  },
+  {
+    n: '02',
+    title: 'Receive partner offers',
+    desc: 'Interested verified partners can respond with availability and pricing so you are not stuck with a single quote.',
+  },
+  {
+    n: '03',
+    title: 'Choose and confirm',
+    desc: 'Pick the offer that fits your budget and schedule. Confirm the visit — then track it like any other booking.',
+  },
+];
+
+const pageFaqs = [
+  {
+    question: 'What features does the Panun Kaergar home services app include?',
+    answer:
+      'The customer app lets you browse service categories, book visits across Kashmir, post custom jobs, chat for help, track booking status, rate partners, and earn loyalty points on completed jobs.',
+  },
+  {
+    question: 'Do I need the Panun Kaergar app to book home services in Kashmir?',
+    answer:
+      'No. You can book by phone, WhatsApp, or the website form. The free app adds tracking, chat, custom jobs, loyalty points, and faster rebooking — but it is optional.',
+  },
+  {
+    question: 'How do custom jobs work on Panun Kaergar?',
+    answer:
+      'If your request is not in the standard list, post a custom job in the app with details and your area. Verified partners can send offers; you compare them and confirm the one you prefer.',
+  },
+  {
+    question: 'How do Panun Kaergar loyalty rewards work?',
+    answer:
+      'When you complete bookings through the Panun Kaergar app, you earn points. Those points can be redeemed for discounts on future home services booked in the app.',
+  },
+  {
+    question: 'Can I track my service partner after booking?',
+    answer:
+      'App bookings show job status and assigned partner details so you can follow progress. For phone or WhatsApp bookings, our support team can update you on confirmation and timing.',
+  },
+  {
+    question: 'Which areas in Kashmir does Panun Kaergar cover?',
+    answer: `We match verified partners across ${areas.length}+ districts and neighbourhoods in Kashmir, including ${areas
+      .slice(0, 5)
+      .map((a) => a.displayName)
+      .join(', ')}, and more. Check our service areas page or mention your locality when you book.`,
+  },
+];
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Features', path: PAGE_PATH },
+  ]),
+  faqSchema(pageFaqs),
+  itemListSchema(
+    coreFeatures.map((f) => ({
+      name: f.title,
+      url: f.listUrl,
+      description: f.description,
+    })),
+    'Panun Kaergar platform features',
+  ),
+  ...mobileApplicationsSchema(site),
+].filter(Boolean);
+---
+
+<PageLayout meta={meta} schemas={schemas}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-brand-900 text-white">
+    <div
+      class="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-900 via-brand-700 to-brand-600"
+      aria-hidden="true"
+    ></div>
+    <div class="hero-blob -left-24 top-0 h-72 w-72 bg-brand-500/30" style="animation-delay: 0s;" aria-hidden="true"></div>
+    <div class="hero-blob -right-16 bottom-0 h-96 w-96 bg-accent/20" style="animation-delay: -5s;" aria-hidden="true"></div>
+
+    <div class="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-20">
+      <div>
+        <p class="animate-fade-up text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+          Panun Kaergar features
+        </p>
+        <h1 class="animate-fade-up stagger-1 mt-3 font-extrabold leading-[1.08] tracking-tight text-white text-[clamp(2rem,5.5vw,3.5rem)]">
+          Home service app features built for Kashmir
+        </h1>
+        <p class="animate-fade-up stagger-2 mt-5 max-w-xl text-lg leading-relaxed text-white/85">
+          Book verified plumbers, electricians, cleaners, and more by phone, WhatsApp, website, or
+          the free Panun Kaergar app — with chat support, custom jobs, loyalty rewards, and clear
+          job tracking.
+        </p>
+        <div class="animate-fade-up stagger-3 mt-8 flex flex-wrap gap-3">
+          <a href={BOOK_PATH} class="btn-primary bg-white text-brand-700 hover:bg-brand-50">Book a service</a>
+          <a href="/download" class="btn-secondary border-white/25 bg-white/10 text-white hover:border-white/40 hover:bg-white/15">
+            Download the app
+          </a>
+        </div>
+      </div>
+
+      <div class="animate-slide-right stagger-2 relative hidden overflow-hidden rounded-3xl border border-white/15 shadow-2xl lg:block">
+        <img
+          src="/images/features/features-hero.webp"
+          alt="Kashmir customer booking home services on the Panun Kaergar app in a Srinagar living room"
+          width="1920"
+          height="1280"
+          class="aspect-[16/10] w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <div class="border-b border-slate-200 bg-white">
+    <nav class="page-breadcrumb mx-auto max-w-6xl px-4 py-4 sm:px-6" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Features</span>
+    </nav>
+  </div>
+
+  <!-- Core features grid -->
+  <section class="border-b border-slate-200 bg-white" id="core-features" aria-labelledby="core-features-heading">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">What you get</p>
+        <h2 id="core-features-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          Panun Kaergar features that make booking simpler
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-slate-600">
+          Panun Kaergar combines a verified partner network with tools that save time — whether you
+          book home services in Srinagar and across Kashmir in the app, or reach us by phone and
+          WhatsApp. Explore{' '}
+          <a href="/services" class="font-semibold text-brand-700 underline-offset-2 hover:underline">
+            all services
+          </a>
+          {' '}or see{' '}
+          <a href="/service-areas" class="font-semibold text-brand-700 underline-offset-2 hover:underline">
+            service areas
+          </a>.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          coreFeatures.map((item, i) => (
+            <article
+              class:list={[
+                'reveal-scale card card-hover p-6 sm:p-7',
+                `reveal-stagger-${Math.min(i + 1, 6)}`,
+              ]}
+            >
+              <span class="icon-badge">
+                <Icon name={item.icon} size={22} class="text-brand-600" />
+              </span>
+              <h3 class="mt-4 text-lg font-bold text-slate-900">
+                <a href={item.href} class="transition hover:text-brand-700">
+                  {item.title}
+                </a>
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Book your way -->
+  <section class="bg-slate-50" id="booking-channels" aria-labelledby="booking-channels-heading">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal-left overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+          <img
+            src="/images/features/features-booking.webp"
+            alt="Multi-channel home service booking in Kashmir — website form, phone, and chat on a dining table"
+            width="1920"
+            height="1280"
+            class="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="reveal">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Book your way</p>
+          <h2 id="booking-channels-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Four ways to request a home service
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            Every channel connects to the same booking system and Srinagar-based support team — so
+            you are never left without a way to get help at home.
+          </p>
+
+          <ul class="mt-8 space-y-4">
+            {
+              bookingChannels.map((channel, i) => (
+                <li
+                  class:list={[
+                    'reveal flex gap-3 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <span class="icon-badge shrink-0">
+                    <Icon name={channel.icon} size={20} class="text-brand-600" />
+                  </span>
+                  <div>
+                    <h3 class="font-bold text-slate-900">{channel.title}</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-slate-600">{channel.description}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+
+          <div class="reveal mt-8">
+            <a href={BOOK_PATH} class="btn-primary">
+              Start a booking
+              <Icon name="chevron-right" size={18} class="ml-1 inline" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App experience -->
+  <section class="border-y border-slate-200 bg-white" id="app-features" aria-labelledby="app-features-heading">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal order-2 lg:order-1">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Customer app</p>
+          <h2 id="app-features-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Track, chat, and save — from your phone
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            The free Panun Kaergar customer app is built for Kashmir households who want clearer
+            status, faster rebooking, and rewards for sticking with verified local partners.
+          </p>
+
+          <ul class="mt-8 space-y-4">
+            {
+              appHighlights.map((item, i) => (
+                <li
+                  class:list={[
+                    'reveal flex gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 sm:p-5',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <Icon name="check" size={20} class="mt-0.5 shrink-0 text-brand-600" />
+                  <div>
+                    <h3 class="font-bold text-slate-900">{item.title}</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+
+          <div class="reveal mt-8">
+            <a href="/download" class="btn-primary">
+              Get the free app
+              <Icon name="chevron-right" size={18} class="ml-1 inline" />
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal-right order-1 lg:order-2 overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+          <img
+            src="/images/features/features-app.webp"
+            alt="Close-up of Panun Kaergar app chat on a smartphone while booking home services in a Kashmir kitchen"
+            width="1920"
+            height="1280"
+            class="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom jobs -->
+  <section class="bg-gradient-to-b from-slate-50 to-white" id="custom-jobs" aria-labelledby="custom-jobs-heading">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div class="reveal">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Custom jobs</p>
+          <h2 id="custom-jobs-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            When the job does not fit a category
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-slate-600">
+            Not every household need maps cleanly to a standard service. Custom jobs let you describe
+            the work and invite verified Panun Kaergar partners to offer — so odd repairs and
+            one-off projects across Kashmir still get covered.
+          </p>
+
+          <ol class="mt-8 space-y-4">
+            {
+              customJobSteps.map((step, i) => (
+                <li
+                  class:list={[
+                    'reveal flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
+                    {step.n}
+                  </span>
+                  <div>
+                    <h3 class="text-lg font-bold text-slate-900">{step.title}</h3>
+                    <p class="mt-1 text-sm leading-relaxed text-slate-600">{step.desc}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+
+        <div class="reveal-right overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+          <img
+            src="/images/features/features-custom-jobs.webp"
+            alt="Verified local technician and Kashmir homeowner reviewing a custom home repair job on a phone"
+            width="1920"
+            height="1280"
+            class="aspect-[4/3] w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loyalty -->
+  <section class="bg-brand-900 text-white" id="loyalty" aria-labelledby="loyalty-heading">
+    <div class="section-pad mx-auto max-w-6xl">
+      <div class="reveal mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Loyalty rewards</p>
+        <h2 id="loyalty-heading" class="mt-2 text-3xl font-extrabold sm:text-4xl">
+          Points that pay for your next home service
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-white/85">
+          Complete bookings in the Panun Kaergar app to earn points. Redeem them for discounts on
+          future services — a simple way to save when you book plumbing, cleaning, salon, or repairs
+          again in Kashmir.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a href="/download" class="btn-primary bg-white text-brand-700 hover:bg-brand-50">
+            Download &amp; start earning
+          </a>
+          <a
+            href={BOOK_PATH}
+            class="btn-secondary border-white/25 bg-white/10 text-white hover:border-white/40 hover:bg-white/15"
+          >
+            Book on the website
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="border-t border-slate-200 bg-white" id="faqs" aria-labelledby="faqs-heading">
+    <div class="section-pad mx-auto max-w-6xl pb-4">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">FAQs</p>
+        <h2 id="faqs-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          Questions about Panun Kaergar features
+        </h2>
+        <p class="mt-3 text-lg text-slate-600">
+          Quick answers about the app, custom jobs, loyalty rewards, and booking channels in Kashmir.
+        </p>
+      </div>
+    </div>
+
+    <FaqSection items={pageFaqs} class="!py-0 !pb-16" />
+
+    <p class="reveal mx-auto max-w-3xl px-4 pb-16 text-center text-sm text-slate-600 sm:px-6">
+      Want the full trust story? Read{' '}
+      <a href="/why-choose-panun-kaergar" class="font-semibold text-brand-700 underline-offset-2 hover:underline">
+        why choose Panun Kaergar
+      </a>
+      , browse the{' '}
+      <a href="/faq" class="font-semibold text-brand-700 underline-offset-2 hover:underline">FAQ</a>
+      , or{' '}
+      <a href="/contact" class="font-semibold text-brand-700 underline-offset-2 hover:underline">contact us</a>.
+    </p>
+  </section>
+
+  <BookingOptions site={site} />
+
+  <CtaBanner
+    title="Ready to use these features?"
+    description="Book a home service in Kashmir today — by phone, WhatsApp, website, or the free Panun Kaergar app."
+    primaryHref={BOOK_PATH}
+    primaryLabel="Book a home service"
+  />
+</PageLayout>
+
+<style>
+  .page-breadcrumb {
+    font-size: 0.88rem;
+    color: #5c5f72;
+  }
+
+  .page-breadcrumb a {
+    color: #202048;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .page-breadcrumb a:hover {
+    color: theme('colors.brand.700');
+  }
+
+  .page-breadcrumb span {
+    margin: 0 0.4rem;
+    opacity: 0.5;
+  }
+
+  .page-breadcrumb span[aria-current='page'] {
+    opacity: 1;
+    font-weight: 600;
+    color: #323338;
+  }
+</style>
