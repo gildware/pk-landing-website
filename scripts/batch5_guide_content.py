@@ -203,6 +203,156 @@ _SPECS = [
         hero="A night-time hiss usually means the flapper or fill valve — not a mystery leak in the wall.",
         excerpt="Toilet keeps running in Kashmir? Check the flapper seal and fill-valve level safely, stop wasting water overnight, and know when to book a plumber.",
     ),
+    _compact(
+        "PLB-D07",
+        "tap-keeps-dripping-kashmir",
+        "Tap keeps dripping? Fix the washer before wasting a bucket overnight",
+        "Plumbing",
+        "plumbing",
+        "After dinner the kitchen tap still ticks into the sink every few seconds, someone has already tightened the handle harder, and the stainless bowl has a chalky ring that was not there last week.",
+        "Turn off the isolation valve, open the tap to drain pressure, replace a worn washer or cartridge, and reseat the spindle carefully. A cracked body, seized spindle, or drip from the base needs a plumber.",
+        "Steady drip from a closed tap",
+        "Worn washer, damaged seat, failing cartridge, or a loose spindle packing",
+        [
+            "Rubber washer flattened or cracked so the spindle never seals fully.",
+            "Mineral scale on the valve seat keeping a tiny gap open.",
+            "Cartridge or ceramic disc worn inside a modern mixer tap.",
+        ],
+        [
+            (
+                "Isolate and drain the tap",
+                "any drip you plan to open",
+                "Close the under-sink or wall isolation valve, open the tap to release pressure, and put a plug in the sink so small parts cannot fall down the drain.",
+            ),
+            (
+                "Open the handle and check the washer",
+                "a classic two-handle tap",
+                "Remove the handle and headgear, lift out the old washer, and note size before fitting a matching replacement.",
+            ),
+            (
+                "Clean the seat and refit snugly",
+                "scale under the washer",
+                "Wipe grit from the valve seat, fit the new washer flat, and tighten the headgear firmly without crushing the spindle.",
+            ),
+            (
+                "Treat a mixer cartridge differently",
+                "a single-lever mixer that drips",
+                "Many mixers need a cartridge swap, not a washer — match the brand shape or photograph the old part before buying.",
+            ),
+            (
+                "Book a plumber",
+                "still dripping or parts seized",
+                "A pro can re-seat a scored valve, free a stuck spindle, or replace a cracked body without flooding the cabinet.",
+            ),
+        ],
+        "A two-rupee washer stopped the night drip; we had been filling a mug every hour.",
+        "Firdous",
+        "Hard water in many Kashmir homes ages washers and seats faster. A quiet overnight drip also empties rooftop storage and leaves chalky rings that look worse than the leak feels.",
+        "Do not force a seized spindle with pliers on chrome, leave the main supply open while the tap is apart, or ignore a drip from the base that may be wetting the cabinet floor.",
+        "Book a plumber for a drip that continues after a washer or cartridge change, a seized or stripped spindle, water at the tap base, or a cracked body.",
+        hero="A steady drip is usually a washer or cartridge — not a mystery pipe in the wall.",
+        excerpt="Tap keeps dripping in Kashmir? Isolate the supply, replace a worn washer or mixer cartridge, and know when a plumber should fix a seized spindle or cracked body.",
+    ),
+    _compact(
+        "APP-WM-D02",
+        "washing-machine-not-spinning-kashmir",
+        "Washing machine not spinning? Check the load and lid switch before the motor",
+        "Home Appliances",
+        "home-appliances",
+        "The wash cycle finishes, clothes sit heavy and dripping, and someone opens the door early hoping a second spin will magically start — while the drum only hums or stays still.",
+        "Redistribute an unbalanced load, confirm the lid or door is fully latched, select a proper spin programme, and drain standing water first if the drum will not turn. Burning smell, repeated error codes, or a silent motor after these checks needs appliance repair.",
+        "Washer fills or washes but will not spin dry",
+        "Unbalanced load, open lid switch, drain fault, or a failing motor/belt/clutch",
+        [
+            "Clothes bunched on one side triggering the imbalance sensor.",
+            "Lid or door switch not closing, so spin is locked for safety.",
+            "Water still in the drum, a blocked pump, or a worn belt/motor that cannot reach spin speed.",
+        ],
+        [
+            (
+                "Stop and redistribute the load",
+                "a thud-thud then cancel",
+                "Pause the cycle, spread wet clothes evenly around the drum, and avoid one heavy blanket alone on a high spin.",
+            ),
+            (
+                "Confirm the lid or door latch",
+                "spin locked with a door alert",
+                "Close firmly until it clicks; clean lint from the latch area and try again before assuming a motor fault.",
+            ),
+            (
+                "Drain first if water is sitting",
+                "a heavy waterlogged drum",
+                "Run a drain or spin-only programme; a full drum of water often will not accelerate into spin.",
+            ),
+            (
+                "Check the filter and hose path",
+                "slow drain before spin",
+                "On front-loaders, clear the pump filter carefully with a towel ready; kinks in the drain hose also stall spin.",
+            ),
+            (
+                "Book appliance repair",
+                "humming, burning smell, or repeat faults",
+                "A technician can test the lid switch, belt, clutch, motor, and control board without forcing a stuck drum.",
+            ),
+        ],
+        "One soaked quilt on one side was the whole problem; evening the load brought spin back.",
+        "Nayeem",
+        "Kashmir winter washes often mean heavy blankets and pherans in a single load. That uneven mass trips imbalance protection far more often than a dead motor.",
+        "Do not force the drum by hand while powered, bypass a door switch with tape, or keep restarting a machine that smells of burning rubber or plastic.",
+        "Book appliance repair for a washer that will not spin after load and latch checks, error codes that return, a burning smell, leaks, or a motor that only hums.",
+        hero="Heavy wet clothes and a half-open lid stop spin more often than a failed motor.",
+        excerpt="Washing machine not spinning in Kashmir? Redistribute the load, check the lid latch and drain, then know when appliance repair should inspect the motor or belt.",
+    ),
+    _compact(
+        "ELC-D06",
+        "wall-socket-sparking-kashmir",
+        "Wall socket sparking? Unplug and kill the MCB before it becomes a fire risk",
+        "Electrical",
+        "electrician",
+        "A soft crackle when the heater plug goes in, a warm faceplate by evening, and someone says it has always been like that — until the smell of hot plastic arrives.",
+        "Unplug the appliance, switch off the MCB for that circuit, stop using the socket, and check for a loose plug or overloaded multi-plug. Scorch marks, a hot plate, repeated sparks, or a socket in a damp area need an electrician before anyone rewires at home.",
+        "Spark, crackle, or heat at a wall socket when plugging in",
+        "Loose terminals, damaged plug pins, overloaded strip, or failing socket contacts",
+        [
+            "Loose live or neutral screws inside the socket box making intermittent contact.",
+            "Bent or blackened plug pins arcing every time they enter.",
+            "Too many heaters on one multi-plug or a cracked, age-worn socket.",
+        ],
+        [
+            (
+                "Unplug and kill the circuit",
+                "any spark or warm plate",
+                "Pull the plug if safe, switch the socket off, then turn off the MCB for that board before touching the faceplate.",
+            ),
+            (
+                "Inspect the plug and cord",
+                "spark only with one appliance",
+                "Look for bent pins, cracked plugs, or a frayed cord; try a known-good plug only after the socket has cooled and the MCB is back on briefly for a test.",
+            ),
+            (
+                "Stop using overloaded strips",
+                "heaters sharing one outlet",
+                "Move high-load appliances off daisy-chained multi-plugs; one socket, one heavy load is safer while you wait for repair.",
+            ),
+            (
+                "Note scorch and smell",
+                "brown marks or hot plastic odour",
+                "Photograph discolouration for the electrician and do not cover a warm plate with cloth or tape.",
+            ),
+            (
+                "Book an electrician",
+                "repeat spark, heat, or trip",
+                "A pro can retighten terminals, replace the socket, check earthing, and confirm the circuit can carry the load.",
+            ),
+        ],
+        "The socket screws were loose behind a warm plate; tightening and a new faceplate stopped the crackle.",
+        "Iqbal",
+        "Kashmir winters push heaters, geysers, and kettles onto the same boards. Loose old sockets plus heavy load is a common spark recipe — not a quirk to ignore.",
+        "Do not keep plugging in through sparks, open a live socket with a screwdriver, wrap a warm plate in tape, or ignore a burning smell.",
+        "Book an electrician for any repeating spark, hot or discoloured faceplate, socket in a wet area, MCB trips with that outlet, or wiring that smells of burning.",
+        hero="A crackle at the plug is a warning — cut power before it becomes smoke.",
+        excerpt="Wall socket sparking in Kashmir? Unplug, switch off the MCB, stop using overloaded strips, and know when an electrician must replace the socket.",
+    ),
 ]
 
 _BATCH_SIBLINGS = {
@@ -226,6 +376,21 @@ _BATCH_SIBLINGS = {
         "how-to-unblock-kitchen-sink-drain-kashmir",
         "drain-smell-causes-kashmir",
     ),
+    "PLB-D07": (
+        "toilet-keeps-running-kashmir",
+        "low-water-pressure-home-kashmir",
+        "how-to-unblock-kitchen-sink-drain-kashmir",
+    ),
+    "APP-WM-D02": (
+        "washing-machine-not-draining-kashmir",
+        "refrigerator-not-cooling-kashmir",
+        "geyser-not-heating-kashmir",
+    ),
+    "ELC-D06": (
+        "mcb-keeps-tripping-kashmir",
+        "flickering-lights-causes-kashmir",
+        "ceiling-fan-making-noise-kashmir",
+    ),
 }
 
 TITLE_SUBJECTS = {
@@ -233,6 +398,9 @@ TITLE_SUBJECTS = {
     "low-water-pressure-home-kashmir": "tap aerator, rooftop water tank valve and shower with weak spray",
     "ceiling-fan-making-noise-kashmir": "ceiling fan canopy screws, blade balance and wall regulator",
     "toilet-keeps-running-kashmir": "toilet cistern flapper seal, fill valve float and overflow tube",
+    "tap-keeps-dripping-kashmir": "kitchen tap drip, worn washer, valve seat and mixer cartridge",
+    "washing-machine-not-spinning-kashmir": "washing machine drum, unbalanced wet load, lid latch and spin cycle",
+    "wall-socket-sparking-kashmir": "wall socket spark, warm faceplate, plug pins and MCB switch-off",
 }
 
 _SEO = {
@@ -262,6 +430,27 @@ _SEO = {
         "seoDescription": (
             "Toilet keeps running in Kashmir? Check the flapper seal and fill-valve level, stop overnight water "
             "waste, and know when to book a plumber."
+        ),
+    },
+    "tap-keeps-dripping-kashmir": {
+        "seoTitle": "Tap dripping? Replace washer first | Panun Kaergar",
+        "seoDescription": (
+            "Tap keeps dripping in Kashmir? Isolate the supply, replace a worn washer or mixer cartridge, and know "
+            "when to book a plumber for a seized spindle."
+        ),
+    },
+    "washing-machine-not-spinning-kashmir": {
+        "seoTitle": "Washer not spinning? Check load first | Panun Kaergar",
+        "seoDescription": (
+            "Washing machine not spinning in Kashmir? Redistribute the load, check the lid latch and drain, then know "
+            "when to book appliance repair."
+        ),
+    },
+    "wall-socket-sparking-kashmir": {
+        "seoTitle": "Socket sparking? Kill MCB first | Panun Kaergar",
+        "seoDescription": (
+            "Wall socket sparking in Kashmir? Unplug, switch off the MCB, stop overloaded strips, and know when to "
+            "book an electrician."
         ),
     },
 }
@@ -357,6 +546,75 @@ _DONT = {
             "Repeated flushes do not reseat a warped flapper; replace or reseat the seal instead.",
             "Person repeatedly flushing running toilet handle",
             "Fix the seal, do not keep flushing",
+        ),
+    ],
+    "tap-keeps-dripping-kashmir": [
+        (
+            "Tighten the handle harder",
+            "Scores the seat",
+            "Over-tightening flattens the washer and can cut a groove in the valve seat, making the drip worse.",
+            "Hand forcing kitchen tap handle closed with dripping spout",
+            "Replace the seal instead",
+        ),
+        (
+            "Open the tap with supply still on",
+            "Cabinet flood risk",
+            "Always close the isolation valve and drain pressure before removing headgear or a cartridge.",
+            "Tap headgear open while water sprays from under-sink pipe",
+            "Isolate first",
+        ),
+        (
+            "Force a stuck spindle with pliers on chrome",
+            "Ruins the finish and spindle",
+            "A seized spindle needs the right puller or a plumber — pliers on polished chrome often slip and gouge.",
+            "Pliers gripping chrome tap spindle roughly",
+            "Do not force seized parts",
+        ),
+    ],
+    "washing-machine-not-spinning-kashmir": [
+        (
+            "Force the drum by hand while powered",
+            "Injury and shock risk",
+            "Never reach into a drum that may start, and never work inside with the machine plugged in.",
+            "Hand inside washing machine drum while power cord is connected",
+            "Unplug before any reach-in",
+        ),
+        (
+            "Tape over the lid switch",
+            "Safety lock defeated",
+            "Bypassing the door or lid switch can let spin run with the door open — a serious injury hazard.",
+            "Tape covering washing machine lid safety switch",
+            "Fix the latch properly",
+        ),
+        (
+            "Keep restarting through a burning smell",
+            "Worsens motor or belt damage",
+            "A rubber or electrical burn smell means stop and book repair — more cycles can finish the motor.",
+            "Washing machine with heat and smoke hint near motor area",
+            "Stop at burning smell",
+        ),
+    ],
+    "wall-socket-sparking-kashmir": [
+        (
+            "Keep plugging through the spark",
+            "Arc and fire risk",
+            "Each spark can pit the contacts further. Stop using that outlet until it is repaired.",
+            "Hand forcing plug into sparking wall socket",
+            "Unplug and cut power",
+        ),
+        (
+            "Open the socket live with a screwdriver",
+            "Shock risk",
+            "Never remove a faceplate or touch terminals while the MCB is still on.",
+            "Screwdriver opening wall socket with power still on",
+            "MCB off before any open-up",
+        ),
+        (
+            "Tape over a warm faceplate",
+            "Hides heat damage",
+            "Covering a hot plate traps heat and hides scorch marks an electrician needs to see.",
+            "Tape wrapped over warm discoloured wall socket",
+            "Leave it open and book help",
         ),
     ],
 }
