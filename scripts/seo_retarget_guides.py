@@ -55,13 +55,31 @@ MANUAL_META = {
         "Are wall cracks cosmetic or serious? Learn which crack patterns need monitoring, plaster repair, or urgent structural advice in Kashmir."
     ),
     "wall-seepage-plaster-damage-kashmir": (
-        "Damp patch or bubbling plaster? Trace seepage to plumbing, rain entry, or rising damp before repairing the wall."
+        "Damp patch or bubbling plaster in Kashmir? Trace seepage to plumbing, rain entry, "
+        "or rising damp before repairing the wall — then book the right fix."
     ),
     "painting-damp-walls-kashmir": (
         "Painting a damp wall never lasts. Find the moisture source, dry the surface properly, and know when to call a painter or mason."
     ),
     "paint-peeling-kashmir-homes": (
-        "Paint peeling in a Kashmir home usually points to damp, poor prep, or primer failure. Fix the cause before repainting."
+        "Paint peeling in a Kashmir home usually points to damp, poor prep, or primer failure. "
+        "Fix the cause before repainting, and know when to book a painter."
+    ),
+    "car-battery-dead-cold-morning": (
+        "Car battery dead on a cold Kashmir morning? Learn when a jump-start is safe, "
+        "when terminals need cleaning, and when to book a battery replacement."
+    ),
+    "lawn-looking-dead-kashmir": (
+        "Lawn looking dead after a Kashmir winter? Check if grass is dormant, rake gently, "
+        "water only when soil needs it, and know when to book a gardener."
+    ),
+    "matted-fur-dog-cat": (
+        "Matted fur on a dog or cat? Loosen mats safely without cutting blind spots, "
+        "protect the skin, and know when professional pet grooming is safer."
+    ),
+    "uneven-beard-growth-shape": (
+        "Uneven beard growth in Kashmir? Work with your natural pattern, shape carefully "
+        "with good light, and know when a barber visit helps more than home trimming."
     ),
     "ac-not-cooling-kashmir": (
         "AC running but not cooling? Check mode, filters, airflow, and the outdoor unit safely before booking appliance repair in Kashmir."
@@ -232,48 +250,75 @@ def update_current_guide_metadata() -> list[str]:
     platform_overrides = {
         "why-choose-panun-kaergar-kashmir": {
             "headline": "Why Panun Kaergar works for small repairs and large projects in Kashmir",
-            "seoTitle": "Why Panun Kaergar works for small repairs and large projects in Kashmir | Panun Kaergar",
-            "seoDescription": "Why Panun Kaergar works for small repairs and large projects in Kashmir — verified partners, structured booking, and support across job sizes.",
+            "seoTitle": "Why Panun Kaergar for every job size | Panun Kaergar",
+            "seoDescription": (
+                "Why Panun Kaergar works for small repairs and large projects in Kashmir — "
+                "verified partners, structured booking, and support across job sizes."
+            ),
         },
         "what-jobs-can-you-book-panun-kaergar-kashmir": {
             "headline": "What jobs can you book through Panun Kaergar in Kashmir?",
-            "seoTitle": "Jobs You Can Book Through Panun Kaergar in Kashmir",
-            "seoDescription": "Discover the jobs you can book through Panun Kaergar in Kashmir: plumbing, electrical, carpentry, cleaning, salon at home, appliances, pest control, painting, gardening, pet care, and renovation work.",
+            "seoTitle": "Jobs you can book through Panun Kaergar | Panun Kaergar",
+            "seoDescription": (
+                "Book plumbing, electrical, cleaning, salon, appliances, pest control, painting, "
+                "carpentry, and renovation jobs through Panun Kaergar in Kashmir."
+            ),
         },
         "verified-home-service-partners-kashmir": {
             "headline": "How Panun Kaergar verifies home service partners before they visit",
             "seoTitle": "How Panun Kaergar verifies service partners | Panun Kaergar",
-            "seoDescription": "How Panun Kaergar verifies home service partners before they visit — ID checks, trade review, onboarding, ratings, and complaint monitoring.",
+            "seoDescription": (
+                "How Panun Kaergar verifies home service partners before they visit — "
+                "ID checks, trade review, onboarding, ratings, and complaint monitoring."
+            ),
         },
         "transparent-pricing-home-services-kashmir": {
             "headline": "How Panun Kaergar handles pricing before work starts",
-            "seoTitle": "How Panun Kaergar handles pricing before work starts | Panun Kaergar",
-            "seoDescription": "How Panun Kaergar handles pricing before work starts — estimates, material-cost explanations, booking records, and billing support when charges do not match.",
+            "seoTitle": "Transparent pricing before work starts | Panun Kaergar",
+            "seoDescription": (
+                "How Panun Kaergar handles pricing before work starts — estimates, material-cost "
+                "explanations, booking records, and billing support when charges do not match."
+            ),
         },
         "home-service-quality-standards-panun-kaergar": {
             "headline": "What standards should you expect from a Panun Kaergar home service visit?",
             "seoTitle": "What to expect on every Panun Kaergar visit | Panun Kaergar",
-            "seoDescription": "What to expect on a Panun Kaergar visit: prepared arrival, punctuality, home care, honest advice, cleanup, and ratings-backed accountability.",
+            "seoDescription": (
+                "What to expect on a Panun Kaergar visit: prepared arrival, punctuality, home care, "
+                "honest advice, cleanup, and ratings-backed accountability."
+            ),
         },
         "how-to-book-home-services-panun-kaergar-kashmir": {
             "headline": "How to book a Panun Kaergar home service in Kashmir",
             "seoTitle": "How to book a Panun Kaergar home service | Panun Kaergar",
-            "seoDescription": "How to book a Panun Kaergar home service in Kashmir — by phone, WhatsApp, website form, or app, with one booking path for small repairs and larger jobs.",
+            "seoDescription": (
+                "How to book a Panun Kaergar home service in Kashmir — by phone, WhatsApp, website "
+                "form, or app, with one booking path for small repairs and larger jobs."
+            ),
         },
         "panun-kaergar-customer-support-kashmir": {
             "headline": "What happens if a Panun Kaergar home service goes wrong?",
             "seoTitle": "If a Panun Kaergar home service goes wrong | Panun Kaergar",
-            "seoDescription": "What happens if a Panun Kaergar home service goes wrong? Support helps with reschedules, billing questions, no-shows, and complaints.",
+            "seoDescription": (
+                "What happens if a Panun Kaergar home service goes wrong? Support helps with "
+                "reschedules, billing questions, no-shows, and complaints."
+            ),
         },
         "panun-kaergar-vs-traditional-booking-kashmir": {
             "headline": "Panun Kaergar vs calling a local technician: what changes for customers?",
             "seoTitle": "Panun Kaergar vs calling a local technician | Panun Kaergar",
-            "seoDescription": "Panun Kaergar vs calling a local technician in Kashmir — what changes in verification, pricing clarity, booking records, and support if a job goes wrong.",
+            "seoDescription": (
+                "Panun Kaergar vs calling a local technician in Kashmir — what changes in "
+                "verification, pricing clarity, booking records, and support if a job goes wrong."
+            ),
         },
         "panun-kaergar-verified-providers-kashmir": {
             "headline": "Are Panun Kaergar providers trained and experienced? What verified means",
-            "seoTitle": "Are Panun Kaergar providers trained and experienced? What verified means | Panun Kaergar",
-            "seoDescription": "Are Panun Kaergar providers trained and experienced? Learn what 'verified' means, from trade review and onboarding to ratings after each visit.",
+            "seoTitle": "Are Panun Kaergar providers trained? | Panun Kaergar",
+            "seoDescription": (
+                "Are Panun Kaergar providers trained and experienced? Learn what verified means, "
+                "from trade review and onboarding to ratings after each visit."
+            ),
         },
     }
 

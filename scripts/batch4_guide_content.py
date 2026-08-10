@@ -1372,7 +1372,7 @@ _SPECS = [
         is_trending=True,
         related_service="plumbing",
         reading_minutes=10,
-        seo_title="Panun Kaergar service areas — 10 Kashmir districts",
+        seo_title="Kashmir service areas: 10 districts",
         seo_desc=(
             "Panun Kaergar covers all 10 Kashmir Valley districts and 289 localities — "
             "Srinagar to Kupwara, Anantnag to Baramulla. Confirm your zone when you book."

@@ -353,6 +353,206 @@ _SPECS = [
         hero="A crackle at the plug is a warning — cut power before it becomes smoke.",
         excerpt="Wall socket sparking in Kashmir? Unplug, switch off the MCB, stop using overloaded strips, and know when an electrician must replace the socket.",
     ),
+    _compact(
+        "CRP-D03",
+        "kitchen-cabinet-door-sagging-kashmir",
+        "Kitchen cabinet door sagging? Tighten the hinge before it rips the carcass",
+        "Carpentry",
+        "carpentry",
+        "The upper cupboard door hangs crooked after months of heavy spice jars on the shelf, someone props it shut with a tea towel, and the soft-close hinge scrapes the neighbouring door every time it opens.",
+        "Support the door, tighten hinge screws into solid carcass wood, adjust the side-to-side and depth screws on a modern cup hinge, and check that the mounting plate is not pulling out. Stripped screw holes, a cracked door, or a ripped particleboard edge needs a carpenter.",
+        "Cabinet door hangs low, rubs, or will not stay shut",
+        "Loose hinge screws, misadjusted cup hinge, or a failing mounting plate in soft board",
+        [
+            "Hinge screws worked loose from daily open-close and heavy door weight.",
+            "Cup-hinge adjustment screws drifted so the door sits low or out of line.",
+            "Particleboard holes stripped or the mounting plate pulling away from the carcass.",
+        ],
+        [
+            (
+                "Support the door and snug the screws",
+                "a drooping or rattling door",
+                "Have someone hold the door level, then tighten the hinge screws into the carcass and door — stop if a screw spins freely in a stripped hole.",
+            ),
+            (
+                "Adjust the cup-hinge screws",
+                "a modern soft-close or Euro hinge",
+                "Use the side and depth adjustment screws in small turns so the door aligns with its neighbour and clears the frame without forcing.",
+            ),
+            (
+                "Check the mounting plate and cup",
+                "a plate lifting from the board",
+                "Look for gaps under the plate, cracked laminate around the cup, or screws that no longer bite — those need repair, not more torque.",
+            ),
+            (
+                "Rescue a stripped hole carefully",
+                "a spinning screw in soft board",
+                "A wood plug, longer screw into solid timber, or a proper repair kit can restore grip; do not keep driving a larger screw into crumbling chipboard.",
+            ),
+            (
+                "Book a carpenter",
+                "ripped board, cracked door, or repeat sag",
+                "A pro can relocate hinges, reinforce the carcass, replace worn soft-close units, and realign a run of doors properly.",
+            ),
+        ],
+        "Two loose hinge screws and a tiny side adjustment lined the door up; we had nearly ordered a new shutter.",
+        "Hina",
+        "Kashmir kitchens mix heavy wooden shutters, soft particleboard carcasses, and damp seasons that swell doors. A slight hang after monsoon or winter heating is often a hinge job, not a full cabinet remake.",
+        "Do not prop a heavy door with cloth forever, force a misaligned soft-close shut, or drive longer screws blindly into a thin carcass wall near a pipe or sink.",
+        "Book a carpenter for stripped hinge holes, a cracked or delaminating door, a mounting plate torn from the board, doors that still sag after careful adjustment, or a full run of cupboards out of line.",
+        hero="A crooked cupboard door usually starts with loose hinge screws — not a new kitchen.",
+        excerpt="Kitchen cabinet door sagging in Kashmir? Support the door, tighten and adjust the hinges, and know when a carpenter should repair stripped holes or ripped board.",
+    ),
+    _compact(
+        "PNT-D03",
+        "paint-looking-patchy-streaky-kashmir",
+        "Paint looking patchy or streaky? Fix prep before another coat",
+        "Painting",
+        "painting",
+        "The living-room wall looks mottled the morning after a rushed weekend paint job, roller lines catch every afternoon light, and someone is already opening a third tin hoping more colour will hide the mess.",
+        "Stop adding wet coats over a weak base. Sand high ridges lightly, wipe dust, spot-prime bare or patched areas, then roll thin even coats with a quality roller — keeping a wet edge. Active damp, peeling layers, or large colour mismatch needs a painter.",
+        "Fresh paint looks blotchy, streaky, or shows roller marks",
+        "Poor surface prep, skipped primer, overloaded roller, or coats applied too thick or too fast",
+        [
+            "Dust, grease, or unsanded putty patches absorbing paint unevenly.",
+            "Bare plaster or filler left without primer so colour sinks in patches.",
+            "A dripping roller, dried edge lines, or coats stacked before the previous one cured.",
+        ],
+        [
+            (
+                "Judge the wall in daylight",
+                "any patchy finish",
+                "Look across the surface with side light; mark high ridges, missed spots, and areas where old colour still ghosts through.",
+            ),
+            (
+                "Sand and dust the problem zones",
+                "roller ridges or rough putty",
+                "Lightly sand shiny or raised lines, wipe with a clean dry cloth, and keep the floor free of grit before you open paint again.",
+            ),
+            (
+                "Spot-prime bare and patched areas",
+                "absorbent blotches",
+                "Prime filler patches and scraped spots so the finish coat sits evenly instead of sinking into thirsty plaster.",
+            ),
+            (
+                "Roll thin coats with a wet edge",
+                "streaks and lap marks",
+                "Load the roller evenly, work in overlapping W patterns, and finish each section before the edge dries — two thin coats beat one heavy coat.",
+            ),
+            (
+                "Book a painter",
+                "still patchy after careful rework",
+                "A pro can assess damp, strip failing layers, level large areas, and match sheen across a full room without another wasted tin.",
+            ),
+        ],
+        "Priming the putty patches stopped the blotches; the third full coat was never needed.",
+        "Asiya",
+        "Kashmir rooms often mix old limewash, modern emulsion, and winter dust from bukhari heat. Skipping primer on patched walls shows up fast once low afternoon sun hits the surface.",
+        "Do not keep flooding a wet wall with thicker paint, paint over active damp or peeling film, or sand lead-suspect old coatings without protection.",
+        "Book a painter for large patchy rooms after basic sand-and-prime fails, peeling or bubbling paint, suspected damp, ceiling work at height, or a full flat where colour and sheen must match.",
+        hero="Patchy paint is usually prep and primer — not a missing third tin.",
+        excerpt="Paint looking patchy or streaky in Kashmir? Sand dust, spot-prime patches, roll thin even coats, and know when a painter should take over.",
+    ),
+    _compact(
+        "WMN-D06",
+        "frizzy-dry-hair-after-wash-kashmir",
+        "Frizzy dry hair after washing? Calm the cuticle before more heat",
+        "Women's Salon",
+        "womens-salon",
+        "By afternoon the wash-day shine is gone, hair lifts into a dry halo in bukhari-heated rooms, and someone reaches for a hotter straightener hoping one more pass will flatten what moisture should have fixed.",
+        "Rinse thoroughly, blot — do not rub — with a soft towel, apply leave-in or serum on damp lengths, air-dry or use low heat with protection, and sleep on a smoother pillowcase. Sudden breakage, scalp pain, or chemical damage needs a salon professional.",
+        "Hair feels dry, frizzy, or static soon after washing",
+        "Cuticle roughened by hard water, overwashing, heat, or dry indoor air",
+        [
+            "Hard water minerals and leftover shampoo film roughening the cuticle.",
+            "Towel rubbing and high heat on dripping wet hair creating frizz.",
+            "Dry indoor heating and cold outdoor air stripping moisture from lengths.",
+        ],
+        [
+            (
+                "Rinse until water runs clear",
+                "product film and hard-water feel",
+                "Spend extra time rinsing lengths and the nape; leftover shampoo and minerals make hair feel dry within hours.",
+            ),
+            (
+                "Blot, do not rub",
+                "wet hair after the wash",
+                "Squeeze water out with a soft cotton or microfibre towel; rubbing lifts the cuticle and sets frizz before you even style.",
+            ),
+            (
+                "Seal damp lengths",
+                "frizz starting as hair dries",
+                "Apply a light leave-in or serum mid-lengths to ends while hair is still damp — keep heavy oil off an already oily scalp.",
+            ),
+            (
+                "Lower the heat and give it time",
+                "daily straightener habit",
+                "Air-dry when you can; if you style, use heat protection and a lower setting instead of chasing frizz with more heat.",
+            ),
+            (
+                "Book a salon hair care visit",
+                "persistent frizz or breakage",
+                "A stylist can assess porosity, trim splitting ends, and plan a moisture treatment without another blind home chemical.",
+            ),
+        ],
+        "Switching to blot-drying and a leave-in on damp lengths calmed the halo; the straightener came out far less often.",
+        "Insha",
+        "Kashmir winters mix hard water, bukhari-dry rooms, and cold outdoor air. Hair that feels fine after a wash can turn frizzy by evening unless the cuticle is sealed while damp.",
+        "Do not blast soaking wet hair on the hottest setting, pile oil on an itchy scalp hoping lengths will soften, or bleach again to 'fix' dryness.",
+        "Book women's salon hair care for persistent frizz after gentle routine changes, widespread split ends, chemical damage, painful scalp, or a treatment and trim before a big event.",
+        hero="Afternoon frizz usually starts with a rough cuticle — not a hotter iron.",
+        excerpt="Frizzy dry hair after washing in Kashmir? Rinse well, blot instead of rubbing, seal damp lengths, lower the heat, and know when to book a salon visit.",
+    ),
+    _compact(
+        "WMN-D07",
+        "hairfall-after-wash-kashmir",
+        "Hairfall after every wash? Check breakage before blaming the roots",
+        "Women's Salon",
+        "womens-salon",
+        "The bathroom drain holds a dark clump after every wash, someone panics about roots, and a neighbour recommends a stronger oil — before anyone checks whether the strands are snapping mid-length or shedding with a tiny white bulb.",
+        "Look at the shed hair: a white bulb often means normal shedding; short snapped ends suggest breakage from heat, tight styles, or chemical stress. Ease rough handling, reduce heat, and strengthen the routine. Patchy bald spots, sudden heavy loss, or scalp pain need medical advice — a salon can help with breakage and gentle care.",
+        "Extra hair in the drain, brush, or pillow after washing",
+        "Seasonal shedding, breakage from damage, tight styling, or a scalp/medical issue",
+        [
+            "Normal seasonal or post-stress shedding with bulbs attached.",
+            "Breakage from heat, bleach, tight buns, or rough towel drying.",
+            "Scalp inflammation, sudden patchy loss, or hormonal/medical triggers needing a doctor.",
+        ],
+        [
+            (
+                "Inspect a few strands in good light",
+                "any worrying wash-day clump",
+                "Check whether hairs end in a small white bulb (shed) or look snapped and uneven (breakage) before changing products randomly.",
+            ),
+            (
+                "Ease handling while wet",
+                "snapping during combing",
+                "Detangle from ends upward with a wide-tooth comb on wet hair; stop yanking through knots at the crown.",
+            ),
+            (
+                "Cut the heat and tight pull",
+                "breakage along the hairline or lengths",
+                "Lower straightener temperature, skip daily tight buns for a while, and use heat protection when you do style.",
+            ),
+            (
+                "Simplify scalp products",
+                "itch or heavy oil buildup",
+                "Wash with a gentle shampoo on a steady schedule; heavy overnight oils will not fix root shedding and can clog an irritated scalp.",
+            ),
+            (
+                "Book salon care — or a doctor if red flags",
+                "ongoing loss after gentle changes",
+                "A stylist can trim damaged ends and plan restorative care for breakage; sudden patches, bald spots, or rapid thinning need a dermatologist.",
+            ),
+        ],
+        "Most of the 'hairfall' in my brush was snapped mid-length from a tight bun and hot iron — not roots falling out.",
+        "Saba",
+        "Kashmir wash days often follow hard water, winter dryness, and festival heat styling. Clumps in the drain look alarming, but breakage and normal shedding need different next steps — oil alone rarely settles either.",
+        "Do not pull out more hair to 'test' loss, cover patchy spots with harsh dyes, or ignore sudden bald patches while layering random oils.",
+        "Book women's salon hair care for breakage, split ends, and gentle restorative routines; see a dermatologist for sudden heavy shedding, round bald patches, scalp sores, or loss with other health symptoms.",
+        hero="A drain clump is a clue — bulb vs snap tells you what to fix first.",
+        excerpt="Hairfall after every wash in Kashmir? Check whether strands are shedding or snapping, ease heat and tight styles, and know when to book a salon or a doctor.",
+    ),
 ]
 
 _BATCH_SIBLINGS = {
@@ -391,6 +591,26 @@ _BATCH_SIBLINGS = {
         "flickering-lights-causes-kashmir",
         "ceiling-fan-making-noise-kashmir",
     ),
+    "CRP-D03": (
+        "door-not-closing-properly",
+        "wardrobe-door-slider-problems",
+        "curtain-rod-falling-sagging",
+    ),
+    "PNT-D03": (
+        "painting-damp-walls-kashmir",
+        "paint-peeling-kashmir-homes",
+        "wall-seepage-plaster-damage-kashmir",
+    ),
+    "WMN-D06": (
+        "hair-damage-after-colour",
+        "skin-allergy-after-facial",
+        "dandruff-itchy-scalp-men",
+    ),
+    "WMN-D07": (
+        "frizzy-dry-hair-after-wash-kashmir",
+        "hair-damage-after-colour",
+        "skin-allergy-after-facial",
+    ),
 }
 
 TITLE_SUBJECTS = {
@@ -401,6 +621,10 @@ TITLE_SUBJECTS = {
     "tap-keeps-dripping-kashmir": "kitchen tap drip, worn washer, valve seat and mixer cartridge",
     "washing-machine-not-spinning-kashmir": "washing machine drum, unbalanced wet load, lid latch and spin cycle",
     "wall-socket-sparking-kashmir": "wall socket spark, warm faceplate, plug pins and MCB switch-off",
+    "kitchen-cabinet-door-sagging-kashmir": "kitchen cabinet door, cup hinge screws, mounting plate and sagging shutter",
+    "paint-looking-patchy-streaky-kashmir": "patchy painted wall, roller marks, putty patch primer and even emulsion coat",
+    "frizzy-dry-hair-after-wash-kashmir": "frizzy dry hair after wash, soft towel blot, leave-in on damp lengths and low heat",
+    "hairfall-after-wash-kashmir": "hairfall in brush after wash, shed bulb vs snapped breakage and gentle detangling",
 }
 
 _SEO = {
@@ -451,6 +675,34 @@ _SEO = {
         "seoDescription": (
             "Wall socket sparking in Kashmir? Unplug, switch off the MCB, stop overloaded strips, and know when to "
             "book an electrician."
+        ),
+    },
+    "kitchen-cabinet-door-sagging-kashmir": {
+        "seoTitle": "Cabinet door sagging? Tighten hinge first | Panun Kaergar",
+        "seoDescription": (
+            "Kitchen cabinet door sagging in Kashmir? Support the door, tighten and adjust the hinges, and know when "
+            "to book a carpenter for stripped holes."
+        ),
+    },
+    "paint-looking-patchy-streaky-kashmir": {
+        "seoTitle": "Patchy paint? Fix prep before another coat | Panun Kaergar",
+        "seoDescription": (
+            "Paint looking patchy or streaky in Kashmir? Sand dust, spot-prime putty patches, "
+            "roll thin even coats with a wet edge, and know when to book a painter."
+        ),
+    },
+    "frizzy-dry-hair-after-wash-kashmir": {
+        "seoTitle": "Frizzy dry hair? Calm cuticle first | Panun Kaergar",
+        "seoDescription": (
+            "Frizzy dry hair after washing in Kashmir? Rinse well, blot instead of rubbing, seal damp lengths, "
+            "lower the heat, and know when to book a salon visit."
+        ),
+    },
+    "hairfall-after-wash-kashmir": {
+        "seoTitle": "Hairfall after wash? Check breakage first | Panun Kaergar",
+        "seoDescription": (
+            "Hairfall after every wash in Kashmir? Check whether strands are shedding or snapping, ease heat "
+            "and tight styles, and know when to book a salon or a doctor."
         ),
     },
 }
@@ -615,6 +867,98 @@ _DONT = {
             "Covering a hot plate traps heat and hides scorch marks an electrician needs to see.",
             "Tape wrapped over warm discoloured wall socket",
             "Leave it open and book help",
+        ),
+    ],
+    "kitchen-cabinet-door-sagging-kashmir": [
+        (
+            "Force the door shut every time",
+            "Rips the hinge plate",
+            "Slamming a sagging door tears screw holes wider and can crack the door edge or carcass.",
+            "Hand slamming sagging kitchen cabinet door against frame",
+            "Support and adjust instead",
+        ),
+        (
+            "Drive a much larger screw into chipboard",
+            "Splits the carcass",
+            "Oversized screws often split thin particleboard and leave nothing for a proper repair later.",
+            "Large screw forced into crumbling kitchen cabinet chipboard hinge hole",
+            "Use a proper plug or carpenter fix",
+        ),
+        (
+            "Remove all hinges at once unsupported",
+            "Door drops and chips",
+            "Take one hinge at a time with the door supported, or the shutter can fall and damage the worktop.",
+            "Kitchen cabinet door falling while all hinges removed at once",
+            "Support the door first",
+        ),
+    ],
+    "paint-looking-patchy-streaky-kashmir": [
+        (
+            "Slap on a thicker coat to hide it",
+            "Runs, sags, and longer dry time",
+            "Heavy wet coats trap marks and drip; thin even coats over a primed surface hide better.",
+            "Paint roller overloaded dripping thick paint down wall",
+            "Thin coats over proper prep",
+        ),
+        (
+            "Paint over active damp or peeling film",
+            "Fails again within days",
+            "Moisture and loose old paint will telegraph through any new colour — fix the base first.",
+            "Fresh paint brushed over peeling damp wall patch",
+            "Dry and sound before colour",
+        ),
+        (
+            "Skip primer on bare putty patches",
+            "Blotches return",
+            "Unprimed filler absorbs finish unevenly and leaves permanent light and dark zones.",
+            "Bare white putty patches on wall before emulsion without primer",
+            "Spot-prime every patch",
+        ),
+    ],
+    "frizzy-dry-hair-after-wash-kashmir": [
+        (
+            "Blast soaking wet hair on max heat",
+            "Burns the cuticle open",
+            "High heat on dripping hair locks in frizz and dryness; blot first and use a lower setting with protection.",
+            "Hair straightener on hottest setting on soaking wet frizzy hair",
+            "Dry partly, then lower heat",
+        ),
+        (
+            "Pile oil on an itchy scalp for dry ends",
+            "Grease without softness",
+            "Lengths need leave-in moisture; a heavy oiled scalp will not fix dry ends and can worsen itch.",
+            "Heavy oil poured onto itchy scalp while hair ends stay dry",
+            "Treat lengths, not only the scalp",
+        ),
+        (
+            "Bleach again to 'fix' dryness",
+            "More breakage",
+            "Chemical lightening on already dry hair increases snap and frizz — pause and restore first.",
+            "Bleach brush on already dry frizzy hair lengths",
+            "Restore before any chemical",
+        ),
+    ],
+    "hairfall-after-wash-kashmir": [
+        (
+            "Pull more hair to 'count' the loss",
+            "Worsens shedding trauma",
+            "Tugging clumps to measure hairfall damages follicles and scares you without diagnosing the cause.",
+            "Hand yanking large clump of hair from scalp to test hairfall",
+            "Inspect shed strands gently",
+        ),
+        (
+            "Layer random oils on patchy spots",
+            "Delays real care",
+            "Sudden bald patches need medical review; heavy oils can irritate and hide what a doctor needs to see.",
+            "Oil bottle poured onto round bald patch on scalp",
+            "Seek medical advice for patches",
+        ),
+        (
+            "Keep tight buns and max heat daily",
+            "Breakage looks like hairfall",
+            "Constant tension and high heat snap lengths into the brush — ease styling while you recover.",
+            "Tight bun and hot straightener used daily on stressed hair",
+            "Loosen styles and lower heat",
         ),
     ],
 }
