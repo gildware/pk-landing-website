@@ -553,6 +553,256 @@ _SPECS = [
         hero="A drain clump is a clue — bulb vs snap tells you what to fix first.",
         excerpt="Hairfall after every wash in Kashmir? Check whether strands are shedding or snapping, ease heat and tight styles, and know when to book a salon or a doctor.",
     ),
+    _compact(
+        "CLN-D06",
+        "mattress-smell-stains-cleaning-kashmir",
+        "Mattress smells or stains? Air it out before you soak the foam",
+        "Cleaning",
+        "professional-cleaning",
+        "On a warm morning the mattress still smells closed after winter bedding, a faint tea ring sits near the edge, and someone is already pouring a bucket of soapy water onto the foam — which often locks moisture and odour deeper inside.",
+        "Strip the bedding, vacuum both sides, blot fresh spills without soaking, air the mattress in dry light, and use a light baking-soda refresh only when fully dry. Deep odour, urine, mould spots, or a mattress that stays damp after cleaning needs professional mattress cleaning.",
+        "Stale smell, surface stain, or damp feel in the mattress",
+        "Trapped moisture, body oils, spill residue, or dust buildup in the cover and foam",
+        [
+            "Sweat and body oils building up under closed winter bedding with little airing.",
+            "Spills rubbed wider or flooded with water so foam stays wet and smells musty.",
+            "Dust, dead skin, and allergen buildup on a mattress never vacuumed or rotated.",
+        ],
+        [
+            (
+                "Strip and vacuum both sides",
+                "any stale or dusty mattress",
+                "Remove all covers, vacuum the top, sides, and underside with an upholstery tool, and empty the canister outside so dust does not settle back in the room.",
+            ),
+            (
+                "Blot spills — never flood the foam",
+                "a fresh stain",
+                "Press a clean cloth from the edge inward; use minimal moisture on a barely damp cloth, then blot dry. Soaking foam can leave a lasting musty core.",
+            ),
+            (
+                "Air in dry light when weather allows",
+                "a closed winter smell",
+                "Stand the mattress on its side near an open window or sunny dry spot for a few hours — never leave it in damp air or overnight rain risk.",
+            ),
+            (
+                "Refresh with baking soda only when dry",
+                "light odour after vacuuming",
+                "Dust a thin layer of baking soda on a fully dry surface, leave briefly, then vacuum thoroughly. Skip this on a damp mattress.",
+            ),
+            (
+                "Book mattress cleaning",
+                "deep odour, urine, or mould",
+                "Pros can extract residue, treat allergens, and dry the core properly — safer than soaking foam at home.",
+            ),
+        ],
+        "Vacuuming both sides and a dry afternoon airing cleared the closed smell; we never needed to soak the mattress.",
+        "Mehak",
+        "Kashmir winters mean thick bedding, closed rooms, and bukhari heat that dries the air while moisture still sits in foam. A mattress that never gets stripped and aired often smells 'old' long before it needs replacing.",
+        "Do not soak the foam with buckets of water, scrub stains into a wider ring, or put a damp mattress back under heavy covers the same night.",
+        "Book professional mattress cleaning for urine or mould, odour that returns after airing and vacuuming, deep set stains, allergy flare-ups tied to the bed, or a mattress too heavy to turn and dry safely at home.",
+        hero="A closed mattress smell usually needs air and a vacuum — not a bucket of water.",
+        excerpt="Mattress smells or stains in Kashmir? Strip, vacuum both sides, blot spills lightly, air it dry, and know when to book mattress cleaning.",
+    ),
+    _compact(
+        "PNT-D04",
+        "paint-touch-up-never-matches-kashmir",
+        "Touch-up paint never matches? Feather the edge before you repaint the room",
+        "Painting",
+        "painting",
+        "A small putty patch after moving a shelf looks fine until the roller dries — then a bright rectangle sits in the middle of a faded wall, and someone opens a fresh tin hoping one dab will disappear.",
+        "Clean and sand the spot, prime bare filler, tint from leftover paint or a fresh match under the same light, then feather thin coats outward instead of painting a hard square. Large faded walls, sheen mismatch, or many scattered patches need a painter for a full blend or recoat.",
+        "Touch-up looks lighter, darker, or glossier than the wall",
+        "Faded old paint, different batch/sheen, unprimed filler, or a hard-edged patch",
+        [
+            "Sun and bukhari heat fading the original wall while leftover paint stayed darker in the tin.",
+            "Bare putty or plaster absorbing new colour differently than sealed emulsion.",
+            "A hard square of fresh paint with a different sheen catching afternoon light.",
+        ],
+        [
+            (
+                "Clean, sand, and dust the patch",
+                "any small repair",
+                "Wipe grease, sand the filler flush, and remove dust so the new film sits level with the old wall.",
+            ),
+            (
+                "Spot-prime bare filler only",
+                "fresh putty or scraped plaster",
+                "Prime the absorbent patch so colour does not sink into a pale blotch when you apply finish.",
+            ),
+            (
+                "Match paint and sheen in daylight",
+                "leftover tin or a shop match",
+                "Shake well, check matt vs silk, and test a coin-sized dab beside the repair under the same window light you live with.",
+            ),
+            (
+                "Feather thin coats outward",
+                "a visible rectangle after drying",
+                "Roll or brush lightly beyond the repair so the edge blends; two thin passes beat one thick square.",
+            ),
+            (
+                "Book a painter for a proper blend",
+                "many patches or a whole faded wall",
+                "A pro can recoat a full elevation, match sheen, and hide scattered touch-ups that will never disappear alone.",
+            ),
+        ],
+        "Priming the putty and feathering two thin coats hid the shelf marks; we did not need to repaint the whole room.",
+        "Owais",
+        "Kashmir walls fade unevenly — sunny sides bleach faster, and winter heating dries rooms while leftover tins stay sealed. A perfect tin match still looks wrong if the wall has aged and the patch is painted as a hard square.",
+        "Do not paint a thick hard-edged square on faded walls, skip primer on bare putty, or judge colour under a yellow bulb alone.",
+        "Book a painter when touch-ups still flash after careful feathering, the whole wall has faded, sheen is wrong across a room, or many repairs make a full recoat cheaper than chasing patches.",
+        hero="A bright patch is usually sheen and edges — not a cursed tin.",
+        excerpt="Touch-up paint never matches in Kashmir? Sand, spot-prime, feather thin coats, and know when a painter should recoat the wall.",
+    ),
+    _compact(
+        "MSN-D03",
+        "floor-tile-hollow-loose-kashmir",
+        "Floor tile hollow or loose? Tap-test before you smash the whole floor",
+        "Masonry",
+        "masonry",
+        "Walking past the bathroom door you hear a dull clack underfoot, then a neighbour says rip every tile out — before anyone maps which ones are hollow and which still ring solid.",
+        "Tap-test the floor, mark hollow or rocking tiles, check for water entry at grout lines, and lift only failed tiles carefully for rebedding. Widespread hollowness, cracked screed, or tiles lifting after a leak need a mason for proper floor tile repair.",
+        "Hollow sound, rocking tile, or cracked floor tile",
+        "Failed adhesive bond, water under tiles, or movement in the screed",
+        [
+            "Adhesive or mortar bed that never bonded fully, or dried out under winter freeze-thaw.",
+            "Water seeping through broken grout and lifting tiles from below.",
+            "Heavy impact or furniture drag cracking a tile that then loosens its neighbours.",
+        ],
+        [
+            (
+                "Tap-test and mark the hollow ones",
+                "any suspicious clack underfoot",
+                "Tap with a coin or screwdriver handle; hollow tiles sound dull. Mark them with tape so you know the real area before anyone starts breaking.",
+            ),
+            (
+                "Check grout and wet zones",
+                "bathrooms and kitchen floors",
+                "Look for missing grout, dark damp lines, or soft edges — water under tiles often explains a cluster of hollow spots.",
+            ),
+            (
+                "Protect neighbours before lifting",
+                "a single loose tile",
+                "Score grout, protect nearby good tiles, and lift the failed piece carefully instead of hammering randomly across the room.",
+            ),
+            (
+                "Clean and rebed a small repair",
+                "one or two loose tiles with sound screed",
+                "Clear old adhesive, dry the base, and reset with suitable tile adhesive so the tile sits flush and does not rock.",
+            ),
+            (
+                "Book a mason for floor tile repair",
+                "many hollow tiles or cracked base",
+                "A pro can assess screed damage, replace a run of tiles, and regrout properly without turning a small hollow into a broken floor.",
+            ),
+        ],
+        "Three hollow bathroom tiles were the whole problem; rebedding them stopped the clack without a full floor redo.",
+        "Javed",
+        "Kashmir bathrooms and kitchens see freeze-thaw, hard water, and long wet winters that punish weak adhesive beds. A dull tap underfoot is often a small bond failure — not a reason to demolish every tile on day one.",
+        "Do not smash random tiles without mapping hollow spots, flood the floor hoping it will 'settle', or ignore water under tiles while only regrouting the surface.",
+        "Book a mason for widespread hollowness, rocking tiles near a leak, cracked screed, tiles that lift again after a DIY reset, or a bathroom floor that needs systematic repair.",
+        hero="A hollow clack usually means a failed bond — map it before you demolish.",
+        excerpt="Floor tile hollow or loose in Kashmir? Tap-test, check grout for water entry, rebed small failures, and know when to book a mason.",
+    ),
+    _compact(
+        "DRY-D03",
+        "winter-woollens-dry-clean-kashmir",
+        "Winter woollens smell musty? Dry clean before you fold them away",
+        "Dry Cleaning",
+        "dry-clean-laundry",
+        "When the pheran comes off after months of bukhari heat and closed rooms, the wool still smells faintly damp — and someone is already stuffing it into a plastic carry bag for the summer trunk.",
+        "Air woollens in dry daylight, brush off surface dust, and dry clean pherans, shawls, and suits before long storage. Store clean, fully dry garments in breathable cotton with cedar or neem — never in sealed plastic while still holding body moisture or food odour.",
+        "Musty smell, flat moths, or stiff wool after winter wear",
+        "Body oils, damp storage, or food smoke trapped in fibres before folding",
+        [
+            "Wool worn all winter without cleaning, trapping sweat, smoke, and skin oils that attract moths.",
+            "Garments folded while still slightly damp after rain, snow, or a hurried wash.",
+            "Plastic bags or airtight trunks sealing in humidity through Kashmir's damp spring weeks.",
+        ],
+        [
+            (
+                "Air and inspect every piece",
+                "end-of-season woollens",
+                "Hang pherans, shawls, and coats in dry daylight for a few hours; check seams, cuffs, and under collars for stains or tiny holes before storage.",
+            ),
+            (
+                "Brush off dust and lint",
+                "surface grime before drop-off",
+                "Use a soft clothes brush on dry fabric; do not beat wool against a wall — that can weaken fibres and spread hidden dust mites.",
+            ),
+            (
+                "Dry clean before long storage",
+                "pherans, suits, and embellished wool",
+                "Take clean, identified items to dry cleaning so oils and food smells do not feed moths over summer. Point out any weak seams or loose buttons.",
+            ),
+            (
+                "Store in breathable cotton",
+                "months in a trunk or cupboard",
+                "Fold loosely into cotton bags or muslin wraps with cedar blocks or neem leaves; keep away from naphthalene touching fabric directly.",
+            ),
+            (
+                "Book pickup or drop-off dry cleaning",
+                "many pieces or delicate embroidery",
+                "A laundry partner can collect suits, pherans, and shawls, clean them properly, and return them ready for storage — safer than home washing wool.",
+            ),
+        ],
+        "Dry cleaning the pherans before the trunk went in stopped the musty smell and the moth holes we had the year before.",
+        "Naseema",
+        "Kashmir winters mean months in wool around bukhari heat, wazwan smoke, and damp shoes tracked indoors. Wool that goes straight from daily wear into a plastic bag often smells fine for a week — then comes out musty or chewed by spring.",
+        "Do not home-wash dry-clean-only wool in hot water, seal damp garments in plastic, or skip cleaning because a pheran 'looks clean' after heavy winter wear.",
+        "Book dry cleaning for pherans, wool suits, embroidered shawls, and any garment with a dry-clean-only label before long storage; use pickup for a full winter wardrobe refresh or moth-damaged pieces that need professional treatment.",
+        hero="Musty wool usually means oils and damp — clean before you fold.",
+        excerpt="Winter woollens smell musty in Kashmir? Air them dry, dry clean pherans and shawls before storage, and keep them in breathable cotton — not sealed plastic.",
+    ),
+    _compact(
+        "GRD-D05",
+        "balcony-plants-dying-winter-kashmir",
+        "Balcony plants dying in winter? Check frost before you water more",
+        "Gardening",
+        "gardening",
+        "After the first hard frost, balcony geraniums and herbs look wilted and black at the edges — and someone is already pouring warm water on every pot, including the ones sitting in frozen saucers.",
+        "Tell frost damage from underwatering by checking soil moisture and stem tissue. Move tender pots to a sheltered wall or bright indoor spot, reduce winter watering, and lift pots off frozen saucers. Widespread loss, poor drainage, or a full terrace reset needs a gardener.",
+        "Wilted, blackened, or dropping leaves on balcony pots after cold nights",
+        "Frost burn, cold root shock, overwatering in cold soil, or drought on sheltered evergreens",
+        [
+            "Tender plants left on open railings through hard frost nights.",
+            "Cold wet soil suffocating roots while drooping leaves look like thirst.",
+            "Pots in saucers freezing and thawing, stressing roots at the base.",
+        ],
+        [
+            (
+                "Check soil before you pour",
+                "any drooping winter pot",
+                "Stick a finger into the top few centimetres; frozen or soggy soil needs less water, not a daily warm top-up.",
+            ),
+            (
+                "Move tender pots to shelter",
+                "herbs, geraniums, and soft stems",
+                "Group pots against a south-facing wall or bring them to a bright room — away from a direct bukhari blast.",
+            ),
+            (
+                "Lift pots off frozen saucers",
+                "balcony rails and floor trays",
+                "Empty ice water, use pot feet, and let excess drain so roots are not sitting in a frozen bath.",
+            ),
+            (
+                "Wait before hard pruning",
+                "blackened leaves after frost",
+                "Scrape a stem for green tissue after a week; light cleanup only until you know what survived.",
+            ),
+            (
+                "Book a gardener",
+                "a dead terrace or poor drainage",
+                "A pro can redesign drainage, repot large planters, plan frost-hard planting, or set up drip for next season.",
+            ),
+        ],
+        "Moving the herbs to the sheltered wall and stopping daily pours saved what we thought was a dead balcony.",
+        "Rafiq",
+        "Open Kashmir balconies freeze hard while living rooms run bukhari heat. Plants caught between the two often fail from wrong winter watering — not from one cold night alone.",
+        "Do not drown drooping pots in cold weather, hard-prune everything the morning after frost, or leave plastic pots on frozen saucers full of ice water.",
+        "Book a gardener for a full balcony reset, drainage redesign, frost-hard planting plans, drip irrigation setup, or large dead planters you cannot move safely.",
+        hero="Frost-black leaves are not always thirst — check the soil first.",
+        excerpt="Balcony plants dying in winter in Kashmir? Tell frost from thirst, shelter tender pots, cut winter watering, and know when to book a gardener.",
+    ),
 ]
 
 _BATCH_SIBLINGS = {
@@ -611,6 +861,29 @@ _BATCH_SIBLINGS = {
         "hair-damage-after-colour",
         "skin-allergy-after-facial",
     ),
+    "CLN-D06": (
+        "sofa-smells-stains-cleaning",
+        "bathroom-mould-hard-water-stains",
+        "kitchen-grease-cleaning-kashmir",
+    ),
+    "PNT-D04": (
+        "paint-looking-patchy-streaky-kashmir",
+        "painting-damp-walls-kashmir",
+        "paint-peeling-kashmir-homes",
+    ),
+    "MSN-D03": (
+        "wall-cracks-cosmetic-structural",
+        "wall-seepage-plaster-damage-kashmir",
+        "false-ceiling-water-stain",
+    ),
+    "DRY-D03": (
+        "fabric-stains-dry-clean",
+        "sofa-dry-cleaning-vs-home-clean",
+    ),
+    "GRD-D05": (
+        "lawn-looking-dead-kashmir",
+        "overwatering-garden-plants-kashmir",
+    ),
 }
 
 TITLE_SUBJECTS = {
@@ -625,6 +898,11 @@ TITLE_SUBJECTS = {
     "paint-looking-patchy-streaky-kashmir": "patchy painted wall, roller marks, putty patch primer and even emulsion coat",
     "frizzy-dry-hair-after-wash-kashmir": "frizzy dry hair after wash, soft towel blot, leave-in on damp lengths and low heat",
     "hairfall-after-wash-kashmir": "hairfall in brush after wash, shed bulb vs snapped breakage and gentle detangling",
+    "mattress-smell-stains-cleaning-kashmir": "mattress with stale smell, vacuum both sides, blot stain and dry airing",
+    "paint-touch-up-never-matches-kashmir": "wall touch-up patch lighter than faded paint, feathered roller edge and primer on putty",
+    "floor-tile-hollow-loose-kashmir": "hollow floor tile tap test, loose bathroom tile and rebedding adhesive",
+    "winter-woollens-dry-clean-kashmir": "wool pheran and shawl aired in daylight, soft brush, dry-clean bag and breathable cotton storage trunk",
+    "balcony-plants-dying-winter-kashmir": "balcony potted plants frost damage, sheltered wall grouping and winter soil moisture check",
 }
 
 _SEO = {
@@ -703,6 +981,41 @@ _SEO = {
         "seoDescription": (
             "Hairfall after every wash in Kashmir? Check whether strands are shedding or snapping, ease heat "
             "and tight styles, and know when to book a salon or a doctor."
+        ),
+    },
+    "mattress-smell-stains-cleaning-kashmir": {
+        "seoTitle": "Mattress smells or stains? Air it out first | Panun Kaergar",
+        "seoDescription": (
+            "Mattress smells or stains in Kashmir? Strip bedding, vacuum both sides, blot spills lightly, "
+            "air it dry, and know when to book mattress cleaning."
+        ),
+    },
+    "paint-touch-up-never-matches-kashmir": {
+        "seoTitle": "Touch-up paint never matches? Feather first | Panun Kaergar",
+        "seoDescription": (
+            "Touch-up paint never matches in Kashmir? Sand, spot-prime putty, feather thin coats outward, "
+            "and know when a painter should recoat the wall."
+        ),
+    },
+    "floor-tile-hollow-loose-kashmir": {
+        "seoTitle": "Hollow floor tile? Tap-test first | Panun Kaergar",
+        "seoDescription": (
+            "Floor tile hollow or loose in Kashmir? Tap-test, check grout for water entry, rebed small "
+            "failures carefully, and know when to book a mason."
+        ),
+    },
+    "winter-woollens-dry-clean-kashmir": {
+        "seoTitle": "Musty woollens? Dry clean before storage | Panun Kaergar",
+        "seoDescription": (
+            "Winter woollens smell musty in Kashmir? Air them dry, dry clean pherans and shawls before storage, "
+            "and keep them in breathable cotton — not sealed plastic."
+        ),
+    },
+    "balcony-plants-dying-winter-kashmir": {
+        "seoTitle": "Balcony plants dying? Check frost first | Panun Kaergar",
+        "seoDescription": (
+            "Balcony plants dying in winter in Kashmir? Tell frost from thirst, shelter tender pots, "
+            "cut winter watering, and know when to book a gardener."
         ),
     },
 }
@@ -959,6 +1272,121 @@ _DONT = {
             "Constant tension and high heat snap lengths into the brush — ease styling while you recover.",
             "Tight bun and hot straightener used daily on stressed hair",
             "Loosen styles and lower heat",
+        ),
+    ],
+    "mattress-smell-stains-cleaning-kashmir": [
+        (
+            "Soak the foam with a bucket of water",
+            "Locks in musty smell",
+            "Flooding a mattress drives moisture into the core where it cannot dry — odour often gets worse, not better.",
+            "Bucket of soapy water poured onto mattress foam creating wet patch",
+            "Blot lightly, never flood",
+        ),
+        (
+            "Scrub a stain in circles hard",
+            "Spreads a wider ring",
+            "Aggressive scrubbing pushes pigment outward and can damage the cover weave.",
+            "Hand scrubbing mattress stain in hard circles spreading the mark",
+            "Blot from the edge inward",
+        ),
+        (
+            "Cover a damp mattress the same night",
+            "Traps moisture under sheets",
+            "Heavy bedding on a still-damp mattress seals in humidity and recreates the closed smell by morning.",
+            "Heavy winter quilt put back on damp mattress same evening",
+            "Air until fully dry first",
+        ),
+    ],
+    "paint-touch-up-never-matches-kashmir": [
+        (
+            "Paint a thick hard-edged square",
+            "Flashes under daylight",
+            "A sharp rectangle of fresh paint sits proud of faded wall colour and shows from across the room.",
+            "Hard square of fresh paint on faded wall looking like a bright patch",
+            "Feather the edge outward",
+        ),
+        (
+            "Skip primer on bare putty",
+            "Colour sinks unevenly",
+            "Unprimed filler drinks finish and leaves a permanent light blotch even with the same tin.",
+            "Bare white putty patch on wall painted without primer",
+            "Spot-prime filler first",
+        ),
+        (
+            "Judge colour only under a yellow bulb",
+            "Wrong match by morning",
+            "Warm bulbs hide sheen and hue differences that appear harsh in daylight — always check by a window.",
+            "Person checking wall paint colour only under yellow room bulb at night",
+            "Test in daylight too",
+        ),
+    ],
+    "floor-tile-hollow-loose-kashmir": [
+        (
+            "Smash tiles without mapping hollow spots",
+            "Breaks good floor needlessly",
+            "Blind demolition destroys solid tiles and raises dust before you know how small the failed area is.",
+            "Hammer smashing random floor tiles without tap-test marks",
+            "Tap-test and mark first",
+        ),
+        (
+            "Flood the floor hoping it will settle",
+            "Worsens under-tile water",
+            "Extra water under hollow tiles softens the bed further and can stain neighbouring rooms.",
+            "Bucket of water poured onto hollow bathroom floor tiles",
+            "Find water entry, do not flood",
+        ),
+        (
+            "Only regrout and ignore rocking tiles",
+            "Hollowness returns quickly",
+            "Fresh grout on a floating tile hides the clack briefly but does not restore the bond underneath.",
+            "Person regrouting around a visibly rocking floor tile",
+            "Rebed or book repair",
+        ),
+    ],
+    "winter-woollens-dry-clean-kashmir": [
+        (
+            "Home-wash a dry-clean-only pheran",
+            "Shrinks and felts the wool",
+            "Hot water and scrubbing can turn a loose pheran into a stiff, smaller garment with ruined embroidery.",
+            "Wool pheran being hand-washed in hot soapy bucket at home",
+            "Dry clean labelled wool",
+        ),
+        (
+            "Seal damp wool in plastic",
+            "Musty smell and moth risk",
+            "Trapped moisture in a carry bag creates the exact damp pocket moths and mildew love over summer.",
+            "Slightly damp wool pheran folded into sealed plastic carry bag",
+            "Air fully dry first",
+        ),
+        (
+            "Skip cleaning because it looks fine",
+            "Oils feed moths all summer",
+            "Invisible skin oils and wazwan smoke on 'clean-looking' wool are what draw moths to cuffs and collars.",
+            "Unwashed wool pheran folded straight into storage trunk after winter",
+            "Dry clean before storage",
+        ),
+    ],
+    "balcony-plants-dying-winter-kashmir": [
+        (
+            "Drown drooping pots in cold weather",
+            "Roots rot in cold wet soil",
+            "Warm daily pours on frozen or soggy soil suffocate roots when plants are already in shock.",
+            "Watering can pouring onto frost-damaged balcony plant with soggy cold soil",
+            "Check soil first",
+        ),
+        (
+            "Hard-prune everything after one frost",
+            "May remove live tissue",
+            "Cutting all stems to the ground before you scrape for green can kill plants that would have recovered.",
+            "Hand cutting balcony herb pots down to soil level morning after frost",
+            "Wait and scrape stems first",
+        ),
+        (
+            "Move pots beside bukhari without light",
+            "Leaves scorch; stems weaken",
+            "Dry heat without bright window light cooks foliage and leaves recovery weaker than frost alone.",
+            "Balcony plant pot placed directly beside bukhari heater in dark corner",
+            "Bright sheltered spot instead",
         ),
     ],
 }

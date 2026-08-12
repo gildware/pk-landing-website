@@ -59,6 +59,23 @@ def _article(item):
         )
     else:
         dont_html = f"<ul>{donts}</ul>"
+    service_slug = item.get("relatedServiceSlug") or ""
+    service_label = SERVICE_HINTS.get(service_slug, "professional help")
+    if service_slug == "carpentry":
+        service_cta = (
+            f'<p>Need hands-on help? Book verified '
+            f'<a href="/services/carpentry">carpentry services in Kashmir</a> '
+            f'or find a <a href="/near-me/carpenter-near-me">carpenter near you</a> '
+            f'on Panun Kaergar when DIY has done its part.</p>'
+        )
+    elif service_slug:
+        service_cta = (
+            f'<p>Need hands-on help? Book verified '
+            f'<a href="/services/{escape(service_slug)}">{escape(service_label)}</a> '
+            f'through Panun Kaergar across Kashmir when DIY has done its part.</p>'
+        )
+    else:
+        service_cta = ""
     return f"""<p class="scene">{escape(item["scene"])}</p>
 <div class="answer-box"><span class="label">Quick answer</span><p>{escape(item["quickAnswer"])}</p></div>
 <nav class="toc" aria-label="Table of contents"><p class="label">In this guide</p><ol>
@@ -89,6 +106,7 @@ def _article(item):
 <figure class="figure"><img src="/images/guides/{slug}-tip.webp" alt="{escape(item['tip_alt'])}" loading="lazy" /><figcaption><strong>Prevention tip:</strong> {escape(item["prevention_caption"])}</figcaption></figure>
 <p>{escape(item["prevention"])}</p>
 <h2 id="book">When to book a professional</h2><p>{escape(item["book"])}</p>
+{service_cta}
 <h2 id="faq">FAQs</h2><div class="faq">{faqs}</div>"""
 
 _SPECS = [

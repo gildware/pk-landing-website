@@ -183,6 +183,17 @@ const postsJson = JSON.stringify(
       <strong class="mb-1 block text-slate-900">No guides match</strong>
       Try another search, topic, or sort.
     </p>
+
+    {/* Crawlable link inventory for search engines (JS list above is progressive enhancement). */}
+    <nav class="sr-only" aria-label="All guides">
+      <ul>
+        {guides.map((g) => (
+          <li>
+            <a href={`/guides/${g.slug}`}>{g.headline}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   </section>
 </PageLayout>
 

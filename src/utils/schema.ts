@@ -391,6 +391,7 @@ export function blogPostingSchema(guide: {
   excerpt: string;
   slug: string;
   publishedAt?: string | null;
+  dateModified?: string | null;
   category?: string;
   coverImage?: string | null;
   readingMinutes?: number | null;
@@ -402,6 +403,7 @@ export function blogPostingSchema(guide: {
           : `/images/guides/${guide.coverImage}`
       )
     : undefined;
+  const modified = guide.dateModified || guide.publishedAt || undefined;
 
   return {
     '@context': 'https://schema.org',
@@ -410,6 +412,7 @@ export function blogPostingSchema(guide: {
     description: guide.excerpt,
     url: siteUrl(`/guides/${guide.slug}`),
     datePublished: guide.publishedAt || undefined,
+    ...(modified ? { dateModified: modified } : {}),
     articleSection: guide.category || undefined,
     ...(image ? { image } : {}),
     ...(guide.readingMinutes
@@ -433,6 +436,57 @@ export function blogPostingSchema(guide: {
       '@type': 'WebPage',
       '@id': siteUrl(`/guides/${guide.slug}`),
     },
+  };
+}
+
+export function extractHowToStepsFromHtml(
+  html: string | null | undefined
+): { name: string; text: string }[] {
+  if (!html) return [];
+  const steps: { name: string; text: string }[] = [];
+  const re =
+    /<div class="method"[^>]*>[\s\S]*?<h3[^>]*>([\s\S]*?)<\/h3>[\s\S]*?<p(?![^>]*class="best-for")[^>]*>([\s\S]*?)<\/p>/gi;
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(html)) !== null) {
+    const name = stripHtml(match[1]);
+    const text = stripHtml(match[2]);
+    if (name && text) steps.push({ name, text });
+  }
+  return steps;
+}
+
+export function howToSchema(input: {
+  name: string;
+  description: string;
+  slug: string;
+  steps: { name: string; text: string }[];
+  totalTimeMinutes?: number | null;
+  image?: string | null;
+}) {
+  if (!input.steps.length) return null;
+  const image = input.image
+    ? siteUrl(
+        input.image.startsWith('/') ? input.image : `/images/guides/${input.image}`
+      )
+    : undefined;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: input.name,
+    description: input.description,
+    url: siteUrl(`/guides/${input.slug}`),
+    ...(image ? { image } : {}),
+    ...(input.totalTimeMinutes
+      ? { totalTime: `PT${input.totalTimeMinutes}M` }
+      : {}),
+    step: input.steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      url: siteUrl(`/guides/${input.slug}#method-${index + 1}`),
+    })),
   };
 }
 

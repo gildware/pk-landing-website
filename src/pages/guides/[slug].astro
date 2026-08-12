@@ -2,7 +2,14 @@
 import PageLayout from '@/layouts/PageLayout.astro';
 import { buildMeta } from '@/utils/seo';
 import { getGuide, getGuides, siteUrl } from '@/utils/reader';
-import { blogPostingSchema, breadcrumbSchema, extractFaqsFromHtml, faqSchema } from '@/utils/schema';
+import {
+  blogPostingSchema,
+  breadcrumbSchema,
+  extractFaqsFromHtml,
+  extractHowToStepsFromHtml,
+  faqSchema,
+  howToSchema,
+} from '@/utils/schema';
 import { bookUrl, BOOK_PATH } from '@/utils/booking';
 import { bookCtaLabel, bookCtaText } from '@/utils/bookingPrefill';
 
@@ -31,13 +38,22 @@ const related =
     : [...same, ...other].slice(0, 4);
 
 const path = `/guides/${guide.slug}`;
+const coverPath = guide.coverImage
+  ? guide.coverImage.startsWith('/')
+    ? guide.coverImage
+    : `/images/guides/${guide.coverImage}`
+  : undefined;
 const meta = buildMeta({
   title: guide.seoTitle || `${guide.headline} | Panun Kaergar`,
   description: guide.seoDescription || guide.excerpt,
   path,
+  ogType: 'article',
+  ogImage: coverPath,
+  ogImageAlt: guide.headline,
 });
 
 const guideFaqs = extractFaqsFromHtml(guide.bodyHtml);
+const howToSteps = extractHowToStepsFromHtml(guide.bodyHtml);
 
 const schemas = [
   breadcrumbSchema([
@@ -50,9 +66,18 @@ const schemas = [
     excerpt: guide.excerpt,
     slug: guide.slug,
     publishedAt: guide.publishedAt,
+    dateModified: guide.publishedAt,
     category: guide.category,
     coverImage: guide.coverImage,
     readingMinutes: guide.readingMinutes,
+  }),
+  howToSchema({
+    name: guide.headline,
+    description: guide.seoDescription || guide.excerpt,
+    slug: guide.slug,
+    steps: howToSteps,
+    totalTimeMinutes: guide.readingMinutes,
+    image: guide.coverImage,
   }),
   faqSchema(guideFaqs),
 ].filter(Boolean);
