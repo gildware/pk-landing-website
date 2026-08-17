@@ -46,6 +46,8 @@ export default config({
         providerAppStoreUrl: fields.url({ label: 'Partner app — App Store' }),
         facebookUrl: fields.url({ label: 'Facebook' }),
         instagramUrl: fields.url({ label: 'Instagram' }),
+        youtubeUrl: fields.url({ label: 'YouTube' }),
+        twitterUrl: fields.url({ label: 'X / Twitter' }),
         heroTitle: fields.text({ label: 'Homepage hero title' }),
         heroSubtitle: fields.text({ label: 'Homepage hero subtitle', multiline: true }),
         heroCtaBook: fields.text({ label: 'Hero CTA — Book', defaultValue: 'Book a service' }),

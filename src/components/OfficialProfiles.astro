@@ -1,0 +1,56 @@
+---
+import Icon from '@/components/Icon.astro';
+
+interface SiteProfiles {
+  bookingUrl?: string;
+  facebookUrl?: string;
+  instagramUrl?: string;
+  youtubeUrl?: string;
+  twitterUrl?: string;
+  googleMapsUrl?: string | null;
+  userPlayStoreUrl?: string;
+  userAppStoreUrl?: string;
+}
+
+interface Props {
+  site: SiteProfiles;
+}
+
+const { site } = Astro.props;
+
+const profiles = [
+  { href: site.bookingUrl || 'https://panunkaergar.com', label: 'Website', icon: 'home' as const },
+  { href: site.googleMapsUrl, label: 'Google Maps', icon: 'map-pin' as const },
+  { href: site.facebookUrl, label: 'Facebook', icon: 'facebook' as const },
+  { href: site.instagramUrl, label: 'Instagram', icon: 'instagram' as const },
+  { href: site.youtubeUrl, label: 'YouTube', icon: 'youtube' as const },
+  { href: site.twitterUrl, label: 'X (Twitter)', icon: 'twitter' as const },
+  { href: site.userPlayStoreUrl, label: 'Android app', icon: 'smartphone' as const },
+  { href: site.userAppStoreUrl, label: 'iOS app', icon: 'smartphone' as const },
+].filter((p): p is { href: string; label: string; icon: typeof p.icon } => Boolean(p.href));
+---
+
+{
+  profiles.length > 0 && (
+    <section class="mt-8" aria-labelledby="official-profiles-heading">
+      <h2 id="official-profiles-heading" class="text-sm font-semibold uppercase tracking-wider text-slate-500">
+        Official Panun Kaergar profiles
+      </h2>
+      <ul class="mt-3 grid gap-2 sm:grid-cols-2">
+        {profiles.map((profile) => (
+          <li>
+            <a
+              href={profile.href}
+              rel="noopener noreferrer me"
+              target="_blank"
+              class="flex items-center gap-2 rounded-lg px-1 py-1.5 text-sm font-medium text-brand-700 transition hover:bg-brand-50 hover:underline"
+            >
+              <Icon name={profile.icon} size={16} />
+              {profile.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

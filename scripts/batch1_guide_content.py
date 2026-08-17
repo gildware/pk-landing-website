@@ -68,6 +68,19 @@ def _article(item):
             f'or find a <a href="/near-me/carpenter-near-me">carpenter near you</a> '
             f'on Panun Kaergar when DIY has done its part.</p>'
         )
+    elif service_slug == "masonry":
+        service_cta = (
+            f'<p>Need hands-on help? Book verified '
+            f'<a href="/services/masonry">masonry services in Kashmir</a> '
+            f'or find a <a href="/near-me/mason-near-me">mason near you</a> '
+            f'on Panun Kaergar when DIY has done its part.</p>'
+        )
+    elif service_slug == "dry-clean-laundry":
+        service_cta = (
+            f'<p>Need fabric-safe help? Book verified '
+            f'<a href="/services/dry-clean-laundry">dry cleaning and laundry services in Kashmir</a> '
+            f'through Panun Kaergar when home care has done its part.</p>'
+        )
     elif service_slug:
         service_cta = (
             f'<p>Need hands-on help? Book verified '

@@ -14,6 +14,8 @@ interface SiteFooter {
   poweredByName?: string;
   facebookUrl?: string;
   instagramUrl?: string;
+  youtubeUrl?: string;
+  twitterUrl?: string;
 }
 
 interface Props {
@@ -65,7 +67,7 @@ const nearMePopular = featuredNearMeLinks().slice(0, 8);
         </EmailLink>
       </div>
       {
-        (footer.facebookUrl || footer.instagramUrl) && (
+        (footer.facebookUrl || footer.instagramUrl || footer.youtubeUrl || footer.twitterUrl) && (
           <div class="mt-4 flex gap-3">
             {footer.facebookUrl && (
               <a
@@ -87,6 +89,28 @@ const nearMePopular = featuredNearMeLinks().slice(0, 8);
                 aria-label="Instagram"
               >
                 <Icon name="instagram" size={18} />
+              </a>
+            )}
+            {footer.youtubeUrl && (
+              <a
+                href={footer.youtubeUrl}
+                class="icon-badge h-9 w-9 transition hover:bg-brand-100"
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label="YouTube"
+              >
+                <Icon name="youtube" size={18} />
+              </a>
+            )}
+            {footer.twitterUrl && (
+              <a
+                href={footer.twitterUrl}
+                class="icon-badge h-9 w-9 transition hover:bg-brand-100"
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label="X (Twitter)"
+              >
+                <Icon name="twitter" size={18} />
               </a>
             )}
           </div>

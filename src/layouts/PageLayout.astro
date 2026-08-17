@@ -16,9 +16,12 @@ interface Props {
 
 const { meta, schemas = [], hideStickyCta = false } = Astro.props;
 const site = await getSiteSettings();
+const twitterHandle = site.twitterUrl
+  ? `@${site.twitterUrl.replace(/\/+$/, '').split('/').pop()}`
+  : undefined;
 ---
 
-<BaseLayout meta={meta} schemas={schemas}>
+<BaseLayout meta={meta} schemas={schemas} twitterSite={twitterHandle}>
   <Header site={site} />
   <main id="main-content">
     <slot />

@@ -15,6 +15,11 @@ interface SiteForLlms {
   userAppStoreUrl: string;
   providerPlayStoreUrl: string;
   providerAppStoreUrl: string;
+  facebookUrl?: string;
+  instagramUrl?: string;
+  youtubeUrl?: string;
+  twitterUrl?: string;
+  googleMapsUrl?: string | null;
 }
 
 export function buildLlmsTxt(
@@ -37,6 +42,16 @@ export function buildLlmsTxt(
     `- [Contact us](${siteUrl('/contact')}): Phone ${site.phone}, WhatsApp, and email ${site.email}.`,
     `- [Customer app (Android)](${site.userPlayStoreUrl}): Book, track, and pay from the Panun Kaergar app.`,
     `- [Customer app (iOS)](${site.userAppStoreUrl}): iPhone and iPad app for home service bookings.`,
+    `- [Partner app (Android)](${site.providerPlayStoreUrl}): Provider app for Panun Kaergar partners.`,
+    `- [Partner app (iOS)](${site.providerAppStoreUrl}): iPhone partner app for Panun Kaergar.`,
+    '',
+    '## Official profiles',
+    `- [Website](${siteUrl('/')}): Official Panun Kaergar website.`,
+    site.facebookUrl ? `- [Facebook](${site.facebookUrl}): Official Facebook page.` : '',
+    site.instagramUrl ? `- [Instagram](${site.instagramUrl}): Official Instagram.` : '',
+    site.youtubeUrl ? `- [YouTube](${site.youtubeUrl}): Official YouTube channel.` : '',
+    site.twitterUrl ? `- [X / Twitter](${site.twitterUrl}): Official X account.` : '',
+    site.googleMapsUrl ? `- [Google Maps](${site.googleMapsUrl}): Panun Kaergar Private Limited, Srinagar.` : '',
     '',
     '## Services',
     ...services.map((s) => `- [${s.shortName}](${siteUrl(`/services/${s.slug}`)}): ${s.description.trim()}`),

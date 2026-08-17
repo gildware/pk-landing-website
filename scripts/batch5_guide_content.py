@@ -704,6 +704,56 @@ _SPECS = [
         excerpt="Floor tile hollow or loose in Kashmir? Tap-test, check grout for water entry, rebed small failures, and know when to book a mason.",
     ),
     _compact(
+        "MSN-D04",
+        "loose-plaster-falling-kashmir",
+        "Loose plaster hollow or peeling? Contain it before a chunk drops",
+        "Masonry",
+        "masonry",
+        "A soft drum sound answers when you tap the bedroom wall, then a palm-sized flake of plaster lands behind the wardrobe — and someone wants to skim the whole room before checking how far the hollow runs.",
+        "Tap-test the wall, mark hollow or blistered zones, clear loose flakes safely, and keep people clear of the fall path. Fix damp first if the plaster is wet; large hollow areas, ceiling plaster, or plaster near electrical points need a mason for proper plaster repair.",
+        "Hollow drum sound, blistered paint, or plaster flakes on the floor",
+        "Failed plaster bond, moisture behind the skim, impact, or old weak render",
+        [
+            "Plaster skim that never keyed to the masonry, or dried too fast and lost bond.",
+            "Damp, salts, or seepage softening the layer until it drums hollow and peels.",
+            "Impact, vibration, or old lime plaster that has lost strength after many winters.",
+        ],
+        [
+            (
+                "Tap-test and map the hollow zone",
+                "any soft or drumming patch",
+                "Tap lightly with a knuckle or wooden handle; hollow plaster sounds dull. Mark the boundary with tape so you know the real area before scraping.",
+            ),
+            (
+                "Check for damp and salts",
+                "blisters near bathrooms or exterior walls",
+                "Look for wet patches, white salt bloom, or stains — active moisture must be fixed before any replaster or the hollow will return.",
+            ),
+            (
+                "Contain loose flakes safely",
+                "ceiling edges and walkways",
+                "Clear the floor under the patch, wear eye protection, and peel only what already lifts; do not hammer a whole wall open on day one.",
+            ),
+            (
+                "Patch a small dry hollow",
+                "a hand-sized dry failure with sound edges",
+                "Remove failed skim to a firm edge, dampen lightly, and refill with suitable plaster so the repair keys and sits flush before painting.",
+            ),
+            (
+                "Book a mason for plaster repair",
+                "wide hollow areas or ceiling plaster",
+                "A pro can chase out failed render, treat the base, and replaster evenly — safer than DIY on ceilings, wet walls, or large living-room faces.",
+            ),
+        ],
+        "The hollow was only above the skirting where damp had softened the skim; local plaster repair stopped the flakes without stripping the whole room.",
+        "Bilal",
+        "Kashmir freeze-thaw, damp ground-floor walls, and old lime plaster make hollow patches common after winter. A drumming sound is a bond failure — not always a reason to demolish every wall in the house.",
+        "Do not hammer open a whole elevation without mapping hollow spots, skim over wet or salty plaster, or leave loose ceiling flakes above beds and walkways.",
+        "Book a mason for widespread hollowness, falling ceiling plaster, wet or salt-damaged walls, plaster near electrical points, or a patch that fails again after a DIY refill.",
+        hero="A hollow drum under paint usually means lost bond — map it before you strip the room.",
+        excerpt="Loose plaster hollow or peeling in Kashmir? Tap-test, check for damp, contain flakes safely, and know when to book plaster repair.",
+    ),
+    _compact(
         "DRY-D03",
         "winter-woollens-dry-clean-kashmir",
         "Winter woollens smell musty? Dry clean before you fold them away",
@@ -752,6 +802,56 @@ _SPECS = [
         "Book dry cleaning for pherans, wool suits, embroidered shawls, and any garment with a dry-clean-only label before long storage; use pickup for a full winter wardrobe refresh or moth-damaged pieces that need professional treatment.",
         hero="Musty wool usually means oils and damp — clean before you fold.",
         excerpt="Winter woollens smell musty in Kashmir? Air them dry, dry clean pherans and shawls before storage, and keep them in breathable cotton — not sealed plastic.",
+    ),
+    _compact(
+        "DRY-D04",
+        "curtains-dusty-musty-cleaning-kashmir",
+        "Curtains dusty or musty? Clean them without shrinking the lining",
+        "Dry Cleaning",
+        "dry-clean-laundry",
+        "Afternoon light catches a grey cloud when the drawing-room curtains move, and the lining smells closed after months of shut winter windows — but the care label is hidden high behind the pleats.",
+        "Vacuum curtains in place with low suction, check the care label and lining, spot-test only a hidden edge, and air the room dry. Dry clean lined, velvet, silk, pleated, blackout, or embellished curtains; careless machine washing can shrink the face fabric differently from the lining.",
+        "Dust cloud, closed-room smell, tide mark, or stained curtain hem",
+        "Trapped dust and smoke, condensation, fabric-sensitive staining, or a damp lining",
+        [
+            "Road dust, pollen, bukhari smoke, and cooking residue settling into folds over a long closed season.",
+            "Window condensation dampening hems or blackout lining where air cannot circulate.",
+            "Face fabric and lining made from different fibres that shrink at different rates in a home wash.",
+        ],
+        [
+            (
+                "Vacuum from top to hem",
+                "ordinary surface dust",
+                "Use a clean upholstery attachment on low suction while the curtain hangs; support delicate pleats instead of pulling them into the nozzle.",
+            ),
+            (
+                "Read the label and inspect the lining",
+                "before adding any water",
+                "Check the face fabric, blackout backing, embroidery, hooks, and lining — the least washable layer decides how the whole curtain should be cleaned.",
+            ),
+            (
+                "Blot a fresh mark carefully",
+                "a small recent splash",
+                "Lift solids, then blot from the edge inward with a clean white cloth. Test any fabric-safe solution behind the hem and stop if colour transfers.",
+            ),
+            (
+                "Air the window area dry",
+                "musty hems or condensation",
+                "Open curtains fully, wipe the sill, and improve airflow; do not fold or rehang fabric that still feels cool and damp at the lining.",
+            ),
+            (
+                "Book curtain dry cleaning",
+                "lined, velvet, silk, blackout, or large panels",
+                "A fabric-care professional can label each panel, remove hooks safely, treat stains, and clean the face and lining without guessing at shrinkage.",
+            ),
+        ],
+        "The cleaner found a water line only in the blackout backing; the velvet face came back fresh without the shortened lining we feared.",
+        "Shazia",
+        "Kashmir rooms stay closed through cold months, so curtains collect bukhari smoke, kitchen vapour, road dust, and window condensation together. Heavy lined panels may feel dry on the face while the hem or backing still holds moisture.",
+        "Do not machine-wash lined curtains without the care label, soak a stained hem while it hangs, or rehang panels before both face and lining are fully dry.",
+        "Book dry cleaning for velvet, silk, wool, blackout, lined, pleated, embroidered, or very large curtains; get prompt help for mould spots, colour bleeding, water damage, or a musty smell that returns after airing.",
+        hero="The lining decides the wash — check it before the curtain shrinks unevenly.",
+        excerpt="Curtains dusty or musty in Kashmir? Vacuum gently, inspect the lining, blot marks safely, and know when curtain dry cleaning prevents shrinkage.",
     ),
     _compact(
         "GRD-D05",
@@ -876,9 +976,19 @@ _BATCH_SIBLINGS = {
         "wall-seepage-plaster-damage-kashmir",
         "false-ceiling-water-stain",
     ),
+    "MSN-D04": (
+        "wall-cracks-cosmetic-structural",
+        "wall-seepage-plaster-damage-kashmir",
+        "floor-tile-hollow-loose-kashmir",
+    ),
     "DRY-D03": (
         "fabric-stains-dry-clean",
         "sofa-dry-cleaning-vs-home-clean",
+    ),
+    "DRY-D04": (
+        "fabric-stains-dry-clean",
+        "sofa-dry-cleaning-vs-home-clean",
+        "winter-woollens-dry-clean-kashmir",
     ),
     "GRD-D05": (
         "lawn-looking-dead-kashmir",
@@ -901,7 +1011,9 @@ TITLE_SUBJECTS = {
     "mattress-smell-stains-cleaning-kashmir": "mattress with stale smell, vacuum both sides, blot stain and dry airing",
     "paint-touch-up-never-matches-kashmir": "wall touch-up patch lighter than faded paint, feathered roller edge and primer on putty",
     "floor-tile-hollow-loose-kashmir": "hollow floor tile tap test, loose bathroom tile and rebedding adhesive",
+    "loose-plaster-falling-kashmir": "hollow plaster wall tap test, peeling skim flakes and plaster repair patch",
     "winter-woollens-dry-clean-kashmir": "wool pheran and shawl aired in daylight, soft brush, dry-clean bag and breathable cotton storage trunk",
+    "curtains-dusty-musty-cleaning-kashmir": "lined drawing-room curtains with dust in pleats, damp blackout hem, care label and upholstery vacuum",
     "balcony-plants-dying-winter-kashmir": "balcony potted plants frost damage, sheltered wall grouping and winter soil moisture check",
 }
 
@@ -1004,11 +1116,25 @@ _SEO = {
             "failures carefully, and know when to book a mason."
         ),
     },
+    "loose-plaster-falling-kashmir": {
+        "seoTitle": "Loose plaster hollow or peeling? | Panun Kaergar",
+        "seoDescription": (
+            "Loose plaster hollow or peeling in Kashmir? Tap-test, check for damp, contain flakes safely, "
+            "and know when to book a mason for plaster repair."
+        ),
+    },
     "winter-woollens-dry-clean-kashmir": {
         "seoTitle": "Musty woollens? Dry clean before storage | Panun Kaergar",
         "seoDescription": (
             "Winter woollens smell musty in Kashmir? Air them dry, dry clean pherans and shawls before storage, "
             "and keep them in breathable cotton — not sealed plastic."
+        ),
+    },
+    "curtains-dusty-musty-cleaning-kashmir": {
+        "seoTitle": "Curtains dusty or musty? Check lining first",
+        "seoDescription": (
+            "Curtains dusty or musty in Kashmir? Vacuum gently, inspect the lining, blot marks safely, "
+            "and know when curtain dry cleaning prevents shrinkage."
         ),
     },
     "balcony-plants-dying-winter-kashmir": {
@@ -1343,6 +1469,29 @@ _DONT = {
             "Rebed or book repair",
         ),
     ],
+    "loose-plaster-falling-kashmir": [
+        (
+            "Hammer open a whole wall without mapping",
+            "Destroys sound plaster needlessly",
+            "Blind chiselling raises dust and wrecks firm areas before you know how small the hollow zone is.",
+            "Hammer chiselling random plaster wall without tape marks on hollow spots",
+            "Tap-test and mark first",
+        ),
+        (
+            "Skim over wet or salty plaster",
+            "Hollow returns under paint",
+            "Fresh putty on active damp or salt bloom looks fine for a week, then blisters and drums hollow again.",
+            "Person skimming wet blistered plaster with fresh putty over damp wall",
+            "Dry and fix moisture first",
+        ),
+        (
+            "Ignore loose ceiling flakes above beds",
+            "Fall hazard overnight",
+            "Ceiling plaster that already peels can drop without warning onto beds, cradles, and walkways.",
+            "Loose ceiling plaster flakes above bed with no containment below",
+            "Contain and book repair",
+        ),
+    ],
     "winter-woollens-dry-clean-kashmir": [
         (
             "Home-wash a dry-clean-only pheran",
@@ -1364,6 +1513,29 @@ _DONT = {
             "Invisible skin oils and wazwan smoke on 'clean-looking' wool are what draw moths to cuffs and collars.",
             "Unwashed wool pheran folded straight into storage trunk after winter",
             "Dry clean before storage",
+        ),
+    ],
+    "curtains-dusty-musty-cleaning-kashmir": [
+        (
+            "Machine-wash lined curtains blindly",
+            "Face and lining shrink differently",
+            "Mixed fibres can pull against each other, leaving a shortened lining, puckered seams, or panels that no longer meet the floor.",
+            "Lined curtains emerging uneven and puckered from home washing machine",
+            "Check every layer first",
+        ),
+        (
+            "Soak a stained hem while it hangs",
+            "Leaves a tide mark and wet wall",
+            "Water climbs through the fabric, spreads the stain, and can dampen the sill, wall, and lining behind it.",
+            "Bucket soaking bottom hem of hanging curtain beside damp window wall",
+            "Remove and treat correctly",
+        ),
+        (
+            "Rehang before the lining is dry",
+            "Musty smell returns quickly",
+            "A dry-feeling face can hide moisture in blackout backing or stitched hems, sealing the same stale smell against the window.",
+            "Heavy curtain rehung with visibly damp blackout lining at window",
+            "Dry face and lining fully",
         ),
     ],
     "balcony-plants-dying-winter-kashmir": [

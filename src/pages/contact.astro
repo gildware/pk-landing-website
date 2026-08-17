@@ -2,8 +2,10 @@
 import PageLayout from '@/layouts/PageLayout.astro';
 import Icon from '@/components/Icon.astro';
 import EmailLink from '@/components/EmailLink.astro';
+import OfficialProfiles from '@/components/OfficialProfiles.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings } from '@/utils/reader';
+import { organizationSchema } from '@/utils/schema';
 
 const site = await getSiteSettings();
 const mapUrl = (site as { mapEmbedUrl?: string }).mapEmbedUrl;
@@ -13,9 +15,11 @@ const meta = buildMeta({
   description: `Call ${site.phone}, WhatsApp, or email Panun Kaergar to book plumbing, electrical, AC repair, and other home services in Srinagar.`,
   path: '/contact',
 });
+
+const schemas = [organizationSchema(site)];
 ---
 
-<PageLayout meta={meta}>
+<PageLayout meta={meta} schemas={schemas}>
   <section class="section-pad mx-auto max-w-6xl pb-8">
     <h1 class="animate-fade-up text-4xl font-extrabold text-slate-900">Contact Panun Kaergar</h1>
     <p class="mt-4 max-w-2xl animate-fade-up text-lg text-slate-600 stagger-1">
@@ -71,6 +75,7 @@ const meta = buildMeta({
           <dd class="mt-1 text-slate-800">{(site as { businessHours?: string }).businessHours ?? 'Office: Mon–Sat 10:00 AM – 6:00 PM · Call support: 10:00 AM – 10:00 PM'}</dd>
         </div>
       </div>
+      <OfficialProfiles site={site} />
     </dl>
 
     {

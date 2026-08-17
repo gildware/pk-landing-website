@@ -15,8 +15,11 @@ interface SiteForSchema {
   userPlayStoreUrl: string;
   userAppStoreUrl: string;
   providerPlayStoreUrl?: string;
+  providerAppStoreUrl?: string;
   facebookUrl?: string;
   instagramUrl?: string;
+  youtubeUrl?: string;
+  twitterUrl?: string;
   postalCode?: string | null;
   latitude?: string | null;
   longitude?: string | null;
@@ -72,19 +75,32 @@ interface TestimonialForSchema {
   location: string;
 }
 
-export function organizationSchema(site: SiteForSchema) {
-  const sameAs = [
+const LEGAL_NAME = 'Panun Kaergar Private Limited';
+
+export function officialSameAs(site: SiteForSchema): string[] {
+  return [
+    site.googleMapsUrl,
+    site.facebookUrl,
+    site.instagramUrl,
+    site.youtubeUrl,
+    site.twitterUrl,
     site.userPlayStoreUrl,
     site.userAppStoreUrl,
     site.providerPlayStoreUrl,
-    site.facebookUrl,
-    site.instagramUrl,
-  ].filter(Boolean);
+    site.providerAppStoreUrl,
+  ].filter((url): url is string => Boolean(url));
+}
+
+export function organizationSchema(site: SiteForSchema) {
+  const sameAs = officialSameAs(site);
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': siteUrl('/#organization'),
     name: site.businessName,
+    legalName: LEGAL_NAME,
+    alternateName: [LEGAL_NAME, 'Panun Kargar'],
     url: siteUrl('/'),
     description: site.description,
     logo: siteUrl('/logo-square.png'),
@@ -115,7 +131,10 @@ export function localBusinessSchema(
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'HomeAndConstructionBusiness',
+    '@id': siteUrl('/#localbusiness'),
     name: site.businessName,
+    legalName: LEGAL_NAME,
+    alternateName: [LEGAL_NAME, 'Panun Kargar'],
     url: siteUrl('/'),
     description: site.description,
     telephone: site.phone,
@@ -124,6 +143,10 @@ export function localBusinessSchema(
     image: siteUrl('/logo-square.png'),
     address: postalAddress(site),
     openingHoursSpecification: openingHoursSpecs(),
+    parentOrganization: {
+      '@id': siteUrl('/#organization'),
+    },
+    sameAs: officialSameAs(site),
     areaServed: areas.map((area) => ({
       '@type': 'City',
       name: area.displayName,
