@@ -23,7 +23,7 @@ IMG = ROOT / "public" / "images" / "guides"
 BATCH5_ASSETS = ROOT / "blog-batch-5" / "assets"
 GENERATED = BATCH5_ASSETS / "generated"
 PROMPTS_DIR = BATCH5_ASSETS / "prompts"
-PUBLISHED_AT = "2026-08-14"
+PUBLISHED_AT = "2026-08-18"
 
 NO_LOGO = (
     " CRITICAL: No logos, watermarks, brand marks, gear-logo icons, letter monograms, "

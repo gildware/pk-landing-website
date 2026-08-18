@@ -903,6 +903,106 @@ _SPECS = [
         hero="Frost-black leaves are not always thirst — check the soil first.",
         excerpt="Balcony plants dying in winter in Kashmir? Tell frost from thirst, shelter tender pots, cut winter watering, and know when to book a gardener.",
     ),
+    _compact(
+        "GRD-D06",
+        "garden-weeds-taking-over-kashmir",
+        "Garden weeds taking over? Pull them before they seed",
+        "Gardening",
+        "gardening",
+        "After a wet August week, the vegetable patch is half mint and half mystery green — and someone is already spraying a shed bottle onto the beds next to the coriander.",
+        "Identify weeds versus kitchen herbs, pull after rain when the soil is soft so the root comes with you, cut seed heads first if they are already flowering, and mulch or replant empty patches. Deep-rooted clumps, a neglected plot, or monthly upkeep needs a gardener for garden cleanup and weeding.",
+        "Fast-spreading green between beds, lawn edges, or under fruit trees",
+        "Missed weeding after rain, seed heads left standing, or bare soil inviting new growth",
+        [
+            "Warm soil and summer rain letting annual weeds germinate in a few days.",
+            "Seed heads left on dandelion, amaranth, or grass weeds after a rushed mow.",
+            "Bare soil between vegetable rows with no mulch or competing plants.",
+        ],
+        [
+            (
+                "Identify before you pull",
+                "beds mixed with kitchen herbs",
+                "Walk the plot in daylight and mark mint, haakh, and coriander before yanking lookalikes — a weed is only a weed once you know it is not dinner.",
+            ),
+            (
+                "Pull after rain with the root",
+                "young weeds in soft soil",
+                "Wet soil lets taproots slide out whole; a dry tug snaps the crown and the same plant returns in a week.",
+            ),
+            (
+                "Cut seed heads first",
+                "weeds already flowering or seeding",
+                "Bag the heads before you disturb the plant so wind and the next mow do not sow a second crop across the lawn.",
+            ),
+            (
+                "Mulch and fill the gaps",
+                "bare patches after weeding",
+                "Cover open soil with compost, leaf mulch, or a wanted plant so the next rain does not refill the same holes.",
+            ),
+            (
+                "Book garden cleanup and weeding",
+                "a neglected plot or deep-rooted clumps",
+                "A gardener can clear large beds, edges, and fruit-tree understories, then set a monthly weeding rhythm before seeds set again.",
+            ),
+        ],
+        "The gardener pulled taproots after rain and mulched the vegetable rows; the same patch did not bounce back in a week.",
+        "Nayeem",
+        "August rain after a warm spell fills Kashmir kitchen gardens, apple-tree understories, and neglected lawn edges almost overnight. Beds beside mint, haakh, and coriander mix with lookalikes if nobody walks the plot after a wet week.",
+        "Do not spray random herbicide near food plants, mow weeds and leave seed heads on the lawn, or dump pulled weeds in a damp pile where they can re-root.",
+        "Book a gardener for a whole neglected plot, deep-rooted clumps around fruit trees, steep or large lawn edges, or a monthly garden maintenance plan that includes weeding.",
+        hero="Weeds spread from seed heads and bare soil — pull the root, then cover the gap.",
+        excerpt="Garden weeds taking over in Kashmir? Identify them, pull with the root after rain, mulch the gaps, and know when to book garden cleanup.",
+    ),
+    _compact(
+        "PET-D07",
+        "dog-nails-clicking-too-long-kashmir",
+        "Dog nails clicking or too long? Trim without cutting the quick",
+        "Pet Care",
+        "dog-grooming",
+        "Every step on the wooden floor clicks, the dew claw is starting to curve, and someone has already lined up kitchen scissors — before anyone has found the pink quick inside the nail.",
+        "Check whether nails click on hard floors or sit past the pad, find the quick in good light, and trim only a sliver at a time with pet nail clippers. File sharp edges and stop if the dog pulls away. Dark nails, wriggly pets, curled dew claws, or a past quick-cut need a groomer for dog nail clipping.",
+        "Clicking on tiles or wood, nails past the pad, or a curling dew claw",
+        "Nails grown past the wear line, missed dew claws, or a delayed trim",
+        [
+            "Indoor floors and short winter walks that do not wear nails down.",
+            "Dew claws that never touch the ground and curl toward the pad.",
+            "A long gap between grooms after rain, mud, or a nervous last trim.",
+        ],
+        [
+            (
+                "Listen and look at the pad",
+                "clicking on hard floors",
+                "Nails that click on wood or tiles, or sit past the pad when the dog stands, are ready for a small trim — not a one-cut shortening.",
+            ),
+            (
+                "Find the quick before you clip",
+                "any nail you plan to cut",
+                "Hold the paw in daylight. On light nails the quick is the pink core; on dark nails trim millimetres and watch the cut face for a grey-pink centre.",
+            ),
+            (
+                "Trim a sliver, then wait",
+                "calm dogs and visible quicks",
+                "Use pet clippers, take a thin slice, and stop well short of the quick. Do one nail, praise, then the next — never a deep cut to 'finish faster'.",
+            ),
+            (
+                "File sharp edges and check dew claws",
+                "after a careful trim",
+                "A pet file smooths snags that catch on carpets. Dew claws hide in fur and curve inward if skipped.",
+            ),
+            (
+                "Book dog nail clipping",
+                "dark nails, wriggles, or a past bleed",
+                "A groomer can restrain safely, trim dark nails in stages, and handle curled dew claws without guessing at the quick.",
+            ),
+        ],
+        "The groomer took tiny slices on the dark nails and filed the dew claws; the clicking stopped without a single bleed.",
+        "Farhana",
+        "Kashmir flats make nail click obvious on wood and tiles. Short winter walks, salty ice, and rocky lakeside paths wear nails unevenly, while dew claws keep growing unseen through the cold months.",
+        "Do not take a big chunk to shorten nails in one go, use kitchen scissors or human clippers, or ignore a limp or split nail after a walk.",
+        "Book pet grooming for dark nails, a wriggly or fearful dog, curled dew claws, a previous quick-cut, or nails so long they change the dog's walk. See a veterinarian for bleeding that will not stop, swelling, or a torn nail.",
+        hero="Clicking on the floor means the nail is past the pad — trim a sliver, not a chunk.",
+        excerpt="Dog nails clicking or too long in Kashmir? Find the quick, trim a sliver at a time, file edges, and know when to book nail clipping.",
+    ),
 ]
 
 _BATCH_SIBLINGS = {
@@ -994,6 +1094,16 @@ _BATCH_SIBLINGS = {
         "lawn-looking-dead-kashmir",
         "overwatering-garden-plants-kashmir",
     ),
+    "GRD-D06": (
+        "lawn-looking-dead-kashmir",
+        "overwatering-garden-plants-kashmir",
+        "balcony-plants-dying-winter-kashmir",
+    ),
+    "PET-D07": (
+        "dog-itching-scratching",
+        "matted-fur-dog-cat",
+        "dog-smelly-bath-home-kashmir",
+    ),
 }
 
 TITLE_SUBJECTS = {
@@ -1015,6 +1125,8 @@ TITLE_SUBJECTS = {
     "winter-woollens-dry-clean-kashmir": "wool pheran and shawl aired in daylight, soft brush, dry-clean bag and breathable cotton storage trunk",
     "curtains-dusty-musty-cleaning-kashmir": "lined drawing-room curtains with dust in pleats, damp blackout hem, care label and upholstery vacuum",
     "balcony-plants-dying-winter-kashmir": "balcony potted plants frost damage, sheltered wall grouping and winter soil moisture check",
+    "garden-weeds-taking-over-kashmir": "overgrown kitchen garden weeds, taproot pull after rain, seed heads bagged and mulched vegetable rows",
+    "dog-nails-clicking-too-long-kashmir": "dog paw on wooden floor, long clicking nails, pink quick inside nail and pet clippers taking a thin slice",
 }
 
 _SEO = {
@@ -1142,6 +1254,20 @@ _SEO = {
         "seoDescription": (
             "Balcony plants dying in winter in Kashmir? Tell frost from thirst, shelter tender pots, "
             "cut winter watering, and know when to book a gardener."
+        ),
+    },
+    "garden-weeds-taking-over-kashmir": {
+        "seoTitle": "Weeds taking over? Pull before they seed | Panun Kaergar",
+        "seoDescription": (
+            "Garden weeds taking over in Kashmir? Identify them, pull with the root after rain, "
+            "mulch the gaps, and know when to book garden cleanup."
+        ),
+    },
+    "dog-nails-clicking-too-long-kashmir": {
+        "seoTitle": "Dog nails too long? Trim without the quick | Panun Kaergar",
+        "seoDescription": (
+            "Dog nails clicking or too long in Kashmir? Find the quick, trim a sliver at a time, "
+            "file edges, and know when to book nail clipping."
         ),
     },
 }
@@ -1559,6 +1685,52 @@ _DONT = {
             "Dry heat without bright window light cooks foliage and leaves recovery weaker than frost alone.",
             "Balcony plant pot placed directly beside bukhari heater in dark corner",
             "Bright sheltered spot instead",
+        ),
+    ],
+    "garden-weeds-taking-over-kashmir": [
+        (
+            "Spray mystery herbicide on kitchen beds",
+            "Poisons food plants and soil",
+            "A random shed bottle near coriander, mint, or haakh can kill the crop and leave residue in the soil you eat from.",
+            "Person spraying unmarked herbicide bottle onto vegetable bed beside coriander",
+            "Pull and mulch instead",
+        ),
+        (
+            "Mow weeds and leave the seed heads",
+            "Spreads a second crop",
+            "A quick mow scatters ripe seeds across the lawn and into vegetable rows instead of removing them.",
+            "Lawn mower cutting flowering weeds and scattering seed heads across grass",
+            "Bag seed heads first",
+        ),
+        (
+            "Dump pulled weeds in a damp pile",
+            "They re-root on the soil",
+            "Moist stems and taproots left on the bed can take again after the next rain, undoing the afternoon's work.",
+            "Pile of freshly pulled weeds left on damp garden soil after rain",
+            "Bag and remove them",
+        ),
+    ],
+    "dog-nails-clicking-too-long-kashmir": [
+        (
+            "Take a big chunk to shorten nails fast",
+            "Cuts the quick and bleeds",
+            "One deep cut hits the pink core, hurts the dog, and makes the next trim a fight.",
+            "Large nail clipper taking a deep cut close to the pink quick in a dog nail",
+            "Trim a sliver only",
+        ),
+        (
+            "Use kitchen scissors or human clippers",
+            "Crushes the nail and slips",
+            "Household tools crush instead of slicing, slip toward the pad, and can split the nail.",
+            "Kitchen scissors and human nail clippers held toward a dog paw",
+            "Use pet nail clippers",
+        ),
+        (
+            "Ignore a limp or split nail after a walk",
+            "Pain and infection risk",
+            "A snagged or split nail can catch on carpets and ice; delayed care lets it tear further.",
+            "Dog lifting a paw with a split long nail after a walk",
+            "Stop walks and book help",
         ),
     ],
 }
