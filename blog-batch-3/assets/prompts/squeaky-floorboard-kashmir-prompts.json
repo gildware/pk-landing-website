@@ -1,0 +1,79 @@
+{
+  "slug": "squeaky-floorboard-kashmir",
+  "title": "Squeaky floorboard? Find the loose board before you nail at random",
+  "category": "Carpentry",
+  "jobs": [
+    {
+      "slug": "squeaky-floorboard-kashmir",
+      "kind": "method",
+      "num": 1,
+      "file": "squeaky-floorboard-kashmir-method-1.webp",
+      "alt": "Walk and mark the squeak — Step slowly in socks, mark the loudest plank with tape or pencil, and note whether it s...",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 1 for a Kashmir home guide about squeaky timber floorboard, mark the loose plank, nail head and screw into joist. Show: Walk and mark the squeak. Scene detail: Step slowly in socks, mark the loudest plank with tape or pencil, and note whether it squeaks near a wall, mid-span, or over a known joist line. Category: Carpentry. Helpful, calm, practical — not cartoonish.",
+      "label": "Walk and mark the squeak"
+    },
+    {
+      "slug": "squeaky-floorboard-kashmir",
+      "kind": "method",
+      "num": 2,
+      "file": "squeaky-floorboard-kashmir-method-2.webp",
+      "alt": "Look for a proud nail or screw — Check the marked board for a raised head; seat it carefully or replace with a slightly ...",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 2 for a Kashmir home guide about squeaky timber floorboard, mark the loose plank, nail head and screw into joist. Show: Look for a proud nail or screw. Scene detail: Check the marked board for a raised head; seat it carefully or replace with a slightly longer screw into solid timber — never force a bent nail sideways. Category: Carpentry. Helpful, calm, practical — not cartoonish.",
+      "label": "Look for a proud nail or screw"
+    },
+    {
+      "slug": "squeaky-floorboard-kashmir",
+      "kind": "method",
+      "num": 3,
+      "file": "squeaky-floorboard-kashmir-method-3.webp",
+      "alt": "Quiet the rub only as a temporary step — A light dusting of talc or graphite powder into the gap can reduce friction overnight, ...",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 3 for a Kashmir home guide about squeaky timber floorboard, mark the loose plank, nail head and screw into joist. Show: Quiet the rub only as a temporary step. Scene detail: A light dusting of talc or graphite powder into the gap can reduce friction overnight, but it will not fix a loose board that still moves. Category: Carpentry. Helpful, calm, practical — not cartoonish.",
+      "label": "Quiet the rub only as a temporary step"
+    },
+    {
+      "slug": "squeaky-floorboard-kashmir",
+      "kind": "method",
+      "num": 4,
+      "file": "squeaky-floorboard-kashmir-method-4.webp",
+      "alt": "Screw the board to the joist if accessible — Predrill and drive screws into the joist line so the board sits flat; hide heads if the...",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 4 for a Kashmir home guide about squeaky timber floorboard, mark the loose plank, nail head and screw into joist. Show: Screw the board to the joist if accessible. Scene detail: Predrill and drive screws into the joist line so the board sits flat; hide heads if the floor is finished timber. Category: Carpentry. Helpful, calm, practical — not cartoonish.",
+      "label": "Screw the board to the joist if accessible"
+    },
+    {
+      "slug": "squeaky-floorboard-kashmir",
+      "kind": "method",
+      "num": 5,
+      "file": "squeaky-floorboard-kashmir-method-5.webp",
+      "alt": "Book a carpenter — A pro can work from below, sister a weak joist, replace a cupped board, and quiet a run...",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 5 for a Kashmir home guide about squeaky timber floorboard, mark the loose plank, nail head and screw into joist. Show: Book a carpenter. Scene detail: A pro can work from below, sister a weak joist, replace a cupped board, and quiet a run of boards without guessing nail lines into pipes or cables. Category: Carpentry. Helpful, calm, practical — not cartoonish.",
+      "label": "Book a carpenter"
+    },
+    {
+      "slug": "squeaky-floorboard-kashmir",
+      "kind": "dont",
+      "num": 1,
+      "file": "squeaky-floorboard-kashmir-dont-1.webp",
+      "alt": "Person hammering random nails into squeaky floorboard without marking joist",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. 'What not to do' step 1 for a Kashmir home guide about squeaky timber floorboard, mark the loose plank, nail head and screw into joist. Show the unsafe habit: Hammer nails at random into the bay. Why it fails: Blind nailing can miss the joist entirely and risk pipes or cables running under timber floors. Category: Carpentry. Include a subtle stop/warning feeling — no gore, no shock imagery.",
+      "label": "Hammer nails at random into the bay"
+    },
+    {
+      "slug": "squeaky-floorboard-kashmir",
+      "kind": "dont",
+      "num": 2,
+      "file": "squeaky-floorboard-kashmir-dont-2.webp",
+      "alt": "Thick oil poured into gap between squeaky timber floorboards",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. 'What not to do' step 2 for a Kashmir home guide about squeaky timber floorboard, mark the loose plank, nail head and screw into joist. Show the unsafe habit: Flood the gap with thick oil. Why it fails: Heavy oil darkens boards and catches dust so the rub returns messier than before. Category: Carpentry. Include a subtle stop/warning feeling — no gore, no shock imagery.",
+      "label": "Flood the gap with thick oil"
+    },
+    {
+      "slug": "squeaky-floorboard-kashmir",
+      "kind": "dont",
+      "num": 3,
+      "file": "squeaky-floorboard-kashmir-dont-3.webp",
+      "alt": "Foot pressing soft bouncing floorboard that dips between joists",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. 'What not to do' step 3 for a Kashmir home guide about squeaky timber floorboard, mark the loose plank, nail head and screw into joist. Show the unsafe habit: Ignore a soft bouncing span. Why it fails: A board that dips underfoot is not just noisy — it can mean a weak joist or decaying timber that needs a carpenter, not another nail. Category: Carpentry. Include a subtle stop/warning feeling — no gore, no shock imagery.",
+      "label": "Ignore a soft bouncing span"
+    }
+  ]
+}

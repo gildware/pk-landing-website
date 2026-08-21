@@ -1,0 +1,79 @@
+{
+  "slug": "post-renovation-cleaning-kashmir",
+  "title": "Post-renovation dust everywhere? Clear it in layers, not one frantic wipe",
+  "category": "Cleaning",
+  "jobs": [
+    {
+      "slug": "post-renovation-cleaning-kashmir",
+      "kind": "method",
+      "num": 1,
+      "file": "post-renovation-cleaning-kashmir-method-1.webp",
+      "alt": "Protect and open the room — Cover remaining soft furniture, open windows if outdoor air is dry, and keep fans low s...",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 1 for a Kashmir home guide about renovation dust on windowsill, dry dusting top to bottom, vacuum before mop and microfibre wipe. Show: Protect and open the room. Scene detail: Cover remaining soft furniture, open windows if outdoor air is dry, and keep fans low so you do not blow dust into clean rooms. Category: Cleaning. Helpful, calm, practical — not cartoonish.",
+      "label": "Protect and open the room"
+    },
+    {
+      "slug": "post-renovation-cleaning-kashmir",
+      "kind": "method",
+      "num": 2,
+      "file": "post-renovation-cleaning-kashmir-method-2.webp",
+      "alt": "Dry-dust from top to bottom — Wipe or vacuum high surfaces first — false ceilings, cornices, fans, curtain rods — so ...",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 2 for a Kashmir home guide about renovation dust on windowsill, dry dusting top to bottom, vacuum before mop and microfibre wipe. Show: Dry-dust from top to bottom. Scene detail: Wipe or vacuum high surfaces first — false ceilings, cornices, fans, curtain rods — so grit falls downward once, not onto a floor you already cleaned. Category: Cleaning. Helpful, calm, practical — not cartoonish.",
+      "label": "Dry-dust from top to bottom"
+    },
+    {
+      "slug": "post-renovation-cleaning-kashmir",
+      "kind": "method",
+      "num": 3,
+      "file": "post-renovation-cleaning-kashmir-method-3.webp",
+      "alt": "Vacuum floors and corners before wet work — Use a hard-floor or upholstery tool on skirting, corners, and under radiators",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 3 for a Kashmir home guide about renovation dust on windowsill, dry dusting top to bottom, vacuum before mop and microfibre wipe. Show: Vacuum floors and corners before wet work. Scene detail: Use a hard-floor or upholstery tool on skirting, corners, and under radiators. Category: Cleaning. Helpful, calm, practical — not cartoonish.",
+      "label": "Vacuum floors and corners before wet work"
+    },
+    {
+      "slug": "post-renovation-cleaning-kashmir",
+      "kind": "method",
+      "num": 4,
+      "file": "post-renovation-cleaning-kashmir-method-4.webp",
+      "alt": "Wipe cabinets, switches, and glass last — Use a barely damp microfibre on doors, handles, and windows once the heavy dust has dro...",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 4 for a Kashmir home guide about renovation dust on windowsill, dry dusting top to bottom, vacuum before mop and microfibre wipe. Show: Wipe cabinets, switches, and glass last. Scene detail: Use a barely damp microfibre on doors, handles, and windows once the heavy dust has dropped. Category: Cleaning. Helpful, calm, practical — not cartoonish.",
+      "label": "Wipe cabinets, switches, and glass last"
+    },
+    {
+      "slug": "post-renovation-cleaning-kashmir",
+      "kind": "method",
+      "num": 5,
+      "file": "post-renovation-cleaning-kashmir-method-5.webp",
+      "alt": "Book post-renovation cleaning — Pros can clear ducts, deep-clean carpets and upholstery, and lift sticky emulsion resid...",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. Method 5 for a Kashmir home guide about renovation dust on windowsill, dry dusting top to bottom, vacuum before mop and microfibre wipe. Show: Book post-renovation cleaning. Scene detail: Pros can clear ducts, deep-clean carpets and upholstery, and lift sticky emulsion residue that home wiping leaves behind. Category: Cleaning. Helpful, calm, practical — not cartoonish.",
+      "label": "Book post-renovation cleaning"
+    },
+    {
+      "slug": "post-renovation-cleaning-kashmir",
+      "kind": "dont",
+      "num": 1,
+      "file": "post-renovation-cleaning-kashmir-dont-1.webp",
+      "alt": "Wet mop spreading grey cement paste across newly finished tile floor",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. 'What not to do' step 1 for a Kashmir home guide about renovation dust on windowsill, dry dusting top to bottom, vacuum before mop and microfibre wipe. Show the unsafe habit: Wet-mop fine cement dust first. Why it fails: Water on unsettled construction dust smears into tile pores, wood grain, and skirting — harder to lift than dry vacuuming. Category: Cleaning. Include a subtle stop/warning feeling — no gore, no shock imagery.",
+      "label": "Wet-mop fine cement dust first"
+    },
+    {
+      "slug": "post-renovation-cleaning-kashmir",
+      "kind": "dont",
+      "num": 2,
+      "file": "post-renovation-cleaning-kashmir-dont-2.webp",
+      "alt": "Leaf blower or strong fan aimed at dusty curtains and sofa after renovation",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. 'What not to do' step 2 for a Kashmir home guide about renovation dust on windowsill, dry dusting top to bottom, vacuum before mop and microfibre wipe. Show the unsafe habit: Blast every room with a high-speed blower. Why it fails: Strong airflow drives fine grit into curtains, carpets, and neighbouring rooms instead of removing it. Category: Cleaning. Include a subtle stop/warning feeling — no gore, no shock imagery.",
+      "label": "Blast every room with a high-speed blower"
+    },
+    {
+      "slug": "post-renovation-cleaning-kashmir",
+      "kind": "dont",
+      "num": 3,
+      "file": "post-renovation-cleaning-kashmir-dont-3.webp",
+      "alt": "Closed bedroom with fresh paint smell and windows shut after renovation",
+      "prompt": "Flat vector illustration, 16:9 landscape. Cream #faf8f4 background. Palette only navy #202048, gold #FF9900, cream. Clean home-service diagram style. No photorealism, no text labels in the image, no locality names. CRITICAL — zero branding in the artwork: no logos, no watermarks, no brand marks, no gear icons used as logos, no letter monograms, no company names, no PANUN text. Pure instructional illustration only; margins stay empty for a post-process overlay. 'What not to do' step 3 for a Kashmir home guide about renovation dust on windowsill, dry dusting top to bottom, vacuum before mop and microfibre wipe. Show the unsafe habit: Ignore paint and solvent smell in a closed room. Why it fails: Sealed winter rooms trap fumes from fresh paint and adhesives; air the space and delay soft furnishings until surfaces are fully dry. Category: Cleaning. Include a subtle stop/warning feeling — no gore, no shock imagery.",
+      "label": "Ignore paint and solvent smell in a closed room"
+    }
+  ]
+}
