@@ -1,19 +1,24 @@
 ---
 import '@/styles/global.css';
 import type { BuiltPageMeta } from '@/utils/seo';
+import type { MetaPixelPageEvent } from '@/utils/metaPixelPage';
 
 interface Props {
   meta: BuiltPageMeta;
   schemas?: object[];
   twitterSite?: string | null;
+  pixel?: MetaPixelPageEvent;
 }
 
-const { meta, schemas = [], twitterSite } = Astro.props;
+const { meta, schemas = [], twitterSite, pixel } = Astro.props;
 const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID as string | undefined;
 /** Google Ads conversion ID — env override, with production default so builds never ship without the tag */
 const googleAdsId =
   (import.meta.env.PUBLIC_GOOGLE_ADS_ID as string | undefined) || 'AW-17100718391';
 const gtagId = googleAdsId || gaId;
+/** Existing Meta Dataset / Pixel — env override, with production default so builds never ship without the tag */
+const metaPixelId =
+  (import.meta.env.PUBLIC_META_PIXEL_ID as string | undefined) || '1437710851285126';
 const siteName = 'Panun Kaergar';
 ---
 
@@ -33,6 +38,41 @@ const siteName = 'Panun Kaergar';
             if (googleAdsId) gtag('config', googleAdsId);
             if (gaId) gtag('config', gaId);
           </script>
+        </>
+      )
+    }
+    {
+      metaPixelId && (
+        <>
+          <script is:inline define:vars={{ metaPixelId }}>
+            !(function (f, b, e, v, n, t, s) {
+              if (f.fbq) return;
+              n = f.fbq = function () {
+                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+              };
+              if (!f._fbq) f._fbq = n;
+              n.push = n;
+              n.loaded = !0;
+              n.version = '2.0';
+              n.queue = [];
+              t = b.createElement(e);
+              t.async = !0;
+              t.src = v;
+              s = b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t, s);
+            })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', metaPixelId);
+            fbq('track', 'PageView');
+          </script>
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style="display:none"
+              src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
+              alt=""
+            />
+          </noscript>
         </>
       )
     }
@@ -116,8 +156,20 @@ const siteName = 'Panun Kaergar';
       Skip to content
     </a>
     <slot />
+    {
+      pixel && (
+        <script
+          type="application/json"
+          id="pk-meta-page-event"
+          set:html={JSON.stringify(pixel)}
+        />
+      )
+    }
     <script>
       import '@/scripts/motion.ts';
+    </script>
+    <script>
+      import '@/scripts/metaPixel.ts';
     </script>
     {
       schemas.length > 0 && (

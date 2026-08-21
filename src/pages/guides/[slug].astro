@@ -121,7 +121,17 @@ const quickAnswer = (guide as { quickAnswer?: string | null }).quickAnswer;
 const heroSub = (guide as { heroSub?: string | null }).heroSub;
 ---
 
-<PageLayout meta={meta} schemas={schemas}>
+<PageLayout
+  meta={meta}
+  schemas={schemas}
+  pixel={{
+    event: 'ViewContent',
+    contentName: guide.headline,
+    contentIds: [guide.slug],
+    contentType: 'article',
+    contentCategory: guide.category || 'Guides',
+  }}
+>
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
     rel="stylesheet"

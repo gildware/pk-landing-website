@@ -629,6 +629,13 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
     submitToBackend(data)
       .then((result) => {
         const ref = result?.content?.reference_id || '';
+        try {
+          window.pkTrackMeta?.('Lead', {
+            content_name: data.service,
+            content_category: 'booking_request',
+            content_type: 'service',
+          }, { eventID: ref || undefined });
+        } catch {}
         const waUrl = `https://wa.me/${digits(whatsapp)}?text=${encodeURIComponent(buildMessage(data, ref))}`;
         try {
           sessionStorage.setItem(waStorageKey, waUrl);

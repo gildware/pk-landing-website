@@ -6,22 +6,24 @@ import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
 import StickyMobileCta from '@/components/StickyMobileCta.astro';
 import ScrollProgress from '@/components/ScrollProgress.astro';
 import type { BuiltPageMeta } from '@/utils/seo';
+import type { MetaPixelPageEvent } from '@/utils/metaPixelPage';
 import { getSiteSettings } from '@/utils/reader';
 
 interface Props {
   meta: BuiltPageMeta;
   schemas?: object[];
   hideStickyCta?: boolean;
+  pixel?: MetaPixelPageEvent;
 }
 
-const { meta, schemas = [], hideStickyCta = false } = Astro.props;
+const { meta, schemas = [], hideStickyCta = false, pixel } = Astro.props;
 const site = await getSiteSettings();
 const twitterHandle = site.twitterUrl
   ? `@${site.twitterUrl.replace(/\/+$/, '').split('/').pop()}`
   : undefined;
 ---
 
-<BaseLayout meta={meta} schemas={schemas} twitterSite={twitterHandle}>
+<BaseLayout meta={meta} schemas={schemas} twitterSite={twitterHandle} pixel={pixel}>
   <Header site={site} />
   <main id="main-content">
     <slot />

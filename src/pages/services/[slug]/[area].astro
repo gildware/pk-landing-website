@@ -212,7 +212,17 @@ const schemas = [
 ].filter(Boolean);
 ---
 
-<PageLayout meta={meta} schemas={schemas}>
+<PageLayout
+  meta={meta}
+  schemas={schemas}
+  pixel={{
+    event: 'ServiceView',
+    contentName: `${service.shortName} in ${area.displayName}`,
+    contentIds: [service.slug],
+    contentType: 'service',
+    contentCategory: area.displayName,
+  }}
+>
   {/* Hero — service detail layout, localized to area */}
   <section
     class="relative overflow-hidden border-b border-slate-200/80"

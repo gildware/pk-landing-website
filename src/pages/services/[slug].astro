@@ -113,7 +113,17 @@ const schemas = [
 const showSubCount = !pageMeta || (live?.subcategories.length ?? 0) > 1;
 ---
 
-<PageLayout meta={meta} schemas={schemas}>
+<PageLayout
+  meta={meta}
+  schemas={schemas}
+  pixel={{
+    event: 'ServiceView',
+    contentName: service.shortName,
+    contentIds: [service.slug],
+    contentType: 'service',
+    contentCategory: parentService?.shortName || service.shortName,
+  }}
+>
   {/* Hero — text + image */}
   <section
     class="relative overflow-hidden border-b border-slate-200/80"
