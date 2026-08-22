@@ -1,0 +1,27 @@
+title: lights-dim-when-geyser-on-kashmir
+headline: 'Lights dim when the geyser starts? Check load and voltage before rewiring'
+excerpt: |-
+  Lights dim when the geyser starts in Kashmir? Map the pattern, reduce shared circuit load, check breaker grouping, and know when an electrician should split circuits or test supply voltage.
+seoTitle: 'Lights dim when geyser starts? Check load first | Panun Kaergar'
+seoDescription: |-
+  Lights dim when the geyser starts in Kashmir? Map the pattern, reduce shared circuit load, and know when to book an electrician for wiring and voltage checks.
+category: 'Electrical'
+publishedAt: 2026-08-22
+readingMinutes: 9
+isNew: true
+isTrending: true
+heroSub: 'Dim lights when the geyser starts usually mean load — not bad bulbs.'
+scene: |-
+  The bathroom geyser clicks on and the kitchen bulbs drop to a dull orange for a few seconds. Someone blames the wiring, but the real answer may be a shared circuit, a weak supply, or a heater drawing more than the line can carry.
+quickAnswer: |-
+  Note whether dimming happens only when the geyser, heater, or AC starts, check if other rooms flicker too, unplug non-essential loads on that circuit, and test whether the supply voltage is stable. Persistent dimming with a hot board, buzzing, or a tripping MCB needs an electrician to check wiring size, earthing, and load balance.
+coverImage: lights-dim-when-geyser-on-kashmir-cover.webp
+titleImage: lights-dim-when-geyser-on-kashmir-title.webp
+relatedServiceSlug: electrician
+relatedGuideSlugs:
+  - mcb-keeps-tripping-kashmir
+  - flickering-lights-causes-kashmir
+  - no-power-one-room-kashmir
+  - wall-socket-sparking-kashmir
+published: true
+sortOrder: 91
