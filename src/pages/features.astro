@@ -23,7 +23,7 @@ const PAGE_PATH = '/features';
 const meta = buildMeta({
   title: 'Home Service App Features Kashmir | Panun Kaergar',
   description: truncate(
-    'Panun Kaergar app features for Kashmir: book by phone, WhatsApp, web or app, chat support, custom jobs, loyalty points, job tracking, and verified local partners.',
+    'Panun Kaergar app for Kashmir: book by phone, WhatsApp, web or app. Track jobs, chat for help, custom requests, and loyalty points.',
   ),
   path: PAGE_PATH,
   ogImage: '/images/features/features-hero.webp',
@@ -53,7 +53,7 @@ const coreFeatures = [
     icon: 'target',
     title: 'Custom jobs',
     description:
-      'Job not listed? Post a custom request in the app. Partners can send you offers so you compare options and pick what works for your home.',
+      'Job not listed? Tell us what you need. We scope it, confirm the price, and get it done.',
     href: '#custom-jobs',
     listUrl: siteUrl(PAGE_PATH),
   },
@@ -67,16 +67,16 @@ const coreFeatures = [
   },
   {
     icon: 'shield-check',
-    title: 'Trusted partners',
+    title: 'Quality we stand behind',
     description:
-      'Every partner is verified before going live. Read real customer reviews and book with confidence that someone has been checked by our team.',
+      'You hire Panun Kaergar. Work is done by our teams and professional partners — to our standards. If something is wrong, you call us.',
     href: '/why-choose-panun-kaergar',
     listUrl: siteUrl('/why-choose-panun-kaergar'),
   },
   {
     icon: 'message',
     title: 'Book without the app',
-    description: `Prefer a call or message? Dial ${site.phone}, WhatsApp us, or fill the website form. The same verified network handles every booking.`,
+    description: `Prefer a call or message? Dial ${site.phone}, WhatsApp us, or fill the website form. One number. Every service.`,
     href: '#booking-channels',
     listUrl: siteUrl(PAGE_PATH),
   },
@@ -92,7 +92,7 @@ const bookingChannels = [
   {
     icon: 'phone',
     title: 'Phone',
-    description: `Call ${site.phone} and tell us what you need. Our team creates the booking and matches a verified partner for your area.`,
+    description: `Call ${site.phone} and tell us what you need. Our team creates the booking and takes it from there.`,
   },
   {
     icon: 'whatsapp',
@@ -112,7 +112,7 @@ const appHighlights = [
   {
     title: 'Track every booking',
     description:
-      'See request status, assigned partner details, and visit windows in one place — so you always know what is next.',
+      'See request status, who was assigned, and visit windows in one place — so you always know what is next.',
   },
   {
     title: 'Chat when you need help',
@@ -122,7 +122,7 @@ const appHighlights = [
   {
     title: 'Rate and build trust',
     description:
-      'After a job, leave a rating. Honest reviews help the next household choose well and keep partner quality high.',
+      'After a job, leave a rating. Honest reviews keep quality high and help us stand behind every visit.',
   },
   {
     title: 'Earn loyalty points',
@@ -139,13 +139,13 @@ const customJobSteps = [
   },
   {
     n: '02',
-    title: 'Receive partner offers',
-    desc: 'Interested verified partners can respond with availability and pricing so you are not stuck with a single quote.',
+    title: 'We confirm the job',
+    desc: 'Panun Kaergar scopes the work, confirms pricing, and assigns our team or a professional partner.',
   },
   {
     n: '03',
     title: 'Choose and confirm',
-    desc: 'Pick the offer that fits your budget and schedule. Confirm the visit — then track it like any other booking.',
+    desc: 'We confirm the visit — then you can track it like any other booking.',
   },
 ];
 
@@ -153,7 +153,7 @@ const pageFaqs = [
   {
     question: 'What features does the Panun Kaergar home services app include?',
     answer:
-      'The customer app lets you browse service categories, book visits across Kashmir, post custom jobs, chat for help, track booking status, rate partners, and earn loyalty points on completed jobs.',
+      'The customer app lets you browse service categories, book visits across Kashmir, post custom jobs, chat for help, track booking status, rate the visit, and earn loyalty points on completed jobs.',
   },
   {
     question: 'Do I need the Panun Kaergar app to book home services in Kashmir?',
@@ -163,7 +163,7 @@ const pageFaqs = [
   {
     question: 'How do custom jobs work on Panun Kaergar?',
     answer:
-      'If your request is not in the standard list, post a custom job in the app with details and your area. Verified partners can send offers; you compare them and confirm the one you prefer.',
+      'If your request is not in the standard list, tell us what you need in the app with details and your area. Panun Kaergar scopes it, confirms the price, and gets it done.',
   },
   {
     question: 'How do Panun Kaergar loyalty rewards work?',
@@ -171,13 +171,13 @@ const pageFaqs = [
       'When you complete bookings through the Panun Kaergar app, you earn points. Those points can be redeemed for discounts on future home services booked in the app.',
   },
   {
-    question: 'Can I track my service partner after booking?',
+    question: 'Can I track my booking after I request a service?',
     answer:
-      'App bookings show job status and assigned partner details so you can follow progress. For phone or WhatsApp bookings, our support team can update you on confirmation and timing.',
+      'App bookings show job status and who was assigned so you can follow progress. For phone or WhatsApp bookings, our support team can update you on confirmation and timing.',
   },
   {
     question: 'Which areas in Kashmir does Panun Kaergar cover?',
-    answer: `We match verified partners across ${areas.length}+ districts and neighbourhoods in Kashmir, including ${areas
+    answer: `We serve homes across ${areas.length}+ districts and neighbourhoods in Kashmir, including ${areas
       .slice(0, 5)
       .map((a) => a.displayName)
       .join(', ')}, and more. Check our service areas page or mention your locality when you book.`,
@@ -196,7 +196,7 @@ const schemas = [
       url: f.listUrl,
       description: f.description,
     })),
-    'Panun Kaergar platform features',
+    'Panun Kaergar features',
   ),
   ...mobileApplicationsSchema(site),
 ].filter(Boolean);
@@ -218,12 +218,11 @@ const schemas = [
           Panun Kaergar features
         </p>
         <h1 class="animate-fade-up stagger-1 mt-3 font-extrabold leading-[1.08] tracking-tight text-white text-[clamp(2rem,5.5vw,3.5rem)]">
-          Home service app features built for Kashmir
+          Book, track, and rebook from your phone
         </h1>
         <p class="animate-fade-up stagger-2 mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-          Book verified plumbers, electricians, cleaners, and more by phone, WhatsApp, website, or
-          the free Panun Kaergar app — with chat support, custom jobs, loyalty rewards, and clear
-          job tracking.
+          Easy booking, a price before work starts, and a Srinagar team if something slips.
+          Use the app, or skip it and call.
         </p>
         <div class="animate-fade-up stagger-3 mt-8 flex flex-wrap gap-3">
           <a href={BOOK_PATH} class="btn-primary bg-white text-brand-700 hover:bg-brand-50">Book a service</a>
@@ -266,7 +265,7 @@ const schemas = [
           Panun Kaergar features that make booking simpler
         </h2>
         <p class="mt-4 text-lg leading-relaxed text-slate-600">
-          Panun Kaergar combines a verified partner network with tools that save time — whether you
+          You book Panun Kaergar. We handle pricing, who does the work, and support — whether you
           book home services in Srinagar and across Kashmir in the app, or reach us by phone and
           WhatsApp. Explore{' '}
           <a href="/services" class="font-semibold text-brand-700 underline-offset-2 hover:underline">
@@ -373,7 +372,7 @@ const schemas = [
           </h2>
           <p class="mt-4 text-lg leading-relaxed text-slate-600">
             The free Panun Kaergar customer app is built for Kashmir households who want clearer
-            status, faster rebooking, and rewards for sticking with verified local partners.
+            status, faster rebooking, and rewards for booking with us again.
           </p>
 
           <ul class="mt-8 space-y-4">
@@ -429,7 +428,7 @@ const schemas = [
           </h2>
           <p class="mt-4 text-lg leading-relaxed text-slate-600">
             Not every household need maps cleanly to a standard service. Custom jobs let you describe
-            the work and invite verified Panun Kaergar partners to offer — so odd repairs and
+            the work. Panun Kaergar scopes it, confirms the price, and gets it done — so odd repairs and
             one-off projects across Kashmir still get covered.
           </p>
 
@@ -529,8 +528,8 @@ const schemas = [
   <BookingOptions site={site} />
 
   <CtaBanner
-    title="Ready to use these features?"
-    description="Book a home service in Kashmir today — by phone, WhatsApp, website, or the free Panun Kaergar app."
+    title="Try it on a real job"
+    description="Call, WhatsApp, or fill the form. We’ll confirm the visit."
     primaryHref={BOOK_PATH}
     primaryLabel="Book a home service"
   />

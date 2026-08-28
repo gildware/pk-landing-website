@@ -1,62 +1,59 @@
-howItWorksTitle: How to book in 3 simple steps
+howItWorksTitle: Three steps. Then it’s done.
 howItWorksSteps:
-  - title: Choose your service
+  - title: Tell us the job
     description: >-
-      Pick carpentry, plumbing, masonry, electrician, professional cleaning, pest control,
-      laundry, painting, home appliances, gardening, salon, or interior decor. Book on our
-      website, call us, WhatsApp us, or use the Panun Kaergar app.
-  - title: Pick a time and place
+      What broke, where you live, and when someone can visit. Phone, WhatsApp, website, or app —
+      same process.
+  - title: We plan the visit
     description: >-
-      Share your district or locality in Kashmir and when you want the visit — morning,
-      afternoon, or evening. We match you with an available verified partner.
-  - title: Get the job done
+      You get a price before work starts. We pick who goes — our crew or a specialist — and
+      confirm the slot.
+  - title: We finish it
     description: >-
-      The partner comes to your home, completes the work, and you pay as agreed. Rate the
-      service in the app and earn loyalty points on app bookings.
-whyChooseTitle: Why people choose Panun Kaergar
+      They arrive ready, do the work, and you pay as agreed. If it isn’t right, you call us.
+whyChooseTitle: Built for real Kashmir homes
 whyChooseItems:
-  - title: Book when it suits you
+  - title: Times that fit the house
     description: >-
-      Morning, afternoon, or evening — schedule home services across Kashmir at a time
-      that works for your family.
-  - title: Verified local partners
+      Morning, afternoon, or evening. Book around school runs, namaz, and winter daylight — not
+      around a technician’s mood.
+  - title: One number for the house
     description: >-
-      Every partner is checked before joining. Customer ratings after each job help keep
-      quality high.
-  - title: Help in the app
+      Plumbing today, a salon visit next week, the geyser in January. You don’t collect new
+      contacts for every trade.
+  - title: Book again in seconds
     description: >-
-      Use AI chat in the Panun Kaergar app to book faster, track your job, or get tips for
-      small fixes at home.
-  - title: Save with loyalty points
+      The app remembers the last job. Same leak next winter? Rebook without explaining the house
+      from scratch.
+  - title: Help after the visit
     description: >-
-      Complete bookings in the app to earn points. Use them for discounts on your next
-      home service.
+      A no-show or a job that didn’t hold? You don’t argue with a private number. Support sits
+      with Panun Kaergar.
 platformFeatures:
-  - icon: 🤖
-    title: App chat support
-    description: >-
-      Ask questions and book services in the Panun Kaergar app. Get quick help before a
-      technician visits.
   - icon: 🏠
-    title: All service categories
+    title: No technician hunting
     description: >-
-      Carpentry, plumbing, masonry, electrician, cleaning, pest control, laundry, painting,
-      appliances, gardening, salon, aluminium & steel, pet grooming, vehicle services, and
-      interior decor — all in one place.
+      Stop asking neighbours for numbers. One request covers the search, the schedule, and who
+      shows up.
   - icon: 🎯
-    title: Custom jobs
+    title: Price before they start
     description: >-
-      Job not listed? Post a custom request in the app. Partners can send you offers so
-      you pick the best price.
-  - icon: ⭐
-    title: Loyalty rewards
-    description: >-
-      Earn points on completed app bookings. Redeem them for money off your next service.
+      You see an estimate or a clear range first. Extra parts are explained before anyone buys
+      them.
   - icon: ✅
-    title: Trusted partners
+    title: Checked people at the door
     description: >-
-      We verify partners before they go live. You can read real customer reviews.
+      Own teams and professional partners — onboarded before they take a Kashmir home visit.
   - icon: 💬
-    title: Book without the app
+    title: Book how you like
     description: >-
-      Call +91 8899 181 555, WhatsApp us, or fill the form on this website. No app required.
+      Call +91 8899 181 555, WhatsApp, the website form, or the free app. No app required.
+  - icon: 📞
+    title: We stay on the line
+    description: >-
+      Delay, complaint, or a revisit — you talk to our Srinagar team, not a stranger’s personal
+      phone.
+  - icon: ✔️
+    title: The job is on us
+    description: >-
+      You hired Panun Kaergar. If the work fails, we own the follow-up.

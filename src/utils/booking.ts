@@ -46,7 +46,7 @@ export function bookUrl(params: BookUrlParams = {}): string {
 }
 
 export function partnerWhatsAppMessage() {
-  return "Hi Panun Kaergar, I'd like to join as a service partner in Srinagar. Please help me get started.";
+  return "Hi Panun Kaergar, I'd like to join as a service partner in Kashmir. Please help me get started.";
 }
 
 export function whatsappDigits(whatsapp: string) {

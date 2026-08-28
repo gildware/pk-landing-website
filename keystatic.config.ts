@@ -21,7 +21,7 @@ export default config({
         businessName: fields.text({ label: 'Business name', defaultValue: 'Panun Kaergar' }),
         tagline: fields.text({
           label: 'Tagline',
-          defaultValue: "Kashmir's trusted on-demand home services platform",
+          defaultValue: 'You Need It. We Handle It.'
         }),
         description: fields.text({
           label: 'Long description (schema + LLMs intro)',

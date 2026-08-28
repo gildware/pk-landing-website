@@ -23,7 +23,7 @@ const {
   site,
   services,
   formId = 'partner-application-form',
-  heading = 'Apply to become a partner',
+  heading = 'Apply to Become a Partner',
   variant = 'full',
   heroMode = false,
 } = Astro.props;
@@ -57,7 +57,7 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
           <p class="mt-0.5 text-xs text-slate-500 sm:text-sm">We review applications by call or WhatsApp.</p>
         )}
         {heroMode && (
-          <p class="mt-0.5 text-xs text-slate-500">Takes about a minute. We’ll contact you next.</p>
+          <p class="mt-0.5 text-xs text-slate-500">We’ll review your application and contact you.</p>
         )}
       </div>
     ) : (
@@ -82,7 +82,7 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
   >
     <div class:list={[compact && 'grid gap-4 sm:grid-cols-2']}>
       <div data-field="name">
-        <label for={`${formId}-name`} class={labelClass}>Your name *</label>
+        <label for={`${formId}-name`} class={labelClass}>Full name *</label>
         <input
           id={`${formId}-name`}
           name="name"
@@ -94,7 +94,7 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
         <p class={`${errorClass} hidden`} role="alert"></p>
       </div>
       <div class={compact ? '' : 'mt-0'} data-field="phone">
-        <label for={`${formId}-phone`} class={labelClass}>Phone *</label>
+        <label for={`${formId}-phone`} class={labelClass}>Phone number *</label>
         <input
           id={`${formId}-phone`}
           name="phone"
@@ -109,7 +109,7 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
 
     <div class:list={[compact && 'grid gap-4 sm:grid-cols-2']}>
       <div class="searchable-select relative" data-field="service" data-service-search>
-        <label for={`${formId}-service-search`} class={labelClass}>Service you offer *</label>
+        <label for={`${formId}-service-search`} class={labelClass}>Service category *</label>
         <input type="hidden" id={`${formId}-service`} name="service" value="" />
         <div class="relative mt-1">
           <input
@@ -132,7 +132,7 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
         <p class={`${errorClass} hidden`} role="alert"></p>
       </div>
       <div data-field="area">
-        <label for={`${formId}-area`} class={labelClass}>Areas you can serve *</label>
+        <label for={`${formId}-area`} class={labelClass}>Areas served *</label>
         <input
           id={`${formId}-area`}
           name="area"
@@ -145,42 +145,63 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
       </div>
     </div>
 
-    {
-      !compact && (
-        <div>
-          <label for={`${formId}-experience`} class={labelClass}>Experience</label>
-          <input
-            id={`${formId}-experience`}
-            name="experience"
-            type="text"
-            class={inputClass}
-            placeholder="e.g. 5 years as a plumber"
-          />
-        </div>
-      )
-    }
+    <div class:list={[compact ? 'grid gap-4 sm:grid-cols-2' : 'grid gap-4 sm:grid-cols-2']}>
+      <div data-field="yearsExperience">
+        <label for={`${formId}-years`} class={labelClass}>Years of experience *</label>
+        <select id={`${formId}-years`} name="yearsExperience" class={inputClass}>
+          <option value="">Select</option>
+          <option value="Less than 1">Less than 1 year</option>
+          <option value="1–3">1–3 years</option>
+          <option value="3–5">3–5 years</option>
+          <option value="5–10">5–10 years</option>
+          <option value="10+">10+ years</option>
+        </select>
+        <p class={`${errorClass} hidden`} role="alert"></p>
+      </div>
+      <div data-field="partnerType">
+        <label for={`${formId}-type`} class={labelClass}>Individual / business / team *</label>
+        <select id={`${formId}-type`} name="partnerType" class={inputClass} data-partner-type>
+          <option value="">Select</option>
+          <option value="Individual">Individual</option>
+          <option value="Business">Business</option>
+          <option value="Team">Team</option>
+        </select>
+        <p class={`${errorClass} hidden`} role="alert"></p>
+      </div>
+    </div>
+
+    <div class="hidden" data-field="teamSize" data-team-size>
+      <label for={`${formId}-team-size`} class={labelClass}>Team size</label>
+      <input
+        id={`${formId}-team-size`}
+        name="teamSize"
+        type="text"
+        inputmode="numeric"
+        class={inputClass}
+        placeholder="e.g. 4"
+      />
+    </div>
 
     <div data-field="message">
-      <label for={`${formId}-message`} class={labelClass}>About your work *</label>
+      <label for={`${formId}-message`} class={labelClass}>Short description of experience *</label>
       <textarea
         id={`${formId}-message`}
         name="message"
         rows={compact ? 2 : 3}
         class:list={[textareaClass, !compact && 'min-h-[7rem]']}
-        placeholder={compact ? 'Briefly describe your skills...' : 'Tell us about your skills, tools, and the jobs you handle...'}
+        placeholder="The work you do, how long you’ve been doing it, and the jobs you handle."
       ></textarea>
       <p class={`${errorClass} hidden`} role="alert"></p>
-      {compact && <input type="hidden" name="experience" value="" />}
     </div>
 
     <div class="flex flex-col gap-2">
       <button
         type="button"
         data-action="submit"
-        data-submit-label="Submit application"
+        data-submit-label="Apply to Become a Partner"
         class="w-full rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-70"
       >
-        Submit application
+        Apply to Become a Partner
       </button>
     </div>
     <p id={`${formId}-submit-error`} class="hidden text-center text-xs text-red-600 sm:text-sm" role="alert"></p>
@@ -238,13 +259,29 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
   }
 
   function getData(formEl) {
+    const years = formEl.yearsExperience?.value?.trim() ?? '';
+    const type = formEl.partnerType?.value?.trim() ?? '';
+    const teamSize = formEl.teamSize?.value?.trim() ?? '';
+    const description = formEl.message.value.trim();
+
+    const experience = [
+      years ? `Years: ${years}` : '',
+      type ? `Type: ${type}` : '',
+      type !== 'Individual' && teamSize ? `Team size: ${teamSize}` : '',
+    ]
+      .filter(Boolean)
+      .join(' | ');
+
     return {
       name: formEl.name.value.trim(),
       phone: formEl.phone.value.trim(),
       service: formEl.service.value.trim(),
       area: formEl.area.value.trim(),
-      experience: formEl.experience?.value?.trim() ?? '',
-      message: formEl.message.value.trim(),
+      experience,
+      message: description,
+      description,
+      yearsExperience: years,
+      partnerType: type,
     };
   }
 
@@ -280,7 +317,15 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
   }
 
   function clearAllErrors() {
-    for (const fieldName of ['name', 'phone', 'service', 'area', 'message']) {
+    for (const fieldName of [
+      'name',
+      'phone',
+      'service',
+      'area',
+      'message',
+      'yearsExperience',
+      'partnerType',
+    ]) {
       clearFieldError(fieldName);
     }
   }
@@ -307,8 +352,16 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
       errors.area = 'Please enter the areas you can serve.';
     }
 
-    if (!data.message) {
-      errors.message = 'Please tell us about your work.';
+    if (!data.yearsExperience) {
+      errors.yearsExperience = 'Please select your years of experience.';
+    }
+
+    if (!data.partnerType) {
+      errors.partnerType = 'Please select individual, business, or team.';
+    }
+
+    if (!data.description) {
+      errors.message = 'Please describe your experience.';
     }
 
     return errors;
@@ -325,10 +378,21 @@ const errorClass = 'field-error mt-1 text-xs text-red-600';
     firstInput?.focus();
   }
 
-  for (const fieldName of ['name', 'phone', 'area', 'message']) {
+  for (const fieldName of ['name', 'phone', 'area', 'message', 'yearsExperience', 'partnerType']) {
     const input = getFieldInput(fieldName);
     input?.addEventListener('input', () => clearFieldError(fieldName));
+    input?.addEventListener('change', () => clearFieldError(fieldName));
   }
+
+  const partnerTypeSelect = form?.querySelector('[data-partner-type]');
+  const teamSizeWrap = form?.querySelector('[data-team-size]');
+  function syncTeamSizeField() {
+    if (!(teamSizeWrap instanceof HTMLElement) || !(partnerTypeSelect instanceof HTMLSelectElement)) return;
+    const show = partnerTypeSelect.value === 'Business' || partnerTypeSelect.value === 'Team';
+    teamSizeWrap.classList.toggle('hidden', !show);
+  }
+  partnerTypeSelect?.addEventListener('change', syncTeamSizeField);
+  syncTeamSizeField();
 
   function renderServiceOptions(query = '') {
     if (!serviceList) return;

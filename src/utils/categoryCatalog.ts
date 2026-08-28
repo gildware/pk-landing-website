@@ -404,9 +404,9 @@ export const categoryCatalog: Record<string, CategoryVisual> = {
     label: 'Book Kaergar',
     heading: 'Need a pro by the hour?',
     blurb:
-      'Hire verified Panun Kaergar professionals by the hour, half day, or full day — trades, site help, home care, and beauty artists across Kashmir.',
+      'Book Panun Kaergar by the hour, half day, or full day — trades, site help, home care, and beauty artists across Kashmir.',
     title: 'Hour · half day · full day',
-    meta: 'Time-hire verified pros',
+    meta: 'Time-hire with Panun Kaergar',
     prompt: 'Book a carpenter, electrician, plumber, mason, gardener, and more by time.',
     icon: '/images/categories/icons/book-kaergar.webp',
     soft: '#e2e8f0',
@@ -453,10 +453,10 @@ export function enrichCategory(service: ServiceLike, areaName = 'Srinagar') {
     heading: visual?.heading ?? `Need ${service.shortName.toLowerCase()}?`,
     blurb:
       visual?.blurb ??
-      `Book verified ${service.shortName.toLowerCase()} partners across ${areaName}. Share what you need, pick a time that works, and get clear next steps by phone, WhatsApp, website, or the app.`,
+      `Book ${service.shortName.toLowerCase()} with Panun Kaergar across ${areaName}. Share what you need, pick a time that works, and we take care of the rest — by phone, WhatsApp, website, or the app.`,
     /** Card title uses category name */
     title: label,
-    meta: visual?.meta ?? 'Verified local pros',
+    meta: visual?.meta ?? 'We take the job',
     prompt: visual?.prompt ?? service.description ?? `Book ${service.shortName} in ${areaName}.`,
     icon: parentIcon,
     soft: visual?.soft ?? '#e2e8f0',

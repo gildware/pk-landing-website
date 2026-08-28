@@ -49,27 +49,29 @@ const values = [
     icon: 'shield-check',
     title: 'Reliability',
     description:
-      'Every service on Panun Kaergar is vetted to meet high standards of quality — so you can book with confidence.',
+      'Every visit has a standard. If it fails, you come back to us — not a private number.',
   },
   {
     icon: 'sparkles',
     title: 'Cultural pride',
     description:
-      'We promote Kashmir’s traditional skills and craftsmanship by connecting local artisans and service providers to a broader audience.',
+      'Kashmir skills stay in work — carpentry, masonry, finishing — booked the same way as a modern repair.',
   },
   {
     icon: 'target',
     title: 'Customer focus',
     description:
-      'Your satisfaction is our priority. We strive to make every interaction seamless, professional, and satisfying.',
+      'Questions get answers. Visits stay on time. The house is left as we found it.',
   },
 ];
 
 const whyChoose = [
-  'A wide range of services from local experts',
-  'Easy booking by phone, WhatsApp, website, or app',
-  'Transparent pricing and trusted professionals',
-  'Dedicated to supporting the local economy and artisans of Kashmir',
+  'Checked professionals, not random numbers',
+  'Price agreed before work starts',
+  'Book by phone, WhatsApp, web, or app',
+  'Morning, afternoon, or evening slots',
+  'One company for the whole house',
+  'Support if the visit goes wrong',
 ];
 
 const missionPillars = [
@@ -83,13 +85,13 @@ const missionPillars = [
     icon: 'hammer',
     title: 'For local skilled hands',
     description:
-      'We put plumbers, electricians, cleaners, salon pros, and artisans in front of customers who are ready to book.',
+      'Our teams and professional partners do the work. You deal with Panun Kaergar for the job, the price, and the outcome.',
   },
   {
     icon: 'smartphone',
     title: 'For modern convenience',
     description:
-      'Call, WhatsApp, website, or app — book in minutes and get a verified partner at a time that suits you.',
+      'Call, WhatsApp, website, or app — book in minutes. We send someone at a time that suits you.',
   },
 ];
 
@@ -107,7 +109,7 @@ const bridgePoints = [
   {
     title: 'One trusted network',
     description:
-      'Instead of hunting for contacts, you describe the job once and we connect you with a verified professional nearby.',
+      'Instead of hunting for contacts, you describe the job once. Panun Kaergar handles pricing, who does the work, and follow-up.',
   },
 ];
 
@@ -119,20 +121,20 @@ const promiseSteps = [
   },
   {
     n: '02',
-    title: 'We match a partner',
-    desc: 'A verified local professional is assigned based on the job and availability.',
+    title: 'We take care of it',
+    desc: 'We confirm price and timing, then assign our team or a professional partner to the job.',
   },
   {
     n: '03',
-    title: 'Service at your door',
-    desc: 'They arrive prepared, complete the work, and you get clear, reliable support.',
+    title: 'We get it done',
+    desc: 'The work is completed to our standards. If anything is not right, you come back to us.',
   },
 ];
 
 const meta = buildMeta({
   title: 'About Panun Kaergar | Home Services in Srinagar',
   description:
-    'Panun Kaergar is Kashmir’s home-services platform — connecting households with verified local professionals for plumbing, electrical, cleaning, salon, and more. Built by Gildware Technologies.',
+    'Panun Kaergar is Kashmir’s full-stack home-services company. We own booking, pricing, quality, and support — and deliver through our teams and professional partners. Built by Gildware Technologies.',
   path: '/about',
 });
 ---
@@ -154,9 +156,7 @@ const meta = buildMeta({
           Panun Kaergar
         </h1>
         <p class="animate-fade-up stagger-2 mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-          A one-stop solution for home, garden, vehicle, and everyday service needs in Kashmir —
-          connecting you with expert professionals who bring quality and convenience to your
-          doorstep.
+          Your home. Our responsibility. We take the job from the first call to a finished visit.
         </p>
         <div class="animate-fade-up stagger-3 mt-8 flex flex-wrap gap-3">
           <a href={BOOK_PATH} class="btn-primary bg-white text-brand-700 hover:bg-brand-50">Book a service</a>
@@ -185,8 +185,8 @@ const meta = buildMeta({
           }
         </div>
         <p class="sr-only">
-          Panun Kaergar covers home, garden, and vehicle services — connecting expert professionals
-          to your doorstep in Kashmir.
+          Panun Kaergar covers home, garden, and vehicle services — we take the job and get it
+          done at your doorstep in Kashmir.
         </p>
       </div>
     </div>
@@ -220,10 +220,9 @@ const meta = buildMeta({
             Tradition and technology, for every home in Kashmir
           </h2>
           <p class="mt-4 text-lg leading-relaxed text-slate-600">
-            Our platform offers a diverse range of services tailored to households and individuals
-            across Kashmir — from everyday repairs and cleaning to salon, appliances, gardening, and
-            more. We bridge the gap between skilled local providers and customers who need reliable,
-            timely help.
+            Households across Kashmir book us for repairs, cleaning, salon, appliances, and garden
+            work. You hire Panun Kaergar. We send our crew or a specialist and stay responsible
+            until the job is done.
           </p>
           <p class="mt-4 text-base leading-relaxed text-slate-600">
             Panun Kaergar is proudly developed and launched by{' '}
@@ -235,7 +234,7 @@ const meta = buildMeta({
           <ul class="mt-8 space-y-3">
             {
               [
-                'Verified partners for home and lifestyle services',
+                'We own booking, pricing, quality, and support',
                 'Book by phone, WhatsApp, website, or free mobile app',
                 'Built for Srinagar and communities across Kashmir',
               ].map((item, i) => (
@@ -268,7 +267,7 @@ const meta = buildMeta({
         </h2>
         <p class="mt-4 text-lg leading-relaxed text-slate-600">
           To help every home in Kashmir get professional service quickly and at a fair price, while
-          preserving rich local craftsmanship and making modern bookings simple.
+          we own the experience — and local skilled people do the work to our standards.
         </p>
       </div>
 
@@ -306,8 +305,8 @@ const meta = buildMeta({
           </h2>
           <p class="mt-4 text-lg leading-relaxed text-slate-600">
             Whether it’s repairing a home, beautifying a lawn, or booking essential lifestyle
-            services, Panun Kaergar connects skilled hands with households that need them — without
-            losing Kashmir’s spirit of craftsmanship.
+            services, you hire Panun Kaergar. We get it done — without losing Kashmir’s spirit of
+            craftsmanship.
           </p>
 
           <ul class="mt-8 space-y-5">
@@ -366,12 +365,11 @@ const meta = buildMeta({
     <div class="section-pad relative mx-auto max-w-4xl text-center">
       <p class="reveal text-sm font-semibold uppercase tracking-[0.2em] text-accent">Our vision</p>
       <h2 class="reveal reveal-stagger-1 mt-3 text-3xl font-extrabold sm:text-4xl">
-        Kashmir’s most trusted platform for service solutions
+        Kashmir’s most trusted home-services company
       </h2>
       <p class="reveal reveal-stagger-2 mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/85">
-        To become Kashmir’s most trusted and comprehensive platform for service solutions —
-        preserving the region’s rich craftsmanship while introducing practical ways to simplify life
-        for everyone.
+        To become Kashmir’s most trusted home-services company — preserving the region’s rich
+        craftsmanship while making it simple to get work done at home.
       </p>
     </div>
   </section>
@@ -383,8 +381,8 @@ const meta = buildMeta({
         <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Our values</p>
         <h2 class="mt-2 text-3xl font-extrabold text-slate-900">What guides every booking</h2>
         <p class="mt-3 text-lg text-slate-600">
-          Reliability, cultural pride, and customer focus — the standards behind every partner and
-          every visit.
+          Reliability, cultural pride, and customer focus — the standards behind every visit we
+          send to your home.
         </p>
       </div>
 
@@ -416,7 +414,7 @@ const meta = buildMeta({
         <div class="reveal-left overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
           <img
             src="/images/about/about-how-we-help.webp"
-            alt="From booking request to a verified partner arriving at your door in Kashmir"
+            alt="From booking request to a Panun Kaergar professional arriving at your door in Kashmir"
             width="1536"
             height="1024"
             class="aspect-[4/3] w-full object-cover"
@@ -431,7 +429,7 @@ const meta = buildMeta({
             Three simple steps from request to done
           </h2>
           <p class="mt-4 text-lg leading-relaxed text-slate-600">
-            No more chasing numbers or guessing who to trust. Describe the job — we handle the match.
+            No more chasing numbers or guessing who to trust. Describe the job — we handle it.
           </p>
 
           <ol class="mt-8 space-y-4">
@@ -537,15 +535,15 @@ const meta = buildMeta({
             Why choose Panun Kaergar?
           </p>
           <h2 class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            Local experts. Simple booking. Trusted help.
+            Why families stay with us
           </h2>
           <p class="mt-4 text-lg leading-relaxed text-slate-600">
             Join the Panun Kaergar community and experience the blend of tradition and technology —
-            your reliable partner for service needs across Kashmir, brought to you by{' '}
+            your home-services company across Kashmir, brought to you by{' '}
             {site.poweredByName ?? 'Gildware Technologies'}.
           </p>
 
-          <ul class="mt-8 space-y-4">
+          <ul class="mt-8 grid gap-3 sm:grid-cols-2">
             {
               whyChoose.map((item, i) => (
                 <li
@@ -597,15 +595,14 @@ const meta = buildMeta({
           </h2>
           <p class="mt-4 text-base leading-relaxed text-slate-600">
             At Gildware Technologies, we combine deep cultural insights with practical technology to
-            build platforms that empower communities and businesses alike. With the Panun Kaergar
-            app, our mission is to preserve Kashmir’s traditional services while embracing modern
-            requirements.
+            build companies that serve communities. With Panun Kaergar, our mission is to own the
+            home-service experience in Kashmir — while local skilled people do the work.
           </p>
         </div>
         <dl class="grid gap-4 sm:grid-cols-2">
           <div class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
             <dt class="text-sm font-semibold text-slate-500">Focus</dt>
-            <dd class="mt-1 font-semibold text-slate-900">Local service marketplaces</dd>
+            <dd class="mt-1 font-semibold text-slate-900">Full-stack home services</dd>
           </div>
           <div class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
             <dt class="text-sm font-semibold text-slate-500">Region</dt>
@@ -613,11 +610,11 @@ const meta = buildMeta({
           </div>
           <div class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
             <dt class="text-sm font-semibold text-slate-500">For customers</dt>
-            <dd class="mt-1 font-semibold text-slate-900">Trusted home help, fast</dd>
+            <dd class="mt-1 font-semibold text-slate-900">We take the job, start to finish</dd>
           </div>
           <div class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
             <dt class="text-sm font-semibold text-slate-500">For partners</dt>
-            <dd class="mt-1 font-semibold text-slate-900">More bookings, one app</dd>
+            <dd class="mt-1 font-semibold text-slate-900">You do the work — we run the rest</dd>
           </div>
         </dl>
       </div>
@@ -664,8 +661,8 @@ const meta = buildMeta({
   </section>
 
   <CtaBanner
-    title="Ready to book with Panun Kaergar?"
-    description="Tell us what you need — we connect you with a verified local professional at a time that suits you."
+    title="Ready for a home visit?"
+    description="Tell us the problem, your area, and a time. We’ll confirm the rest."
     primaryHref={BOOK_PATH}
     primaryLabel="Book a service"
   />

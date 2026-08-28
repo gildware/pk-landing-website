@@ -77,7 +77,7 @@ const bookingSteps = getBookingSteps().map((step) => ({
 const benefits = [
   {
     title: `Skilled ${visual.label} Pros in ${area.displayName}`,
-    description: `Book partners who focus on ${visual.label.toLowerCase()} across ${area.displayName} — matched to the job you describe.`,
+    description: `Book ${visual.label.toLowerCase()} with Panun Kaergar across ${area.displayName} — we handle the job you describe.`,
   },
   ...getCategoryBenefits(visual.label).slice(1).map((b) =>
     b.title === 'Kashmir Coverage'
@@ -133,12 +133,12 @@ const pageDescription =
   custom?.seoDescription ||
   `Book ${service.shortName.toLowerCase()} in ${area.displayName}${
     localityPreview ? ` — ${localityPreview}` : ''
-  }${neighborhoods.length > 4 ? ' & more' : ''}. Verified local partners, easy scheduling. Call, WhatsApp, or book online with Panun Kaergar.`;
+  }${neighborhoods.length > 4 ? ' & more' : ''}. Clear prices and easy scheduling. Call, WhatsApp, or book online.`;
 const intro =
   custom?.intro ||
   `Need ${service.shortName.toLowerCase()} in ${area.displayName}? ${
     service.description ||
-    `Panun Kaergar connects you with verified ${service.shortName.toLowerCase()} partners across ${area.displayName}.`
+    `Panun Kaergar handles ${service.shortName.toLowerCase()} across ${area.displayName}.`
   } Book by phone, WhatsApp, our website, or the app.`;
 
 const defaultFaqs = [
@@ -157,7 +157,7 @@ const defaultFaqs = [
   },
   {
     question: `Is same-day ${service.shortName.toLowerCase()} available in ${area.displayName}?`,
-    answer: `Yes, when a verified partner is free near your locality in ${area.displayName}. Book early in the day for the best chance of a same-day slot.`,
+    answer: `Yes, when we can assign someone near your locality in ${area.displayName}. Book early in the day for the best chance of a same-day slot.`,
   },
   ...(service.faqs || []).slice(0, 2).map((faq) => ({
     question: faq.question.includes(area.displayName)
@@ -350,7 +350,7 @@ const schemas = [
               </h2>
               <p class="mt-3 max-w-2xl text-base text-slate-600">
                 The same {service.shortName.toLowerCase()} catalog we offer across Kashmir — booked
-                with a verified partner near your {area.displayName} locality.
+                with Panun Kaergar near your {area.displayName} locality.
               </p>
               <ul class="mt-6 grid gap-3 sm:grid-cols-2">
                 {service.serviceList.map((item) => (

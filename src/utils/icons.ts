@@ -21,6 +21,11 @@ export const emojiToIcon: Record<string, string> = {
   '⭐': 'star-badge',
   '✅': 'shield-check',
   '💬': 'message',
+  '⏰': 'clock',
+  '🛡️': 'shield-check',
+  '📞': 'phone',
+  '📱': 'smartphone',
+  '✔️': 'check',
 };
 
 export function iconNameFromEmoji(emoji?: string, fallback = 'wrench'): string {

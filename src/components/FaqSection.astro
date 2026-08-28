@@ -4,11 +4,13 @@ interface Props {
   items: { question: string; answer: string }[];
   /** Compact spacing for embedded FAQ lists (e.g. FAQ page column). */
   compact?: boolean;
+  /** Two-column layout for full-width sections. */
+  split?: boolean;
   /** Extra class on the outer section. */
   class?: string;
 }
 
-const { title, items, compact = false, class: className = '' } = Astro.props;
+const { title, items, compact = false, split = false, class: className = '' } = Astro.props;
 ---
 
 {
@@ -30,7 +32,13 @@ const { title, items, compact = false, class: className = '' } = Astro.props;
           {title}
         </h2>
       ) : null}
-      <div class:list={['space-y-3', title && (compact ? 'mt-4' : 'mt-8')]} role="list">
+      <div
+        class:list={[
+          split ? 'grid gap-3 lg:grid-cols-2' : 'space-y-3',
+          title && (compact ? 'mt-4' : 'mt-8'),
+        ]}
+        role="list"
+      >
         {items.map((item, i) => (
           <div
             class:list={[

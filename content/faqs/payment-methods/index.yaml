@@ -1,9 +1,9 @@
 question: payment-methods
 questionText: How do I pay for a service?
 answer: >-
-  Pay in the app with supported online methods, or pay the partner after the job is done
-  where cash payment is available. The price is shown in the app before you confirm when
-  you book through the app.
+  Pay in the app with supported online methods, or pay as confirmed by Panun Kaergar after the
+  job is done where cash payment is available. The price is shown in the app before you confirm
+  when you book through the app. You pay for the work we agreed — not a separate platform fee.
 category: Payment
 sortOrder: 3
 published: true

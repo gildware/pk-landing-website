@@ -85,25 +85,25 @@ const BOOKING_STEPS = [
       'Pick this category, describe the job, and share your address — by phone, WhatsApp, website, or the app.',
   },
   {
-    title: 'Confirm Time & Details',
+    title: 'We Take Care of the Rest',
     description:
-      'We match a verified local partner. You get clear next steps before anyone visits.',
+      'Panun Kaergar confirms price and timing, then assigns who will do the work. You get clear next steps before anyone visits.',
   },
   {
-    title: 'Partner Arrives & Completes Work',
+    title: 'We Get It Done',
     description:
-      'Your partner shows up with the right tools, finishes the job, and you can rate the experience afterward.',
+      'Our team or a professional partner arrives with the right tools, finishes the job to our standards, and you can rate the experience afterward.',
   },
 ] as const;
 
 const SHARED_BENEFITS = [
   {
-    title: 'Verified Local Partners',
-    description: 'Partners are onboarded and rated by real customers after every job.',
+    title: 'We Own the Job',
+    description: 'You hire Panun Kaergar. We handle pricing, quality, and support — not a random number.',
   },
   {
     title: 'Book Your Way',
-    description: 'Call, WhatsApp, website form, or the free Panun Kaergar app — same network either way.',
+    description: 'Call, WhatsApp, website form, or the free Panun Kaergar app — same company either way.',
   },
   {
     title: 'Clear Next Steps',
@@ -111,7 +111,7 @@ const SHARED_BENEFITS = [
   },
   {
     title: 'Kashmir Coverage',
-    description: 'Serving homes and workplaces across Kashmir districts with local professionals.',
+    description: 'Serving homes and workplaces across Kashmir districts.',
   },
 ] as const;
 
@@ -123,7 +123,7 @@ export function getCategoryBenefits(categoryLabel: string) {
   return [
     {
       title: `Skilled ${categoryLabel} Pros`,
-      description: `Book partners who focus on ${categoryLabel.toLowerCase()} — matched to the job you describe.`,
+      description: `Panun Kaergar handles ${categoryLabel.toLowerCase()} for the job you describe — our team or a professional partner.`,
     },
     ...SHARED_BENEFITS,
   ];
