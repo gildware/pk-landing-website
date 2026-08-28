@@ -63,6 +63,14 @@ For non-technical staff, deploy the admin to Vercel — see **[CMS.md](./CMS.md)
 
 After editing: `npm run build`
 
+After replacing service photos in admin, refresh marketing thumbnails:
+
+```bash
+npm run sync-catalog
+```
+
+`npm run build` runs this automatically (`prebuild`). Offline: `SKIP_CATALOG_SYNC=1 npm run build`.
+
 **Public site build (fast static):** `npm run build`  
 **CMS admin deploy (Vercel only):** `npm run build:cms`
 

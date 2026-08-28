@@ -39,6 +39,8 @@ export default defineConfig({
   redirects: {
     '/become-a-provider': '/become-a-partner',
     '/book': '/book-a-home-service',
+    '/services/masonry-installs': '/services/masonry-installation',
+    '/services/masonry-repairs': '/services/masonry-repair',
     '/guides/home-services-panun-kaergar-handles-kashmir':
       '/guides/what-jobs-can-you-book-panun-kaergar-kashmir',
     '/areas': '/service-areas',

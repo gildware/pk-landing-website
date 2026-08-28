@@ -183,6 +183,11 @@
                     "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/refrigerators/2026-07-23-6a62564d35987.webp"
                 },
                 {
+                    "slug": "deep-freezers",
+                    "name": "Deep Freezers",
+                    "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/deep-freezers/2026-08-27-6a9001532dd5c.webp"
+                },
+                {
                     "slug": "washing-machine",
                     "name": "Washing Machine",
                     "imageUrl": "https://pub-d94f3aebce9d4036815a281f00dd51b3.r2.dev/prod/subcategory/washing-machine/2026-07-23-6a6256646c332.webp"

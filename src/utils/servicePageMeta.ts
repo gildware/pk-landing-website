@@ -27,12 +27,12 @@ function parentIcon(path: string) {
 export const servicePageMeta: Record<string, ServicePageMeta> = {
   'masonry-installation': {
     parentSlug: 'masonry',
-    liveSubSlugs: ['masonry-installation'],
+    liveSubSlugs: ['masonry-installation', 'masonry-installs'],
     icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
   'masonry-repair': {
     parentSlug: 'masonry',
-    liveSubSlugs: ['masonry-repair'],
+    liveSubSlugs: ['masonry-repair', 'masonry-repairs'],
     icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
   'masonry-inspection': {
@@ -40,15 +40,15 @@ export const servicePageMeta: Record<string, ServicePageMeta> = {
     liveSubSlugs: ['masonry-inspection'],
     icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
-  // Legacy page slugs kept as aliases until redirects are wired
+  // Legacy slugs — URLs redirect; keep meta for lookups and live-catalog aliases
   'masonry-installs': {
     parentSlug: 'masonry',
-    liveSubSlugs: ['masonry-installation'],
+    liveSubSlugs: ['masonry-installation', 'masonry-installs'],
     icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
   'masonry-repairs': {
     parentSlug: 'masonry',
-    liveSubSlugs: ['masonry-repair'],
+    liveSubSlugs: ['masonry-repair', 'masonry-repairs'],
     icon: parentIcon('/images/categories/icons/masonry.webp'),
   },
   'carpentry-installation': {

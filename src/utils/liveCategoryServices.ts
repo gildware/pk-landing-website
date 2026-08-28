@@ -1,6 +1,8 @@
 import categoryServices from '@/data/categoryServices.json';
 import { categoryCatalog } from '@/utils/categoryCatalog';
 
+/** Snapshot of live service thumbnails. Refresh with `npm run sync-catalog` after admin image uploads. */
+
 export interface LiveServiceItem {
   name: string;
   slug: string;

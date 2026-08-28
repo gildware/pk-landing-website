@@ -64,7 +64,14 @@ export const NEAR_ME_LINKS: readonly NearMeLink[] = [
     slug: 'mason-near-me',
     href: '/near-me/mason-near-me',
     label: 'Mason near me',
-    serviceSlugs: ['masonry', 'masonry-installs', 'masonry-repairs'],
+    serviceSlugs: [
+      'masonry',
+      'masonry-installation',
+      'masonry-repair',
+      'masonry-inspection',
+      'masonry-installs',
+      'masonry-repairs',
+    ],
   },
   {
     slug: 'pest-control-near-me',

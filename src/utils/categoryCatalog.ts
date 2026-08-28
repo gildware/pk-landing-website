@@ -88,6 +88,7 @@ export const categorySubcategories: Record<string, SubCategoryPill[]> = {
     sub('geysers', 'Geysers', 'geysers/2026-07-08-6a4e25ae60556.webp'),
     sub('led-smart-tv', 'LED / Smart TV', 'led-smart-tv/2026-07-08-6a4e25b843be1.webp'),
     sub('refrigerators', 'Refrigerators', 'refrigerators/2026-07-08-6a4e25c1c96a5.webp'),
+    sub('deep-freezers', 'Deep Freezers', 'deep-freezers/2026-08-27-6a9001532dd5c.webp'),
     sub('induction-heaters', 'Small Appliances', 'induction-heaters/2026-07-08-6a4e25cad58b5.webp'),
     sub('washing-machine', 'Washing Machine', 'washing-machine/2026-07-08-6a4e25d468714.webp'),
     sub('ro-purifier', 'Water Purifier', 'ro-purifier/2026-07-08-6a4e25dda37f4.webp'),

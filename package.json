@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "cms": "KEYSTATIC_CMS=1 astro dev",
+    "sync-catalog": "node scripts/sync-category-images.mjs",
+    "prebuild": "node scripts/sync-category-images.mjs",
     "build": "astro build",
     "build:cms": "KEYSTATIC_CMS=1 astro build",
     "preview": "astro preview",

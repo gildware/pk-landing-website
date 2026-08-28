@@ -25,6 +25,9 @@ const siteName = 'Panun Kaergar';
 <!doctype html>
 <html lang="en-IN">
   <head>
+    {/* Charset must be in the first 1024 bytes or browsers guess Windows-1252 and UTF-8 symbols (→ ★ · —) become mojibake. */}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     {
       gtagId && (
         <>
@@ -76,8 +79,6 @@ const siteName = 'Panun Kaergar';
         </>
       )
     }
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
     <meta name="application-name" content={siteName} />

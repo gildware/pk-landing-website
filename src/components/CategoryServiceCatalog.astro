@@ -39,15 +39,24 @@ const total = subcategories.reduce((n, s) => n + s.services.length, 0);
                 <li class="group overflow-hidden rounded-xl border border-slate-200/90 bg-white transition hover:border-slate-300 hover:shadow-sm">
                   <div class="aspect-[5/3] overflow-hidden bg-slate-100">
                     {svc.image ? (
-                      <img
-                        src={svc.image}
-                        alt={svc.name}
-                        width="320"
-                        height="192"
-                        class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                        loading="lazy"
-                        decoding="async"
-                      />
+                      <>
+                        <img
+                          src={svc.image}
+                          alt={svc.name}
+                          width="320"
+                          height="192"
+                          class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                          loading="lazy"
+                          decoding="async"
+                          onerror="this.classList.add('hidden'); const fallback=this.nextElementSibling; fallback.classList.remove('hidden'); fallback.classList.add('flex');"
+                        />
+                        <div
+                          class="hidden h-full w-full items-center justify-center px-2 text-center text-xs font-medium text-white/90"
+                          style={`background: linear-gradient(135deg, ${accent}cc, ${accent});`}
+                        >
+                          {svc.name}
+                        </div>
+                      </>
                     ) : (
                       <div
                         class="flex h-full w-full items-center justify-center px-2 text-center text-xs font-medium text-white/90"
