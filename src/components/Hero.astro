@@ -80,12 +80,12 @@ const titleLines = title.split(/(?<=\.)\s+/).filter(Boolean);
           )
         }
         <h1
-          class="animate-fade-up stagger-1 mt-3 text-xl font-extrabold leading-snug text-white sm:text-2xl lg:text-[2.85rem] lg:leading-[1.15]"
+          class="animate-fade-up stagger-1 mt-3 text-[1.5rem] font-extrabold leading-snug tracking-tight text-white sm:text-[1.75rem] lg:text-[2.4rem] lg:leading-tight xl:text-[2.55rem]"
           style="color: #ffffff;"
         >
-          {titleLines[0]}
+          <span class="block whitespace-nowrap">{titleLines[0]}</span>
           {titleLines.slice(1).map((line) => (
-            <span class="block">{line}</span>
+            <span class="block whitespace-nowrap">{line}</span>
           ))}
         </h1>
         {
