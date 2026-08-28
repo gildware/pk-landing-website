@@ -1,10 +1,10 @@
 question: partners-verified
-questionText: Who comes to my home?
+questionText: Who comes to my home if I book a service with Panun Kaergar?
 answer: >-
-  You booked Panun Kaergar. We assign the job to our own service team or a professional partner
-  who works to our requirements. Everyone who takes jobs for us goes through registration and
-  checks before they are sent to a customer. You deal with Panun Kaergar for pricing, quality,
-  and support.
+  A Panun Kaergar professional suited to the job. You booked the company, not a stranger’s
+  personal phone. We assign someone for that work, confirm the visit, and stay responsible for
+  pricing, quality, and support. If the visit is not right, you come back to Panun Kaergar — you
+  do not have to chase a private number.
 category: General
-sortOrder: 14
+sortOrder: 3
 published: true

@@ -1,9 +1,10 @@
 question: partner-own-customers
-questionText: Are Panun Kaergar partners employees?
+questionText: Are Panun Kaergar service partners employees of the company?
 answer: >-
   No. You join as an independent service partner, vendor, or specialist — not as an employee.
-  Panun Kaergar controls the customer experience and operating process. You fulfill assigned jobs
-  according to the agreed terms and standards.
+  Panun Kaergar owns the customer relationship and the operating process: pricing, booking,
+  coordination, payment, and support. You fulfill assigned jobs to our standards under the
+  agreed terms, using your own tools and skill.
 category: Partners
-sortOrder: 10
+sortOrder: 72
 published: true

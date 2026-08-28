@@ -27,9 +27,9 @@ const categories = services.map((s) => ({
 const PAGE_PATH = '/why-choose-panun-kaergar';
 
 const meta = buildMeta({
-  title: 'Why Choose Panun Kaergar | Home Services Kashmir',
+  title: 'Why Book Panun Kaergar Instead of Calling Yourself | Kashmir',
   description:
-    'You need the service. We handle everything else. Panun Kaergar manages booking to completion — the right professional, clear pricing, and support throughout.',
+    'Stop hunting plumber and electrician numbers in Kashmir. Panun Kaergar takes one request, confirms the price, sends the right professional, manages payment, and stays responsible until the job is done.',
   path: PAGE_PATH,
 });
 
@@ -55,66 +55,102 @@ const storyImages = [
 const problemSolutions = [
   {
     icon: 'phone',
-    problem: 'Calling number after number — and no one picking up.',
-    solution: 'We take the request and assign the right professional.',
+    problem: 'Calling numbers that never pick up',
+    problemDetail:
+      'You ask neighbours for a plumber or electrician number, try three more, and still get silence when the tap is leaking or the power is out.',
+    solution:
+      'Send one request to Panun Kaergar. We take the job and assign a professional suited to the work — you stop hunting private numbers across Kashmir.',
     image: '/images/why-choose/split-calling.webp',
-    imageAlt: 'Left: calling number after number. Right: Panun Kaergar sends the professional.',
+    imageAlt:
+      'On your own: calling plumber numbers that do not answer. With Panun Kaergar: one request, and we send the professional.',
   },
   {
     icon: 'clock',
-    problem: 'Waiting on a callback that may never come.',
-    solution: 'We follow through. You don’t wait on a private number.',
+    problem: 'Waiting all day for a callback that never comes',
+    problemDetail:
+      'Someone says they will confirm in the evening. Hours pass. You still do not know if anyone is coming to the house.',
+    solution:
+      'After you book, Panun Kaergar follows through on the visit. You deal with the company — not a private phone that goes quiet.',
     image: '/images/why-choose/split-callback.webp',
-    imageAlt: 'Left: waiting on a callback. Right: Panun Kaergar follows through.',
+    imageAlt:
+      'On your own: waiting for a callback that never comes. With Panun Kaergar: the company follows through on the booking.',
   },
   {
     icon: 'wallet',
-    problem: 'A different price every time. Negotiating every job.',
-    solution: 'We confirm an estimate before work begins.',
+    problem: 'A different price every time you hire help at home',
+    problemDetail:
+      'One quote on the phone, another at the door, extras added once work has started — you are negotiating every plumbing, electrical, or cleaning job.',
+    solution:
+      'We confirm an estimate before work begins for most services. Extra parts or labour are explained before the job continues, so you are not guessing the bill.',
     image: '/images/why-choose/split-pricing.webp',
-    imageAlt: 'Left: negotiating different prices. Right: a confirmed estimate from Panun Kaergar.',
+    imageAlt:
+      'On your own: negotiating a new price on every home job. With Panun Kaergar: an estimate confirmed before work starts.',
   },
   {
     icon: 'user',
-    problem: 'Someone doesn’t show up.',
-    solution: 'We coordinate the visit so you don’t have to chase it.',
+    problem: 'Nobody shows up for the visit',
+    problemDetail:
+      'You cleared the morning for a plumber, electrician, or cleaner, stayed home, and nobody is at the door. Then you start calling around again for the same job.',
+    solution:
+      'We coordinate the appointment and keep the visit on track. If something slips, you contact Panun Kaergar — you do not chase a no-show on a personal number.',
     image: '/images/why-choose/split-noshow.webp',
-    imageAlt: 'Left: nobody at the door. Right: a Panun Kaergar professional arriving on time.',
+    imageAlt:
+      'On your own: nobody arrives for the home visit. With Panun Kaergar: a professional is coordinated to the door.',
   },
   {
     icon: 'smartphone',
-    problem: 'Coordinating every detail yourself.',
-    solution: 'We manage the booking and the appointment.',
+    problem: 'Coordinating every home visit yourself',
+    problemDetail:
+      'You juggle times, reminders, “I am on the way” messages, and a second trade if the first job uncovers another problem.',
+    solution:
+      'Tell us the job, your area, and a preferred time. Panun Kaergar manages the booking and the appointment so you are not running the schedule.',
     image: '/images/why-choose/split-coordinate.webp',
-    imageAlt: 'Left: coordinating every detail yourself. Right: Panun Kaergar manages the booking.',
+    imageAlt:
+      'On your own: coordinating every detail of a home visit. With Panun Kaergar: we manage the booking and the slot.',
   },
   {
     icon: 'trending-up',
-    problem: 'Chasing the job until someone finally finishes it.',
-    solution: 'We follow up so you don’t have to.',
+    problem: 'Chasing the job until someone actually finishes it',
+    problemDetail:
+      'Work starts, then stalls. You call again to ask when they will return with the part, or whether the repair was ever completed.',
+    solution:
+      'We follow up until the work is done. You booked Panun Kaergar for the job — you should not have to project-manage a private technician.',
     image: '/images/why-choose/split-chasing.webp',
-    imageAlt: 'Left: chasing the technician. Right: Panun Kaergar follows up until the work is done.',
+    imageAlt:
+      'On your own: chasing a technician to finish the work. With Panun Kaergar: we follow up until the job is complete.',
   },
   {
     icon: 'star',
-    problem: 'Not knowing if the work will hold.',
-    solution: 'We check the work against our standards.',
+    problem: 'Not knowing if the work will hold after they leave',
+    problemDetail:
+      'The tap works today. You have no idea if the wiring is safe, the leak will return, or anyone will stand behind the work next week.',
+    solution:
+      'We check the finished job against our standards. If it is not right, you come back to Panun Kaergar — the company stays responsible for the visit.',
     image: '/images/why-choose/split-quality.webp',
-    imageAlt: 'Left: unfinished uncertain work. Right: Panun Kaergar checks the finished job.',
+    imageAlt:
+      'On your own: unfinished or uncertain home repair. With Panun Kaergar: the completed job is checked against our standards.',
   },
   {
     icon: 'check-circle',
-    problem: 'Paying whoever shows up — with no one accountable.',
-    solution: 'Payment is managed through Panun Kaergar.',
+    problem: 'Paying cash to whoever shows up, with no company behind it',
+    problemDetail:
+      'You hand money to a private number at the door. If the price changes or the work fails, there is no clear record and no one to call but that person.',
+    solution:
+      'Payment is managed through Panun Kaergar. You are dealing with the company for the amount we agreed — not settling privately with whoever arrives.',
     image: '/images/why-choose/split-payment.webp',
-    imageAlt: 'Left: paying a private technician in cash. Right: payment handled through Panun Kaergar.',
+    imageAlt:
+      'On your own: paying a private technician in cash. With Panun Kaergar: payment is handled through the company.',
   },
   {
     icon: 'headset',
-    problem: 'Nowhere to turn if something goes wrong.',
-    solution: 'You come back to Panun Kaergar — not a private number.',
+    problem: 'Nowhere to turn if the home service goes wrong',
+    problemDetail:
+      'The number stops answering. You have no office, no ticket, and no second visit unless you start the hunt for help all over again.',
+    solution:
+      'Support sits with Panun Kaergar. Call or WhatsApp us with your booking details — you come back to the company, not a technician’s personal phone.',
     image: '/images/why-choose/split-support.webp',
-    imageAlt: 'Left: nowhere to turn. Right: you come back to Panun Kaergar for support.',
+    imageAlt:
+      'On your own: nowhere to turn after a bad visit. With Panun Kaergar: you come back to the company for support.',
   },
 ];
 
@@ -401,7 +437,9 @@ const schemas = [
           You shouldn’t have to run the job yourself
         </h2>
         <p class="mt-3 max-w-3xl text-lg text-slate-600">
-          Each hassle, then how Panun Kaergar solves it.
+          When you call a plumber, electrician, or cleaner yourself in Kashmir, you hunt for
+          numbers, wait on callbacks, negotiate the price, and still own the hassle if nobody
+          shows up. Each card is a real problem — then how Panun Kaergar takes it off you.
         </p>
       </div>
 
@@ -441,6 +479,7 @@ const schemas = [
                 <div>
                   <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">The problem</p>
                   <h3 class="mt-1.5 text-base font-bold leading-snug text-slate-900">{row.problem}</h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{row.problemDetail}</p>
                 </div>
 
                 <div class="mt-auto flex items-start gap-2.5 rounded-xl bg-brand-900 px-3.5 py-3 text-white">
@@ -452,7 +491,7 @@ const schemas = [
                   </span>
                   <div>
                     <p class="text-[10px] font-bold uppercase tracking-wider text-white/50">Panun Kaergar</p>
-                    <p class="mt-0.5 text-sm font-semibold leading-snug">{row.solution}</p>
+                    <p class="mt-0.5 text-sm font-medium leading-relaxed">{row.solution}</p>
                   </div>
                 </div>
               </div>

@@ -1,9 +1,10 @@
 question: track-booking
-questionText: How do I track my booking?
+questionText: How can I track my Panun Kaergar booking after I request a home service?
 answer: >-
-  In the Panun Kaergar customer app you can view booking status and updates. If you booked by
-  phone, WhatsApp, or the website form, our team confirms by call or WhatsApp and keeps you
-  informed until the partner arrives.
+  If you booked in the Panun Kaergar customer app, open the booking to see status, updates, and
+  chat for that job. If you booked by call, WhatsApp, or the website form, our team confirms by
+  phone or WhatsApp and keeps you informed until the visit is complete. You do not need the app
+  to stay updated — ask us for a status check on the same number you used to book.
 category: Booking
-sortOrder: 15
+sortOrder: 26
 published: true

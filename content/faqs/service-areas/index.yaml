@@ -1,10 +1,10 @@
 question: service-areas
-questionText: Which areas does Panun Kaergar serve?
+questionText: Which areas in Kashmir does Panun Kaergar currently serve?
 answer: >-
-  Panun Kaergar serves home services across Kashmir's ten districts: Srinagar, Budgam,
-  Ganderbal, Bandipora, Baramulla, Kupwara, Anantnag, Kulgam, Pulwama, and Shopian. Share
-  your address when you book by phone, WhatsApp, our website form, or app so we can confirm
-  a partner in your zone.
+  Panun Kaergar serves homes across Kashmir’s ten districts: Srinagar, Budgam, Ganderbal,
+  Bandipora, Baramulla, Kupwara, Anantnag, Kulgam, Pulwama, and Shopian. Coverage for a given
+  service can vary by neighbourhood and time of day. Share your locality or full address when you
+  book by call, WhatsApp, website, or app so we can confirm we can take the job at your home.
 category: General
-sortOrder: 5
+sortOrder: 4
 published: true

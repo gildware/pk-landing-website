@@ -1,10 +1,11 @@
 question: pricing
-questionText: How much do home services cost in Srinagar?
+questionText: How much do Panun Kaergar home services cost, and do I see the price before work starts?
 answer: >-
-  Panun Kaergar confirms the expected cost before work begins. Prices depend on the service type,
-  job size, and parts required. In the app you see estimates before confirming. When you book by
-  phone, WhatsApp, or our website form, our team confirms pricing. There are no hidden booking
-  fees on the website.
+  Panun Kaergar confirms an estimate or rate before work begins for most jobs. The amount depends
+  on the service, the size of the job, your area, and any parts required. In the app you typically
+  see an estimate before you confirm. If you book by call, WhatsApp, or the website, our team
+  confirms pricing with you. Extra materials or labour should be explained before work continues.
+  There is no separate website booking fee.
 category: Payment
-sortOrder: 13
+sortOrder: 40
 published: true

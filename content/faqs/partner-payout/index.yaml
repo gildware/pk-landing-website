@@ -1,9 +1,10 @@
 question: partner-payout
-questionText: Who sets the price for a Panun Kaergar job?
+questionText: Who sets the customer price on a Panun Kaergar job, and can I negotiate at the door?
 answer: >-
-  Panun Kaergar manages customer-facing pricing according to the applicable service pricing
-  structure. Your partner payout is defined by the agreed commercial terms — there is no doorstep
-  price negotiation with the customer.
+  Panun Kaergar sets the customer-facing price according to the service pricing structure. Your
+  partner payout is defined by the agreed commercial terms. Do not negotiate a different price
+  with the customer at the door. If extra parts or labour are needed, that must go through
+  Panun Kaergar’s process so the customer is told before work continues.
 category: Partners
-sortOrder: 6
+sortOrder: 74
 published: true

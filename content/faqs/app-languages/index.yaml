@@ -1,8 +1,10 @@
 question: app-languages
-questionText: Which languages can I get help in?
+questionText: Can I get Panun Kaergar help in Kashmiri, Urdu, Hindi, or English?
 answer: >-
-  Our team and many local partners communicate in Kashmiri, Urdu, Hindi, and English. Tell us
-  your preferred language when you call, WhatsApp, or leave a note in the booking form.
+  Yes. Our team can help in Kashmiri, Urdu, Hindi, and English. Tell us your preferred language
+  when you call, WhatsApp, or add a note on the booking form. The professional we send will
+  communicate as clearly as possible for the job; if you need a specific language at the door,
+  mention it when you book so we can take that into account.
 category: General
-sortOrder: 21
+sortOrder: 7
 published: true

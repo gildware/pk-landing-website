@@ -1,9 +1,10 @@
 question: parts-and-materials
-questionText: Who provides spare parts and materials?
+questionText: Who provides spare parts and materials for a Panun Kaergar repair or installation?
 answer: >-
-  It depends on the job. Some services include basic materials; others need parts purchased
-  separately. Your partner or our team will tell you what is needed and any extra cost before
-  work continues, so there are no surprises.
+  It depends on the job. Some visits include basic materials; others need parts bought separately,
+  such as a tap, wire, or appliance spare. Before work continues, we tell you what is needed and
+  any extra cost. You should not discover a surprise bill after the professional has already
+  started. If you already have the part at home, mention that when you book.
 category: Payment
-sortOrder: 19
+sortOrder: 42
 published: true

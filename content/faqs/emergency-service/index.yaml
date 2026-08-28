@@ -1,9 +1,11 @@
 question: emergency-service
-questionText: Do you handle urgent or emergency home repairs?
+questionText: Does Panun Kaergar handle urgent or emergency home repairs in Kashmir?
 answer: >-
-  We try to match urgent jobs with available partners as quickly as possible. Call or WhatsApp
-  +91 8899 181 555, describe the issue, and we will check same-day or earliest slots in your
-  area across Kashmir.
+  Yes, we treat urgent jobs as a priority and try to match the earliest available professional.
+  Call or WhatsApp +91 8899 181 555, describe what happened (for example a burst pipe, no power
+  in part of the house, or a dead geyser), and share your locality. We cannot promise an arrival
+  time until we check capacity in your area, but we will tell you the soonest slot we can offer
+  and keep you updated.
 category: Booking
-sortOrder: 18
+sortOrder: 24
 published: true

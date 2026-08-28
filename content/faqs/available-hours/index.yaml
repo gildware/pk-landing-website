@@ -1,9 +1,11 @@
 question: available-hours
-questionText: What are your booking hours?
+questionText: What are Panun Kaergar booking and call-support hours in Kashmir?
 answer: >-
-  You can request a booking any day through the website, app, phone, or WhatsApp. Our team is
-  typically available Mon–Sun from 8:00 AM to 9:00 PM. Partner visit times depend on the slot
-  you choose and local availability.
+  You can send a booking request any day through the website, app, phone, or WhatsApp. Call
+  support is typically available from 10:00 AM to 10:00 PM. The Srinagar office is open Monday
+  to Saturday, 10:00 AM to 6:00 PM. Visit times depend on the slot we confirm and who is free
+  for your job and area — including mornings, afternoons, or evenings when those slots are
+  offered.
 category: General
-sortOrder: 20
+sortOrder: 6
 published: true

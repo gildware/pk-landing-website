@@ -6,7 +6,8 @@ import BookingOptions from '@/components/BookingOptions.astro';
 import Icon from '@/components/Icon.astro';
 import { buildMeta } from '@/utils/seo';
 import { getSiteSettings, getFaqs } from '@/utils/reader';
-import { faqSchema } from '@/utils/schema';
+import { breadcrumbSchema, faqSchema } from '@/utils/schema';
+import { BOOK_PATH } from '@/utils/booking';
 
 const site = await getSiteSettings();
 const faqs = await getFaqs();
@@ -18,7 +19,18 @@ const byCategory = faqs.reduce<Record<string, typeof faqs>>((acc, faq) => {
   return acc;
 }, {});
 
-const categories = Object.keys(byCategory);
+const categoryOrder = ['General', 'Booking', 'Payment', 'App', 'Partners'];
+const categoryLabels: Record<string, string> = {
+  General: 'General',
+  Booking: 'Booking',
+  Payment: 'Payment',
+  App: 'App',
+  Partners: 'For partners',
+};
+const categories = [
+  ...categoryOrder.filter((cat) => byCategory[cat]),
+  ...Object.keys(byCategory).filter((cat) => !categoryOrder.includes(cat)),
+];
 const flatFaqs = faqs.map((f) => ({
   question: f.questionText,
   answer: f.answer,
@@ -26,13 +38,19 @@ const flatFaqs = faqs.map((f) => ({
 }));
 
 const meta = buildMeta({
-  title: 'FAQ — Home Services in Srinagar | Panun Kaergar',
+  title: 'FAQ | Book Home Services in Kashmir — Panun Kaergar',
   description:
-    'Common questions about booking plumbers, electricians, and AC repair in Srinagar. Call, WhatsApp, book online, or use the Panun Kaergar app.',
+    'Answers to common questions about booking Panun Kaergar home services in Kashmir: how to book by call, WhatsApp, website or app, pricing, payment, same-day visits, areas we cover, and what happens if the work is not right.',
   path: '/faq',
 });
 
-const schemas = [faqSchema(faqs.map((f) => ({ question: f.questionText, answer: f.answer })))].filter(Boolean);
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'FAQ', path: '/faq' },
+  ]),
+  faqSchema(faqs.map((f) => ({ question: f.questionText, answer: f.answer }))),
+].filter(Boolean);
 ---
 
 <PageLayout meta={meta} schemas={schemas}>
@@ -55,17 +73,29 @@ const schemas = [faqSchema(faqs.map((f) => ({ question: f.questionText, answer: 
       <div>
         <p class="animate-fade-up text-sm font-semibold uppercase tracking-wider text-accent">Help centre</p>
         <h1 class="animate-fade-up stagger-1 mt-3 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">
-          Frequently asked questions
+          Home service FAQs in Kashmir
         </h1>
         <p class="animate-fade-up stagger-2 mt-4 max-w-xl text-lg text-white/80">
-          Answers about booking home services in Srinagar — by phone, WhatsApp, our website, or the app.
+          Full answers on how Panun Kaergar works: booking, pricing, who comes to your home, payment,
+          and support — by phone, WhatsApp, this website, or the app.
         </p>
+        <div class="animate-fade-up stagger-3 mt-6 flex flex-wrap gap-3">
+          <a href={BOOK_PATH} class="btn-primary bg-white text-brand-700 hover:bg-brand-50">
+            Book a service
+          </a>
+          <a
+            href={`tel:${site.phone}`}
+            class="inline-flex items-center rounded-xl border-2 border-white/40 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/60 hover:bg-white/10"
+          >
+            Call {site.phone}
+          </a>
+        </div>
       </div>
 
       <div class="animate-slide-right stagger-2 relative hidden overflow-hidden rounded-3xl border border-white/15 shadow-2xl lg:block">
         <img
           src="/images/faq/faq-verified.webp"
-          alt="Verified Panun Kaergar partner greeting a homeowner"
+          alt="Panun Kaergar professional helping a homeowner in Kashmir"
           width="1536"
           height="1024"
           class="aspect-[16/10] w-full object-cover"
@@ -92,7 +122,7 @@ const schemas = [faqSchema(faqs.map((f) => ({ question: f.questionText, answer: 
           <input
             id="faq-search"
             type="search"
-            placeholder="Search questions…"
+            placeholder="Search booking, pricing, areas, partners…"
             autocomplete="off"
             class="w-full rounded-2xl border border-slate-200 bg-white py-3.5 pl-12 pr-4 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
             data-faq-search
@@ -115,7 +145,7 @@ const schemas = [faqSchema(faqs.map((f) => ({ question: f.questionText, answer: 
                   class="faq-filter rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-brand-300 hover:text-brand-700"
                   data-faq-filter={cat}
                 >
-                  {cat}
+                  {categoryLabels[cat] || cat}
                 </button>
               ))}
             </div>
@@ -128,15 +158,19 @@ const schemas = [faqSchema(faqs.map((f) => ({ question: f.questionText, answer: 
 
         <div class="mt-6 space-y-10" data-faq-list>
           {
-            Object.entries(byCategory).map(([category, items]) => (
+            categories.map((category) => {
+              const items = byCategory[category];
+              if (!items?.length) return null;
+              return (
               <div data-faq-category={category}>
                 <FaqSection
-                  title={category}
+                  title={categoryLabels[category] || category}
                   compact
                   items={items.map((f) => ({ question: f.questionText, answer: f.answer }))}
                 />
               </div>
-            ))
+              );
+            })
           }
         </div>
 

@@ -1,8 +1,11 @@
 question: same-day-service
-questionText: Can I get same-day home service in Srinagar?
+questionText: Can I get same-day home service from Panun Kaergar in Srinagar or elsewhere in Kashmir?
 answer: >-
-  Yes, when a verified partner is available in your zone for the selected time slot.
-  Call, WhatsApp, fill our booking form, or use the app and choose the earliest available time.
+  Often yes, when a suitable professional is free for your job and area that day. Same-day is
+  more likely for urgent repairs such as leaks, electrical faults, or appliance breakdowns, and
+  less certain for large jobs such as painting. Call or WhatsApp +91 8899 181 555, or book on
+  the website or app and ask for the earliest slot. We confirm what is actually available before
+  anyone is sent.
 category: Booking
-sortOrder: 6
+sortOrder: 23
 published: true

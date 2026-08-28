@@ -1,7 +1,9 @@
 question: partner-joining-free
-questionText: Do I have to pay to join Panun Kaergar as a partner?
+questionText: Do I have to pay a fee to join Panun Kaergar as a service partner?
 answer: >-
-  No. There is no upfront application or listing fee.
+  No. There is no upfront application or listing fee to apply as a Panun Kaergar partner. After
+  you are activated, your earnings come from fulfilling assigned jobs under the agreed payout
+  terms. Customer prices are set by Panun Kaergar; you do not pay to appear in a public directory.
 category: Partners
-sortOrder: 8
+sortOrder: 71
 published: true

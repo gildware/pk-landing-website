@@ -1,8 +1,10 @@
 question: partner-job-volume
-questionText: Do I need to find my own customers as a Panun Kaergar partner?
+questionText: Do Panun Kaergar partners have to find their own customers in Kashmir?
 answer: >-
-  No. Panun Kaergar generates customer demand and allocates relevant service opportunities. You
-  focus on fulfilling the service according to our standards.
+  No. Panun Kaergar generates customer demand and allocates relevant jobs. You focus on doing
+  the work to our standards, arriving on time, and reporting issues. You should not be chasing
+  homeowners for private work that came through Panun Kaergar — those customers booked the
+  company.
 category: Partners
-sortOrder: 7
+sortOrder: 73
 published: true

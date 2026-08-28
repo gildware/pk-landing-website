@@ -1,8 +1,11 @@
 question: cancellation-policy
-questionText: Can I cancel or reschedule a booking?
+questionText: Can I cancel or reschedule a Panun Kaergar booking, and is there a cancellation fee?
 answer: >-
-  Yes. Contact us by phone or WhatsApp, or use the app to reschedule or cancel before the partner
-  is on the way. Late cancellations may follow the policy shown when you booked.
+  Yes. Call +91 8899 181 555, WhatsApp us, or use the customer app to cancel or move the visit
+  before the professional is on the way. Tell us your name, phone, and booking details. Fees, if
+  any, depend on how close you cancel to the scheduled time and the type of service; where a fee
+  applies it is shown when you book in the app. For the full rules, see the cancellation and
+  refund pages on this website.
 category: Booking
-sortOrder: 9
+sortOrder: 25
 published: true

@@ -1,8 +1,10 @@
 question: loyalty-program
-questionText: How do loyalty points work?
+questionText: How do Panun Kaergar loyalty points work, and do I earn them if I book by phone?
 answer: >-
-  When you complete a booking through the Panun Kaergar app, you earn loyalty points. Redeem them
-  as wallet credit for discounts on your next home service.
+  Loyalty points are earned when you complete a booking made in the Panun Kaergar customer app.
+  They can be redeemed as wallet credit toward a later home service in the app. Bookings made
+  only by call, WhatsApp, or the website form do not earn those points. You can still book
+  without the app; points are an extra for app customers, not a requirement to get service.
 category: Payment
-sortOrder: 12
+sortOrder: 43
 published: true

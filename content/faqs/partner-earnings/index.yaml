@@ -1,9 +1,10 @@
 question: partner-earnings
-questionText: How do Panun Kaergar partners get paid?
+questionText: How and when do Panun Kaergar partners get paid for completed jobs?
 answer: >-
-  Panun Kaergar manages the customer payment process and settles your agreed partner payout
-  according to the applicable payment terms. Settlements currently run daily and weekly, and you
-  can track them in the Partner app. Customer-facing prices are set by Panun Kaergar.
+  Panun Kaergar collects payment from the customer and settles your agreed payout. Settlements
+  currently run on daily and weekly cycles, and you can track them in the Partner app. Exact
+  timing and deductions follow the commercial terms you accepted at onboarding. Customer-facing
+  prices are set by Panun Kaergar, not by you at the house.
 category: Partners
-sortOrder: 5
+sortOrder: 75
 published: true

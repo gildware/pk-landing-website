@@ -1,8 +1,11 @@
 question: custom-service-request
-questionText: What if my job is not listed?
+questionText: What if the job I need is not listed as a Panun Kaergar service?
 answer: >-
-  In the app, post a custom request and partners can send you offers. On the website, choose
-  "Other / Custom request" in the booking form or WhatsApp us with a short description of the job.
+  Describe the work anyway. On the website, choose Other / Custom request in the booking form, or
+  WhatsApp +91 8899 181 555 with a short description, your area, and photos if you have them. In
+  the app you can also post a custom job. We review the request, confirm whether we can take it,
+  give an estimate, and schedule a visit. You are not left to hunt for a private number for
+  unusual work.
 category: Booking
-sortOrder: 11
+sortOrder: 28
 published: true

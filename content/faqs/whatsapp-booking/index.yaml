@@ -1,9 +1,11 @@
 question: whatsapp-booking
-questionText: How do I book on WhatsApp?
+questionText: How do I book a Panun Kaergar home service on WhatsApp in Kashmir?
 answer: >-
-  Tap any WhatsApp button on this website, or fill the booking form and tap "WhatsApp" to send
-  your details. Include your name, phone number, service needed, and your district or locality
-  in Kashmir. Our team replies and confirms your booking.
+  Tap a WhatsApp button on this website, or message +91 8899 181 555. Send your name, phone
+  number, the service you need, your district or locality, and a short description of the job.
+  You can also fill the website form and choose WhatsApp so your details go through in one
+  message. Our team replies, confirms the estimate and slot, and stays with you until the visit
+  is done.
 category: Booking
-sortOrder: 8
+sortOrder: 22
 published: true
