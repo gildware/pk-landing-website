@@ -42,6 +42,8 @@ const trustItems = [
 
 const formHeading =
   areaName.toLowerCase() === 'kashmir' ? 'Book across Kashmir' : `Book in ${areaName}`;
+
+const titleLines = title.split(/(?<=\.)\s+/).filter(Boolean);
 ---
 
 <section
@@ -66,7 +68,7 @@ const formHeading =
 
   <div class="relative mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-9 lg:py-14">
     <div class="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-start lg:gap-12">
-      <div class="lg:col-start-1 lg:row-start-1">
+      <div>
         <p class="animate-fade-up text-sm font-semibold tracking-wide text-accent sm:text-base">
           Panun Kaergar
         </p>
@@ -78,39 +80,23 @@ const formHeading =
           )
         }
         <h1
-          class="animate-fade-up stagger-1 mt-3 text-xl font-extrabold leading-snug text-white sm:text-2xl lg:text-[2.85rem] lg:leading-[1.1]"
+          class="animate-fade-up stagger-1 mt-3 text-xl font-extrabold leading-snug text-white sm:text-2xl lg:text-[2.85rem] lg:leading-[1.15]"
           style="color: #ffffff;"
         >
-          {title}
+          {titleLines[0]}
+          {titleLines.slice(1).map((line) => (
+            <span class="block">{line}</span>
+          ))}
         </h1>
-      </div>
-
-      <div class="lg:col-start-2 lg:row-start-1 lg:row-span-2">
-        <div
-          class="animate-slide-right stagger-2 scroll-mt-24 rounded-2xl bg-white p-4 text-slate-900 shadow-2xl transition-shadow duration-500 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)] sm:p-6"
-          id="book-form"
-          style="background-color: #ffffff; color: #0f172a;"
-        >
-          <BookServiceForm
-            site={site}
-            services={services}
-            formId="hero-book-form"
-            heading={formHeading}
-            variant="compact"
-          />
-        </div>
-      </div>
-
-      <div class="lg:col-start-1 lg:row-start-2">
         {
           subtitle && (
-            <p class="animate-fade-up stagger-2 mt-1 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base lg:mt-3 lg:text-lg">
+            <p class="animate-fade-up stagger-2 mt-3 max-w-xl text-sm leading-relaxed text-white/85 sm:text-base lg:text-lg">
               {subtitle}
             </p>
           )
         }
 
-        <ul class="animate-fade-up stagger-3 mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/85 lg:mt-6 lg:gap-x-6 lg:gap-y-3 lg:text-white/80">
+        <ul class="animate-fade-up stagger-3 mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/85 lg:mt-5 lg:gap-x-6 lg:gap-y-3 lg:text-white/80">
           {trustItems.map((item, i) => (
             <li class:list={['flex items-center gap-2', i > 0 && 'animate-fade-in', i === 1 && 'stagger-4', i === 2 && 'stagger-5']}>
               <Icon name={item.icon} size={17} class="text-white" />
@@ -142,6 +128,22 @@ const formHeading =
         <p class="animate-fade-up mt-4 text-center text-xs text-white/70 lg:hidden">
           Call · WhatsApp · Website · App
         </p>
+      </div>
+
+      <div>
+        <div
+          class="animate-slide-right stagger-2 scroll-mt-24 rounded-2xl bg-white p-4 text-slate-900 shadow-2xl transition-shadow duration-500 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)] sm:p-6"
+          id="book-form"
+          style="background-color: #ffffff; color: #0f172a;"
+        >
+          <BookServiceForm
+            site={site}
+            services={services}
+            formId="hero-book-form"
+            heading={formHeading}
+            variant="compact"
+          />
+        </div>
       </div>
     </div>
   </div>

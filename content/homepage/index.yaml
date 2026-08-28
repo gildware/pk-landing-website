@@ -6,7 +6,7 @@ howItWorksSteps:
       same process.
   - title: We plan the visit
     description: >-
-      You get a price before work starts. We pick who goes — our crew or a specialist — and
+      You get a price before work starts. We assign the professional and
       confirm the slot.
   - title: We finish it
     description: >-
@@ -41,9 +41,9 @@ platformFeatures:
       You see an estimate or a clear range first. Extra parts are explained before anyone buys
       them.
   - icon: ✅
-    title: Checked people at the door
+    title: We send the professional
     description: >-
-      Own teams and professional partners — onboarded before they take a Kashmir home visit.
+      You booked Panun Kaergar — not a private number. We assign someone suited to the job.
   - icon: 💬
     title: Book how you like
     description: >-
