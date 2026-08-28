@@ -1,8 +1,9 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import CategoryMarquee from '@/components/CategoryMarquee.astro';
 import FaqSection from '@/components/FaqSection.astro';
 import BookingOptions from '@/components/BookingOptions.astro';
-import CtaBanner from '@/components/CtaBanner.astro';
+import AskQuestionForm from '@/components/AskQuestionForm.astro';
 import Icon from '@/components/Icon.astro';
 import { buildMeta, truncate } from '@/utils/seo';
 import { getSiteSettings, getServices, getAreas, siteUrl } from '@/utils/reader';
@@ -12,122 +13,114 @@ import {
   itemListSchema,
   mobileApplicationsSchema,
 } from '@/utils/schema';
-import { BOOK_PATH } from '@/utils/booking';
+import { BOOK_PATH, whatsappHref } from '@/utils/booking';
 
 const site = await getSiteSettings();
 const services = await getServices();
 const areas = await getAreas();
+const customerWhatsAppHref = whatsappHref(
+  site.whatsapp,
+  'Hello Panun Kaergar, I would like to book a home service.',
+);
+
+const categories = services.map((s) => ({
+  slug: s.slug,
+  shortName: s.shortName,
+}));
 
 const PAGE_PATH = '/features';
 
 const meta = buildMeta({
-  title: 'Home Service App Features Kashmir | Panun Kaergar',
+  title: 'How to Book and Track Home Services | Panun Kaergar',
   description: truncate(
-    'Panun Kaergar app for Kashmir: book by phone, WhatsApp, web or app. Track jobs, chat for help, custom requests, and loyalty points.',
+    'Use Panun Kaergar your way — call, WhatsApp, website, or the app. Track bookings, request custom jobs, and earn loyalty points. The app is optional.',
   ),
   path: PAGE_PATH,
   ogImage: '/images/features/features-hero.webp',
   ogImageAlt:
-    'Kashmir customer booking home services on the Panun Kaergar app in a Srinagar living room',
+    'A Kashmir household booking a home service with Panun Kaergar by phone and app',
   ogImageWidth: 1920,
   ogImageHeight: 1280,
 });
 
-const coreFeatures = [
+const storyImages = [
   {
-    icon: 'cpu',
-    title: 'App chat support',
-    description:
-      'Ask questions and book services inside the Panun Kaergar app. Get quick help before a technician visits — without hunting for a phone number.',
-    href: '#app-features',
-    listUrl: siteUrl(PAGE_PATH),
+    src: '/images/features/features-booking.webp',
+    alt: 'Booking a home service by phone, WhatsApp, or website',
   },
   {
-    icon: 'home',
-    title: 'All service categories',
-    description: `Carpentry, plumbing, masonry, electrician, cleaning, pest control, laundry, painting, appliances, gardening, salon, and more — ${services.length}+ categories across Kashmir.`,
-    href: '/services',
-    listUrl: siteUrl('/services'),
+    src: '/images/features/features-app.webp',
+    alt: 'Following a Panun Kaergar booking in the customer app',
   },
   {
-    icon: 'target',
-    title: 'Custom jobs',
-    description:
-      'Job not listed? Tell us what you need. We scope it, confirm the price, and get it done.',
-    href: '#custom-jobs',
-    listUrl: siteUrl(PAGE_PATH),
+    src: '/images/features/features-custom-jobs.webp',
+    alt: 'Describing a custom home job that is not on the standard list',
   },
   {
-    icon: 'star-badge',
-    title: 'Loyalty rewards',
-    description:
-      'Earn points on completed app bookings. Redeem them for money off your next home service — so regular customers save more over time.',
-    href: '#loyalty',
-    listUrl: siteUrl(PAGE_PATH),
-  },
-  {
-    icon: 'shield-check',
-    title: 'Quality we stand behind',
-    description:
-      'You hire Panun Kaergar. Work is done by our teams and professional partners — to our standards. If something is wrong, you call us.',
-    href: '/why-choose-panun-kaergar',
-    listUrl: siteUrl('/why-choose-panun-kaergar'),
-  },
-  {
-    icon: 'message',
-    title: 'Book without the app',
-    description: `Prefer a call or message? Dial ${site.phone}, WhatsApp us, or fill the website form. One number. Every service.`,
-    href: '#booking-channels',
-    listUrl: siteUrl(PAGE_PATH),
+    src: '/images/features/features-hero.webp',
+    alt: 'A Kashmir household booking home help with Panun Kaergar',
   },
 ];
 
 const bookingChannels = [
   {
-    icon: 'smartphone',
-    title: 'Mobile app',
-    description:
-      'Full booking flow on Android and iOS — choose a service, set your area and time, track status, and rebook from your history.',
-  },
-  {
     icon: 'phone',
-    title: 'Phone',
-    description: `Call ${site.phone} and tell us what you need. Our team creates the booking and takes it from there.`,
+    title: 'Call',
+    description: `Dial ${site.phone} and tell us the job, your area, and a preferred time. We create the booking and take it from there.`,
   },
   {
     icon: 'whatsapp',
     title: 'WhatsApp',
     description:
-      'Send your service type, neighbourhood, and preferred time. Photos help for repairs — most customers get a reply during support hours.',
+      'Send the service, neighbourhood, and preferred time. Photos help for repairs. We reply and confirm the visit.',
   },
   {
     icon: 'form',
-    title: 'Website form',
+    title: 'Website',
     description:
-      'Book from any browser on the Panun Kaergar website. Ideal if you are on a laptop or do not want to install another app.',
+      'Fill the booking form from any browser. Useful if you are on a laptop or do not want another app.',
+  },
+  {
+    icon: 'smartphone',
+    title: 'Customer app',
+    description:
+      'Book on Android or iOS, then track status, chat on that job, rebook from history, and earn loyalty points.',
   },
 ];
 
-const appHighlights = [
+const appExtras = [
   {
-    title: 'Track every booking',
-    description:
-      'See request status, who was assigned, and visit windows in one place — so you always know what is next.',
+    icon: 'target',
+    title: 'Track the booking',
+    description: 'See request status and visit windows in one place, instead of calling around for an update.',
   },
   {
-    title: 'Chat when you need help',
-    description:
-      'Use in-app chat for booking questions, reschedules, or tips before a visit. Support stays linked to your job.',
+    icon: 'message',
+    title: 'Chat on that job',
+    description: 'Ask about timing, reschedules, or details before the visit. The conversation stays linked to your booking.',
   },
   {
-    title: 'Rate and build trust',
-    description:
-      'After a job, leave a rating. Honest reviews keep quality high and help us stand behind every visit.',
+    icon: 'clock',
+    title: 'History and rebook',
+    description: 'Open a past visit and book again — same service, less repeating yourself.',
   },
   {
-    title: 'Earn loyalty points',
-    description:
-      'Completed app bookings add points you can redeem later. The more you book through the app, the more you save.',
+    icon: 'star',
+    title: 'Rate the visit',
+    description: 'Leave a rating after the job. Feedback helps us stand behind the work.',
+  },
+];
+
+const afterYouBook = [
+  {
+    icon: 'smartphone',
+    title: 'If you booked in the app',
+    description: 'Open the booking to see status and message support on that job.',
+  },
+  {
+    icon: 'headset',
+    title: 'If you booked by call or WhatsApp',
+    description: 'We confirm the visit and update you on timing. You can always call or message us with the booking details.',
   },
 ];
 
@@ -135,53 +128,76 @@ const customJobSteps = [
   {
     n: '01',
     title: 'Describe the work',
-    desc: 'Share what you need done, your area in Kashmir, and any photos or constraints that matter.',
+    desc: 'Tell us what you need, your area, and any photos or constraints — app, WhatsApp, or call.',
   },
   {
     n: '02',
-    title: 'We confirm the job',
-    desc: 'Panun Kaergar scopes the work, confirms pricing, and assigns our team or a professional partner.',
+    title: 'We scope it and confirm the price',
+    desc: 'We review the request and confirm an estimate before work begins.',
   },
   {
     n: '03',
-    title: 'Choose and confirm',
-    desc: 'We confirm the visit — then you can track it like any other booking.',
+    title: 'We confirm the visit',
+    desc: 'The job is booked like any other Panun Kaergar service. You can follow it the same way.',
   },
 ];
 
 const pageFaqs = [
   {
-    question: 'What features does the Panun Kaergar home services app include?',
+    question: 'Do I need the Panun Kaergar app to book a home service in Kashmir?',
     answer:
-      'The customer app lets you browse service categories, book visits across Kashmir, post custom jobs, chat for help, track booking status, rate the visit, and earn loyalty points on completed jobs.',
+      'No. You can book by phone, WhatsApp, or the website form. The free customer app adds tracking, chat on that job, history, rebooking, custom-job requests, and loyalty points — but it is optional.',
   },
   {
-    question: 'Do I need the Panun Kaergar app to book home services in Kashmir?',
+    question: 'If I book by phone or WhatsApp, is it the same service as booking in the app?',
     answer:
-      'No. You can book by phone, WhatsApp, or the website form. The free app adds tracking, chat, custom jobs, loyalty points, and faster rebooking — but it is optional.',
+      'Yes. Every channel is a request to Panun Kaergar. We manage pricing, who comes, the visit, payment, and support. The app is a convenient way to follow the job — not a different company.',
   },
   {
-    question: 'How do custom jobs work on Panun Kaergar?',
+    question: 'What can I do in the Panun Kaergar customer app that I cannot do on a call?',
     answer:
-      'If your request is not in the standard list, tell us what you need in the app with details and your area. Panun Kaergar scopes it, confirms the price, and gets it done.',
+      'The app lets you browse services, book and rebook from your history, track status, chat on a specific job, request a custom job, rate a visit, and earn loyalty points on completed app bookings.',
+  },
+  {
+    question: 'How do I know what is happening after I send a request?',
+    answer:
+      'App bookings show status in the app. For phone or WhatsApp bookings, we confirm the visit and can update you on timing. Either way, you come back to Panun Kaergar if you need help.',
+  },
+  {
+    question: 'What if the job I need is not in the service list?',
+    answer:
+      'Describe the work — in the app, on WhatsApp, or on a call — with your area and any photos. We scope it, confirm an estimate, and book the visit like any other job.',
   },
   {
     question: 'How do Panun Kaergar loyalty rewards work?',
     answer:
-      'When you complete bookings through the Panun Kaergar app, you earn points. Those points can be redeemed for discounts on future home services booked in the app.',
+      'Completed bookings made through the customer app earn points. You can redeem those points for money off a future home service booked in the app.',
   },
   {
-    question: 'Can I track my booking after I request a service?',
+    question: 'Is there a separate app for service partners?',
     answer:
-      'App bookings show job status and who was assigned so you can follow progress. For phone or WhatsApp bookings, our support team can update you on confirmation and timing.',
+      'Yes. The Partner app is for professionals who fulfill Panun Kaergar jobs. Customers use the customer app, or book by phone, WhatsApp, or website. See Become a partner if you want to join the network.',
   },
   {
-    question: 'Which areas in Kashmir does Panun Kaergar cover?',
-    answer: `We serve homes across ${areas.length}+ districts and neighbourhoods in Kashmir, including ${areas
+    question: 'Which areas in Kashmir can I book from?',
+    answer: `Homes across Kashmir including ${areas
       .slice(0, 5)
       .map((a) => a.displayName)
-      .join(', ')}, and more. Check our service areas page or mention your locality when you book.`,
+      .join(', ')}, and more. Mention your neighbourhood when you book.`,
   },
+];
+
+const schemaFeatures = [
+  ...bookingChannels.map((c) => ({
+    name: c.title,
+    url: siteUrl(`${PAGE_PATH}#booking-channels`),
+    description: c.description,
+  })),
+  ...appExtras.map((c) => ({
+    name: c.title,
+    url: siteUrl(`${PAGE_PATH}#app-features`),
+    description: c.description,
+  })),
 ];
 
 const schemas = [
@@ -190,111 +206,138 @@ const schemas = [
     { name: 'Features', path: PAGE_PATH },
   ]),
   faqSchema(pageFaqs),
-  itemListSchema(
-    coreFeatures.map((f) => ({
-      name: f.title,
-      url: f.listUrl,
-      description: f.description,
-    })),
-    'Panun Kaergar features',
-  ),
+  itemListSchema(schemaFeatures, 'Panun Kaergar features'),
   ...mobileApplicationsSchema(site),
 ].filter(Boolean);
 ---
 
 <PageLayout meta={meta} schemas={schemas}>
-  <!-- Hero -->
-  <section class="relative overflow-hidden bg-brand-900 text-white">
-    <div
-      class="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-900 via-brand-700 to-brand-600"
-      aria-hidden="true"
-    ></div>
+  <section
+    class="relative overflow-hidden bg-brand-900 bg-gradient-to-br from-brand-900 via-brand-600 to-brand-700 text-white"
+    style="background-color: #121228; color: #ffffff;"
+  >
     <div class="hero-blob -left-24 top-0 h-72 w-72 bg-brand-500/30" style="animation-delay: 0s;" aria-hidden="true"></div>
     <div class="hero-blob -right-16 bottom-0 h-96 w-96 bg-accent/20" style="animation-delay: -5s;" aria-hidden="true"></div>
+    <div class="hero-blob left-1/3 top-1/2 h-48 w-48 bg-white/10" style="animation-delay: -9s;" aria-hidden="true"></div>
 
-    <div class="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-20">
-      <div>
-        <p class="animate-fade-up text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-          Panun Kaergar features
-        </p>
-        <h1 class="animate-fade-up stagger-1 mt-3 font-extrabold leading-[1.08] tracking-tight text-white text-[clamp(2rem,5.5vw,3.5rem)]">
-          Book, track, and rebook from your phone
+    <div class="relative mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-9 lg:py-14">
+      <div class="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-start lg:gap-12">
+        <h1
+          class="animate-fade-up text-[1.35rem] font-extrabold leading-snug text-white sm:text-[1.75rem] lg:col-start-1 lg:row-start-1 lg:text-[2.15rem] lg:leading-[1.2]"
+          style="color: #ffffff;"
+        >
+          Use Panun Kaergar your way.
+          <span class="block">We still handle the job.</span>
         </h1>
-        <p class="animate-fade-up stagger-2 mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-          Easy booking, a price before work starts, and a Srinagar team if something slips.
-          Use the app, or skip it and call.
-        </p>
-        <div class="animate-fade-up stagger-3 mt-8 flex flex-wrap gap-3">
-          <a href={BOOK_PATH} class="btn-primary bg-white text-brand-700 hover:bg-brand-50">Book a service</a>
-          <a href="/download" class="btn-secondary border-white/25 bg-white/10 text-white hover:border-white/40 hover:bg-white/15">
-            Download the app
-          </a>
-        </div>
-      </div>
 
-      <div class="animate-slide-right stagger-2 relative hidden overflow-hidden rounded-3xl border border-white/15 shadow-2xl lg:block">
-        <img
-          src="/images/features/features-hero.webp"
-          alt="Kashmir customer booking home services on the Panun Kaergar app in a Srinagar living room"
-          width="1920"
-          height="1280"
-          class="aspect-[16/10] w-full object-cover"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
+        <div class="animate-slide-right stagger-2 lg:col-start-2 lg:row-start-1 lg:row-span-2">
+          <div class="features-hero-mosaic" aria-hidden="true">
+            {
+              storyImages.map((img, i) => (
+                <figure class:list={['features-hero-mosaic__cell', `features-hero-mosaic__cell--${i + 1}`]}>
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    width="768"
+                    height="512"
+                    class="h-full w-full object-cover"
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                </figure>
+              ))
+            }
+          </div>
+          <p class="sr-only">
+            Book by call, WhatsApp, website, or the Panun Kaergar app. The company manages the
+            service either way. The app is optional.
+          </p>
+        </div>
+
+        <div class="lg:col-start-1 lg:row-start-2">
+          <p class="animate-fade-up stagger-1 inline-flex max-w-full items-center rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90 backdrop-blur-sm">
+            How you book and follow a job
+          </p>
+          <p class="animate-fade-up stagger-2 mt-3 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+            Call, WhatsApp, website, or the app — same company, same managed service. The app adds
+            tracking, chat, custom jobs, and loyalty. You do not need it to book.
+          </p>
+
+          <ul class="animate-fade-up stagger-3 mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/80 sm:mt-6 sm:gap-x-6 sm:gap-y-3">
+            <li class="flex items-center gap-2">
+              <Icon name="check" size={17} class="text-white" />
+              Four ways to book
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="check" size={17} class="text-white" />
+              Track in the app if you want
+            </li>
+            <li class="flex items-center gap-2">
+              <Icon name="check" size={17} class="text-white" />
+              Custom jobs and loyalty
+            </li>
+          </ul>
+
+          <div class="animate-fade-up stagger-4 mt-6 flex flex-wrap items-center gap-3">
+            <a href={BOOK_PATH} class="btn-primary bg-white text-brand-700 hover:bg-brand-50">
+              Book a service
+            </a>
+            <a
+              href="/download"
+              class="inline-flex items-center gap-2 rounded-xl border-2 border-white/40 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10"
+            >
+              Download the app
+            </a>
+            <a
+              href={`tel:${site.phone}`}
+              class="inline-flex items-center gap-2 rounded-xl border-2 border-white/40 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/10"
+            >
+              <Icon name="phone" size={18} />
+              Call {site.phone}
+            </a>
+            <a
+              href={customerWhatsAppHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl border-2 border-emerald-300/50 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-emerald-300/80 hover:bg-emerald-400/15"
+            >
+              <Icon name="whatsapp" size={18} />
+              WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Breadcrumb -->
-  <div class="border-b border-slate-200 bg-white">
-    <nav class="page-breadcrumb mx-auto max-w-6xl px-4 py-4 sm:px-6" aria-label="Breadcrumb">
-      <a href="/">Home</a>
-      <span aria-hidden="true">/</span>
-      <span aria-current="page">Features</span>
-    </nav>
-  </div>
+  <CategoryMarquee categories={categories} />
 
-  <!-- Core features grid -->
-  <section class="border-b border-slate-200 bg-white" id="core-features" aria-labelledby="core-features-heading">
-    <div class="section-pad mx-auto max-w-6xl">
-      <div class="reveal mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">What you get</p>
-        <h2 id="core-features-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-          Panun Kaergar features that make booking simpler
+  <!-- Four ways to book -->
+  <section class="border-y border-slate-200 bg-white" id="booking-channels" aria-labelledby="booking-channels-heading">
+    <div class="section-pad mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div class="reveal">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Book your way</p>
+        <h2 id="booking-channels-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          Four ways to request a home service
         </h2>
-        <p class="mt-4 text-lg leading-relaxed text-slate-600">
-          You book Panun Kaergar. We handle pricing, who does the work, and support — whether you
-          book home services in Srinagar and across Kashmir in the app, or reach us by phone and
-          WhatsApp. Explore{' '}
-          <a href="/services" class="font-semibold text-brand-700 underline-offset-2 hover:underline">
-            all services
-          </a>
-          {' '}or see{' '}
-          <a href="/service-areas" class="font-semibold text-brand-700 underline-offset-2 hover:underline">
-            service areas
-          </a>.
+        <p class="mt-3 max-w-3xl text-lg text-slate-600">
+          Every channel is a request to Panun Kaergar. We manage the job from there.
         </p>
       </div>
 
-      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {
-          coreFeatures.map((item, i) => (
+          bookingChannels.map((item, i) => (
             <article
               class:list={[
-                'reveal-scale card card-hover p-6 sm:p-7',
+                'reveal-scale card card-hover p-5 sm:p-6',
                 `reveal-stagger-${Math.min(i + 1, 6)}`,
               ]}
             >
               <span class="icon-badge">
                 <Icon name={item.icon} size={22} class="text-brand-600" />
               </span>
-              <h3 class="mt-4 text-lg font-bold text-slate-900">
-                <a href={item.href} class="transition hover:text-brand-700">
-                  {item.title}
-                </a>
-              </h3>
+              <h3 class="mt-4 text-base font-bold leading-snug text-slate-900">{item.title}</h3>
               <p class="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
             </article>
           ))
@@ -303,149 +346,122 @@ const schemas = [
     </div>
   </section>
 
-  <!-- Book your way -->
-  <section class="bg-slate-50" id="booking-channels" aria-labelledby="booking-channels-heading">
-    <div class="section-pad mx-auto max-w-6xl">
-      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <div class="reveal-left overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+  <!-- What the app adds -->
+  <section class="bg-slate-50" id="app-features" aria-labelledby="app-features-heading">
+    <div class="section-pad mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div class="reveal">
+          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Customer app</p>
+          <h2 id="app-features-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            What the app adds — if you want it
+          </h2>
+          <p class="mt-3 text-lg text-slate-600">
+            You can skip the app entirely. If you install it, you get a clearer view of the booking
+            you already made with Panun Kaergar.
+          </p>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            {
+              appExtras.map((item, i) => (
+                <article
+                  class:list={[
+                    'reveal-scale rounded-2xl border border-slate-200 bg-white p-4 sm:p-5',
+                    `reveal-stagger-${Math.min(i + 1, 6)}`,
+                  ]}
+                >
+                  <span class="icon-badge !h-9 !w-9">
+                    <Icon name={item.icon} size={18} class="text-brand-600" />
+                  </span>
+                  <h3 class="mt-3 text-sm font-bold text-slate-900">{item.title}</h3>
+                  <p class="mt-1.5 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                </article>
+              ))
+            }
+          </div>
+
+          <div class="reveal mt-8">
+            <a href="/download" class="btn-primary">
+              Download the app
+              <Icon name="chevron-right" size={18} class="ml-1 inline" />
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal overflow-hidden rounded-[1.75rem] border border-slate-200 shadow-xl">
           <img
-            src="/images/features/features-booking.webp"
-            alt="Multi-channel home service booking in Kashmir — website form, phone, and chat on a dining table"
+            src="/images/features/features-app.webp"
+            alt="Following a Panun Kaergar booking in the customer app"
             width="1920"
             height="1280"
             class="aspect-[4/3] w-full object-cover"
             loading="lazy"
             decoding="async"
           />
-        </div>
-
-        <div class="reveal">
-          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Book your way</p>
-          <h2 id="booking-channels-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            Four ways to request a home service
-          </h2>
-          <p class="mt-4 text-lg leading-relaxed text-slate-600">
-            Every channel connects to the same booking system and Srinagar-based support team — so
-            you are never left without a way to get help at home.
-          </p>
-
-          <ul class="mt-8 space-y-4">
-            {
-              bookingChannels.map((channel, i) => (
-                <li
-                  class:list={[
-                    'reveal flex gap-3 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm',
-                    `reveal-stagger-${Math.min(i + 1, 6)}`,
-                  ]}
-                >
-                  <span class="icon-badge shrink-0">
-                    <Icon name={channel.icon} size={20} class="text-brand-600" />
-                  </span>
-                  <div>
-                    <h3 class="font-bold text-slate-900">{channel.title}</h3>
-                    <p class="mt-1 text-sm leading-relaxed text-slate-600">{channel.description}</p>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
-
-          <div class="reveal mt-8">
-            <a href={BOOK_PATH} class="btn-primary">
-              Start a booking
-              <Icon name="chevron-right" size={18} class="ml-1 inline" />
-            </a>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- App experience -->
-  <section class="border-y border-slate-200 bg-white" id="app-features" aria-labelledby="app-features-heading">
-    <div class="section-pad mx-auto max-w-6xl">
-      <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <div class="reveal order-2 lg:order-1">
-          <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Customer app</p>
-          <h2 id="app-features-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            Track, chat, and save — from your phone
-          </h2>
-          <p class="mt-4 text-lg leading-relaxed text-slate-600">
-            The free Panun Kaergar customer app is built for Kashmir households who want clearer
-            status, faster rebooking, and rewards for booking with us again.
-          </p>
+  <!-- After you book -->
+  <section class="border-y border-slate-200 bg-white" id="after-you-book" aria-labelledby="after-heading">
+    <div class="section-pad mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div class="reveal">
+        <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">After you book</p>
+        <h2 id="after-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+          How you know what happens next
+        </h2>
+        <p class="mt-3 max-w-3xl text-lg text-slate-600">
+          Same company either way. The channel only changes how updates reach you.
+        </p>
+      </div>
 
-          <ul class="mt-8 space-y-4">
-            {
-              appHighlights.map((item, i) => (
-                <li
-                  class:list={[
-                    'reveal flex gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 sm:p-5',
-                    `reveal-stagger-${Math.min(i + 1, 6)}`,
-                  ]}
-                >
-                  <Icon name="check" size={20} class="mt-0.5 shrink-0 text-brand-600" />
-                  <div>
-                    <h3 class="font-bold text-slate-900">{item.title}</h3>
-                    <p class="mt-1 text-sm leading-relaxed text-slate-600">{item.description}</p>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
-
-          <div class="reveal mt-8">
-            <a href="/download" class="btn-primary">
-              Get the free app
-              <Icon name="chevron-right" size={18} class="ml-1 inline" />
-            </a>
-          </div>
-        </div>
-
-        <div class="reveal-right order-1 lg:order-2 overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
-          <img
-            src="/images/features/features-app.webp"
-            alt="Close-up of Panun Kaergar app chat on a smartphone while booking home services in a Kashmir kitchen"
-            width="1920"
-            height="1280"
-            class="aspect-[4/3] w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
+      <div class="reveal mt-10 grid gap-6 lg:grid-cols-2">
+        <article class="overflow-hidden rounded-[1.75rem] bg-accent p-6 text-brand-900 shadow-xl sm:p-8">
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-900 text-white">
+            <Icon name={afterYouBook[0].icon} size={20} />
+          </span>
+          <h3 class="mt-5 text-xl font-extrabold">{afterYouBook[0].title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-brand-900/75 sm:text-base">{afterYouBook[0].description}</p>
+        </article>
+        <article class="overflow-hidden rounded-[1.75rem] bg-brand-900 p-6 text-white shadow-xl sm:p-8">
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10">
+            <Icon name={afterYouBook[1].icon} size={20} />
+          </span>
+          <h3 class="mt-5 text-xl font-extrabold">{afterYouBook[1].title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-white/75 sm:text-base">{afterYouBook[1].description}</p>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- Custom jobs -->
-  <section class="bg-gradient-to-b from-slate-50 to-white" id="custom-jobs" aria-labelledby="custom-jobs-heading">
-    <div class="section-pad mx-auto max-w-6xl">
-      <div class="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+  <section class="bg-slate-50" id="custom-jobs" aria-labelledby="custom-jobs-heading">
+    <div class="section-pad mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
         <div class="reveal">
           <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">Custom jobs</p>
           <h2 id="custom-jobs-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            When the job does not fit a category
+            When the job is not on the list
           </h2>
-          <p class="mt-4 text-lg leading-relaxed text-slate-600">
-            Not every household need maps cleanly to a standard service. Custom jobs let you describe
-            the work. Panun Kaergar scopes it, confirms the price, and gets it done — so odd repairs and
-            one-off projects across Kashmir still get covered.
+          <p class="mt-3 text-lg text-slate-600">
+            Describe what you need. We scope it, confirm an estimate, and book it like any other
+            Panun Kaergar visit.
           </p>
 
-          <ol class="mt-8 space-y-4">
+          <ol class="mt-8 space-y-3">
             {
               customJobSteps.map((step, i) => (
                 <li
                   class:list={[
-                    'reveal flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm',
+                    'reveal flex gap-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5',
                     `reveal-stagger-${Math.min(i + 1, 6)}`,
                   ]}
                 >
-                  <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
+                  <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-900 text-sm font-bold text-white">
                     {step.n}
                   </span>
                   <div>
-                    <h3 class="text-lg font-bold text-slate-900">{step.title}</h3>
+                    <h3 class="font-bold text-slate-900">{step.title}</h3>
                     <p class="mt-1 text-sm leading-relaxed text-slate-600">{step.desc}</p>
                   </div>
                 </li>
@@ -454,10 +470,10 @@ const schemas = [
           </ol>
         </div>
 
-        <div class="reveal-right overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+        <div class="reveal overflow-hidden rounded-[1.75rem] border border-slate-200 shadow-xl">
           <img
             src="/images/features/features-custom-jobs.webp"
-            alt="Verified local technician and Kashmir homeowner reviewing a custom home repair job on a phone"
+            alt="Describing a custom home job for Panun Kaergar to scope and book"
             width="1920"
             height="1280"
             class="aspect-[4/3] w-full object-cover"
@@ -470,95 +486,253 @@ const schemas = [
   </section>
 
   <!-- Loyalty -->
-  <section class="bg-brand-900 text-white" id="loyalty" aria-labelledby="loyalty-heading">
-    <div class="section-pad mx-auto max-w-6xl">
-      <div class="reveal mx-auto max-w-3xl text-center">
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Loyalty rewards</p>
-        <h2 id="loyalty-heading" class="mt-2 text-3xl font-extrabold sm:text-4xl">
-          Points that pay for your next home service
-        </h2>
-        <p class="mt-4 text-lg leading-relaxed text-white/85">
-          Complete bookings in the Panun Kaergar app to earn points. Redeem them for discounts on
-          future services — a simple way to save when you book plumbing, cleaning, salon, or repairs
-          again in Kashmir.
-        </p>
-        <div class="mt-8 flex flex-wrap justify-center gap-3">
-          <a href="/download" class="btn-primary bg-white text-brand-700 hover:bg-brand-50">
-            Download &amp; start earning
-          </a>
-          <a
-            href={BOOK_PATH}
-            class="btn-secondary border-white/25 bg-white/10 text-white hover:border-white/40 hover:bg-white/15"
-          >
-            Book on the website
-          </a>
+  <section class="border-y border-slate-200 bg-white" id="loyalty" aria-labelledby="loyalty-heading">
+    <div class="section-pad mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div class="reveal overflow-hidden rounded-[1.75rem] bg-brand-900 text-white shadow-xl">
+        <div class="grid lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div class="px-5 py-8 sm:px-8 lg:px-10 lg:py-12">
+            <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-white/45">Loyalty</p>
+            <h2 id="loyalty-heading" class="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
+              Points on completed app bookings
+            </h2>
+            <p class="mt-4 max-w-xl text-lg leading-relaxed text-white/80">
+              Finish a job you booked in the customer app and you earn points. Redeem them for money
+              off a future home service booked in the app.
+            </p>
+            <div class="mt-8">
+              <a href="/download" class="btn-primary bg-white text-brand-700 hover:bg-brand-50">
+                Get the app
+              </a>
+            </div>
+          </div>
+          <div class="hidden h-full min-h-[16rem] lg:block">
+            <img
+              src="/images/features/features-hero.webp"
+              alt="Booking again with Panun Kaergar from the customer app"
+              width="960"
+              height="720"
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose us teaser -->
+  <section class="bg-slate-50" aria-labelledby="why-teaser-heading">
+    <div class="section-pad mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div class="reveal overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-xl">
+        <div class="grid lg:grid-cols-2">
+          <div class="bg-accent px-5 py-8 text-brand-900 sm:px-8 lg:px-10 lg:py-10">
+            <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-900/50">Why choose us</p>
+            <h2 id="why-teaser-heading" class="mt-3 text-2xl font-extrabold leading-tight sm:text-3xl">
+              Features are how you book. Why choose us is why it is easier.
+            </h2>
+            <p class="mt-4 max-w-lg text-base leading-relaxed text-brand-900/80">
+              Pricing, who comes, coordination, payment, and support stay with Panun Kaergar — so you
+              are not chasing a private number.
+            </p>
+            <a
+              href="/why-choose-panun-kaergar"
+              class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-brand-900 underline-offset-4 hover:underline"
+            >
+              See why households book us
+              <Icon name="chevron-right" size={16} />
+            </a>
+          </div>
+          <div class="bg-brand-900 px-5 py-8 text-white sm:px-8 lg:px-10 lg:py-10">
+            <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-white/45">Partners</p>
+            <h3 class="mt-3 text-2xl font-extrabold leading-tight sm:text-3xl">
+              A separate Partner app for the people who do the work
+            </h3>
+            <p class="mt-4 max-w-lg text-base leading-relaxed text-white/75">
+              Customers book Panun Kaergar. Professionals who join the network use the Partner app
+              for assigned jobs and payout.
+            </p>
+            <a
+              href="/become-a-partner"
+              class="mt-6 inline-flex items-center gap-1 text-sm font-bold text-accent underline-offset-4 hover:underline"
+            >
+              Become a partner
+              <Icon name="chevron-right" size={16} />
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQs -->
-  <section class="border-t border-slate-200 bg-white" id="faqs" aria-labelledby="faqs-heading">
-    <div class="section-pad mx-auto max-w-6xl pb-4">
-      <div class="reveal mx-auto max-w-2xl text-center">
+  <section class="border-y border-slate-200 bg-white" id="faqs" aria-labelledby="faqs-heading">
+    <div class="section-pad mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-10">
+      <div class="reveal max-w-3xl">
         <p class="text-sm font-semibold uppercase tracking-wider text-brand-600">FAQs</p>
         <h2 id="faqs-heading" class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-          Questions about Panun Kaergar features
+          Booking, the app, and what happens after
         </h2>
         <p class="mt-3 text-lg text-slate-600">
-          Quick answers about the app, custom jobs, loyalty rewards, and booking channels in Kashmir.
+          How channels, tracking, custom jobs, and loyalty work — without needing the app to book.
         </p>
       </div>
+
+      <div class="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem] xl:gap-12">
+        <div class="min-w-0">
+          <FaqSection items={pageFaqs} compact class="!py-0" />
+          <p class="mt-8 text-sm text-slate-600">
+            More questions? Visit our{' '}
+            <a href="/faq" class="font-semibold text-brand-700 underline-offset-2 hover:underline">full FAQ</a>
+            {' '}or{' '}
+            <a href="/contact" class="font-semibold text-brand-700 underline-offset-2 hover:underline">contact us</a>.
+          </p>
+        </div>
+
+        <aside class="lg:sticky lg:top-24">
+          <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+            <div class="flex items-start gap-3">
+              <span class="icon-badge shrink-0">
+                <Icon name="message" size={20} />
+              </span>
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-900">Ask a question</h3>
+                <p class="mt-1 text-sm text-slate-600">
+                  Can’t find an answer? Send it and we’ll get back to you.
+                </p>
+              </div>
+            </div>
+            <div class="mt-5">
+              <AskQuestionForm
+                site={site}
+                formId="features-ask-question-form"
+                placeholder="What would you like to know about booking or the app?"
+                sourceLine="Sent via panunkaergar.com features page"
+              />
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
-
-    <FaqSection items={pageFaqs} class="!py-0 !pb-16" />
-
-    <p class="reveal mx-auto max-w-3xl px-4 pb-16 text-center text-sm text-slate-600 sm:px-6">
-      Want the full trust story? Read{' '}
-      <a href="/why-choose-panun-kaergar" class="font-semibold text-brand-700 underline-offset-2 hover:underline">
-        why choose Panun Kaergar
-      </a>
-      , browse the{' '}
-      <a href="/faq" class="font-semibold text-brand-700 underline-offset-2 hover:underline">FAQ</a>
-      , or{' '}
-      <a href="/contact" class="font-semibold text-brand-700 underline-offset-2 hover:underline">contact us</a>.
-    </p>
   </section>
 
   <BookingOptions site={site} />
 
-  <CtaBanner
-    title="Try it on a real job"
-    description="Call, WhatsApp, or fill the form. We’ll confirm the visit."
-    primaryHref={BOOK_PATH}
-    primaryLabel="Book a home service"
-  />
+  <section class="section-pad bg-brand-900 text-white">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-extrabold leading-tight sm:text-4xl">
+        Tell us the job.
+        <span class="mt-2 block text-accent">Use whichever way is easiest.</span>
+      </h2>
+      <p class="mt-4 text-lg text-blue-100/90">
+        Call, WhatsApp, website, or the app. Panun Kaergar manages the rest.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href={BOOK_PATH} class="btn-primary bg-white text-brand-600 hover:bg-brand-50">
+          Book a service
+        </a>
+        <a
+          href="/download"
+          class="inline-flex items-center rounded-xl border-2 border-white/40 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/60 hover:bg-white/10"
+        >
+          Download the app
+        </a>
+      </div>
+      <p class="mt-8 text-sm text-blue-100/90">
+        Or{' '}
+        <a
+          href={customerWhatsAppHref}
+          class="font-semibold text-white underline-offset-2 hover:underline"
+        >
+          WhatsApp us
+        </a>
+        .
+      </p>
+    </div>
+  </section>
 </PageLayout>
 
 <style>
-  .page-breadcrumb {
-    font-size: 0.88rem;
-    color: #5c5f72;
+  .features-hero-mosaic {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.75rem;
+    min-height: 18rem;
   }
 
-  .page-breadcrumb a {
-    color: #202048;
-    font-weight: 600;
-    text-decoration: none;
+  .features-hero-mosaic__cell {
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid rgb(255 255 255 / 0.18);
+    box-shadow: 0 18px 40px -24px rgb(0 0 0 / 0.55);
+    background: rgb(15 23 42 / 0.35);
   }
 
-  .page-breadcrumb a:hover {
-    color: theme('colors.brand.700');
+  .features-hero-mosaic__cell--1 {
+    grid-row: 1 / span 2;
+    animation: features-float 7s ease-in-out infinite;
   }
 
-  .page-breadcrumb span {
-    margin: 0 0.4rem;
-    opacity: 0.5;
+  .features-hero-mosaic__cell--2 {
+    animation: features-float 8s ease-in-out infinite;
+    animation-delay: -1.5s;
   }
 
-  .page-breadcrumb span[aria-current='page'] {
-    opacity: 1;
-    font-weight: 600;
-    color: #323338;
+  .features-hero-mosaic__cell--3 {
+    animation: features-float 7.5s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+
+  .features-hero-mosaic__cell--4 {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .features-hero-mosaic {
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      grid-template-rows: 1fr 1fr;
+      min-height: 20rem;
+    }
+
+    .features-hero-mosaic__cell--1 {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    .features-hero-mosaic__cell--2 {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .features-hero-mosaic__cell--3 {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .features-hero-mosaic__cell--4 {
+      display: block;
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      animation: features-float 9s ease-in-out infinite;
+      animation-delay: -2s;
+    }
+  }
+
+  @keyframes features-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .features-hero-mosaic__cell {
+      animation: none;
+    }
   }
 </style>
