@@ -1,45 +1,204 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import EmailLink from '@/components/EmailLink.astro';
 import { buildMeta } from '@/utils/seo';
+import { getSiteSettings } from '@/utils/reader';
+
+const site = await getSiteSettings();
 
 const meta = buildMeta({
   title: 'Terms & Conditions',
-  description: 'Terms and Conditions for using Panun Kaergar home services.',
+  description: 'Terms and Conditions for using Panun Kaergar home services in Kashmir.',
   path: '/terms',
 });
 ---
 
 <PageLayout meta={meta}>
-  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 prose prose-slate">
-    <h1>Terms & Conditions</h1>
-    <p><em>Last updated: August 2026.</em></p>
-    <p>
-      By using Panun Kaergar's website or mobile applications, you agree to these terms. Panun
-      Kaergar is a home-services company. When you book, you are booking Panun Kaergar — we handle
-      the customer experience including booking, pricing, coordination, payment, quality, and
-      support.
-    </p>
-    <h2>Bookings</h2>
-    <p>
-      When you place a booking — through the app, phone, WhatsApp, or our website form — you agree
-      to provide accurate location and contact information. Cancellation and rescheduling policies
-      apply as shown in the app or communicated by our team at the time of booking.
-    </p>
-    <h2>Pricing</h2>
-    <p>
-      Service prices depend on job type and scope. Estimates are shown in the app where available.
-      For website or phone bookings, final pricing is confirmed by Panun Kaergar before work begins.
-    </p>
-    <h2>How work is fulfilled</h2>
-    <p>
-      Panun Kaergar may complete a job through its own service team, commission-based vendors, or
-      specialist service partners. Whoever performs the work does so to Panun Kaergar's
-      requirements. The customer relationship stays with Panun Kaergar.
-    </p>
-    <h2>Contact</h2>
-    <p>
-      Questions about these terms? <a href="/contact">Contact us</a> or see our
-      <a href="/refund">refund</a> and <a href="/cancellation">cancellation</a> policies.
-    </p>
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Terms & Conditions</h1>
+    <div class="prose prose-slate mt-8 max-w-none">
+      <p><em>Last updated: September 2026.</em></p>
+      <p>
+        These Terms & Conditions ("Terms") govern your use of Panun Kaergar's website, customer app,
+        and other official booking channels, and your relationship with Panun Kaergar when you book
+        home and related services through us.
+      </p>
+      <p>
+        Panun Kaergar ("we", "our", "us") operates a managed home-services platform. We manage the
+        customer-facing side of every booking — acquisition, booking, pricing, communication,
+        coordination, payment collection, support, feedback, and complaint handling. Independent
+        service partners perform the work on site to Panun Kaergar's service standards, but your
+        booking and payment relationship is with Panun Kaergar.
+      </p>
+      <p>
+        By using our website, apps, or booking channels, or by placing a booking with us, you agree
+        to these Terms and to our <a href="/privacy">Privacy Policy</a>,
+        <a href="/refund">Refund Policy</a>, and <a href="/cancellation">Cancellation Policy</a>.
+      </p>
+
+      <h2>1. Bookings</h2>
+      <p>
+        When you place a booking — through the Panun Kaergar customer app, phone, WhatsApp, website
+        form, or another official channel — you agree to provide accurate contact, location, and
+        service information. A booking is a request for Panun Kaergar to arrange the applicable
+        service according to the details confirmed by us.
+      </p>
+      <p>
+        Panun Kaergar confirms bookings, assigns suitable service partners where applicable, and
+        manages scheduling, communication, and support around the visit. You should communicate
+        with Panun Kaergar about booking changes, complaints, payments, and refunds rather than
+        trying to settle these matters privately outside the official process.
+      </p>
+
+      <h2>2. Pricing and payments</h2>
+      <p>
+        Panun Kaergar determines and communicates the customer-facing price for each booking. Prices
+        depend on the service type, scope, materials, and other booking details. Estimates may be
+        shown in the app where available. For website, phone, or WhatsApp bookings, final pricing is
+        confirmed by Panun Kaergar before work begins or as otherwise communicated for that booking.
+      </p>
+      <p>
+        You agree to pay only the amount approved by Panun Kaergar through our official booking and
+        payment process. Panun Kaergar collects customer payments and coordinates settlement with
+        service partners. Do not negotiate, discount, or pay a separate amount directly to a service
+        partner unless Panun Kaergar has expressly approved it in advance.
+      </p>
+      <p>
+        If additional work, a change in scope, or extra materials are needed during the visit, contact
+        Panun Kaergar before any extra amount is agreed or paid. Amounts agreed or paid outside the
+        official Panun Kaergar process are not covered by our booking, payment, or refund policies.
+      </p>
+
+      <h2>3. How services are fulfilled</h2>
+      <p>
+        Panun Kaergar may fulfill bookings through its own service team, independent service
+        partners, commission-based vendors, or specialist providers. Service partners are independent
+        contractors and are not employees, agents, or legal representatives of Panun Kaergar.
+      </p>
+      <p>
+        Whoever performs the work does so to Panun Kaergar's applicable service and safety standards.
+        The customer relationship, including booking confirmation, pricing, payment collection,
+        support, and complaint handling, remains with Panun Kaergar.
+      </p>
+      <p>
+        Service partners may communicate with you only as reasonably necessary to perform the
+        assigned service and must maintain professional conduct at all times.
+      </p>
+
+      <h2>4. Cancellations and rescheduling</h2>
+      <p>
+        You may cancel or reschedule a booking through the customer app or by contacting Panun
+        Kaergar support with your booking reference. Whether any amount is refunded depends on
+        whether a partner has visited the site, how much you have paid, and the applicable
+        cancellation rules.
+      </p>
+      <p>
+        Panun Kaergar may also cancel or reschedule a booking when a partner is unavailable, there is
+        a no-show, operational constraints prevent the visit, or another genuine reason makes the
+        scheduled service impossible. Full details are set out in our
+        <a href="/cancellation">Cancellation Policy</a>.
+      </p>
+
+      <h2>5. Refunds, complaints, and service issues</h2>
+      <p>
+        If you are unhappy with a service, believe work was incomplete, or wish to request a refund,
+        contact Panun Kaergar support with your booking details. We coordinate complaint handling,
+        may review booking records and reasonable evidence, and decide the appropriate next step —
+        which may include corrective rework, a refund, partial refund, reschedule, or another remedy
+        under our policies.
+      </p>
+      <p>
+        Refund eligibility depends on factors such as partner visit status, payment amount, service
+        completion, and the result of any verification. Full details are set out in our
+        <a href="/refund">Refund Policy</a>.
+      </p>
+
+      <h2>6. Customer responsibilities</h2>
+      <p>You agree to:</p>
+      <ul>
+        <li>provide safe and reasonable access to the service location;</li>
+        <li>give accurate information about the job and any known risks or restrictions;</li>
+        <li>be present or arrange a suitable adult contact where needed for the visit;</li>
+        <li>pay only through the official Panun Kaergar process for platform bookings;</li>
+        <li>not ask a partner to bypass Panun Kaergar, cancel to deal privately, or avoid our booking process; and</li>
+        <li>treat service partners professionally and cooperate reasonably during the visit.</li>
+      </ul>
+
+      <h2>7. Service limitations</h2>
+      <p>
+        Home services can vary based on site conditions, access, materials, weather, and other
+        factors discovered during the visit. Panun Kaergar will use reasonable efforts to complete
+        the booked service as confirmed, but we do not guarantee outcomes that depend on conditions
+        outside our control or on information that was not accurately provided at the time of booking.
+      </p>
+      <p>
+        Panun Kaergar may modify operational processes, pricing structures, service procedures, and
+        platform features as the business develops, subject to applicable law and communication of
+        material changes where required.
+      </p>
+
+      <h2>8. Website and app use</h2>
+      <p>
+        You agree not to misuse our website, apps, or booking channels, including by providing false
+        information, interfering with platform operations, attempting unauthorized access, or using
+        our services for unlawful purposes. We may suspend or refuse service in cases of misuse,
+        fraud, abuse, or material breach of these Terms, subject to applicable law.
+      </p>
+
+      <h2>9. Privacy</h2>
+      <p>
+        Our collection and use of personal information is described in our
+        <a href="/privacy">Privacy Policy</a>. By using Panun Kaergar, you acknowledge that booking
+        and service-related information may be shared with assigned service partners only as needed
+        to complete your job and operate the platform.
+      </p>
+
+      <h2>10. Limitation of liability</h2>
+      <p>
+        To the fullest extent permitted by applicable law, Panun Kaergar is not responsible for
+        indirect, incidental, or consequential losses arising from your use of our services, except
+        where liability cannot be excluded by law. Nothing in these Terms limits rights you may have
+        under applicable consumer protection law.
+      </p>
+      <p>
+        Panun Kaergar manages the booking, customer communication, coordination, and payment process,
+        but service partners are responsible for properly performing the assigned service on site.
+        Panun Kaergar may assist in resolving complaints, but issues caused by a partner's negligence,
+        misconduct, improper workmanship, or unauthorized actions on site are handled according to
+        our policies and applicable law.
+      </p>
+
+      <h2>11. Force majeure</h2>
+      <p>
+        Panun Kaergar is not responsible for failure or delay caused by circumstances beyond
+        reasonable control, including natural disasters, severe weather, government restrictions,
+        civil emergencies, war, public disorder, epidemics, pandemics, or widespread technical or
+        network failures.
+      </p>
+
+      <h2>12. Changes to these Terms</h2>
+      <p>
+        We may update these Terms from time to time as our services, operations, or legal
+        requirements change. Material updates will be posted on this page with a revised "Last
+        updated" date. Continued use of Panun Kaergar after an update constitutes acceptance of the
+        revised Terms, to the extent permitted by law.
+      </p>
+
+      <h2>13. Governing law and disputes</h2>
+      <p>
+        These Terms are governed by the applicable laws of India. The parties shall first attempt to
+        resolve disputes through good-faith communication. If a dispute cannot be resolved
+        internally, it may be referred to arbitration or courts of appropriate jurisdiction in
+        Jammu & Kashmir, India, as permitted by applicable law.
+      </p>
+
+      <h2>14. Contact</h2>
+      <p>
+        Questions about these Terms? Call us at <a href={`tel:${site.phone}`}>{site.phone}</a>,
+        email <EmailLink email={site.email} />, or <a href="/contact">contact our support team</a>.
+        See also our <a href="/refund">refund policy</a>, <a href="/cancellation">cancellation policy</a>,
+        and <a href="/privacy">privacy policy</a>.
+      </p>
+    </div>
   </section>
 </PageLayout>
