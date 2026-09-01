@@ -14,27 +14,141 @@ const meta = buildMeta({
 ---
 
 <PageLayout meta={meta}>
-  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 prose prose-slate">
-    <h1>Cancellation Policy</h1>
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Cancellation Policy</h1>
+    <div class="prose prose-slate mt-8 max-w-none">
     <p>
-      You can reschedule or cancel a booking through the Panun Kaergar app, or by contacting our
-      team before the scheduled service time.
+      Panun Kaergar is your point of contact for every booking. We manage customer acquisition,
+      booking, pricing, communication, coordination, payment collection, support, and complaint
+      handling. Independent service partners perform the work on site to our service standards, but
+      your booking relationship is with Panun Kaergar.
     </p>
-    <h2>How to cancel or reschedule</h2>
+    <p>
+      This page explains how to cancel or reschedule a booking, what happens when Panun Kaergar or a
+      partner cancels, and how your payment is affected depending on whether a partner has visited
+      the site and how much you have paid. Full refund rules — including quality, damage, and
+      incomplete-service cases — are in our <a href="/refund">refund policy</a>.
+    </p>
+
+    <h2>1. How to cancel or reschedule</h2>
+    <p>
+      You can cancel or reschedule a booking through the Panun Kaergar customer app, or by contacting
+      our team with your booking reference:
+    </p>
     <ul>
-      <li>Open your booking in the Panun Kaergar customer app, or</li>
+      <li>Open your booking in the Panun Kaergar customer app and choose cancel or reschedule, or</li>
       <li>
         Call us at <a href={`tel:${site.phone}`}>{site.phone}</a>, WhatsApp us, or email
-        <EmailLink email={site.email} /> with your booking reference
+        <EmailLink email={site.email} /> with your booking reference and preferred new time (if
+        rescheduling)
       </li>
     </ul>
-    <h2>Partner arrival</h2>
     <p>
-      Cancellation fees, if any, depend on how close to the scheduled time you cancel and the
-      service category. Details are shown in the app at the time of booking where applicable.
+      Please cancel or reschedule as early as you can. Whether money is refunded after a cancellation
+      depends on partner visit status and the rules below.
     </p>
+
+    <h2>2. When you cancel the service</h2>
     <p>
-      <a href="/contact">Contact support</a> · <a href="/refund">Refund policy</a> · <a href="/faq">FAQ</a>
+      If you cancel a booked service, refund eligibility depends on whether our partner has already
+      visited the site.
     </p>
+    <h3>Partner has visited the site</h3>
+    <p>
+      If the service is cancelled by you after our partner has visited the site, the booking
+      confirmation amount is not refundable. This amount covers the partner’s visit and related
+      booking confirmation costs and will be retained.
+    </p>
+    <h3>Partner has not visited the site</h3>
+    <p>
+      If the service is cancelled by you and our partner has not visited the site, the amount paid
+      for the booking will be refunded. You are eligible for a full refund of what you have paid
+      toward that booking (subject to verification of payment and booking status).
+    </p>
+
+    <h2>3. When you have paid the full booking amount in advance</h2>
+    <p>
+      Sometimes customers pay the full booking amount in advance rather than only the booking
+      confirmation amount. If you cancel in those cases, the following applies:
+    </p>
+    <h3>Partner has only visited</h3>
+    <p>
+      If you have paid the full booking amount in advance and the partner has only visited the site
+      (for example, the visit happened and you then cancel, or the full service was not completed as
+      booked), only the booking confirmation amount will be deducted. The remaining balance of the
+      full amount you paid in advance will be refunded to you.
+    </p>
+    <h3>Partner has not visited</h3>
+    <p>
+      If you have paid the full booking amount in advance and the partner has not visited the site,
+      the entire amount paid will be refunded. No booking confirmation deduction applies when the
+      partner has not visited.
+    </p>
+
+    <h2>4. When Panun Kaergar cancels or reschedules</h2>
+    <p>
+      Panun Kaergar may cancel or reschedule a booking when a partner is unavailable, there is a
+      partner no-show, operational constraints prevent the visit, or another genuine reason makes
+      the scheduled service impossible. In such cases we will try to offer a suitable reschedule
+      first.
+    </p>
+    <h3>Partner has not visited the site</h3>
+    <p>
+      If Panun Kaergar cancels the booking before a partner has visited, and you do not accept a
+      suitable reschedule, amounts paid toward that booking will be refunded in full.
+    </p>
+    <h3>Partner has visited the site</h3>
+    <p>
+      If a partner has already visited and Panun Kaergar cancels the remainder of the service for
+      reasons on our side, refund treatment will follow the applicable booking and payment rules
+      described in our <a href="/refund">refund policy</a>, including any booking confirmation
+      amount already earned for the visit.
+    </p>
+
+    <h2>5. Rescheduling</h2>
+    <p>
+      You may request a reschedule instead of a cancellation by using the app or contacting
+      support with your booking reference and a preferred new time. Rescheduling is subject to
+      partner availability. If a suitable new slot cannot be arranged and the booking is cancelled
+      instead, the cancellation and refund rules above apply based on whether the partner has visited
+      and who initiated the cancellation.
+    </p>
+
+    <h2>6. Payments and scope changes</h2>
+    <p>
+      Panun Kaergar sets and confirms the customer-facing price for each booking. Please pay only
+      the amount approved by Panun Kaergar through our official booking and payment process. If
+      additional work, changes in scope, or extra materials are needed on site, contact Panun
+      Kaergar before any extra charge is agreed or collected. Do not cancel a booking to arrange
+      service privately outside the platform.
+    </p>
+
+    <h2>7. Summary</h2>
+    <ul>
+      <li>You cancel + partner has visited → booking confirmation amount is not refundable.</li>
+      <li>You cancel + partner has not visited → amount paid is refunded.</li>
+      <li>
+        Full amount paid in advance + partner has only visited → booking confirmation amount
+        deducted; remaining amount refunded.
+      </li>
+      <li>Full amount paid in advance + partner has not visited → full amount refunded.</li>
+      <li>
+        Panun Kaergar cancels before a partner visit and no suitable reschedule → full refund of
+        amounts paid.
+      </li>
+      <li>
+        Quality, damage, incomplete work, duplicate charges, and refund processing → see our
+        <a href="/refund">refund policy</a>.
+      </li>
+    </ul>
+
+    <h2>8. Related policies</h2>
+    <p>
+      For refunds related to poor workmanship, damage, incomplete service, duplicate charges, or
+      processing timelines after an approved refund, see our
+      <a href="/refund">refund policy</a>. For help with a specific booking,
+      <a href="/contact">contact support</a> or see our <a href="/faq">FAQ</a>.
+    </p>
+    </div>
   </section>
 </PageLayout>

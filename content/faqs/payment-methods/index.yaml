@@ -1,10 +1,14 @@
 question: payment-methods
 questionText: How do I pay for a Panun Kaergar home service, and do I pay the person at the door?
 answer: >-
-  Payment is managed through Panun Kaergar — you are dealing with the company, not settling
-  privately with whoever arrives. You can pay in the customer app with the online methods shown
-  there, or pay as our team confirms after the job where cash or other options are available. The
-  amount should match what we agreed, plus any extras that were explained before work continued.
+  Pay only the amount confirmed by Panun Kaergar through our official app, website, phone, WhatsApp,
+  or other designated channel. Payment is managed through Panun Kaergar — you are dealing with the
+  company, not settling privately with whoever arrives. Use supported online methods in the app, or
+  pay as confirmed by Panun Kaergar after the job where cash payment is available. Panun Kaergar sets
+  and confirms the customer-facing price for each booking — you pay us for the agreed work, not a
+  separate platform fee, and you do not negotiate or pay a separate amount directly to the partner.
+  If additional work, scope changes, or extra materials are needed, contact Panun Kaergar before any
+  extra amount is agreed or paid.
 category: Payment
 sortOrder: 41
 published: true
